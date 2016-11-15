@@ -1,0 +1,821 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css">
+<script src="http://cdn.webix.com/edge/webix_debug.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	webix.debug = true;
+	webix.debug_size = true;
+	webix.debug_render = true;
+	webix_debug_proto = true;
+	webix.debug_time = true;
+</script>
+<style type="text/css">
+body {
+	background-color: #cacaca;
+}
+
+.big-title {
+	color: white;
+	background-color: #3498db;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.cartouche-titre {
+	font-weight: bolder;
+}
+
+legend {
+	font-weight: bolder;
+	font-size: 128px;
+}
+
+.webix_inp_label {
+	font-weight: bolder;
+}
+
+.webix_inp_top_label {
+	font-weight: bolder;
+}
+
+.webix_segment_0 {
+	background-color: #999999
+}
+
+.webix_segment_1 {
+	background-color: #999999
+}
+
+.webix_segment_N {
+	background-color: #999999
+}
+
+.warning {
+	color: darkred;
+	font-style: italic;
+}
+
+/* .webix_inp_textarea {
+	color: navy;
+}
+.webix_el_textarea textarea {
+	color : darkgreen;
+} */
+.webix_dt_editor input,.webix_cell,.webix_el_textarea textarea {color:red;}
+</style>
+
+<script type="text/javascript">
+	function val(s) {
+		if (null == s) {
+			return "";
+		}
+		/* if(s=="null") {
+			return "";
+		} */
+		return s;
+	}
+	function getParameterByName(name, url) {
+		if (!url)
+			url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
+				.exec(url);
+		if (!results)
+			return null;
+		if (!results[2])
+			return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	var rootDate = new Date();
+	var bean = null;
+	var formbean = null;
+
+	function validate() {
+		if(bean.enCours) {
+			enregistrerThen(exportPdf);
+		} else {
+			exportPdf();
+		}
+	}
+
+	function exportPdf() {
+		webix.ajax()/*.sync()*/.headers({
+			"Content-type" : "application/json",
+			"Authorization" : "Bearer " + window.sessionStorage.token
+		}).post("/rest/entretiens-pro/" + bean.cdoId + "/validate").then(
+				function(realdata) {
+
+					window.location = "/rest/entretiens-pro/" + bean.cdoId
+							+ ".pdf?token=" + window.sessionStorage.token;
+					/* webix.send("/rest/entretiens-pro/"
+							+ bean.cdoId + ".pdf", {
+						token : window.sessionStorage.token
+					}, "GET", "_blank"); */
+				}).fail(function(err) {
+			webix.alert("Echec de la validation!");
+		});
+	}
+	function isFunction(functionToCheck) {
+		 var getType = {};
+		 return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+	}
+	function enregistrer() {
+		enregistrerThen(null);
+	}
+	function enregistrerThen(thenFunc) {
+		var promise = webix.ajax()/*.sync()*/.headers({
+			"Content-type" : "application/json",
+			"Authorization" : "Bearer " + window.sessionStorage.token
+		}).post("/rest/entretiens-pro/" + bean.cdoId + "/entretien", bean)
+				.then(function(realdata) {
+					bean.souhaitRemovals = [];
+					bean.souhaits = [];
+					bean.souhaitsEvaluateur = [];
+					if (thenFunc != null) {
+						thenFunc();
+					} else {
+						webix.message("Enregistré!");/*window.location.reload(true);*/
+					}
+				}).fail(function(err) {
+					if (isFunction(thenFunc)) {
+						console.log(thenFunc);
+						console.log("alors?");
+						thenFunc();
+					} else {
+						//TODO il faudrait discernet l'erreur d'enregistrement du "pas en cours!"
+						webix.alert("Echec de l'enregistrement!");
+						console.log(err);
+					}
+				});
+
+	}
+</script>
+</head>
+<body>
+	<center>
+		<div id="data_container" style="margin: 20px;"></div>
+	</center>
+	<div id="header" style="display: none">
+		<table style="width: 100%">
+			<tr>
+				<td>
+					<div>
+						<span class="cartouche-titre">Nom :</span> #nom#
+					</div>
+					<div>
+						<span class="cartouche-titre">Prénom :</span> #prenom#
+					</div>
+					<div>
+						<span class="cartouche-titre">Service :</span> #service#
+					</div>
+					<div>
+						<span class="cartouche-titre">Poste occupé :</span> #poste#
+					</div>
+					<div>
+						<span class="cartouche-titre">Date d'entrée dans
+							l'entreprise : </span> #dateEntreeEntreprise#
+					</div>
+				</td>
+				<td>
+					<div>
+						<span class="cartouche-titre">Responsable hiérarchique :</span>
+						#responsable#
+					</div>
+					<div>
+						<span class="cartouche-titre">Entretien mené par :</span>
+						#menePar#
+					</div>
+					<div>
+						<span class="cartouche-titre">Date de l'entretien :</span> #date#
+					</div>
+					<div>
+						<span class="cartouche-titre">Date du précédent entretien :</span>
+						#datePrecedentEntretien#
+					</div>
+					<div>
+						<span class="cartouche-titre">Diplômes :</span> #diplomes#
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+		var matricule = getParameterByName("matricule");
+
+		var id = getParameterByName("id");
+
+		var url = id != null ? "/rest/entretiens-pro/" + id : "/rest/employes/"
+				+ matricule + "/entretien-pro/current";
+
+		webix
+				.ajax()
+				.headers({
+					"Authorization" : "Bearer " + window.sessionStorage.token
+				})
+				.get(url)
+				.fail(
+						function() {
+							webix
+									.alert(
+											'Vous ne pouvez pas accéder à cet entretien!',
+											function() {
+												webix
+														.send(
+																"/files/choix-employe.html",
+																"GET");
+											});
+						})
+				.then(
+						function(rawformbean) {
+							var urlEntretien = id != null ? "/rest/entretiens-pro/"
+									+ id + "/entretien"
+									: "/rest/employes/"
+											+ matricule
+											+ "/entretien-pro/current/entretien";
+							webix
+									.ajax()
+									.headers(
+											{
+												"Authorization" : "Bearer "
+														+ window.sessionStorage.token
+											})
+									.get(urlEntretien)
+									.fail(
+											function() {
+												webix
+														.alert('Vous ne pouvez pas accéder à cet entretien.');
+											})
+									.then(
+											function(rawentretienbean) {
+												createForm(rawformbean.json(),
+														rawentretienbean.json());
+											});
+						});
+
+		function ajouterSouhait() {
+			item = {
+				added : true,
+				texte : "Saisir votre souhait ici...",
+				avisEvaluateur : "Favorable"
+			};
+			$$("datatable_souhaits").add(item);
+			bean.souhaits.push(item);
+		}
+
+		function removeSouhait(identifiant) {
+			item = $$("datatable_souhaits").getItem(identifiant);
+			item.removed = true;
+			if (!item.added) {
+				bean.souhaitRemovals.push(item);
+			}
+			bean.souhaits = bean.souhaits.filter(function(i) {
+				return i.id != identifiant;
+			});
+			$$("datatable_souhaits").filter(function(obj) {
+				return !obj.removed;
+			});
+		}
+
+		function ajouterSouhaitEvaluateur() {
+			item = {
+				added : true,
+				texte : "Saisir votre souhait ici...",
+				avisEvaluateur : "Favorable"
+			};
+			$$("datatable_souhaits_evaluateur").add(item);
+			bean.souhaitsEvaluateur.push(item);
+		}
+
+		function removeSouhaitEvaluateur(identifiant) {
+			item = $$("datatable_souhaits_evaluateur").getItem(identifiant);
+			item.removed = true;
+			if (!item.added) {
+				bean.souhaitEvaluateurRemovals.push(item);
+			}
+			bean.souhaitsEvaluateur = bean.souhaitsEvaluateur
+					.filter(function(i) {
+						return i.id != identifiant;
+					})
+			$$("datatable_souhaits_evaluateur").filter(function(obj) {
+				return !obj.removed;
+			});
+		}
+
+		function createForm(formbean, entretienbean) {
+			this.formbean = formbean;
+			this.bean = entretienbean;
+			bean.souhaitsEvaluateur = [];
+			bean.souhaits = [];
+			bean.souhaitEvaluateurRemovals = [];
+			bean.souhaitRemovals = [];
+			var page = {
+				id : "mainForm",
+				container : "data_container",
+				view : "form",
+				scroll : false,
+				width : 1280,
+				align : "center",
+				rows : [
+						{
+							view : "toolbar",
+							cols : [
+									{
+										view : "template",
+										type : "clean",
+										css : "big-title",
+										height : 80,
+										template : "<img height='80px' style='float:left;' src=\"/files/logo-mfca-monochrome.png\"/><div>Mutualité 79 - Formulaire d'entretien professionnel<br/> pour #prenom# #nom#</div>",
+										data : formbean
+									}, {
+										view : "button",
+										type : "iconButton",
+										icon : "save",
+										align : "right",
+										label : "Enregistrer",
+										width : 120,
+										click : "enregistrer"
+									}, {
+										view : "button",
+										type : "iconButton",
+										icon : "fa fa-file-pdf-o",
+										align : "right",
+										label : "Valider",
+										width : 100,
+										click : "validate"
+									} ]
+						},
+						{
+							view : "template",
+							data : formbean,
+							height : 120,
+							template : document.getElementById("header").innerHTML
+						},
+
+						{
+							multi : true,
+							view : "accordion",
+							type : "wide",
+							rows : [
+
+									{
+										header : "Le poste de travail",
+										body : {
+											rows : [
+													{
+														view : "template",
+														height : 30,
+														type : "clean",
+														template : "Ancienneté dans le poste actuel: #anciennete#",
+														data : formbean
+													},
+													{
+														id : "evolutionDepuisDernierEntretien",
+														view : "textarea",
+														height : 200,
+														label : "Evolutions et changements depuis le dernier entretien professionnel:",
+														labelPosition : "top",
+														value : val(entretienbean.evolutionDepuisDernierEntretien),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.evolutionDepuisDernierEntretien = v;
+															}
+														}
+													} ]
+										}
+									},
+									{
+										header : "Bilan des formations effectuées",
+										body : {
+											id : "bilanFormations",
+											rows : [ {
+												view : "textarea",
+												height : 100,
+												label : "Commentaires:",
+												labelPosition : "top",
+												value : val(entretienbean.commentaireBilanFormation),
+												on : {
+													"onChange" : function(v) {
+														bean.commentaireBilanFormation = v;
+													}
+												}
+											} ]
+										}
+									},
+									{
+										collapsed : false,
+										header : "Projet Professionnel",
+										body : {
+
+											rows : [
+
+													{
+														view : "textarea",
+														height : 100,
+														label : "Evolution souhaitée par le salarié dans son emploi actuel:",
+														labelPosition : "top",
+														value : val(entretienbean.evolutionSouhaiteeDansEmploiActuel),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.evolutionSouhaiteeDansEmploiActuel = v;
+															}
+														}
+													},
+													{
+														view : "textarea",
+														height : 100,
+														label : "Evolution souhaitée par le salarié vers un nouvel emploi:",
+														labelPosition : "top",
+														value : val(entretienbean.evolutionSouhaiteeDansNouvelEmploi),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.evolutionSouhaiteeDansNouvelEmploi = v;
+															}
+														}
+													},
+													{
+														view : "textarea",
+														height : 60,
+														labelWidth : 150,
+														label : "A quelle échéance?",
+														labelPosition : "left",
+														value : val(entretienbean.echeance),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.echeance = v;
+															}
+														}
+													},
+													{
+														cols : [
+																{
+																	view : "textarea",
+																	height : 200,
+																	label : "Compétences acquises nécessaires aux évolutions prévues:",
+																	labelPosition : "top",
+																	value : val(entretienbean.evolutionSouhaiteeCompetencesAcquises),
+																	on : {
+																		"onChange" : function(
+																				v) {
+																			bean.evolutionSouhaiteeCompetencesAcquises = v;
+																		}
+																	}
+																},
+																{
+																	view : "textarea",
+																	height : 200,
+																	label : "Compétences requises nécessaires aux évolutions prévues:",
+																	labelPosition : "top",
+																	value : val(entretienbean.evolutionSouhaiteeCompetencesRequises),
+																	on : {
+																		"onChange" : function(
+																				v) {
+																			bean.evolutionSouhaiteeCompetencesRequises = v;
+																		}
+																	}
+																} ]
+													},
+													{
+														view : "textarea",
+														height : 100,
+														label : "Moyens de réalisation définis par le salarié:",
+														labelPosition : "top",
+														value : val(entretienbean.evolutionSouhaiteeMoyensRealisation),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.evolutionSouhaiteeMoyensRealisation = v;
+															}
+														}
+													}
+
+											]
+
+										}
+									},
+
+									{
+										header : "Formation professionnelle",
+										body : {
+											rows : [
+													{
+														view : "datatable",
+														id : "datatable_souhaits",
+														columns : [
+																{
+																	id : "texte",
+																	editor : "text",
+																	header : "Formations souhaitées par le salarié",
+																	width : 700
+																},
+																{
+																	id : "avisEvaluateur",
+																	editor : "richselect",
+																	options : [
+																			"Favorable",
+																			"Non favorable",
+																			"Favorable mais non prioritaire" ],
+																	header : "Avis de l'évaluateur",
+																	width : 300
+																},
+																{
+																	id : "remove",
+																	width : 280,
+																	header : "",
+																	css : "webix_el_button",
+																	template : "<a href='javascript:removeSouhait(#id#)'><button type=\"button\" class=\"webix_img_btn\" style=\"line-height:32px;\"><span class=\"webix_icon_btn fa-minus-circle\" style=\"max-width:32px;\"></span>Supprimer</button></a>"
+																} ],
+														autowidth : true,
+														autoheight : true,
+														editable : true,
+														data : bean.souhaitsFormationSalarie
+													},
+													{
+														view : "button",
+														type : "icon",
+														icon : "plus-circle",
+														label : "Ajouter un souhait",
+														align : "right",
+														autowidth : true,
+														click : ajouterSouhait
+													},
+													{
+														view : "datatable",
+														id : "datatable_souhaits_evaluateur",
+														columns : [
+																{
+																	id : "texte",
+																	editor : "text",
+																	header : "Formations souhaitées par l'évaluateur",
+																	width : 1000
+																},
+																{
+																	id : "remove",
+																	width : 280,
+																	header : "",
+																	css : "webix_el_button",
+																	template : "<a href='javascript:removeSouhaitEvaluateur(#id#)'><button type=\"button\" class=\"webix_img_btn\" style=\"line-height:32px;\"><span class=\"webix_icon_btn fa-minus-circle\" style=\"max-width:32px;\"></span>Supprimer</button></a>"
+																} ],
+														autowidth : true,
+														autoheight : true,
+														editable : true,
+														data : bean.souhaitsFormationEvaluateur
+													}
+
+													,
+													{
+														view : "button",
+														type : "icon",
+														icon : "plus-circle",
+														label : "Ajouter un souhait évaluateur",
+														align : "right",
+														autowidth : true,
+														click : ajouterSouhaitEvaluateur
+													},
+													{
+														view : "textarea",
+														label : "Autres actions de développement des compétences envisagées (tutorat, accompagnement,...) :",
+														labelPosition : "top",
+														height : 100,
+														value : val(entretienbean.autresActionsDeveloppementCompetences),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.autresActionsDeveloppementCompetences = v;
+															}
+														}
+													} ]
+										}
+									},
+									{
+										header : "Perspectives d'évolution professionnelle",
+										body : {
+											rows : [
+
+													{
+														view : "textarea",
+														height : 100,
+														label : "Quelle est l'évolution prévisible de la fonction occupée d'ici à 2 ans?",
+														labelPosition : "top",
+														value : val(entretienbean.perspectivesEvolutionProfessionnelle),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.perspectivesEvolutionProfessionnelle = v;
+															}
+														}
+													},
+													{
+														view : "textarea",
+														height : 100,
+														label : "Quelles sont les compétences associées à cette évolution à acquérir ou à développer par le salarié?",
+														labelPosition : "top",
+														value : val(entretienbean.perspectivesEvolutionProfessionnelleCompetencesAssociees),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.perspectivesEvolutionProfessionnelleCompetencesAssociees = v;
+															}
+														}
+													},
+
+													{
+														view : "segmented",
+														//																editor : "richselect",
+														options : [ "Oui",
+																"Non" ],
+														label : "Le ou les projet(s) professionnel(s) est-il (sont-ils) en adéquation avec les besoins futurs de l'entreprise?",
+														//															labelAlign:"left",
+														labelWidth : 1000,
+														width : 1200,
+														value : (entretienbean.adequationProjetProBesoinsEntreprise == null || entretienbean.adequationProjetProBesoinsEntreprise) ? "Oui"
+																: "Non",
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.adequationProjetProBesoinsEntreprise = (v == "Oui" ? true
+																		: false);
+															}
+														}
+													},
+													{
+														view : "textarea",
+														height : 100,
+														value : val(entretienbean.adequationProjetProBesoinsEntrepriseCommentaire),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.adequationProjetProBesoinsEntrepriseCommentaire = v;
+															}
+														}
+													}
+
+											]
+										}
+									},
+									{
+										header : "Plan d'actions",
+										body : {
+											rows : [
+													{
+														view : "segmented",
+														//																editor : "richselect",
+														options : [ "Oui",
+																"Non" ],
+														label : "Souhait de rencontrer le service ressources humaines pour une évocation du projet professionnel",
+														//															labelAlign:"left",
+														labelWidth : 1000,
+														width : 1200,
+														value : entretienbean.rencontreRh ? "Oui"
+																: "Non",
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.rencontreRh = (v == "Oui" ? true
+																		: false);
+															}
+														}
+													},
+													{
+														view : "textarea",
+														height : 100,
+														value : val(entretienbean.rencontreRhCommentaire),
+														on : {
+															"onChange" : function(
+																	v) {
+																bean.rencontreRhCommentaire = v;
+															}
+														}
+													} ]
+										}
+									},
+									{
+										header : "Synthèse de l'entretien",
+										body : {
+											view : "textarea",
+											height : 100,
+											label : "Synthèse de l'entretien:",
+											labelPosition : "top",
+											value : val(entretienbean.synthese),
+											on : {
+												"onChange" : function(v) {
+													bean.synthese = v;
+												}
+											}
+										}
+									}
+
+							]
+						},
+						{
+							view : "fieldset",
+							body : {
+								cols : [
+										{
+											view : "template",
+											height : 100,
+											type : "clean",
+											data : entretienbean,
+											template : "Fait le #date#"
+										},
+										{
+											view : "template",
+											type : "clean",
+											data : formbean,
+											template : "Signature du salarié: #prenom# #nom#"
+										},
+										{
+											view : "template",
+											type : "clean",
+											data : formbean,
+											template : "Signature du chargé d'entretien: #menePar#"
+										} ]
+							}
+						}, {
+							cols : [ {}, {
+								view : "button",
+								type : "iconButton",
+								icon : "save",
+								align : "right",
+								label : "Enregistrer",
+								width : 120,
+								click : "enregistrer"
+							}, {
+								view : "button",
+								type : "iconButton",
+								icon : "check",
+								align : "right",
+								label : "Valider",
+								width : 100,
+								click : "validate"
+							} ]
+						} ]
+			};
+			webix.ui(page);
+
+			if (entretienbean.appreciationsSessionFormation.length < 1) {
+				$$("bilanFormations")
+						.addView(
+								{
+									view : "label",
+									label : "<span class='warning'>Il n'y a pas eu de formation depuis le dernier entretien!</span>"
+								}, 0);
+			}
+
+			for ( var i in entretienbean.appreciationsSessionFormation) {
+				apprec = entretienbean.appreciationsSessionFormation[i];
+
+				$$("bilanFormations").addView(
+						{
+							cols : [
+									{
+										view : "template",
+										height : 30,
+										template : "" + apprec.libelleFormation
+												+ " du " + apprec.dateFormation
+									},
+									{
+										id : "appreciationsSessionFormation["
+												+ i + "]",
+										view : "segmented",
+										width : 300,
+										multiview : true,
+										value : val(apprec.valeur),
+										options : [ "Satisfaisant",
+												"A compléter", "Inutile" ],
+										on : {
+											"onChange" : function(v) {
+												/* bean.rencontreRhCommentaire = v; */
+												var cmd = "bean."
+														+ this.config.id
+														+ ".valeur=\"" + v
+														+ "\";";
+												console.log("YO:" + cmd);
+												eval(cmd);
+											}
+										}
+									} ]
+						}, 0
+				//, $$("mainForm").index($$("bilanFormations")) + 1
+				);
+			}
+		}
+
+		/* //Gestion de la progressbar à la validation
+		//adding progress bar functionality to it
+		webix.extend($$("mainForm"), webix.ProgressBar);
+
+		//using the functionality
+		$$("mainForm").showProgress({
+			type : "icon",
+			delay : 3000
+		}); */
+	</script>
+</body>
+</html>

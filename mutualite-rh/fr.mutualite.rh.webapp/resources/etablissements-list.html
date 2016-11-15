@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
+	type="text/css">
+<script src="http://cdn.webix.com/edge/webix_debug.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	webix.debug = true;
+	webix.debug_size = true;
+	webix.debug_render = true;
+	webix_debug_proto = true;
+	webix.debug_time = true;
+</script>
+<style type="text/css">
+body {
+	background-color: #cacaca;
+}
+
+.big-title {
+	color: white;
+	background-color: #3498db;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.cartouche-titre {
+	font-weight: bolder;
+}
+
+legend {
+	font-weight: bolder;
+	font-size: 128px;
+}
+
+.webix_inp_label {
+	font-weight: bolder;
+}
+
+.webix_inp_top_label {
+	font-weight: bolder;
+}
+
+.webix_segment_0 {
+	background-color: #999999
+}
+
+.webix_segment_1 {
+	background-color: #999999
+}
+
+.webix_segment_N {
+	background-color: #999999
+}
+
+.warning {
+	color: darkred;
+	font-style: italic;
+}
+</style>
+
+<script type="text/javascript">
+	function val(s) {
+		if (null == s) {
+			return "";
+		}
+		/* if(s=="null") {
+			return "";
+		} */
+		return s;
+	}
+	function getParameterByName(name, url) {
+		if (!url)
+			url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
+				.exec(url);
+		if (!results)
+			return null;
+		if (!results[2])
+			return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	var rootDate = new Date();
+	var bean = null;
+	var formbean = null;
+</script>
+</head>
+<body>
+	<center>
+		<div id="data_container" style="margin: 20px;"></div>
+	</center>
+	<script>
+		if (null == window.sessionStorage.token) {
+			webix.send("/files/login2.html");
+		}
+		webix.ajax().headers({
+			"Authorization" : "Bearer " + window.sessionStorage.token
+		}).get("/rest/etablissements/combo.json").fail(
+				function(e) {
+					webix.alert({width:500, text:'Impossible de lister les établissements!<hr/>\n<br/>Erreur ' + e.status + '<br/>\n<pre>' + e.response + '\n</pre>' + e.responseURL,
+							callback:function() {
+								webix.send("/files/login2.html", "GET");
+							}});
+				}).then(function(rawdata) {
+			createForm(rawdata.json());
+		});
+
+		function createForm(data) {
+
+			var detail = {
+				id : "detail",
+				view : "datatable",
+				data: data,
+				columns : [
+						{
+							id : "etablissement",
+							header : "Etablissement",
+							width : 300,
+							template : "#value#"
+						},
+						{
+							id : "etablissementId",
+							header : "Numéro",
+							template: "#id#",
+							width : 110
+						},
+						{
+							id : "formations",
+							/* header : "Formations", */
+							width : 300,
+							template : function(etablissement) {
+								return "<a href='/rest/reports/" + etablissement.id + "/employeeFormation.xls"
+								+ "?token="
+								+ window.sessionStorage.token
+								+ "'><span class=\"webix_icon fa-file-excel-o\"></span></a>";
+							},
+							adjust : true
+						}
+						]
+			,
+			  onClick:{
+				"upload_scan_button" : function(ev, id){
+				    //id - row id
+					alert("scan " + id);
+				}
+			  }
+			//,url : "/rest/employes/216/entretien-pro/all.json"
+			}
+
+			var page = {cols : [ 
+				{rows : [ 
+					detail
+				]} 
+			]};
+			webix.ui(page);
+		}
+	</script>
+
+</body>
+</html>

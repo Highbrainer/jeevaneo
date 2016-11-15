@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ldap
+Bundle-SymbolicName: fr.mutualite.rh.ldap;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: fr.mutualite.rh.ldap.Activator
+Bundle-Vendor: Alexandre Borgoltz
+Require-Bundle: org.eclipse.core.runtime,
+ fr.mutualite.rh.model;bundle-version="0.1.0",
+ org.apache.log4j;bundle-version="1.2.15"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: fr.mutualite.rh.ldap
+Bundle-ClassPath: lib/jackson-core-2.5.4.jar,
+ .

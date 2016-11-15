@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Liste des Employés</title>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
+	type="text/css">
+<script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="../common/samples.css"> -->
+<!-- <script src="../common/testdata.js" type="text/javascript" charset="utf-8"></script> -->
+</head>
+<body>
+	<div id="testC"></div>
+
+	<script type="text/javascript" charset="utf-8">
+		webix
+				.ready(function() {
+
+					webix
+							.ajax()
+							.headers(
+									{
+										"Authorization" : "Bearer "
+												+ window.sessionStorage.token
+									})
+							.get("/rest/effectif/.json")
+							.then(
+									function(employes) {
+
+										//format in editor
+										var show_editor = webix.Date
+												.dateToStr("%Y / %m / %d");
+										var parse_editor = webix.Date
+												.strToDate("%Y / %m / %d");
+										//format in grid
+										var show_date = webix.Date
+												.dateToStr("%d %M %Y");
+
+										grida = webix
+												.ui({
+													container : "testC",
+													view : "datatable",
+													columns : [
+															{
+																id : "matricule",
+																header : ["Matricule",{content:"numberFilter"}],
+																css : "rank",
+																width : 100,
+																map : "#matricule#"
+															},
+															{
+																id : "nom",
+																header : 
+																[ "Nom",{content:"textFilter"}],
+																width : 200
+															},
+															{
+																id : "prenom",
+																header : ["Prénom",{content:"textFilter"}],
+																width : 200
+															},
+															{
+																id : "dateSortieEntreprise",
+																editor : "date",
+																header : "Date de sortie",
+																width : 200,
+																format : show_date,
+																editFormat : show_editor,
+																editParse : parse_editor
+															} /* ,
+																						{ map:"(date)#start#",		editor:"date",		header:"Start date", 	width:120},
+																						{ map:"(date)#end#",		editor:"date",		header:"End date", 		width:120} */
+													],
+
+													editable : true,
+													autoheight : true,
+													autowidth : true,
+
+													data : employes.json()
+												});
+
+										Date.prototype.yyyymmdd = function() {
+											var mm = this.getMonth() + 1; // getMonth() is zero-based
+											var dd = this.getDate();
+											var yyyy = this.getFullYear();
+											if (mm < 10) {
+												mm = "" + 0 + "" + mm;
+											}
+											if (dd < 10) {
+												dd = "" + 0 + "" + dd;
+											}
+
+											return yyyy + "-" + mm + "-" + dd; // padding
+										};
+
+										grida
+												.attachEvent(
+														"onDataUpdate",
+														function(id, emp) {
+															/* alert("AH AH "
+																	+ emp.dateSortieEntreprise
+																			.yyyymmdd()
+																	+ "'"); */
+															if(!emp.dateSortieEntreprise) {
+																//unset!
+																webix
+																.ajax()
+																.headers(
+																		{
+																			"Authorization" : "Bearer "
+																					+ window.sessionStorage.token
+																		})
+																.del(
+																		"/rest/effectif/"
+																				+ emp.cdoId
+																				+ "/dateSortieEntreprise")
+																.fail(
+																		function(
+																				err) {
+																			webix
+																			.alert("Echec de la mise à jour pour " + emp.label + "! ");
+																			return true;
+																		});
+															} else {
+																
+																	
+															webix
+																	.ajax()
+																	.headers(
+																			{
+																				"Authorization" : "Bearer "
+																						+ window.sessionStorage.token
+																			})
+																	.post(
+																			"/rest/effectif/"
+																					+ emp.cdoId
+																					+ "/dateSortieEntreprise",
+																			{dateSortieEntreprise:emp.dateSortieEntreprise
+																					.yyyymmdd()})
+																	.fail(
+																			function(
+																					err) {
+																				webix
+																						.alert("Echec de la mise à jour pour " + emp.label + "! ");
+																				return true;
+																			});
+															}
+														});
+
+									});
+				});
+	</script>
+</body>
+</html>
+<script src='https://cdn.ravenjs.com/2.1.0/raven.min.js'></script>
+<script>
+	Raven.config(
+			'https://50e7233181284483abcbf6688b0505b5@app.getsentry.com/68752',
+			{
+				release : '4.0.0'
+			}).install();
+</script>

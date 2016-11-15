@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
+	type="text/css">
+<script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="data_container" style="margin: 20px"></div>
+	<script>
+	
+	function soumettre() {
+		webix.ajax().post(
+				"/rest/authentication", $$("login-form").getValues(), 
+				function(token) {
+					window.sessionStorage.token = token;
+						webix.send("entretien-professionnel-list.html"/*, {token:token}*/, "GET");
+		}).fail(function() {webix.message({type:"error", text:"Accès refusé!"});
+});
+		
+	}
+	
+	var form1 = [
+	 			{ view:"text", id:"username", name:"username", label:"Identifiant" },
+	 			{ view:"text", id:"password", name:"password", type:'password', label:"Mot de passe", },
+	 			{
+					view : "button",
+					type : "form",
+					value : "S'identifier",
+					click : soumettre
+				}
+	 		];
+	
+		webix.ui({
+			container : "data_container",
+			view : "form",
+			id : "login-form",
+			scroll : false,
+			//width : 700,
+			rows : form1
+		});
+		$$("password").attachEvent("onKeyPress", function(code, e) {
+		    if (code === 13 && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+		        soumettre();
+		    return false;
+		    }
+		});
+	</script>
+</body>
+</html>

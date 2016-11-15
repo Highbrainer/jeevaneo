@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.mutualite.rh.model/src" modelPluginID="fr.mutualite.rh.model"
+    modelName="Mut" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic" complianceLevel="8.0"
+    copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mut.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <genPackages prefix="Mut" basePackage="fr.mutualite.rh" disposableProviderFactory="true"
+      ecorePackage="mut.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mut.ecore#//ClassificationStatut">
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/E1"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/E2"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/E3"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/E4"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/T1"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/T2"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/C1"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/C2"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/C3"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/C4"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/D"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/DENT"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/ALTERNANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/ADMINISTRATEUR"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/AUTRE"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//ClassificationStatut/APPRENTI"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mut.ecore#//Appreciation">
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Appreciation/Satisfaisant"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Appreciation/ACompleter"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Appreciation/Inutile"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mut.ecore#//Avis">
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Avis/Favorable"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Avis/NonFavorable"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Avis/FavorableNonPrioritaire"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mut.ecore#//Role">
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Role/RESPONSABLE_ENTRETIEN"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Role/DRH"/>
+    </genEnums>
+    <genClasses ecoreClass="mut.ecore#//Employe" labelFeature="#//model/Employe/label">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/matricule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/prenom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/nomJeuneFille"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/dateNaissance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/dateEmbauche"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/diplomes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/etablissement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/affectationsEmploi"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/affectationEmploiCourante"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/affectationsClassification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/affectationClassificationCourante"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/sessionsFormation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/entretiens"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/entretiensMenes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/dateSortieEntreprise"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/responsable.1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/subalternes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/etablissementsEnResponsabilite"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/entreteneurs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/employesEntretenus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/label"/>
+      <genOperations ecoreOperation="mut.ecore#//Employe/hasValidAffectationEmploiCourante">
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationEmploiCourante/chain"/>
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationEmploiCourante/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="mut.ecore#//Employe/hasOneAndOnlyOneAffectationEmploiCourante">
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasOneAndOnlyOneAffectationEmploiCourante/chain"/>
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasOneAndOnlyOneAffectationEmploiCourante/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="mut.ecore#//Employe/hasOneAndOnlyOneAffectationClassificationCourante">
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasOneAndOnlyOneAffectationClassificationCourante/chain"/>
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasOneAndOnlyOneAffectationClassificationCourante/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="mut.ecore#//Employe/hasValidAffectationClassificationCourante">
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationClassificationCourante/chain"/>
+        <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationClassificationCourante/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="mut.ecore#//Employe/responsable"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Affectation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Affectation/dateDebut"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Affectation/dateFin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Affectation/emploi"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Emploi">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Emploi/intitule"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//AffectationClassification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AffectationClassification/dateDebut"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AffectationClassification/dateFin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AffectationClassification/classification"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Formation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Formation/libelle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Formation/sessionformation"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//OrganismeFormation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//OrganismeFormation/nom"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//OrganismeFormation/formations"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//SessionFormation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/dateFin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/dateDebut"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/duree"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//SessionFormation/employes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//SessionFormation/appreciations"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Entretien">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/date"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Entretien/meneur"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/enCours"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/fake"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/scan"/>
+      <genOperations ecoreOperation="mut.ecore#//Entretien/employe"/>
+      <genOperations ecoreOperation="mut.ecore#//Entretien/hasValidMeneur">
+        <genParameters ecoreParameter="mut.ecore#//Entretien/hasValidMeneur/chain"/>
+        <genParameters ecoreParameter="mut.ecore#//Entretien/hasValidMeneur/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//EntretienProfessionnel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionDepuisDernierEntretien"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/commentaireBilanFormation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeDansEmploiActuel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeDansNouvelEmploi"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/echeance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeCompetencesAcquises"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeCompetencesRequises"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeMoyensRealisation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/autresActionsDeveloppementCompetences"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/perspectivesEvolutionProfessionnelle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/perspectivesEvolutionProfessionnelleCompetencesAssociees"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/adequationProjetProBesoinsEntreprise"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/adequationProjetProBesoinsEntrepriseCommentaire"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/rencontreRh"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/rencontreRhCommentaire"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/synthese"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//EntretienProfessionnel/appreciationsSessionFormation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//EntretienProfessionnel/souhaitsFormationSalarie"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//EntretienProfessionnel/souhaitsFormationEvaluateur"/>
+      <genOperations ecoreOperation="mut.ecore#//EntretienProfessionnel/hasValidSynthese">
+        <genParameters ecoreParameter="mut.ecore#//EntretienProfessionnel/hasValidSynthese/chain"/>
+        <genParameters ecoreParameter="mut.ecore#//EntretienProfessionnel/hasValidSynthese/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//AppreciationSessionFormation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AppreciationSessionFormation/valeur"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//AppreciationSessionFormation/sessionFormation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AppreciationSessionFormation/idFormation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AppreciationSessionFormation/libelleFormation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//AppreciationSessionFormation/dateFormation"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//SouhaitFormationEvaluateur">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SouhaitFormationEvaluateur/texte"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SouhaitFormationEvaluateur/id"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//SouhaitFormationSalarie">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SouhaitFormationSalarie/texte"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SouhaitFormationSalarie/avisEvaluateur"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SouhaitFormationSalarie/id"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Mutualite">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Mutualite/etablissements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Mutualite/emplois"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Mutualite/effectif"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Mutualite/organismes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Mutualite/utilisateurs"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Etablissements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Etablissements/etablissements"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Emplois">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Emplois/emplois"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Effectif">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Effectif/employes"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Organismes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Organismes/organismeFormations"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Etablissement" labelFeature="#//model/Etablissement/nom">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Etablissement/nom"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Etablissement/employes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Etablissement/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Etablissement/responsable"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Utilisateur">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Utilisateur/employe"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Utilisateur/login"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Utilisateur/roles"/>
+    </genClasses>
+    <genClasses ecoreClass="mut.ecore#//Utilisateurs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Utilisateurs/utilisateurs"/>
+    </genClasses>
+    <nestedGenPackages prefix="Dto" disposableProviderFactory="true" ecorePackage="mut.ecore#//dto">
+      <genClasses ecoreClass="mut.ecore#//dto/Formulaire">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/prenom"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/matricule"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/nom"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/diplomes"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/service"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/poste"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/responsable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/menePar"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mut.ecore#//dto/Formulaire/entretien"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/date"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/datePrecedentEntretien"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/anciennete"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/Formulaire/dateEntreeEntreprise"/>
+      </genClasses>
+      <genClasses ecoreClass="mut.ecore#//dto/UIEmploye">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UIEmploye/prenom"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UIEmploye/matricule"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UIEmploye/nom"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Config" disposableProviderFactory="true" fileExtensions="config"
+        ecorePackage="mut.ecore#//config">
+      <genClasses ecoreClass="mut.ecore#//config/Configuration">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/jdbcUrl"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/jdbcUser"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/jdbcPassword"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/jdbcDriver"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapPort"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapServers"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapBaseDn"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapIdAttribute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapLogin"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapPassword"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapFilter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/cdoPort"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/cdoRepository"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//config/Configuration/ldapBase"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

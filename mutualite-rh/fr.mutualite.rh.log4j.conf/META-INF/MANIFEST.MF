@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Conf
+Bundle-SymbolicName: fr.mutualite.rh.log4j.conf
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Alexandre Borgoltz
+Fragment-Host: org.apache.log4j;bundle-version="1.2.15"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

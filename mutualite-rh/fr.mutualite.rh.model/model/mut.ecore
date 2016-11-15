@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.mutualite.fr/mut/1.0" nsPrefix="mut">
+  <eClassifiers xsi:type="ecore:EClass" name="Employe">
+    <eOperations name="hasValidAffectationEmploiCourante" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="hasOneAndOnlyOneAffectationEmploiCourante" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="hasOneAndOnlyOneAffectationClassificationCourante" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="hasValidAffectationClassificationCourante" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="responsable" lowerBound="1" eType="#//Employe"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nomJeuneFille" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateNaissance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateEmbauche" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diplomes" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etablissement" lowerBound="1"
+        eType="#//Etablissement" eOpposite="#//Etablissement/employes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectationsEmploi" lowerBound="1"
+        upperBound="-1" eType="#//Affectation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectationEmploiCourante"
+        lowerBound="1" eType="#//Affectation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectationsClassification"
+        lowerBound="1" upperBound="-1" eType="#//AffectationClassification" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectationClassificationCourante"
+        lowerBound="1" eType="#//AffectationClassification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionsFormation" upperBound="-1"
+        eType="#//SessionFormation" eOpposite="#//SessionFormation/employes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entretiens" upperBound="-1"
+        eType="#//Entretien" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entretiensMenes" upperBound="-1"
+        eType="#//Entretien" eOpposite="#//Entretien/meneur"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateSortieEntreprise" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="responsable" lowerBound="1"
+        eType="#//Employe" eOpposite="#//Employe/subalternes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subalternes" upperBound="-1"
+        eType="#//Employe" eOpposite="#//Employe/responsable.1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etablissementsEnResponsabilite"
+        upperBound="-1" eType="#//Etablissement" eOpposite="#//Etablissement/responsable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entreteneurs" lowerBound="1"
+        upperBound="-1" eType="#//Employe" eOpposite="#//Employe/employesEntretenus"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employesEntretenus" upperBound="-1"
+        eType="#//Employe" eOpposite="#//Employe/entreteneurs"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Affectation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateDebut" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateFin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emploi" lowerBound="1"
+        eType="#//Emploi"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Emploi">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intitule" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ClassificationStatut">
+    <eLiterals name="E1" value="1"/>
+    <eLiterals name="E2" value="2" literal="E2"/>
+    <eLiterals name="E3" value="3"/>
+    <eLiterals name="E4" value="4"/>
+    <eLiterals name="T1" value="11"/>
+    <eLiterals name="T2" value="12"/>
+    <eLiterals name="C1" value="21"/>
+    <eLiterals name="C2" value="22"/>
+    <eLiterals name="C3" value="23"/>
+    <eLiterals name="C4" value="24"/>
+    <eLiterals name="D" value="31"/>
+    <eLiterals name="DENT" value="29" literal="Chirurgien Dentiste"/>
+    <eLiterals name="ALTERNANCE" value="90" literal="En alternance"/>
+    <eLiterals name="ADMINISTRATEUR" value="40" literal="Administrateur"/>
+    <eLiterals name="AUTRE" value="-1" literal="Autre catégorie"/>
+    <eLiterals name="APPRENTI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AffectationClassification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateDebut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateFin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classification" lowerBound="1"
+        eType="#//ClassificationStatut"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Formation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionformation" upperBound="-1"
+        eType="#//SessionFormation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrganismeFormation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formations" upperBound="-1"
+        eType="#//Formation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SessionFormation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateDebut" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateFin" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duree" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Durée en heure"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employes" upperBound="-1"
+        eType="#//Employe" eOpposite="#//Employe/sessionsFormation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appreciations" upperBound="-1"
+        eType="#//AppreciationSessionFormation" eOpposite="#//AppreciationSessionFormation/sessionFormation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entretien" abstract="true">
+    <eOperations name="employe" lowerBound="1" eType="#//Employe"/>
+    <eOperations name="hasValidMeneur" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="meneur" eType="#//Employe"
+        eOpposite="#//Employe/entretiensMenes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enCours" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fake" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scan" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntretienProfessionnel" eSuperTypes="#//Entretien">
+    <eOperations name="hasValidSynthese" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="chain" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionDepuisDernierEntretien"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireBilanFormation"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeDansEmploiActuel"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeDansNouvelEmploi"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="echeance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeCompetencesAcquises"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeCompetencesRequises"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeMoyensRealisation"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="autresActionsDeveloppementCompetences"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="perspectivesEvolutionProfessionnelle"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="perspectivesEvolutionProfessionnelleCompetencesAssociees"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adequationProjetProBesoinsEntreprise"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adequationProjetProBesoinsEntrepriseCommentaire"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rencontreRh" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rencontreRhCommentaire"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="synthese" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appreciationsSessionFormation"
+        upperBound="-1" eType="#//AppreciationSessionFormation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="souhaitsFormationSalarie"
+        upperBound="-1" eType="#//SouhaitFormationSalarie" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="souhaitsFormationEvaluateur"
+        upperBound="-1" eType="#//SouhaitFormationEvaluateur" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AppreciationSessionFormation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valeur" lowerBound="1"
+        eType="#//Appreciation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionFormation" lowerBound="1"
+        eType="#//SessionFormation" eOpposite="#//SessionFormation/appreciations"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idFormation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelleFormation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateFormation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Appreciation">
+    <eLiterals name="Satisfaisant"/>
+    <eLiterals name="ACompleter" value="1" literal="A compléter"/>
+    <eLiterals name="Inutile" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SouhaitFormationEvaluateur">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="texte" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Avis">
+    <eLiterals name="Favorable"/>
+    <eLiterals name="NonFavorable" value="1" literal="Non favorable"/>
+    <eLiterals name="FavorableNonPrioritaire" value="2" literal="Favorable mais non prioritaire"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SouhaitFormationSalarie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="texte" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="avisEvaluateur" lowerBound="1"
+        eType="#//Avis"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mutualite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etablissements" lowerBound="1"
+        eType="#//Etablissements" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emplois" lowerBound="1"
+        eType="#//Emplois" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="effectif" lowerBound="1"
+        eType="#//Effectif" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="organismes" lowerBound="1"
+        eType="#//Organismes" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="utilisateurs" lowerBound="1"
+        eType="#//Utilisateurs" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Etablissements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etablissements" upperBound="-1"
+        eType="#//Etablissement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Emplois">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emplois" upperBound="-1"
+        eType="#//Emploi" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Effectif">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employes" upperBound="-1"
+        eType="#//Employe" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Organismes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="organismeFormations" upperBound="-1"
+        eType="#//OrganismeFormation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Etablissement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employes" lowerBound="1"
+        upperBound="-1" eType="#//Employe" eOpposite="#//Employe/etablissement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="responsable" eType="#//Employe"
+        eOpposite="#//Employe/etablissementsEnResponsabilite"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Utilisateur">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employe" lowerBound="1"
+        eType="#//Employe"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="login" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roles" upperBound="-1"
+        eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Role">
+    <eLiterals name="RESPONSABLE_ENTRETIEN" literal="Responsable d'entretien"/>
+    <eLiterals name="DRH" value="1" literal="Ressource Humaines"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Utilisateurs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="utilisateurs" upperBound="-1"
+        eType="#//Utilisateur" containment="true"/>
+  </eClassifiers>
+  <eSubpackages name="dto" nsURI="http://www.mutualite.fr/mut/1.0/dto" nsPrefix="dto">
+    <eClassifiers xsi:type="ecore:EClass" name="Formulaire">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" changeable="false"
+          volatile="true" transient="true" derived="true" iD="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="diplomes" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="poste" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="responsable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="menePar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entretien" lowerBound="1"
+          eType="#//Entretien"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretien"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate" changeable="false"
+          volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="anciennete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateEntreeEntreprise"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate" changeable="false"
+          volatile="true" transient="true" derived="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UIEmploye">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" iD="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="config" nsURI="http://www.mutualite.fr/mut/1.0/config" nsPrefix="config">
+    <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcUrl" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="jdbc:mysql://localhost:3306/_DB_RH_EPEAE"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcUser" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="userDB_RH_EPEAE"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcPassword" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="C.,HV@%mi31lA1X',AU6"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcDriver" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="com.mysql.jdbc.Driver"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapPort" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="389"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapServers" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="SRVCAADM01.MFCA.local; SRVCAADM02.MFCA.local"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapBaseDn" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="DC=MFCA,DC=local"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapIdAttribute" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="samaccountname"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapLogin" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="CN=Administrateur AD ReadOnly,OU=_Services,OU=Services Informatiques,OU=Utilisateurs,OU=MFCA,DC=MFCA,DC=local"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapPassword" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="3phzdupj"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapFilter" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="(&amp;(samaccountname=%s)(objectClass=user)(objectCategory=person)(memberOf=CN= MFCA RH Acces EP EAE Informatise,OU=Services Communs,OU=Groupes,OU=MFCA,DC=MFCA,DC=local)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cdoPort" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="2036"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cdoRepository" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="mutualite-rh"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ldapBase" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="ou=MFCA"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>
