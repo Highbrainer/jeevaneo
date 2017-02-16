@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated conges -->
+      <package
+            uri="http://www.mutualite.fr/conges/1.0"
+            class="fr.mutualite.rh.conges.CongesPackage"
+            genModel="model/conges.genmodel"/>
+   </extension>
+
+</plugin>
