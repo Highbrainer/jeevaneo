@@ -3,6 +3,7 @@ package fr.mutualite.rh.conges;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,6 +20,16 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 
 		File def = null;
+		Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
+		String sDef = prefs.get("file-dir", null);
+		if(null!=sDef) {
+			def = new File(sDef);
+		}
+		File t = new File("T:/");
+		if(null==def && t.exists()) {
+			def = t;
+		}
+		
 //		def = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\congés v3.csv");
 		
 		JFileChooser chooser = new JFileChooser();
@@ -35,6 +46,8 @@ public class Application implements IApplication {
 		}
 		File in = chooser.getSelectedFile();
 		System.out.println("Yes " + in.getAbsolutePath());
+		
+		prefs.put("file-dir", in.getAbsolutePath());
 		
 		File out = new File(in.getParentFile(), "generated/conges-planning.xlsx");
 //		dir = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\generated.xlsx");

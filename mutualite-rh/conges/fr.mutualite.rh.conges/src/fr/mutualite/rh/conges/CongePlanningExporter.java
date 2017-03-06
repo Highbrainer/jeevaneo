@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -69,9 +70,13 @@ public class CongePlanningExporter {
 		CellStyle dateStyle = wb.createCellStyle();
 		CreationHelper createHelper = wb.getCreationHelper();
 		dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
-		
+
 		XSSFFont bold = wb.createFont();
 		bold.setBold(true);
+		
+		XSSFFont boldWhite = wb.createFont();
+		boldWhite.setBold(true);
+		boldWhite.setColor(IndexedColors.WHITE.index);
 
 		CellStyle semaineImpairStyle = wb.createCellStyle();
 		semaineImpairStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
@@ -79,7 +84,7 @@ public class CongePlanningExporter {
 		semaineImpairStyle.setFillForegroundColor(IndexedColors.GREY_80_PERCENT.index);
 		semaineImpairStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		semaineImpairStyle.setAlignment(HorizontalAlignment.CENTER);
-		semaineImpairStyle.setFont(bold);
+		semaineImpairStyle.setFont(boldWhite);
 
 		CellStyle semainePairStyle = wb.createCellStyle();
 		// semainePairStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
