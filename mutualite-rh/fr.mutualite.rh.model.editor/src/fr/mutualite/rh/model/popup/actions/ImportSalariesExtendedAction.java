@@ -65,7 +65,7 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		FileDialog fileDialog = new FileDialog(shell);
-		fileDialog.setText("Veuillez sélectionner le fichier 'retravaillé' csv des salariés Ã  importer...");
+		fileDialog.setText("Veuillez sélectionner le fichier 'retravaillé' csv des salariés à importer...");
 		String filename = fileDialog.open();
 		if (null == filename) {
 			return;
@@ -78,14 +78,14 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 
 			@Override
 			public String getLabel() {
-				return "Import du fichier des salarié	s " + path.getFileName();
+				return "Import du fichier des salariés " + path.getFileName();
 			}
 
 			@Override
 			protected void doExecute() {
 
 				try {
-					Files.lines(path, Charset.forName("Cp1252")/* StandardCharsets.ISO_8859_1 */).skip(1).collect(Collectors.toSet()).stream()
+					Files.lines(path, Charset.forName	("Cp1252")/* StandardCharsets.ISO_8859_1 */).skip(1).collect(Collectors.toSet()).stream()
 							.map(ImportSalariesExtendedAction.this::parse).forEach(emp -> {
 								ImportSalariesExtendedAction.this.addIfNotExists(mut, emp);
 							});
@@ -105,7 +105,7 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 	private void addIfNotExists(Mutualite mut2, Employe emp) {
 		if (emp.getDateSortieEntreprise() != null && emp.getDateSortieEntreprise().before(new Date())) {
 			// ignore
-			System.err.println("L'employé '" + emp.getNom() + " " + emp.getPrenom() + "' a quitté l'entreprise => je l'ignore!");
+			System.err.println("L'employé '" + emp.getNom() + " " + emp.getPrenom() + "' a quitté l'entreprise le " + sdf.format(emp.getDateSortieEntreprise()) + " => je l'ignore!");
 			return;
 		}
 		if (!mut2.getEffectif().getEmployes().stream().anyMatch(empl -> emp.getMatricule() == empl.getMatricule())) {
@@ -113,7 +113,7 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 		}
 	}
 
-	final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
 
 	private Employe parse(String line) {
 		String[] tokens = line.split("\\s*;\\s*");
@@ -122,25 +122,25 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 		}
 		int i = -1;
 		// champs obligatoires
-		String sMatricule = tokens[++i].trim();
-		String nom = tokens[++i].trim();
-		String nomJeuneFille = tokens[++i].trim();
-		String prenom = tokens[++i].trim();
-		String sIdEtablissement = tokens[++i].trim();
-		String sDateNaissance = tokens[++i].trim();
-		String sDateEntreeEntreprise = tokens[++i].trim();
-		String sDateSortieEntreprise = tokens[++i].trim();
-		// String inutile = tokens[++i].trim();
-		String sCategorieEmploi = tokens[++i].trim();
-		String libelleEmploi = tokens[++i].trim();
+		String sMatricule = intToken(tokens, ++i);
+		String nom = token(tokens, ++i);
+		String nomJeuneFille = token(tokens, ++i);
+		String prenom = token(tokens, ++i);
+		String sIdEtablissement = intToken(tokens, ++i);
+		String sDateNaissance = token(tokens, ++i);
+		String sDateEntreeEntreprise = token(tokens, ++i);
+		String sDateSortieEntreprise = token(tokens, ++i);
+		// String inutile = token(tokens, ++i);
+		String sCategorieEmploi = intToken(tokens, ++i);
+		String libelleEmploi = token(tokens, ++i);
 
 		// champs facultatifs
-		String sDateEntreeEmploi = token(tokens, ++i);
-		String sDatePrecedentEntretien = token(tokens, ++i);
-		String nomResponsable = token(tokens, ++i);
-		String sMatriculeResponsable = token(tokens, ++i);
-		String nomEntreteneur = token(tokens, ++i);
-		String sMatriculeEntreteneurs = token(tokens, ++i);
+//		String sDateEntreeEmploi = token(tokens, ++i);
+//		String sDatePrecedentEntretien = token(tokens, ++i);
+//		String nomResponsable = token(tokens, ++i);
+		String sMatriculeResponsable = intToken(tokens, ++i);
+//		String nomEntreteneur = token(tokens, ++i);
+		String sMatriculeEntreteneurs = intToken(tokens, ++i);
 		int matricule = Integer.parseInt(sMatricule);
 		Integer matriculeResponsable = null;
 		try {
@@ -169,13 +169,13 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 		Date dateEntreeEntreprise;
 		Date dateSortieEntreprise;
 		Date dateEntreeEmploi;
-		Date datePrecedentEntretien;
+//		Date datePrecedentEntretien;
 		try {
 			dateNaissance = sDateNaissance.isEmpty() ? null : sdf.parse(sDateNaissance);
 			dateEntreeEntreprise = sDateEntreeEntreprise.isEmpty() ? null : sdf.parse(sDateEntreeEntreprise);
 			dateSortieEntreprise = sDateSortieEntreprise.isEmpty() ? null : sdf.parse(sDateSortieEntreprise);
-			dateEntreeEmploi = (sDateEntreeEmploi == null || sDateEntreeEmploi.isEmpty()) ? null : sdf.parse(sDateEntreeEmploi);
-			datePrecedentEntretien = (sDatePrecedentEntretien == null || sDatePrecedentEntretien.isEmpty()) ? null : sdf.parse(sDatePrecedentEntretien);
+//			dateEntreeEmploi = (sDateEntreeEmploi == null || sDateEntreeEmploi.isEmpty()) ? null : sdf.parse(sDateEntreeEmploi);
+//			datePrecedentEntretien = (sDatePrecedentEntretien == null || sDatePrecedentEntretien.isEmpty()) ? null : sdf.parse(sDatePrecedentEntretien);
 		} catch (ParseException e) {
 			throw new IllegalStateException("Format de date invalide " + line, e);
 		}
@@ -194,20 +194,20 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 
 		// date d'entrée dans l'emploi
 		affectationEmploiCourante = employe.getAffectationEmploiCourante();
-		if (null != dateEntreeEmploi) {
-			affectationEmploiCourante.setDateDebut(dateEntreeEmploi);
-		}
+//		if (null != dateEntreeEmploi) {
+//			affectationEmploiCourante.setDateDebut(dateEntreeEmploi);
+//		}
 
-		// PRECEDENT ENTRETIEN
-		if (null != datePrecedentEntretien) {
-			if (!employe.getEntretiens().stream().anyMatch(e -> e.getDate().equals(datePrecedentEntretien))) {
-				EntretienProfessionnel entretien = MutFactory.eINSTANCE.createEntretienProfessionnel();
-				entretien.setEnCours(false);
-				entretien.setFake(true);
-				entretien.setDate(datePrecedentEntretien);
-				employe.getEntretiens().add(entretien);
-			}
-		}
+//		// PRECEDENT ENTRETIEN
+//		if (null != datePrecedentEntretien) {
+//			if (!employe.getEntretiens().stream().anyMatch(e -> e.getDate().equals(datePrecedentEntretien))) {
+//				EntretienProfessionnel entretien = MutFactory.eINSTANCE.createEntretienProfessionnel();
+//				entretien.setEnCours(false);
+//				entretien.setFake(true);
+//				entretien.setDate(datePrecedentEntretien);
+//				employe.getEntretiens().add(entretien);
+//			}
+//		}
 
 		// RESPONSABLE
 		if (null != matriculeResponsable) {
@@ -253,11 +253,20 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 		return employe;
 	}
 
+	private String intToken(String[] tokens, int i) {
+		String token = token(tokens, i);
+		if(null==token) {
+			return null;
+		}
+		String clean = token.replaceAll(",0+", "");
+		return clean;
+	}
+
 	private String token(String[] tokens, int i) {
 		if (i >= tokens.length) {
 			return null;
 		}
-		return tokens[i].trim();
+		return tokens[i].replaceFirst("^\\\"(.*)\\\"$", "$1").trim();
 	}
 
 	private Employe getOrCreateEmploye(Mutualite mut2, int matricule) {
@@ -281,7 +290,7 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 	}
 
 	private Etablissement findEtablissement(Mutualite mut2, int idEtablissement) {
-		return mut2.getEtablissements().getEtablissements().stream().filter(e -> e.getId() == idEtablissement).findAny().get();
+		return mut2.getEtablissements().getEtablissements().stream().filter(e -> e.getId() == idEtablissement).findAny().orElseThrow(() -> new RuntimeException("Etablissement non trouvé : " + idEtablissement));
 	}
 
 	/**

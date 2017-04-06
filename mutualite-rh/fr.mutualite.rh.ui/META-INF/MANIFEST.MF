@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: fr.mutualite.rh.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: fr.mutualite.rh.ui.Activator
+Bundle-Vendor: Alexandre Borgoltz
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms;bundle-version="3.7.0",
+ fr.mutualite.rh.webapp;bundle-version="1.0.5"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

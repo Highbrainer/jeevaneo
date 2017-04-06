@@ -54,6 +54,7 @@ import fr.mutualite.rh.model.Utilisateur;
 import fr.mutualite.rh.model.dto.DtoFactory;
 import fr.mutualite.rh.model.dto.Formulaire;
 import fr.mutualite.rh.model.util.Activator;
+import fr.mutualite.rh.webapp.cdo.ICDO;
 import fr.mutualite.rh.webapp.cdo.MutualiteCDO;
 import fr.mutualite.rh.webapp.security.AuthenticationFilter;
 import fr.mutualite.rh.webapp.security.Secured;
@@ -69,7 +70,7 @@ import fr.opensagres.xdocreport.template.TemplateEngineKind;
 @Path("")
 public class EntretienProfessionnelResource extends BaseResource {
 
-	private MutualiteCDO cdo;
+	private ICDO cdo;
 
 	// @Inject @AuthenticatedUser Employe authenticatedUser;
 

@@ -1,6 +1,7 @@
 package fr.mutualite.rh.webapp.admin;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -27,6 +28,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -44,12 +46,17 @@ import fr.mutualite.rh.model.Mutualite;
 import fr.mutualite.rh.model.OrganismeFormation;
 import fr.mutualite.rh.model.config.Configuration;
 import fr.mutualite.rh.webapp.CdoServlet;
-import fr.mutualite.rh.webapp.cdo.MutualiteCDO;
+import fr.mutualite.rh.webapp.cdo.ICDO;
 
 @Path("/admin")
 // @Secured
 public class AdminResource {
 
+
+	private Mutualite getMutualite() {
+		return CdoServlet.getMutualite();
+	}
+	
 	@GET
 	@Produces(MediaType.TEXT_XML)
 	@Path("/backup.xml")
@@ -57,9 +64,10 @@ public class AdminResource {
 		StreamingOutput stream = new StreamingOutput() {
 			@Override
 			public void write(OutputStream os) throws IOException, WebApplicationException {
-				Mutualite mutualite = CdoServlet.getMutualite();
+				Mutualite mutualite = getMutualite();
 				mutualite.cdoDirectResource().save(os, Collections.EMPTY_MAP);
 			}
+
 		};
 
 		return Response.ok(stream).build();
@@ -103,9 +111,9 @@ public class AdminResource {
 			private void testCdo(PrintStream out) {
 				out.println("<div  style='margin-left:1cm;padding-left:2mm;background:#caffca;'>");
 				out.println("<div>Ouverture d'une connexion...");
-				Mutualite mutualite = CdoServlet.getMutualite();
+				Mutualite mutualite = getMutualite();
 				String NOM = "SUPPRIMEZ-MOI!";
-				MutualiteCDO cdo = CdoServlet.getCdo();
+				ICDO cdo = CdoServlet.getCdo();
 				out.println("OK!</div>");
 
 				try {
@@ -138,7 +146,7 @@ public class AdminResource {
 				out.println("OK!</div></div>OK!");
 			}
 
-			private void cleanEmployeFictif(String NOM, MutualiteCDO cdo) {
+			private void cleanEmployeFictif(String NOM, ICDO cdo) {
 				cdo.doInMutualiteTransaction(mut -> {
 					mut.getEffectif().getEmployes().stream().filter(emp -> emp.getNom().equals(NOM)).collect(Collectors.toSet())
 							.forEach(emp -> mut.getEffectif().getEmployes().remove(emp));
@@ -244,26 +252,71 @@ public class AdminResource {
 	@GET
 	@Path("/restore")
 	public void restore() throws IOException {
-		File f = new File("/E:/temp/2016/10/18/backup-clean.xml");
+
+		File f = new File("/E:/temp/2017/04/05/backup-20170404.xml");
+		if(!f.exists()) {
+			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
+		}
 		ResourceSet rs = new ResourceSetImpl();
 		Resource resource = rs.createResource(URI.createFileURI(f.getAbsolutePath()));
 		resource.load(Collections.EMPTY_MAP);
-		Mutualite mutualite = (Mutualite) resource.getContents().get(0);
 
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
 			CDOResource cdoResource = mut.cdoResource();
 			if (!resource.getContents().isEmpty()) {
-				EcoreUtil.delete(resource.getContents().get(0));
+//				EcoreUtil.delete(resource.getContents().get(0));
 				cdoResource.getContents().clear();
 			}
 			return true;
 		});
 
+		Mutualite mutualite = (Mutualite) resource.getContents().get(0);
+
 		CdoServlet.getCdo().doInTransaction(trans -> {
 			CDOResource cdoResource = trans.getOrCreateResource("mutualite-rh");
-			cdoResource.getContents().add(mutualite);
+			try {
+				cdoResource.load(new FileInputStream(f), Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			cdoResource.getContents().add(mutualite);
 			return true;
 		});
+	}
+
+	@GET
+	@Path("/bidon")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String bidon() throws IOException {
+
+		File f = new File("/E:/temp/2017/04/05/backup-20170404.xml");
+		if(!f.exists()) {
+			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
+		}
+		ResourceSet rs = new ResourceSetImpl();
+		Resource resource = rs.createResource(URI.createFileURI(f.getAbsolutePath()));
+		resource.load(Collections.EMPTY_MAP);
+
+		String ret = "";
+		
+		Mutualite mutualite = (Mutualite) resource.getContents().get(0);
+		EList<Employe> employes = mutualite.getEffectif().getEmployes();
+		for (Employe employe : employes) {
+			ret += employe.getLabel() + "\n";
+			if(null==employe.getEtablissement()) {
+				ret += "\tSANS ETABLISSEMENT\n";
+			}
+			if(employe.getAffectationEmploiCourante()!=null) {
+				if(employe.getAffectationEmploiCourante().getEmploi()==null) {
+				 ret += "\tEMPLOI COURANT SANS EMPLOI\n";
+				}
+			} else {
+				 ret += "\tSANS EMPLOI COURANT\n";
+			}
+			ret += "\n";
+		}
+		return ret;
 	}
 
 	@GET

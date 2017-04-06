@@ -43,7 +43,7 @@ public class ConfigurationImpl extends CDOObjectImpl implements Configuration {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String JDBC_URL_EDEFAULT = "jdbc:mysql://localhost:3306/_DB_RH_EPEAE";
+	protected static final String JDBC_URL_EDEFAULT = "jdbc:mysql://localhost:3306/_RH_GIC";
 
 	/**
 	 * The default value of the '{@link #getJdbcUser() <em>Jdbc User</em>}' attribute.
@@ -53,7 +53,7 @@ public class ConfigurationImpl extends CDOObjectImpl implements Configuration {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String JDBC_USER_EDEFAULT = "userDB_RH_EPEAE";
+	protected static final String JDBC_USER_EDEFAULT = "userDB_RH_GIC";
 
 	/**
 	 * The default value of the '{@link #getJdbcPassword() <em>Jdbc Password</em>}' attribute.

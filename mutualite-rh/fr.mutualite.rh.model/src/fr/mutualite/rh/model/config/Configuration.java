@@ -37,7 +37,7 @@ import org.eclipse.emf.cdo.CDOObject;
 public interface Configuration extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Jdbc Url</b></em>' attribute.
-	 * The default value is <code>"jdbc:mysql://localhost:3306/_DB_RH_EPEAE"</code>.
+	 * The default value is <code>"jdbc:mysql://localhost:3306/_RH_GIC"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Jdbc Url</em>' attribute isn't clear,
@@ -47,7 +47,7 @@ public interface Configuration extends CDOObject {
 	 * @return the value of the '<em>Jdbc Url</em>' attribute.
 	 * @see #setJdbcUrl(String)
 	 * @see fr.mutualite.rh.model.config.ConfigPackage#getConfiguration_JdbcUrl()
-	 * @model default="jdbc:mysql://localhost:3306/_DB_RH_EPEAE" required="true"
+	 * @model default="jdbc:mysql://localhost:3306/_RH_GIC" required="true"
 	 * @generated
 	 */
 	String getJdbcUrl();
@@ -64,7 +64,7 @@ public interface Configuration extends CDOObject {
 
 	/**
 	 * Returns the value of the '<em><b>Jdbc User</b></em>' attribute.
-	 * The default value is <code>"userDB_RH_EPEAE"</code>.
+	 * The default value is <code>"userDB_RH_GIC"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Jdbc User</em>' attribute isn't clear,
@@ -74,7 +74,7 @@ public interface Configuration extends CDOObject {
 	 * @return the value of the '<em>Jdbc User</em>' attribute.
 	 * @see #setJdbcUser(String)
 	 * @see fr.mutualite.rh.model.config.ConfigPackage#getConfiguration_JdbcUser()
-	 * @model default="userDB_RH_EPEAE" required="true"
+	 * @model default="userDB_RH_GIC" required="true"
 	 * @generated
 	 */
 	String getJdbcUser();

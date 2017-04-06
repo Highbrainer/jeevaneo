@@ -18,8 +18,8 @@ import java.util.regex.Pattern;
 public class XmiCleaner {
 
 	public static void main(String[] args) throws IOException {
-		File in = new File("/E:/temp/2016/10/18/backup.xml");
-		File out = new File("/E:/temp/2016/10/18/backup-clean.xml");
+		File in = new File("/E:/temp/2017/04/05/backup.xml");
+		File out = new File(in.getAbsolutePath().replaceFirst("\\.xml$", "-clean\\.xml"));
 		try (Reader r = new FileReader(in); OutputStream o = new FileOutputStream(out); PrintStream ps = new PrintStream(o);) {
 			new XmiCleaner().clean(r, ps);
 			System.out.println("Done");

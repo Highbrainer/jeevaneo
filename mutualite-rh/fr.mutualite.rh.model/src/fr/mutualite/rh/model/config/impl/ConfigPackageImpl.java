@@ -314,8 +314,8 @@ public class ConfigPackageImpl extends EPackageImpl implements ConfigPackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfiguration_JdbcUrl(), ecorePackage.getEString(), "jdbcUrl", "jdbc:mysql://localhost:3306/_DB_RH_EPEAE", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConfiguration_JdbcUser(), ecorePackage.getEString(), "jdbcUser", "userDB_RH_EPEAE", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_JdbcUrl(), ecorePackage.getEString(), "jdbcUrl", "jdbc:mysql://localhost:3306/_RH_GIC", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_JdbcUser(), ecorePackage.getEString(), "jdbcUser", "userDB_RH_GIC", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_JdbcPassword(), ecorePackage.getEString(), "jdbcPassword", "C.,HV@%mi31lA1X\',AU6", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_JdbcDriver(), ecorePackage.getEString(), "jdbcDriver", "com.mysql.jdbc.Driver", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_LdapPort(), ecorePackage.getEInt(), "ldapPort", "389", 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

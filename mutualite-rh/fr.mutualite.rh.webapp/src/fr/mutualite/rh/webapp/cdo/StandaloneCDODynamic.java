@@ -2,8 +2,6 @@ package fr.mutualite.rh.webapp.cdo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import javax.sql.DataSource;
 
@@ -16,9 +14,6 @@ import org.eclipse.emf.cdo.server.db.CDODBUtil;
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy;
 import org.eclipse.emf.cdo.server.net4j.CDONet4jServerUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
-import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CommitException;
-import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.acceptor.IAcceptor;
 import org.eclipse.net4j.connector.IConnector;
@@ -37,7 +32,7 @@ import org.h2.jdbcx.JdbcDataSource;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
-public class StandaloneCDODynamic {
+public class StandaloneCDODynamic extends AbstractCDO implements ICDO {
 
 	private IManagedContainer container;
 
@@ -76,6 +71,7 @@ public class StandaloneCDODynamic {
 		this.repository = repository;
 	}
 
+	@Override
 	public void start() {
 		dataSource = startJdbcDataSource(jdbcUrl);
 
@@ -94,6 +90,7 @@ public class StandaloneCDODynamic {
 		connector = JVMUtil.getConnector(container, "default");
 	}
 
+	@Override
 	public void shutdown() {
 		connector.close();
 		container.deactivate();
@@ -174,6 +171,7 @@ public class StandaloneCDODynamic {
 		return container;
 	}
 
+	@Override
 	public CDOSession openSession() {
 		CDONet4jSessionConfiguration config = CDONet4jUtil.createNet4jSessionConfiguration();
 		IConnector prev = connector;
@@ -185,50 +183,5 @@ public class StandaloneCDODynamic {
 		config.setRepositoryName(repository);
 
 		return config.openNet4jSession();
-	}
-
-	public void doInSession(Consumer<CDOSession> worker) {
-		CDOSession session = openSession();
-		try {
-			worker.accept(session);
-		} finally {
-			if (null != session) {
-				session.close();
-			}
-		}
-	}
-
-	public void doInView(Consumer<CDOView> worker) {
-		doInSession(session -> {
-			CDOView view = session.openView();
-			try {
-				worker.accept(view);
-			} finally {
-				if (null != view) {
-					view.close();
-				}
-			}
-		});
-	}
-
-	public void doInTransaction(Function<CDOTransaction, Boolean> worker) {
-		doInSession(session -> {
-			CDOTransaction transaction = session.openTransaction();
-			try {
-				if (worker.apply(transaction)) {
-					try {
-						transaction.commit();
-					} catch (CommitException e) {
-						throw new RuntimeException(e);
-					}
-				} else {
-					transaction.rollback();
-				}
-			} finally {
-				if (null != transaction) {
-					transaction.close();
-				}
-			}
-		});
 	}
 }

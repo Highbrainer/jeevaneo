@@ -7,12 +7,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import fr.mutualite.rh.webapp.cdo.ICDO;
 import fr.mutualite.rh.webapp.cdo.MutualiteCDO;
 
 @Path("/load")
 public class LoaderResource {
 
-	private MutualiteCDO cdo;
+	private ICDO cdo;
 
 	public LoaderResource() {
 		cdo = CdoServlet.getCdo();

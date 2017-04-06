@@ -99,18 +99,19 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 	private void addIfNotExists(Etablissements etabs2, Etablissement etab) {
 		if (!etabs2.getEtablissements().stream().anyMatch(etabl -> etab.getId() == etabl.getId())) {
 			etabs2.getEtablissements().add(etab);
+		} else {
+			System.out.println("L'établissement " + etab.getId() + " existe déjà!");
 		}
 	}
 
-	private Pattern p = Pattern.compile("\\\"?\\s*([0-9]+)\\s*\\\"?;\\\"?\\s*(.*?)\\s*\\\"?;?");
 
 	private Etablissement parse(String line) {
-		Matcher m = p.matcher(line);
-		if (!m.matches()) {
+		String[] strings = line.split(";");
+		if (strings.length<2) {
 			throw new IllegalStateException("Format de fichier incorrect : " + line);
 		}
-		String sId = m.group(1);
-		String label = m.group(2);
+		String sId = strings[0];
+		String label = strings[1];
 		int id = Integer.parseInt(sId);
 		Etablissement etablissement = MutFactory.eINSTANCE.createEtablissement();
 		etablissement.setId(id);

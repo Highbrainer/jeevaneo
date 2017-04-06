@@ -104,8 +104,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//OrganismeFormation/formations"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//SessionFormation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/dateFin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/dateDebut"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/dateFin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//SessionFormation/duree"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//SessionFormation/employes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//SessionFormation/appreciations"/>

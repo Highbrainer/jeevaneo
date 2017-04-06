@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,9 +18,17 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.StreamingOutput;
 
+import org.apache.log4j.lf5.util.StreamUtils;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
 
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.EntretienProfessionnel;
@@ -126,8 +136,8 @@ public class ReportResource {
 			}
 		});
 		String ext = ".xls";
-		if(null!=annee) {
-			ext = "-" + annee + ext; 
+		if (null != annee) {
+			ext = "-" + annee + ext;
 		}
 		if (null != etablissementId) {
 			Etablissement etablissement = mut.getEtablissements().getEtablissements().stream().filter(et -> et.getId() == etablissementId).findAny().orElse(null);
@@ -176,10 +186,326 @@ public class ReportResource {
 			}
 		});
 		String ext = ".xls";
-		if(null!=annee) {
+		if (null != annee) {
 			ext = "-" + annee + ext;
 		}
 		response.header("Content-Disposition", "attachment; filename=matrices-employes-formations" + ext);
+		return response.build();
+
+	}
+
+	@GET
+	@Path("/demandes-rencontre-rh.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsDemandeRhLorsDernierEntretien() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsDemandeRhLorsDernierEntretien(mut);
+	}
+
+	@GET
+	@Path("/souhaits-formation.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsSouhaitsFormationDernierEntretien() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsSouhaitsFormationDernierEntretien(mut);
+	}
+
+	@GET
+	@Path("/responsables.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsResponsables() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsResponsables(mut);
+	}
+	public Response xlsSouhaitsFormationDernierEntretien(Mutualite mut) {
+
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+					HSSFSheet sheet = wb.createSheet("Souhaits de Formation");
+
+					CellStyle dateStyle = wb.createCellStyle();
+					CreationHelper createHelper = wb.getCreationHelper();
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
+
+					Font bold = wb.createFont();
+					bold.setBold(true);
+
+					// HSSFFont boldWhite = wb.createFont();
+					// boldWhite.setBold(true);
+					// boldWhite.setColor(IndexedColors.WHITE.index);
+
+					CellStyle titleStyle = wb.createCellStyle();
+					titleStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
+					// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+					titleStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
+					titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+					titleStyle.setAlignment(HorizontalAlignment.LEFT);
+					titleStyle.setFont(bold);
+
+					int nbCols = -1;
+					{
+						// TITRES
+
+						Row row = sheet.createRow(0);
+						Cell cell;
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Etablissement");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Nom");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Prénom");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Date d'entretien");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Souhait");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Demandeur");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Avis de l'évaluation");
+					}
+
+					mut.getEffectif().getEmployes().forEach(emp -> {
+						emp.getEntretiens().stream()
+
+								.filter(ent -> ent.getDate() != null)
+
+								.filter(EntretienProfessionnel.class::isInstance)
+
+								.map(EntretienProfessionnel.class::cast)
+
+								.max((ep1, ep2) -> {
+									return ep1.getDate().compareTo(ep2.getDate());
+								})
+
+								.ifPresent(entretien -> {
+									int size = entretien.getSouhaitsFormationSalarie().size();
+									if(size>0)
+										System.out.println(size);
+									
+									Stream<String[]> souhaitsEvaluateur = entretien.getSouhaitsFormationEvaluateur().stream()
+											.map(souhait -> new String[] { souhait.getTexte(), "Evaluateur", "" });
+									Stream<String[]> souhaitsSalarie = entretien.getSouhaitsFormationSalarie().stream()
+											.map(souhait -> new String[] { souhait.getTexte(), "Salarié", souhait.getAvisEvaluateur().getLiteral() });
+
+									Stream.concat(souhaitsEvaluateur, souhaitsSalarie).forEach(vals -> {
+
+										// le salarié a demandé à rencontrer les RH lors de son dernier entretien.
+										HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
+										int i = -1;
+										row.createCell(++i).setCellValue(emp.getEtablissement().getNom());
+										row.createCell(++i).setCellValue(emp.getNom());
+										row.createCell(++i).setCellValue(emp.getPrenom());
+										Cell cell = row.createCell(++i);
+										cell.setCellStyle(dateStyle);
+										cell.setCellValue(entretien.getDate());
+										row.createCell(++i).setCellValue(vals[0]);
+										row.createCell(++i).setCellValue(vals[1]);
+										row.createCell(++i).setCellValue(vals[2]);
+									});
+								});
+					});
+
+					int i = -1;
+					IntStream.range(0, nbCols+1).forEach(sheet::autoSizeColumn);
+
+					wb.write(out);
+					out.flush();
+				}
+			}
+		});
+
+		response.header("Content-Disposition", "attachment; filename=demandes-rencontre-rh.xls");
+		return response.build();
+
+	}
+
+	public Response xlsResponsables(Mutualite mut) {
+
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+					HSSFSheet sheet = wb.createSheet("Responsables");
+
+					CellStyle dateStyle = wb.createCellStyle();
+					CreationHelper createHelper = wb.getCreationHelper();
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
+
+					Font bold = wb.createFont();
+					bold.setBold(true);
+
+					// HSSFFont boldWhite = wb.createFont();
+					// boldWhite.setBold(true);
+					// boldWhite.setColor(IndexedColors.WHITE.index);
+
+					CellStyle titleStyle = wb.createCellStyle();
+					titleStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
+					// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+					titleStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
+					titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+					titleStyle.setAlignment(HorizontalAlignment.LEFT);
+					titleStyle.setFont(bold);
+
+					int nbCols = -1;
+					{
+						// TITRES
+
+						Row row = sheet.createRow(0);
+						Cell cell;
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Etablissement");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Nom");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Prénom");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Responsable");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Entreteneurs");
+					}
+
+					mut.getEffectif().getEmployes().stream().filter(ReportResource.this::isEmployePresent).forEach(emp -> {
+						Row row = sheet.createRow(sheet.getLastRowNum()+1);
+						int i=-1;
+						Cell cell;
+						cell = row.createCell(++i);
+						Etablissement etablissement = emp.getEtablissement();
+						cell.setCellValue(etablissement==null?"SANS ETABLISSEMENT":etablissement.getNom());
+						cell = row.createCell(++i);
+						cell.setCellValue(emp.getNom());
+						cell = row.createCell(++i);
+						cell.setCellValue(emp.getPrenom());
+						cell = row.createCell(++i);
+						Employe responsable = emp.getResponsable();
+						cell.setCellValue(responsable==null?"":responsable.getLabel());
+						cell = row.createCell(++i);
+						cell.setCellValue(emp.getEntreteneurs().stream().map(Employe::getLabel).collect(Collectors.joining(", ")));
+					});
+
+					IntStream.range(0, nbCols+1).forEach(sheet::autoSizeColumn);
+
+					wb.write(out);
+					out.flush();
+				}
+			}
+		});
+
+		response.header("Content-Disposition", "attachment; filename=responsables.xls");
+		return response.build();
+
+	}
+	
+	private boolean isEmployePresent(Employe emp) {
+		Date sortie = emp.getDateSortieEntreprise();
+		return sortie==null || sortie.after(new Date());
+	}
+
+	public Response xlsDemandeRhLorsDernierEntretien(Mutualite mut) {
+
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+					HSSFSheet sheet = wb.createSheet("Demandes rencontre RH");
+
+					CellStyle dateStyle = wb.createCellStyle();
+					CreationHelper createHelper = wb.getCreationHelper();
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
+
+					Font bold = wb.createFont();
+					bold.setBold(true);
+
+					// HSSFFont boldWhite = wb.createFont();
+					// boldWhite.setBold(true);
+					// boldWhite.setColor(IndexedColors.WHITE.index);
+
+					CellStyle titleStyle = wb.createCellStyle();
+					titleStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
+					// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+					titleStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
+					titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+					titleStyle.setAlignment(HorizontalAlignment.LEFT);
+					titleStyle.setFont(bold);
+
+					{
+						// TITRES
+
+						Row row = sheet.createRow(0);
+						int i = -1;
+						Cell cell;
+						cell = row.createCell(++i);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Etablissement");
+						cell = row.createCell(++i);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Nom");
+						cell = row.createCell(++i);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Prénom");
+						cell = row.createCell(++i);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Date d'entretien");
+						cell = row.createCell(++i);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Commentaire");
+					}
+
+					mut.getEffectif().getEmployes().forEach(emp -> {
+						emp.getEntretiens().stream()
+
+								.filter(ent -> ent.getDate() != null)
+
+								.filter(EntretienProfessionnel.class::isInstance)
+
+								.map(EntretienProfessionnel.class::cast)
+
+								.max((ep1, ep2) -> {
+									return ep1.getDate().compareTo(ep2.getDate());
+								})
+
+								.filter(EntretienProfessionnel::isRencontreRh)
+
+								.ifPresent(entretien -> {
+									// le salarié a demandé à rencontrer les RH lors de son dernier entretien.
+									HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
+									int i = -1;
+									row.createCell(++i).setCellValue(emp.getEtablissement().getNom());
+									row.createCell(++i).setCellValue(emp.getNom());
+									row.createCell(++i).setCellValue(emp.getPrenom());
+									Cell cell = row.createCell(++i);
+									cell.setCellStyle(dateStyle);
+									cell.setCellValue(entretien.getDate());
+									row.createCell(++i).setCellValue(entretien.getRencontreRhCommentaire());
+								});
+					});
+
+					int i = -1;
+					IntStream.range(0, 7).forEach(sheet::autoSizeColumn);
+
+					wb.write(out);
+					out.flush();
+				}
+			}
+		});
+
+		response.header("Content-Disposition", "attachment; filename=demandes-rencontre-rh.xls");
 		return response.build();
 
 	}
@@ -235,7 +561,7 @@ public class ReportResource {
 
 	private boolean hasLeftTheCompany(Employe emp) {
 		Date dateSortieEntreprise = emp.getDateSortieEntreprise();
-		return dateSortieEntreprise!=null && dateSortieEntreprise.before(new Date());
+		return dateSortieEntreprise != null && dateSortieEntreprise.before(new Date());
 	}
 
 	private static final Calendar cal = Calendar.getInstance();
@@ -264,6 +590,117 @@ public class ReportResource {
 			return yearDebut <= annee && yearFin >= annee;
 		}
 		return false;
+	}
+
+	@GET
+	@Path("/dates-entretiens.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsDatesEntretiens() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsDatesEntretiens(mut);
+	}
+
+	public Response xlsDatesEntretiens(Mutualite mut) {
+	
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+	
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+					HSSFSheet sheet = wb.createSheet("Dates d'entretiens");
+	
+					CellStyle dateStyle = wb.createCellStyle();
+					CreationHelper createHelper = wb.getCreationHelper();
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm yyyy"));
+	
+					Font bold = wb.createFont();
+					bold.setBold(true);
+	
+					// HSSFFont boldWhite = wb.createFont();
+					// boldWhite.setBold(true);
+					// boldWhite.setColor(IndexedColors.WHITE.index);
+	
+					CellStyle titleStyle = wb.createCellStyle();
+					titleStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
+					// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+					titleStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
+					titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+					titleStyle.setAlignment(HorizontalAlignment.LEFT);
+					titleStyle.setFont(bold);
+	
+					int nbCols = -1;
+					Row firstRow = sheet.createRow(0);
+					{
+						// TITRES
+	
+						Cell cell;
+						cell = firstRow.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Etablissement");
+						cell = firstRow.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Nom");
+						cell = firstRow.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Prénom");
+						cell = firstRow.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Dates d'entretien");
+					}
+					
+					int[] pNbCols = {nbCols};
+	
+					mut.getEffectif().getEmployes().forEach(emp -> {
+						HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
+						int[] pI = {-1};
+						Etablissement etablissement = emp.getEtablissement();
+						if(null==etablissement) {
+							System.err.println("BOOM " + emp.getMatricule() + " " + emp.getNom());
+						}
+						row.createCell(++pI[0]).setCellValue(etablissement==null?"":etablissement.getNom());
+						row.createCell(++pI[0]).setCellValue(emp.getNom());
+						row.createCell(++pI[0]).setCellValue(emp.getPrenom());
+						emp.getEntretiens().stream()
+	
+								.filter(ent -> ent.getDate() != null)
+	
+								.filter(EntretienProfessionnel.class::isInstance)
+	
+								.map(EntretienProfessionnel.class::cast)
+	
+								.sorted((ep1, ep2) -> {
+									return ep2.getDate().compareTo(ep1.getDate());
+								})
+	
+								.forEachOrdered(entretien -> {
+										// le salarié a demandé à rencontrer les RH lors de son dernier entretien.
+										Cell cell = row.createCell(++pI[0]);
+										cell.setCellStyle(dateStyle);
+										cell.setCellValue(entretien.getDate());
+										pNbCols[0] = Math.max(pNbCols[0], pI[0]);
+								});
+					});
+	
+					int i = -1;
+					IntStream.range(0, pNbCols[0]+1).forEach(sheet::autoSizeColumn);
+
+					//Titres manquants
+					IntStream.range(4, pNbCols[0]+1).forEach(idx->{						
+					Cell cell = firstRow.createCell(idx);
+					cell.setCellStyle(titleStyle);
+					cell.setCellValue(" ");
+					});
+					
+	
+					wb.write(out);
+					out.flush();
+				}
+			}
+		});
+	
+		response.header("Content-Disposition", "attachment; filename=dates-entretiens.xls");
+		return response.build();
+	
 	}
 
 }

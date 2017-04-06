@@ -388,10 +388,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="Configuration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcUrl" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral="jdbc:mysql://localhost:3306/_DB_RH_EPEAE"/>
+          defaultValueLiteral="jdbc:mysql://localhost:3306/_RH_GIC"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcUser" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral="userDB_RH_EPEAE"/>
+          defaultValueLiteral="userDB_RH_GIC"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcPassword" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="C.,HV@%mi31lA1X',AU6"/>
