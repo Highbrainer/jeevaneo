@@ -301,6 +301,25 @@
                menubarPath="fr.mutualite.rh.model.menu1/group1">
          </action>
       </objectContribution>
+      <objectContribution
+            id="fr.mutualite.rh.model.contribution9"
+            objectClass="fr.mutualite.rh.model.Utilisateurs">
+         <menu
+               id="fr.mutualite.rh.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="fr.mutualite.rh.model.popup.actions.SortUsersAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.model.newAction9"
+               label="Trier les utilisateurs par nom de famille"
+               menubarPath="fr.mutualite.rh.model.menu1/group1">
+         </action>
+      </objectContribution>
    </extension>
 
 </plugin>

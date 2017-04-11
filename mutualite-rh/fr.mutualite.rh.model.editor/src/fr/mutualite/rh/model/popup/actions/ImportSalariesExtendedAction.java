@@ -86,9 +86,7 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 
 				try {
 					Files.lines(path, Charset.forName	("Cp1252")/* StandardCharsets.ISO_8859_1 */).skip(1).collect(Collectors.toSet()).stream()
-							.map(ImportSalariesExtendedAction.this::parse).forEach(emp -> {
-								ImportSalariesExtendedAction.this.addIfNotExists(mut, emp);
-							});
+							.forEach(ImportSalariesExtendedAction.this::parse);
 				} catch (Throwable t) {
 					StringWriter error = new StringWriter();
 					t.printStackTrace(new PrintWriter(error));
@@ -102,23 +100,23 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 		});
 	}
 
-	private void addIfNotExists(Mutualite mut2, Employe emp) {
-		if (emp.getDateSortieEntreprise() != null && emp.getDateSortieEntreprise().before(new Date())) {
-			// ignore
-			System.err.println("L'employé '" + emp.getNom() + " " + emp.getPrenom() + "' a quitté l'entreprise le " + sdf.format(emp.getDateSortieEntreprise()) + " => je l'ignore!");
-			return;
-		}
-		if (!mut2.getEffectif().getEmployes().stream().anyMatch(empl -> emp.getMatricule() == empl.getMatricule())) {
-			mut2.getEffectif().getEmployes().add(emp);
-		}
-	}
+//	private void addIfNotExists(Mutualite mut2, Employe emp) {
+//		if (emp.getDateSortieEntreprise() != null && emp.getDateSortieEntreprise().before(new Date())) {
+//			// ignore
+//			System.err.println("L'employé '" + emp.getNom() + " " + emp.getPrenom() + "' a quitté l'entreprise le " + sdf.format(emp.getDateSortieEntreprise()) + " => je l'ignore!");
+//			return;
+//		}
+//		if (!mut2.getEffectif().getEmployes().stream().anyMatch(empl -> emp.getMatricule() == empl.getMatricule())) {
+//			mut2.getEffectif().getEmployes().add(emp);
+//		}
+//	}
 
 	final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
 
 	private Employe parse(String line) {
 		String[] tokens = line.split("\\s*;\\s*");
 		if (tokens.length < 10) {
-			throw new IllegalStateException("Format de fichier incorrect (il manque des colonnes... les 10 premières sont obligatoires) => J'IGNORE cette ligne! : " + line);
+			throw new IllegalStateException("Format de fichier incorrect (il manque des colonnes... les 10 premières sont obligatoires) : " + line);
 		}
 		int i = -1;
 		// champs obligatoires
@@ -141,7 +139,12 @@ public class ImportSalariesExtendedAction implements IObjectActionDelegate {
 		String sMatriculeResponsable = intToken(tokens, ++i);
 //		String nomEntreteneur = token(tokens, ++i);
 		String sMatriculeEntreteneurs = intToken(tokens, ++i);
-		int matricule = Integer.parseInt(sMatricule);
+		int matricule;
+		try {
+			matricule = Integer.parseInt(sMatricule);
+		} catch (NumberFormatException e2) {
+			throw new IllegalStateException("Matricule non numérique ou manquant : '" + sMatricule + "' dans " + line);
+		}
 		Integer matriculeResponsable = null;
 		try {
 			if (sMatriculeResponsable != null && !sMatriculeResponsable.isEmpty()) {

@@ -2,6 +2,7 @@ package fr.mutualite.rh.webapp.admin;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -15,9 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.naming.NamingException;
 import javax.naming.ldap.LdapContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -34,14 +35,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import fr.mutualite.rh.ldap.LdapClient;
 import fr.mutualite.rh.model.AffectationClassification;
+import fr.mutualite.rh.model.Emploi;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
-import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Formation;
 import fr.mutualite.rh.model.MutFactory;
+import fr.mutualite.rh.model.MutPackage;
 import fr.mutualite.rh.model.Mutualite;
 import fr.mutualite.rh.model.OrganismeFormation;
 import fr.mutualite.rh.model.config.Configuration;
@@ -65,7 +68,12 @@ public class AdminResource {
 			@Override
 			public void write(OutputStream os) throws IOException, WebApplicationException {
 				Mutualite mutualite = getMutualite();
-				mutualite.cdoDirectResource().save(os, Collections.EMPTY_MAP);
+				//mutualite.cdoDirectResource().save(os, Collections.EMPTY_MAP);
+				ResourceSet rs = new ResourceSetImpl();
+				Resource resource = rs.createResource(URI.createFileURI("bidon"));
+				resource.getContents().add(EcoreUtil.copy(mutualite));
+				resource.save(os, Collections.EMPTY_MAP);
+				
 			}
 
 		};
@@ -429,4 +437,27 @@ public class AdminResource {
 		return s;
 	}
 
+	public static void main(String[] args) throws IOException {
+		File f = new File("/E:/temp/2017/04/07/backup.xml");
+		File f2 = new File("/E:/temp/2017/04/07/backup2.xml");
+		if(!f.exists()) {
+			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
+		}
+		
+		MutPackage.eINSTANCE.eClass();
+
+        // Register the XMI resource factory for the .website extension
+
+        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+        Map<String, Object> m = reg.getExtensionToFactoryMap();
+        m.put("xml", new XMIResourceFactoryImpl());
+		
+		ResourceSet rs = new ResourceSetImpl();
+		Resource resource = rs.createResource(URI.createFileURI(f.getAbsolutePath()));
+		resource.load(Collections.EMPTY_MAP);
+		Mutualite mut = (Mutualite) resource.getContents().get(0);
+		mut.getEmplois().getEmplois().stream().map(Emploi::getIntitule).forEach(System.out::println);
+		resource.save(new FileOutputStream(f2), Collections.EMPTY_MAP);
+	}
+	
 }

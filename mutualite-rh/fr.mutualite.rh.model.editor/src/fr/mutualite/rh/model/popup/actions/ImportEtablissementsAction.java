@@ -7,12 +7,14 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -27,10 +29,13 @@ import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
+import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.model.Etablissements;
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.Mutualite;
+import fr.mutualite.rh.model.Utilisateur;
+import fr.mutualite.rh.webapp.CdoServlet;
 
 public class ImportEtablissementsAction implements IObjectActionDelegate {
 
@@ -75,14 +80,19 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 			
 			@Override
 			protected void doExecute() {
+				
+//				try {
+//					ECollections.sort(CdoServlet.getMutualite().getUtilisateurs().getUtilisateurs(), (u1,u2)->u1.getEmploye().getNom().compareTo(u2.getEmploye().getNom()));
+//					((Mutualite)etabs.eContainer()).getEmplois().getEmplois().forEach(e -> {e.setIntitule(e.getIntitule().replaceAll("_",  " "));});
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
 
 				try {
 					Files.lines(path, StandardCharsets.ISO_8859_1)/*.skip(1)*/
-					.filter(s->!s.toLowerCase().replaceAll("\\s", "").equals("matricule;nom"))
+					//.filter(s->!s.toLowerCase().replaceAll("\\s", "").startsWith("matricule;nom"))
 					.collect(Collectors.toSet()).stream()
-							.map(ImportEtablissementsAction.this::parse).forEach(etab -> {
-								ImportEtablissementsAction.this.addIfNotExists(etabs, etab);
-							});
+							.forEach(ImportEtablissementsAction.this::parse);
 					MessageDialog.openInformation(shell, "Mut Model", "Importer les établissements was executed.");
 				} catch (Throwable t) {
 					StringWriter error = new StringWriter();
@@ -96,14 +106,6 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 		});
 	}
 
-	private void addIfNotExists(Etablissements etabs2, Etablissement etab) {
-		if (!etabs2.getEtablissements().stream().anyMatch(etabl -> etab.getId() == etabl.getId())) {
-			etabs2.getEtablissements().add(etab);
-		} else {
-			System.out.println("L'établissement " + etab.getId() + " existe déjà!");
-		}
-	}
-
 
 	private Etablissement parse(String line) {
 		String[] strings = line.split(";");
@@ -113,10 +115,47 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 		String sId = strings[0];
 		String label = strings[1];
 		int id = Integer.parseInt(sId);
-		Etablissement etablissement = MutFactory.eINSTANCE.createEtablissement();
-		etablissement.setId(id);
+		
+		Etablissement etablissement = etabs.getEtablissements().stream().filter(et -> et.getId()==id).findAny().orElseGet(() -> {
+		
+		Etablissement etab = MutFactory.eINSTANCE.createEtablissement();
+		etab.setId(id);
+		etabs.getEtablissements().add(etab);
+		return etab;
+		});
 		etablissement.setNom(label);
+		
+		if(strings.length>2) {
+			String sMatResponsable = strings[2];
+			int matResponsable = Integer.parseInt(sMatResponsable);
+			Employe resp = findOrCreateEmploye(matResponsable);
+			etablissement.setResponsable(resp);
+		}
+		if(strings.length>3) {
+			String matsEntreteneurs = strings[3];
+			if(!matsEntreteneurs.trim().isEmpty()) {
+				Arrays.stream(matsEntreteneurs.trim().split(",")).map(Integer::parseInt).forEach(matEntreteneur -> {
+					addEntreteneurIfNotAlready(etablissement, matEntreteneur);
+				});
+			}
+		}
 		return etablissement;
+	}
+
+	private Employe findOrCreateEmploye(int matResponsable) {
+		Mutualite mut = (Mutualite) etabs.eContainer();
+		return mut.getEffectif().getEmployes().stream().filter(emp -> emp.getMatricule()==matResponsable).findAny().orElseGet(() -> {
+			Employe resp = MutFactory.eINSTANCE.createEmploye();
+			resp.setNom("A définir!");
+			resp.setMatricule(matResponsable);
+			mut.getEffectif().getEmployes().add(resp);
+			return resp;
+		});
+	}
+
+	private void addEntreteneurIfNotAlready(Etablissement etablissement, Integer matEntreteneur) {
+		System.err.println("Les entreteneurs ne sont pas encore gérés dans le modèle!!!!!!!!");
+		
 	}
 
 	/**
