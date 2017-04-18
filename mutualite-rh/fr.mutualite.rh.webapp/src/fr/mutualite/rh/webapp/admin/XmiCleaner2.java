@@ -75,5 +75,4 @@ public class XmiCleaner2 {
 			out.println(sb.toString());
 		});
 	}
-
 }

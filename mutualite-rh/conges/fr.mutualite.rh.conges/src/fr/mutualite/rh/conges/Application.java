@@ -20,50 +20,55 @@ public class Application implements IApplication {
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
 
-		File in = promptFile();
-		if(null==in) {
-			return IApplication.EXIT_OK;
-		}
-		
-		process(in);
-		System.out.println("Export terminé vers " + in.getAbsolutePath());
+		importExport();
 		return IApplication.EXIT_OK;
 	}
 
+	public void importExport() throws IOException {
+		File in = promptFile();
+		if (null == in) {
+			return;
+		}
+
+		process(in);
+		System.out.println("Export terminé vers " + in.getAbsolutePath());
+	}
+
 	private Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
+
 	private File promptFile() {
 		File def = defaultFile();
-		
-//		def = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\congés v3.csv");
-		
+
+		// def = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\congés v3.csv");
+
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers CSV", "csv");
-//		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers Texte", "txt");
+		// FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers Texte", "txt");
 		chooser.setFileFilter(filter);
-		if(null!=def) {
-		chooser.setSelectedFile(def);
+		if (null != def) {
+			chooser.setSelectedFile(def);
 		}
 		int ret = chooser.showOpenDialog(null);
 
-		if(ret==JFileChooser.APPROVE_OPTION ) {
-		File in = chooser.getSelectedFile();
-		System.out.println("Yes " + in.getAbsolutePath());
-		
-		prefs.put("file-dir", in.getAbsolutePath());
-		return in;
+		if (ret == JFileChooser.APPROVE_OPTION) {
+			File in = chooser.getSelectedFile();
+			System.out.println("Yes " + in.getAbsolutePath());
+
+			prefs.put("file-dir", in.getAbsolutePath());
+			return in;
 		}
-		
+
 		return null;
 	}
 
 	private File defaultFile() {
 		File def = null;
 		String sDef = prefs.get("file-dir", null);
-		if(null!=sDef) {
+		if (null != sDef) {
 			def = new File(sDef);
 		}
 		File t = new File("T:/");
-		if(null==def && t.exists()) {
+		if (null == def && t.exists()) {
 			def = t;
 		}
 		return def;
@@ -71,10 +76,10 @@ public class Application implements IApplication {
 
 	private void process(File in) throws IOException {
 		File out = new File(in.getParentFile(), "generated/conges-planning.xlsx");
-//		dir = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\generated.xlsx");
+		// dir = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\generated.xlsx");
 		out.getParentFile().mkdirs();
 		CongePlanningExporter exporter = new CongePlanningExporter();
-		EmployeCongesParser parser= new EmployeCongesParser();
+		EmployeCongesParser parser = new EmployeCongesParser();
 		List<Employe> employes = parser.parse(in);
 		exporter.export(employes, new Date(117, 04, 01), new Date(117, 9, 31), out, null);
 	}

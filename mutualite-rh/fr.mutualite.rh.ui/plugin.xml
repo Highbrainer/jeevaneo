@@ -24,6 +24,27 @@
       </view>
    </extension>
    <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Mutualité"
+            id="fr.mutualite.rh.ui">
+      </category>
+      <view
+            name="Congés"
+            icon="icons/sample.gif"
+            category="fr.mutualite.rh.ui"
+            class="fr.mutualite.rh.ui.views.CongesView"
+            id="fr.mutualite.rh.ui.views.CongesView">
+      </view>
+      <view
+            category="fr.mutualite.rh.ui"
+            class="fr.mutualite.rh.ui.views.ImportView"
+            icon="icons/sample.gif"
+            id="fr.mutualite.rh.ui.views.ImportView"
+            name="Imports">
+      </view>
+   </extension>
+   <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
             targetID="org.eclipse.jdt.ui.JavaPerspective">
@@ -35,6 +56,12 @@
          </view>
          <view
                id="fr.mutualite.rh.ui.views.ImportView"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+         <view
+               id="fr.mutualite.rh.ui.views.CongesView"
                ratio="0.5"
                relationship="right"
                relative="org.eclipse.ui.views.ProblemView">

@@ -6,7 +6,7 @@ Bundle-Version: 1.0.5.qualifier
 Bundle-Activator: fr.mutualite.rh.webapp.Activator
 Bundle-Vendor: Alexandre Borgoltz
 Require-Bundle: org.eclipse.core.runtime,
- fr.mutualite.rh.model.edit,
+ fr.mutualite.rh.model.edit;visibility:=reexport,
  fr.mutualite.rh.model.util,
  org.eclipse.equinox.http.registry,
  org.eclipse.emf.ecore,

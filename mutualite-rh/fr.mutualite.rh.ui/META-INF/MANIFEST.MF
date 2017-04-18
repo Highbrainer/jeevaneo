@@ -8,6 +8,7 @@ Bundle-Vendor: Alexandre Borgoltz
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.forms;bundle-version="3.7.0",
- fr.mutualite.rh.webapp;bundle-version="1.0.5"
+ fr.mutualite.rh.webapp;bundle-version="1.0.5",
+ fr.mutualite.rh.conges;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

@@ -35,6 +35,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //import org.apache.poi.xssf.util.XSSFColor;
 
+import fr.mutualite.rh.model.Etablissement;
+import fr.mutualite.rh.webapp.CdoServlet;
+
 public class CongePlanningExporter {
 
 	// public XSSFColor setColor(XSSFWorkbook workbook, byte r,byte g, byte b){
@@ -49,8 +52,13 @@ public class CongePlanningExporter {
 	// return XSSFColor;
 	// }
 
-	private String nomEtablissement(Float mat) {
+	private String numEtablissement(Float mat) {
 		return ("" + mat).replaceFirst("\\.0+$", "");
+	}
+	
+	private String nomEtablissement(Float mat) {
+		String label = CdoServlet.getMutualite().getEtablissements().getEtablissements().stream().filter(etab -> etab.getId()==mat.intValue()).map(Etablissement::getNom).findAny().orElse("");
+		return label;
 	}
 
 	public void export(List<Employe> employes, Date debut, Date fin, File out, Predicate<? super Employe> empFilter) throws IOException {
@@ -68,13 +76,39 @@ public class CongePlanningExporter {
 		CellStyle dateStyle = wb.createCellStyle();
 		CreationHelper createHelper = wb.getCreationHelper();
 		dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
+		
+		XSSFFont titleFont = wb.createFont();
+		titleFont.setBold(true);
+		titleFont.setFontHeight(32);
+
+		CellStyle titreStyle = wb.createCellStyle();
+		// anneePairStyle.setFillBackgroundColor(IndexedColors.BLUE.index);
+		// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+		// anneePairStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
+		// anneePairStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+//		titreStyle.setAlignment(HorizontalAlignment.CENTER);
+		titreStyle.setFont(titleFont);
+		
+
+		XSSFFont legendFont = wb.createFont();
+		legendFont.setItalic(true);
+
+		CellStyle legendStyle = wb.createCellStyle();
+		// anneePairStyle.setFillBackgroundColor(IndexedColors.BLUE.index);
+		// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+		// anneePairStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
+		// anneePairStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		legendStyle.setAlignment(HorizontalAlignment.RIGHT);
+		legendStyle.setFont(legendFont);
 
 		XSSFFont bold = wb.createFont();
 		bold.setBold(true);
 		
+		
 		XSSFFont boldWhite = wb.createFont();
 		boldWhite.setBold(true);
 		boldWhite.setColor(IndexedColors.WHITE.index);
+		
 
 		CellStyle semaineImpairStyle = wb.createCellStyle();
 		semaineImpairStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
@@ -115,7 +149,7 @@ public class CongePlanningExporter {
 		anneeImpairStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		anneeImpairStyle.setAlignment(HorizontalAlignment.CENTER);
 		anneeImpairStyle.setFont(bold);;
-		
+
 		CellStyle anneePairStyle = wb.createCellStyle();
 		// anneePairStyle.setFillBackgroundColor(IndexedColors.BLUE.index);
 		// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
@@ -146,14 +180,22 @@ public class CongePlanningExporter {
 			Set<Employe> salaries = byEtablissement.get(etablissement);
 
 			XSSFSheet sheet = wb.createSheet();
-			String labelEtablissement = "" /* + wb.getSheetIndex(sheet) + " " */ + nomEtablissement(etablissement);
+			String labelEtablissement = "" /* + wb.getSheetIndex(sheet) + " " */ + numEtablissement(etablissement);
 			wb.setSheetName(wb.getSheetIndex(sheet), labelEtablissement);
 
 			{
 				XSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
-				row.createCell(0).setCellValue("Congés - " + labelEtablissement);
-
-				sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), 0, 1));
+//				System.out.println("Hauteur de cell : " + row.getHeight());
+				row.setHeight((short) 1000);
+				XSSFCell titleCell = row.createCell(0);
+				titleCell.setCellStyle(titreStyle);
+				titleCell.setCellValue("Congés - " + nomEtablissement(etablissement));
+				
+				
+				
+//				System.out.println("Ligne de titre : " + row.getRowNum());
+				
+//				sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), 0, 1));
 			}
 
 			{ // ANNEES
@@ -192,6 +234,9 @@ public class CongePlanningExporter {
 				}
 				int endCol = i;
 				sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), startCol, endCol));
+				
+				//merge de la ligne de titre
+				sheet.addMergedRegion(new CellRangeAddress(1, 1, 0, endCol));
 			}
 
 			DateFormat monthDf = new SimpleDateFormat("MMMM");
@@ -345,6 +390,21 @@ public class CongePlanningExporter {
 			short lastCellNum = sheet.getRow(2).getLastCellNum();
 			for (short i = 2; i < lastCellNum; ++i) {
 				sheet.setColumnWidth(i, 256);
+			}
+			
+			{
+				//Légende
+				//on commence par sauter une ligne
+				sheet.createRow(sheet.getLastRowNum() + 1);
+				XSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
+				sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), 0, lastCellNum-2));
+				XSSFCell legendCell = row.createCell(0);
+				legendCell.setCellStyle(legendStyle);
+				legendCell.setCellValue("Les ponts sont représentés en ");
+				row.createCell(lastCellNum-1).setCellStyle(getCellStyle(wb, false, true, true, 0));
+				
+				
+				
 			}
 
 		});
