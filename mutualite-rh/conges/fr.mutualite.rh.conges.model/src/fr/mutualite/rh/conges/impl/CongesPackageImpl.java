@@ -7,8 +7,10 @@ import fr.mutualite.rh.conges.CongesFactory;
 import fr.mutualite.rh.conges.CongesPackage;
 import fr.mutualite.rh.conges.Employe;
 
+import fr.mutualite.rh.conges.TypeConge;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -34,6 +36,13 @@ public class CongesPackageImpl extends EPackageImpl implements CongesPackage {
 	 * @generated
 	 */
 	private EClass congeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum typeCongeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -173,6 +182,33 @@ public class CongesPackageImpl extends EPackageImpl implements CongesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConge_Type() {
+		return (EAttribute)congeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConge_Decompte() {
+		return (EAttribute)congeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getTypeConge() {
+		return typeCongeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CongesFactory getCongesFactory() {
 		return (CongesFactory)getEFactoryInstance();
 	}
@@ -205,6 +241,11 @@ public class CongesPackageImpl extends EPackageImpl implements CongesPackage {
 		congeEClass = createEClass(CONGE);
 		createEAttribute(congeEClass, CONGE__DEBUT);
 		createEAttribute(congeEClass, CONGE__FIN);
+		createEAttribute(congeEClass, CONGE__TYPE);
+		createEAttribute(congeEClass, CONGE__DECOMPTE);
+
+		// Create enums
+		typeCongeEEnum = createEEnum(TYPE_CONGE);
 	}
 
 	/**
@@ -246,6 +287,16 @@ public class CongesPackageImpl extends EPackageImpl implements CongesPackage {
 		initEClass(congeEClass, Conge.class, "Conge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConge_Debut(), ecorePackage.getEDate(), "debut", null, 0, 1, Conge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConge_Fin(), ecorePackage.getEDate(), "fin", null, 0, 1, Conge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConge_Type(), this.getTypeConge(), "type", null, 0, 1, Conge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConge_Decompte(), ecorePackage.getEInt(), "decompte", null, 0, 1, Conge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(typeCongeEEnum, TypeConge.class, "TypeConge");
+		addEEnumLiteral(typeCongeEEnum, TypeConge.CP);
+		addEEnumLiteral(typeCongeEEnum, TypeConge.ANCIENNETE);
+		addEEnumLiteral(typeCongeEEnum, TypeConge.FRACTIONNEMENT);
+		addEEnumLiteral(typeCongeEEnum, TypeConge.PONT);
+		addEEnumLiteral(typeCongeEEnum, TypeConge.SOLIDARITE);
 
 		// Create resource
 		createResource(eNS_URI);

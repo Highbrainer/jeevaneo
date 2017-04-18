@@ -11,5 +11,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Conge">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TypeConge"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="decompte" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TypeConge">
+    <eLiterals name="CP" value="950" literal="Congés Payés"/>
+    <eLiterals name="ANCIENNETE" value="951" literal="Congés d'Ancienneté"/>
+    <eLiterals name="FRACTIONNEMENT" value="952" literal="Congés de Fractionnement"/>
+    <eLiterals name="PONT" value="955" literal="Pont"/>
+    <eLiterals name="SOLIDARITE" value="953" literal="Congé Solidarité"/>
   </eClassifiers>
 </ecore:EPackage>

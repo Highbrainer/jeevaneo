@@ -4,6 +4,7 @@ package fr.mutualite.rh.conges;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -149,13 +150,31 @@ public interface CongesPackage extends EPackage {
 	int CONGE__FIN = 1;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONGE__TYPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Decompte</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONGE__DECOMPTE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Conge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONGE_FEATURE_COUNT = 2;
+	int CONGE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Conge</em>' class.
@@ -165,6 +184,17 @@ public interface CongesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONGE_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.conges.TypeConge <em>Type Conge</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.conges.TypeConge
+	 * @see fr.mutualite.rh.conges.impl.CongesPackageImpl#getTypeConge()
+	 * @generated
+	 */
+	int TYPE_CONGE = 2;
 
 
 	/**
@@ -252,6 +282,38 @@ public interface CongesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getConge_Fin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.conges.Conge#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see fr.mutualite.rh.conges.Conge#getType()
+	 * @see #getConge()
+	 * @generated
+	 */
+	EAttribute getConge_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.conges.Conge#getDecompte <em>Decompte</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Decompte</em>'.
+	 * @see fr.mutualite.rh.conges.Conge#getDecompte()
+	 * @see #getConge()
+	 * @generated
+	 */
+	EAttribute getConge_Decompte();
+
+	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.conges.TypeConge <em>Type Conge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Type Conge</em>'.
+	 * @see fr.mutualite.rh.conges.TypeConge
+	 * @generated
+	 */
+	EEnum getTypeConge();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -343,6 +405,32 @@ public interface CongesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONGE__FIN = eINSTANCE.getConge_Fin();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONGE__TYPE = eINSTANCE.getConge_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Decompte</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONGE__DECOMPTE = eINSTANCE.getConge_Decompte();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.conges.TypeConge <em>Type Conge</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.conges.TypeConge
+		 * @see fr.mutualite.rh.conges.impl.CongesPackageImpl#getTypeConge()
+		 * @generated
+		 */
+		EEnum TYPE_CONGE = eINSTANCE.getTypeConge();
 
 	}
 

@@ -7,6 +7,13 @@
   <foreignModel>conges.ecore</foreignModel>
   <genPackages prefix="Conges" basePackage="fr.mutualite.rh" disposableProviderFactory="true"
       ecorePackage="conges.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="conges.ecore#//TypeConge">
+      <genEnumLiterals ecoreEnumLiteral="conges.ecore#//TypeConge/CP"/>
+      <genEnumLiterals ecoreEnumLiteral="conges.ecore#//TypeConge/ANCIENNETE"/>
+      <genEnumLiterals ecoreEnumLiteral="conges.ecore#//TypeConge/FRACTIONNEMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="conges.ecore#//TypeConge/PONT"/>
+      <genEnumLiterals ecoreEnumLiteral="conges.ecore#//TypeConge/SOLIDARITE"/>
+    </genEnums>
     <genClasses ecoreClass="conges.ecore#//Employe">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute conges.ecore#//Employe/matricule"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute conges.ecore#//Employe/nom"/>
@@ -16,6 +23,8 @@
     <genClasses ecoreClass="conges.ecore#//Conge">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute conges.ecore#//Conge/debut"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute conges.ecore#//Conge/fin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute conges.ecore#//Conge/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute conges.ecore#//Conge/decompte"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -24,6 +24,8 @@ public class EmployeCongesParser {
 		System.out.println(df.format(new Date()));
 		System.out.println(df.parse("2016-04-13 00:00:00"));
 		
+		System.out.println(Arrays.stream(TypeConge.values()).map(TypeConge::getValue).map(Object::toString).sorted().collect(Collectors.joining(", ")));
+		
 	}
 	
 	private Map<Integer, Float> loadExceptions(File in) throws IOException {
@@ -58,9 +60,13 @@ public class EmployeCongesParser {
 			});
 				Date debut = date(vals[4]);
 				Date fin = date(vals[5]);
+				TypeConge typeConges = typeConges(vals[6]);
+				int decompte = decompte(vals);
 				Conge periode = CongesFactory.eINSTANCE.createConge();
 				periode.setDebut(debut);
 				periode.setFin(fin);
+				periode.setType(typeConges);
+				periode.setDecompte(decompte);
 				e.getConges().add(periode);
 		});
 		return ret;
@@ -68,6 +74,25 @@ public class EmployeCongesParser {
 	}
 
 	
+
+	private int decompte(String[] vals) {
+		if(vals.length<8) {
+			throw new IllegalAccessError("Il manque la 8ème colonne (décompte) dans la ligne suivante : " + Arrays.toString(vals)); 
+		}
+		try {
+			return Integer.parseInt(vals[7]);
+		} catch (NumberFormatException e) {
+			throw new IllegalAccessError("Le decompte doit être un nombre entier! '" + vals + "'");
+		}
+	}
+
+	private TypeConge typeConges(String s) {
+		try {
+			return TypeConge.get(Integer.parseInt(s));
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Le type de congés ('" + s + "') devrait être un nombre entier parmi " + Arrays.stream(TypeConge.values()).map(TypeConge::getValue).sorted().map(Object::toString).collect(Collectors.joining(", "))); 
+		}
+	}
 
 	private Date date(String string) {
 		if(null==string || string.trim().isEmpty()) {

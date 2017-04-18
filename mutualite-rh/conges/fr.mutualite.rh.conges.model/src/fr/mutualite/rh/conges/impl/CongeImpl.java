@@ -5,6 +5,7 @@ package fr.mutualite.rh.conges.impl;
 import fr.mutualite.rh.conges.Conge;
 import fr.mutualite.rh.conges.CongesPackage;
 
+import fr.mutualite.rh.conges.TypeConge;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,6 +25,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link fr.mutualite.rh.conges.impl.CongeImpl#getDebut <em>Debut</em>}</li>
  *   <li>{@link fr.mutualite.rh.conges.impl.CongeImpl#getFin <em>Fin</em>}</li>
+ *   <li>{@link fr.mutualite.rh.conges.impl.CongeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link fr.mutualite.rh.conges.impl.CongeImpl#getDecompte <em>Decompte</em>}</li>
  * </ul>
  *
  * @generated
@@ -68,6 +71,46 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 	 * @ordered
 	 */
 	protected Date fin = FIN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TypeConge TYPE_EDEFAULT = TypeConge.CP;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypeConge type = TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDecompte() <em>Decompte</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDecompte()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int DECOMPTE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getDecompte() <em>Decompte</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDecompte()
+	 * @generated
+	 * @ordered
+	 */
+	protected int decompte = DECOMPTE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -135,6 +178,48 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TypeConge getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(TypeConge newType) {
+		TypeConge oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CongesPackage.CONGE__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getDecompte() {
+		return decompte;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDecompte(int newDecompte) {
+		int oldDecompte = decompte;
+		decompte = newDecompte;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CongesPackage.CONGE__DECOMPTE, oldDecompte, decompte));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -142,6 +227,10 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 				return getDebut();
 			case CongesPackage.CONGE__FIN:
 				return getFin();
+			case CongesPackage.CONGE__TYPE:
+				return getType();
+			case CongesPackage.CONGE__DECOMPTE:
+				return getDecompte();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,6 +248,12 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 				return;
 			case CongesPackage.CONGE__FIN:
 				setFin((Date)newValue);
+				return;
+			case CongesPackage.CONGE__TYPE:
+				setType((TypeConge)newValue);
+				return;
+			case CongesPackage.CONGE__DECOMPTE:
+				setDecompte((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -178,6 +273,12 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 			case CongesPackage.CONGE__FIN:
 				setFin(FIN_EDEFAULT);
 				return;
+			case CongesPackage.CONGE__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
+			case CongesPackage.CONGE__DECOMPTE:
+				setDecompte(DECOMPTE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -194,6 +295,10 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 				return DEBUT_EDEFAULT == null ? debut != null : !DEBUT_EDEFAULT.equals(debut);
 			case CongesPackage.CONGE__FIN:
 				return FIN_EDEFAULT == null ? fin != null : !FIN_EDEFAULT.equals(fin);
+			case CongesPackage.CONGE__TYPE:
+				return type != TYPE_EDEFAULT;
+			case CongesPackage.CONGE__DECOMPTE:
+				return decompte != DECOMPTE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -212,6 +317,10 @@ public class CongeImpl extends MinimalEObjectImpl.Container implements Conge {
 		result.append(debut);
 		result.append(", fin: ");
 		result.append(fin);
+		result.append(", type: ");
+		result.append(type);
+		result.append(", decompte: ");
+		result.append(decompte);
 		result.append(')');
 		return result.toString();
 	}

@@ -37,8 +37,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CongePlanningExporter {
 
-	public static void main(String[] args) {
-	}
 	// public XSSFColor setColor(XSSFWorkbook workbook, byte r,byte g, byte b){
 	// XSSFPalette palette = workbook.getCustomPalette();
 	// XSSFColor XSSFColor = null;
@@ -304,7 +302,7 @@ public class CongePlanningExporter {
 				// cellMat.setCellStyle(getCellStyle(wb, true, false, row.getRowNum()));
 				Cell cellNom = row.createCell(++i);
 				cellNom.setCellValue(e.getNom());
-				cellNom.setCellStyle(getCellStyle(wb, true, false, row.getRowNum()));
+				cellNom.setCellStyle(getCellStyle(wb, true, false, false, row.getRowNum()));
 				// row.createCell(++i).setCellValue(e.getPrenom());
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(debut);
@@ -325,9 +323,11 @@ public class CongePlanningExporter {
 					cell.setCellValue("");
 
 					boolean newWeek = calBefore.get(Calendar.WEEK_OF_YEAR) != cal.get(Calendar.WEEK_OF_YEAR);
-					boolean conge = e.getConges().stream()
-							.anyMatch(c -> (c.getDebut().equals(time) || c.getDebut().before(time)) && (c.getFin().equals(time) || c.getFin().after(time)));
-					cell.setCellStyle(getCellStyle(wb, conge, newWeek, row.getRowNum()));
+					boolean conge = e.getConges().stream().filter(conges -> conges.getType()!=TypeConge.SOLIDARITE && conges.getType()!=TypeConge.PONT)
+							.anyMatch(congesFinder(time));
+					boolean pont = e.getConges().stream().filter(conges -> conges.getType()==TypeConge.PONT)
+							.anyMatch(congesFinder(time));
+					cell.setCellStyle(getCellStyle(wb, conge, pont, newWeek, row.getRowNum()));
 					calBefore.setTime(cal.getTime());
 
 				}
@@ -354,11 +354,14 @@ public class CongePlanningExporter {
 		Desktop.getDesktop().open(out);
 
 	}
+	private Predicate<? super Conge> congesFinder(Date time) {
+		return c -> (c.getDebut().equals(time) || c.getDebut().before(time)) && (c.getFin().equals(time) || c.getFin().after(time));
+	}
 
 	private Map<String, CellStyle> styles = new HashMap<>();
 
-	private CellStyle getCellStyle(XSSFWorkbook wb, boolean conge, boolean weekStart, int empIndex) {
-		String key = "" + empIndex + "_" + conge + "_" + weekStart;
+	private CellStyle getCellStyle(XSSFWorkbook wb, boolean conge, boolean pont, boolean weekStart, int empIndex) {
+		String key = "" + empIndex + "_" + conge + "_" + pont + "_" + weekStart;
 		CellStyle style = styles.get(key);
 		if (style != null) {
 			return style;
@@ -369,6 +372,11 @@ public class CongePlanningExporter {
 		if (conge) {
 			// style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.index);
 			style.setFillForegroundColor(IndexedColors.values()[((empIndex % 6) + 31)].index);
+			style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		}
+		
+		if(pont) {
+			style.setFillForegroundColor(IndexedColors.LAVENDER.index);
 			style.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		}
 		style.setBottomBorderColor(IndexedColors.GREY_80_PERCENT.index);

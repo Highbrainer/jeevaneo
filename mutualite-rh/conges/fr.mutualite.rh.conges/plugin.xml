@@ -17,6 +17,10 @@
       <product
             application="fr.mutualite.rh.conges.application"
             name="conges-planning">
+         <property
+               name="appName"
+               value="conges-planning">
+         </property>
       </product>
    </extension>
 
