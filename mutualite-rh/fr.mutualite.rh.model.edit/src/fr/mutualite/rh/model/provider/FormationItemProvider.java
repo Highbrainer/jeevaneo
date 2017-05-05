@@ -64,6 +64,7 @@ public class FormationItemProvider
 			super.getPropertyDescriptors(object);
 
 			addLibellePropertyDescriptor(object);
+			addDpcPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,28 @@ public class FormationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Dpc feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDpcPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Formation_dpc_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Formation_dpc_feature", "_UI_Formation_type"),
+				 MutPackage.Literals.FORMATION__DPC,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -159,6 +182,7 @@ public class FormationItemProvider
 
 		switch (notification.getFeatureID(Formation.class)) {
 			case MutPackage.FORMATION__LIBELLE:
+			case MutPackage.FORMATION__DPC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MutPackage.FORMATION__SESSIONFORMATION:

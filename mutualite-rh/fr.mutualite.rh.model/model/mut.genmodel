@@ -100,6 +100,7 @@
     <genClasses ecoreClass="mut.ecore#//Formation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Formation/libelle"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Formation/sessionformation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Formation/dpc"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//OrganismeFormation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//OrganismeFormation/nom"/>

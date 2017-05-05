@@ -114,6 +114,15 @@ public class ExportView extends ViewPart {
 				}
 			});
 		}
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Dernière formation DPC", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Exporter pour chaque salarié la date de sa formation DPC la plus récente ainsi que son emploi, au format excel.");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					derniereFormationDpc();
+				}
+			});
+		}
 	}
 
 	private void souhaitsFormation() {
@@ -150,6 +159,27 @@ public class ExportView extends ViewPart {
 				throw new RuntimeException(e1);
 			}
 			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Liste des responsables exportée vers " + file.getAbsolutePath());
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+		}
+	}
+	
+	private void derniereFormationDpc() {
+		File file = chooseFile("derniere-formation-dpc-", "xls", "xslx");
+		if (null != file) {
+			Response resp = new ReportResource().xlsDerniereFormationDpc();
+			StreamingOutput output = (StreamingOutput) resp.getEntity();
+			try (FileOutputStream out = new FileOutputStream(file);) {
+				output.write(out);
+				out.flush();
+			} catch (IOException e1) {
+				MessageDialog.openError(ExportView.this.getSite().getShell(), "Export KO", "Impossible d'écrire dans le fichier " + e1.getMessage());
+				throw new RuntimeException(e1);
+			}
+			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Liste des dernières formations DPC exportée vers " + file.getAbsolutePath());
 			try {
 				Desktop.getDesktop().open(file);
 			} catch (IOException e1) {

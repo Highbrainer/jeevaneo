@@ -68,7 +68,6 @@ public class EmployeResource extends BaseResource {
 	}
 	
 	@POST
-	@GET
 	@Path("cleanupEntreteneurs")
 	public void cleanupEntreteneurs() {
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {

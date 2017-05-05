@@ -798,6 +798,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFormation_Dpc() {
+		return (EAttribute)formationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOrganismeFormation() {
 		return organismeFormationEClass;
 	}
@@ -1489,6 +1498,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		formationEClass = createEClass(FORMATION);
 		createEAttribute(formationEClass, FORMATION__LIBELLE);
 		createEReference(formationEClass, FORMATION__SESSIONFORMATION);
+		createEAttribute(formationEClass, FORMATION__DPC);
 
 		organismeFormationEClass = createEClass(ORGANISME_FORMATION);
 		createEAttribute(organismeFormationEClass, ORGANISME_FORMATION__NOM);
@@ -1713,6 +1723,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEClass(formationEClass, Formation.class, "Formation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFormation_Libelle(), ecorePackage.getEString(), "libelle", null, 1, 1, Formation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFormation_Sessionformation(), this.getSessionFormation(), null, "sessionformation", null, 0, -1, Formation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFormation_Dpc(), ecorePackage.getEBoolean(), "dpc", null, 0, 1, Formation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(organismeFormationEClass, OrganismeFormation.class, "OrganismeFormation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOrganismeFormation_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, OrganismeFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

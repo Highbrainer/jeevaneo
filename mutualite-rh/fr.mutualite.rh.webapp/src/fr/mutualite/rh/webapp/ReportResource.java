@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -18,7 +19,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.StreamingOutput;
 
-import org.apache.log4j.lf5.util.StreamUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -35,6 +36,7 @@ import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.model.Formation;
 import fr.mutualite.rh.model.Mutualite;
+import fr.mutualite.rh.model.OrganismeFormation;
 import fr.mutualite.rh.model.SessionFormation;
 
 @Path("/reports")
@@ -190,6 +192,114 @@ public class ReportResource {
 			ext = "-" + annee + ext;
 		}
 		response.header("Content-Disposition", "attachment; filename=matrices-employes-formations" + ext);
+		return response.build();
+
+	}
+
+
+	@GET
+	@Path("derniere-formation-dpc.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsDerniereFormationDpc() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsDerniersFormationDpc(mut);
+	}
+	public Response xlsDerniersFormationDpc(Mutualite mut) {
+
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+
+					CellStyle dateStyle = wb.createCellStyle();
+					CreationHelper createHelper = wb.getCreationHelper();
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm yyyy"));
+					
+					Font bold = wb.createFont();
+					bold.setBold(true);
+
+					// HSSFFont boldWhite = wb.createFont();
+					// boldWhite.setBold(true);
+					// boldWhite.setColor(IndexedColors.WHITE.index);
+
+					CellStyle titleStyle = wb.createCellStyle();
+					titleStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
+					// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+					titleStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
+					titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+					titleStyle.setAlignment(HorizontalAlignment.LEFT);
+					titleStyle.setFont(bold);
+					
+					HSSFSheet sheet = wb.createSheet("Formations DPC");
+					mut.getEffectif().getEmployes().forEach(employe -> {
+						
+						{
+							HSSFRow titleRow = sheet.createRow(0);
+							int i=-1;
+							HSSFCell cell;
+							
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Salarié");
+							
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Etablissement");
+							
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Emploi");
+							
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Dernière DPC");
+							
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Formation DPC");
+							
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Organisme");
+							
+						}
+						HSSFRow row = sheet.createRow(sheet.getLastRowNum()+1);
+						int i=-1;
+						row.createCell(++i).setCellValue(employe.getLabel());
+						row.createCell(++i).setCellValue(employe.getEtablissement().getNom());
+						row.createCell(++i).setCellValue(employe.getAffectationEmploiCourante().getEmploi().getIntitule());
+						Optional<SessionFormation> first = employe.getSessionsFormation().stream().filter(sf -> formation(sf).isDpc()).sorted((sf1,sf2)->sf1.getDateDebut().compareTo(sf2.getDateDebut())).findFirst();
+						if(first.isPresent()) {
+							SessionFormation sessionFormation = first.get();
+
+							HSSFCell dateCell = row.createCell(++i);
+							dateCell.setCellStyle(dateStyle);
+							dateCell.setCellValue(sessionFormation.getDateDebut());
+							Formation formation = formation(sessionFormation);
+							row.createCell(++i).setCellValue(formation.getLibelle());
+							row.createCell(++i).setCellValue(organisme(formation).getNom());
+						}
+						
+						
+					});
+					
+					IntStream.range(0, 6).forEach(sheet::autoSizeColumn);
+
+					wb.write(out);
+					out.flush();
+				}
+			}
+
+			public OrganismeFormation organisme(Formation formation) {
+				return (OrganismeFormation)formation.eContainer();
+			}
+
+			public Formation formation(SessionFormation sf) {
+				return (Formation)sf.eContainer();
+			}
+		});
+		response.header("Content-Disposition", "attachment; filename=dernieres-formations-dpc.xls");
 		return response.build();
 
 	}
@@ -567,6 +677,9 @@ public class ReportResource {
 	private static final Calendar cal = Calendar.getInstance();
 
 	private boolean isSameYear(SessionFormation sf, Integer annee) {
+		if(null==annee) {
+			return true;
+		}
 		Date debut = sf.getDateDebut();
 		Integer yearDebut = null;
 		if (debut != null) {

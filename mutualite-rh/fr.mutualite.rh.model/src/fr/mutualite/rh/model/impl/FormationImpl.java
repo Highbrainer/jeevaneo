@@ -24,6 +24,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <ul>
  *   <li>{@link fr.mutualite.rh.model.impl.FormationImpl#getLibelle <em>Libelle</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.FormationImpl#getSessionformation <em>Sessionformation</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.FormationImpl#isDpc <em>Dpc</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +39,16 @@ public class FormationImpl extends CDOObjectImpl implements Formation {
 	 * @ordered
 	 */
 	protected static final String LIBELLE_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #isDpc() <em>Dpc</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDpc()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DPC_EDEFAULT = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +112,24 @@ public class FormationImpl extends CDOObjectImpl implements Formation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDpc() {
+		return (Boolean)eDynamicGet(MutPackage.FORMATION__DPC, MutPackage.Literals.FORMATION__DPC, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDpc(boolean newDpc) {
+		eDynamicSet(MutPackage.FORMATION__DPC, MutPackage.Literals.FORMATION__DPC, newDpc);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -122,6 +151,8 @@ public class FormationImpl extends CDOObjectImpl implements Formation {
 				return getLibelle();
 			case MutPackage.FORMATION__SESSIONFORMATION:
 				return getSessionformation();
+			case MutPackage.FORMATION__DPC:
+				return isDpc();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,6 +173,9 @@ public class FormationImpl extends CDOObjectImpl implements Formation {
 				getSessionformation().clear();
 				getSessionformation().addAll((Collection<? extends SessionFormation>)newValue);
 				return;
+			case MutPackage.FORMATION__DPC:
+				setDpc((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -160,6 +194,9 @@ public class FormationImpl extends CDOObjectImpl implements Formation {
 			case MutPackage.FORMATION__SESSIONFORMATION:
 				getSessionformation().clear();
 				return;
+			case MutPackage.FORMATION__DPC:
+				setDpc(DPC_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -176,6 +213,8 @@ public class FormationImpl extends CDOObjectImpl implements Formation {
 				return LIBELLE_EDEFAULT == null ? getLibelle() != null : !LIBELLE_EDEFAULT.equals(getLibelle());
 			case MutPackage.FORMATION__SESSIONFORMATION:
 				return !getSessionformation().isEmpty();
+			case MutPackage.FORMATION__DPC:
+				return isDpc() != DPC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link fr.mutualite.rh.model.Formation#getLibelle <em>Libelle</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Formation#getSessionformation <em>Sessionformation</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Formation#isDpc <em>Dpc</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getFormation()
@@ -65,5 +66,31 @@ public interface Formation extends CDOObject {
 	 * @generated
 	 */
 	EList<SessionFormation> getSessionformation();
+
+	/**
+	 * Returns the value of the '<em><b>Dpc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dpc</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dpc</em>' attribute.
+	 * @see #setDpc(boolean)
+	 * @see fr.mutualite.rh.model.MutPackage#getFormation_Dpc()
+	 * @model
+	 * @generated
+	 */
+	boolean isDpc();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.Formation#isDpc <em>Dpc</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dpc</em>' attribute.
+	 * @see #isDpc()
+	 * @generated
+	 */
+	void setDpc(boolean value);
 
 } // Formation

@@ -533,13 +533,22 @@ public interface MutPackage extends EPackage {
 	int FORMATION__SESSIONFORMATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Dpc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORMATION__DPC = 2;
+
+	/**
 	 * The number of structural features of the '<em>Formation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORMATION_FEATURE_COUNT = 2;
+	int FORMATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Formation</em>' class.
@@ -2216,6 +2225,17 @@ public interface MutPackage extends EPackage {
 	EReference getFormation_Sessionformation();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Formation#isDpc <em>Dpc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dpc</em>'.
+	 * @see fr.mutualite.rh.model.Formation#isDpc()
+	 * @see #getFormation()
+	 * @generated
+	 */
+	EAttribute getFormation_Dpc();
+
+	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.OrganismeFormation <em>Organisme Formation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3433,6 +3453,14 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FORMATION__SESSIONFORMATION = eINSTANCE.getFormation_Sessionformation();
+
+		/**
+		 * The meta object literal for the '<em><b>Dpc</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FORMATION__DPC = eINSTANCE.getFormation_Dpc();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.OrganismeFormationImpl <em>Organisme Formation</em>}' class.
