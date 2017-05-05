@@ -56,6 +56,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link fr.mutualite.rh.model.impl.EmployeImpl#getEntreteneurs <em>Entreteneurs</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EmployeImpl#getEmployesEntretenus <em>Employes Entretenus</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EmployeImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EmployeImpl#getEtablissementsEntretenus <em>Etablissements Entretenus</em>}</li>
  * </ul>
  *
  * @generated
@@ -543,6 +544,16 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Etablissement> getEtablissementsEntretenus() {
+		return (EList<Etablissement>)eDynamicGet(MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS, MutPackage.Literals.EMPLOYE__ETABLISSEMENTS_ENTRETENUS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean hasValidAffectationEmploiCourante(DiagnosticChain chain, Map<Object, Object> context) {
@@ -659,6 +670,23 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Employe> entreteneurs() {
+		EList<Employe> entreteneurs = getEntreteneurs();
+		if(null!=entreteneurs) {
+			return entreteneurs;
+		}
+		if(null==getEtablissement()) {
+			System.err.println("Employe sans etablissement! Matricule:" + getMatricule() );
+			return null;
+		}
+		return getEtablissement().getEntreteneurs();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -687,6 +715,8 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEntreteneurs()).basicAdd(otherEnd, msgs);
 			case MutPackage.EMPLOYE__EMPLOYES_ENTRETENUS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEmployesEntretenus()).basicAdd(otherEnd, msgs);
+			case MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEtablissementsEntretenus()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -721,6 +751,8 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				return ((InternalEList<?>)getEntreteneurs()).basicRemove(otherEnd, msgs);
 			case MutPackage.EMPLOYE__EMPLOYES_ENTRETENUS:
 				return ((InternalEList<?>)getEmployesEntretenus()).basicRemove(otherEnd, msgs);
+			case MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS:
+				return ((InternalEList<?>)getEtablissementsEntretenus()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -781,6 +813,8 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				return getEmployesEntretenus();
 			case MutPackage.EMPLOYE__LABEL:
 				return getLabel();
+			case MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS:
+				return getEtablissementsEntretenus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -867,6 +901,10 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				getEmployesEntretenus().clear();
 				getEmployesEntretenus().addAll((Collection<? extends Employe>)newValue);
 				return;
+			case MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS:
+				getEtablissementsEntretenus().clear();
+				getEtablissementsEntretenus().addAll((Collection<? extends Etablissement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -942,6 +980,9 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 			case MutPackage.EMPLOYE__EMPLOYES_ENTRETENUS:
 				getEmployesEntretenus().clear();
 				return;
+			case MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS:
+				getEtablissementsEntretenus().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -998,6 +1039,8 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				return !getEmployesEntretenus().isEmpty();
 			case MutPackage.EMPLOYE__LABEL:
 				return LABEL_EDEFAULT == null ? getLabel() != null : !LABEL_EDEFAULT.equals(getLabel());
+			case MutPackage.EMPLOYE__ETABLISSEMENTS_ENTRETENUS:
+				return !getEtablissementsEntretenus().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1021,6 +1064,8 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				return hasValidAffectationClassificationCourante((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MutPackage.EMPLOYE___RESPONSABLE:
 				return responsable();
+			case MutPackage.EMPLOYE___ENTRETENEURS:
+				return entreteneurs();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

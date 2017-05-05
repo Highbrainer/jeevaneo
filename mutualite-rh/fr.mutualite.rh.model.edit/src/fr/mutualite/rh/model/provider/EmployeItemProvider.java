@@ -82,6 +82,7 @@ public class EmployeItemProvider
 			addEntreteneursPropertyDescriptor(object);
 			addEmployesEntretenusPropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
+			addEtablissementsEntretenusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -500,6 +501,28 @@ public class EmployeItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Etablissements Entretenus feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEtablissementsEntretenusPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Employe_etablissementsEntretenus_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Employe_etablissementsEntretenus_feature", "_UI_Employe_type"),
+				 MutPackage.Literals.EMPLOYE__ETABLISSEMENTS_ENTRETENUS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

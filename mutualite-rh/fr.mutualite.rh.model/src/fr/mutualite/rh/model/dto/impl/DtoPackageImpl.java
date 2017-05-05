@@ -356,7 +356,7 @@ public class DtoPackageImpl extends EPackageImpl implements DtoPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(formulaireEClass, Formulaire.class, "Formulaire", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFormulaire_Prenom(), ecorePackage.getEString(), "prenom", null, 1, 1, Formulaire.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFormulaire_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, Formulaire.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFormulaire_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, Formulaire.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFormulaire_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Formulaire.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFormulaire_Diplomes(), ecorePackage.getEString(), "diplomes", null, 1, 1, Formulaire.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFormulaire_Service(), ecorePackage.getEString(), "service", null, 0, 1, Formulaire.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -371,7 +371,7 @@ public class DtoPackageImpl extends EPackageImpl implements DtoPackage {
 
 		initEClass(uiEmployeEClass, UIEmploye.class, "UIEmploye", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUIEmploye_Prenom(), ecorePackage.getEString(), "prenom", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUIEmploye_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUIEmploye_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUIEmploye_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 

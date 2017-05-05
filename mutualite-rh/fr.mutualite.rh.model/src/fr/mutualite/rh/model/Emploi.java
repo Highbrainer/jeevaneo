@@ -33,7 +33,7 @@ public interface Emploi extends CDOObject {
 	 * @return the value of the '<em>Intitule</em>' attribute.
 	 * @see #setIntitule(String)
 	 * @see fr.mutualite.rh.model.MutPackage#getEmploi_Intitule()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getIntitule();

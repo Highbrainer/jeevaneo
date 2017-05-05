@@ -7,7 +7,7 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="fr.mutualite.rh.conges.Application">
+               class="fr.mutualite.rh.conges.ApplicationSuivi">
          </run>
       </application>
    </extension>

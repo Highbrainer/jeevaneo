@@ -63,7 +63,7 @@ public interface Formulaire extends CDOObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matricule</em>' attribute.
 	 * @see fr.mutualite.rh.model.dto.DtoPackage#getFormulaire_Matricule()
-	 * @model id="true" required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	int getMatricule();

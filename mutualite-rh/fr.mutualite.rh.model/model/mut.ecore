@@ -39,8 +39,13 @@
       </eParameters>
     </eOperations>
     <eOperations name="responsable" lowerBound="1" eType="#//Employe"/>
+    <eOperations name="entreteneurs">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="#//Employe"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" iD="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -89,9 +94,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="entreteneurs" lowerBound="1"
         upperBound="-1" eType="#//Employe" eOpposite="#//Employe/employesEntretenus"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employesEntretenus" upperBound="-1"
-        eType="#//Employe" eOpposite="#//Employe/entreteneurs"/>
+        eType="#//Employe" eOpposite="#//Employe/entreteneurs.1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etablissementsEntretenus"
+        upperBound="-1" eType="#//Etablissement" eOpposite="#//Etablissement/entreteneurs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Affectation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateDebut" lowerBound="1"
@@ -110,7 +117,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Emploi">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="intitule" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ClassificationStatut">
     <eLiterals name="E1" value="1"/>
@@ -151,8 +158,7 @@
         eType="#//SessionFormation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrganismeFormation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="formations" upperBound="-1"
         eType="#//Formation" containment="true"/>
   </eClassifiers>
@@ -319,13 +325,14 @@
         eType="#//OrganismeFormation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Etablissement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employes" lowerBound="1"
         upperBound="-1" eType="#//Employe" eOpposite="#//Employe/etablissement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="responsable" eType="#//Employe"
         eOpposite="#//Employe/etablissementsEnResponsabilite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entreteneurs" upperBound="-1"
+        eType="#//Employe" eOpposite="#//Employe/etablissementsEntretenus"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Utilisateur">
     <eStructuralFeatures xsi:type="ecore:EReference" name="employe" lowerBound="1"
@@ -349,7 +356,7 @@
           changeable="false" volatile="true" transient="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" changeable="false"
-          volatile="true" transient="true" derived="true" iD="true"/>
+          volatile="true" transient="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false" volatile="true" transient="true" derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="diplomes" lowerBound="1"
@@ -380,7 +387,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" iD="true"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>

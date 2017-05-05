@@ -319,9 +319,8 @@ public class MutFactoryImpl extends EFactoryImpl implements MutFactory {
 	 * @generated
 	 */
 	public ClassificationStatut createClassificationStatutFromString(EDataType eDataType, String initialValue) {
-		String val = initialValue.replaceAll("_", " ");
-		ClassificationStatut result = ClassificationStatut.get(val);
-		if (result == null) throw new IllegalArgumentException("The value '" + val + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		ClassificationStatut result = ClassificationStatut.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 

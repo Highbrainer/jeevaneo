@@ -30,8 +30,10 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.view.CDOQuery;
+import org.eclipse.emf.common.util.EList;
 
 import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.model.Role;
 import fr.mutualite.rh.model.Utilisateur;
 import fr.mutualite.rh.model.dto.DtoFactory;
@@ -61,6 +63,40 @@ public class EmployeResource extends BaseResource {
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
 			Employe emp = (Employe) mut.cdoView().getObject(CDOIDUtil.createLong(cdoId));
 			emp.setDateSortieEntreprise(day);
+			return true;
+		});
+	}
+	
+	@POST
+	@GET
+	@Path("cleanupEntreteneurs")
+	public void cleanupEntreteneurs() {
+		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
+			mut.getEffectif().getEmployes().forEach(emp -> {
+				Etablissement etablissement = emp.getEtablissement();
+				if(null==etablissement) {
+					return;
+				}
+				EList<Employe> entreteneurs = emp.getEntreteneurs();
+				if(null==entreteneurs || entreteneurs.isEmpty()) {
+					return;
+				}
+				EList<Employe> entreteneursEtab = etablissement.getEntreteneurs();
+				if(null==entreteneursEtab || entreteneursEtab.isEmpty()) {
+					return;
+				}
+				//aucun des deux n'est nul ou vide
+				if(entreteneursEtab.size()!=entreteneurs.size()) {
+					return;
+				}
+				//et ils ont la même taille : on checke!
+				Set<Integer> matriculesEntreteneursEtab = entreteneursEtab.stream().map(Employe::getMatricule).collect(Collectors.toSet());
+				if(entreteneurs.stream().map(Employe::getMatricule).allMatch(matriculesEntreteneursEtab::contains)) {
+					// exactement les mêmes entreteneurs que l'établissement (à l'ordre près)
+					emp.getEntreteneurs().clear();
+					System.out.println("J'ai resetté les entreteneurs de " + emp.getLabel());
+				}
+			});
 			return true;
 		});
 	}

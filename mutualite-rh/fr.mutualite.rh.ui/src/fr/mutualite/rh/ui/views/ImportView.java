@@ -27,6 +27,8 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.part.ViewPart;
 
+import fr.mutualite.rh.model.popup.actions.ImportEtablissementsAction;
+import fr.mutualite.rh.webapp.EmployeResource;
 import fr.mutualite.rh.webapp.ReportResource;
 
 /**
@@ -77,6 +79,29 @@ public class ImportView extends ViewPart {
 				}
 			});
 		}
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Nettoyage Entreteneurs", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Supprime les entreteneurs spécifiques des employés pour lesquels l'établissement possède exactement la même liste d'entreteneurs.");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					cleanupEntreteneurs();
+				}
+			});
+		}
+	}
+
+	protected void cleanupEntreteneurs() {
+		try {
+			new EmployeResource().cleanupEntreteneurs();
+		} catch (Throwable e1) {
+			MessageDialog.openError(ImportView.this.getSite().getShell(), "Cleanup KO", "Impossible de nettoyer les entreteneurs spécifiques " + e1.getMessage());
+			throw new RuntimeException(e1);
+		}
+	}
+
+	protected void importEtablissements() {
+//		MessageDialog.openWarning(form.getShell(), "Non implémenté!", "Cette fonctionnalité n'est pas encore implémentée! Passe par le clic-droit!");
+		new ImportEtablissementsAction().run(form.getShell());
 	}
 
 	private void souhaitsFormation() {

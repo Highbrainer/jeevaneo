@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.Etablissement#getEmployes <em>Employes</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Etablissement#getId <em>Id</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Etablissement#getResponsable <em>Responsable</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Etablissement#getEntreteneurs <em>Entreteneurs</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEtablissement()
@@ -37,7 +38,7 @@ public interface Etablissement extends CDOObject {
 	 * @return the value of the '<em>Nom</em>' attribute.
 	 * @see #setNom(String)
 	 * @see fr.mutualite.rh.model.MutPackage#getEtablissement_Nom()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getNom();
@@ -123,5 +124,23 @@ public interface Etablissement extends CDOObject {
 	 * @generated
 	 */
 	void setResponsable(Employe value);
+
+	/**
+	 * Returns the value of the '<em><b>Entreteneurs</b></em>' reference list.
+	 * The list contents are of type {@link fr.mutualite.rh.model.Employe}.
+	 * It is bidirectional and its opposite is '{@link fr.mutualite.rh.model.Employe#getEtablissementsEntretenus <em>Etablissements Entretenus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Entreteneurs</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Entreteneurs</em>' reference list.
+	 * @see fr.mutualite.rh.model.MutPackage#getEtablissement_Entreteneurs()
+	 * @see fr.mutualite.rh.model.Employe#getEtablissementsEntretenus
+	 * @model opposite="etablissementsEntretenus"
+	 * @generated
+	 */
+	EList<Employe> getEntreteneurs();
 
 } // Etablissement

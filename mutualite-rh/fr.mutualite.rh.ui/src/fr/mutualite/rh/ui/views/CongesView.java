@@ -28,6 +28,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.part.ViewPart;
 
 import fr.mutualite.rh.conges.Application;
+import fr.mutualite.rh.conges.ApplicationSuivi;
 import fr.mutualite.rh.webapp.ReportResource;
 import fr.mutualite.rh.webapp.admin.AdminResource;
 
@@ -73,6 +74,16 @@ public class CongesView extends ViewPart {
 				}
 			});
 		}
+
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Suivis individuels", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Export d'un fichier excel par établissement, contenant un onglet par salarié, avec un détail de ses congés, par type de congés (CP, Fractionnement, Ponts...)");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					exportSuiviIndividuelConges();
+				}
+			});
+		}
 	}
 
 	protected void exportPlanningConges() {
@@ -81,6 +92,16 @@ public class CongesView extends ViewPart {
 			app.importExport();
 		} catch (Throwable e) {
 			MessageDialog.openError(CongesView.this.getSite().getShell(), "Export Planning KO", "ERREUR: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	protected void exportSuiviIndividuelConges() {
+		ApplicationSuivi app = new ApplicationSuivi();
+		try {
+			app.importExport();
+		} catch (Throwable e) {
+			MessageDialog.openError(CongesView.this.getSite().getShell(), "Export Suivi individuel des congés KO", "ERREUR: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

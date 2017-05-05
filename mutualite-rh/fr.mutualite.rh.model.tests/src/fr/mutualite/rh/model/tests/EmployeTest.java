@@ -27,6 +27,7 @@ import junit.textui.TestRunner;
  *   <li>{@link fr.mutualite.rh.model.Employe#hasOneAndOnlyOneAffectationClassificationCourante(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has One And Only One Affectation Classification Courante</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Employe#hasValidAffectationClassificationCourante(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Valid Affectation Classification Courante</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Employe#responsable() <em>Responsable</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Employe#entreteneurs() <em>Entreteneurs</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -175,6 +176,19 @@ public class EmployeTest extends TestCase {
 	 * @generated
 	 */
 	public void testResponsable() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link fr.mutualite.rh.model.Employe#entreteneurs() <em>Entreteneurs</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.Employe#entreteneurs()
+	 * @generated
+	 */
+	public void testEntreteneurs() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

@@ -54,4 +54,6 @@ public class EtablissementResource extends BaseResource {
 	private int compare(ComboItem c1, ComboItem c2) {
 		return c1.getValue().compareTo(c2.getValue());
 	}
+	
+	
 }

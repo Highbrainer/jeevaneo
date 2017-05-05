@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.Employe#getEntreteneurs <em>Entreteneurs</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Employe#getEmployesEntretenus <em>Employes Entretenus</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Employe#getLabel <em>Label</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Employe#getEtablissementsEntretenus <em>Etablissements Entretenus</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEmploye()
@@ -59,7 +60,7 @@ public interface Employe extends CDOObject {
 	 * @return the value of the '<em>Matricule</em>' attribute.
 	 * @see #setMatricule(int)
 	 * @see fr.mutualite.rh.model.MutPackage#getEmploye_Matricule()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	int getMatricule();
@@ -528,6 +529,24 @@ public interface Employe extends CDOObject {
 	String getLabel();
 
 	/**
+	 * Returns the value of the '<em><b>Etablissements Entretenus</b></em>' reference list.
+	 * The list contents are of type {@link fr.mutualite.rh.model.Etablissement}.
+	 * It is bidirectional and its opposite is '{@link fr.mutualite.rh.model.Etablissement#getEntreteneurs <em>Entreteneurs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Etablissements Entretenus</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Etablissements Entretenus</em>' reference list.
+	 * @see fr.mutualite.rh.model.MutPackage#getEmploye_EtablissementsEntretenus()
+	 * @see fr.mutualite.rh.model.Etablissement#getEntreteneurs
+	 * @model opposite="entreteneurs"
+	 * @generated
+	 */
+	EList<Etablissement> getEtablissementsEntretenus();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model chainRequired="true" contextRequired="true"
@@ -566,5 +585,13 @@ public interface Employe extends CDOObject {
 	 * @generated
 	 */
 	Employe responsable();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model many="false"
+	 * @generated
+	 */
+	EList<Employe> entreteneurs();
 
 } // Employe

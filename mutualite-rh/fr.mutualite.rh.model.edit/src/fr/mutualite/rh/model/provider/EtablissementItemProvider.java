@@ -64,6 +64,7 @@ public class EtablissementItemProvider
 			addEmployesPropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addResponsablePropertyDescriptor(object);
+			addEntreteneursPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -148,6 +149,28 @@ public class EtablissementItemProvider
 				 getString("_UI_Etablissement_responsable_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Etablissement_responsable_feature", "_UI_Etablissement_type"),
 				 MutPackage.Literals.ETABLISSEMENT__RESPONSABLE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Entreteneurs feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEntreteneursPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Etablissement_entreteneurs_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Etablissement_entreteneurs_feature", "_UI_Etablissement_type"),
+				 MutPackage.Literals.ETABLISSEMENT__ENTRETENEURS,
 				 true,
 				 false,
 				 true,

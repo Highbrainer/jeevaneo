@@ -26,6 +26,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link fr.mutualite.rh.model.impl.EtablissementImpl#getEmployes <em>Employes</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EtablissementImpl#getId <em>Id</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EtablissementImpl#getResponsable <em>Responsable</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EtablissementImpl#getEntreteneurs <em>Entreteneurs</em>}</li>
  * </ul>
  *
  * @generated
@@ -168,6 +169,16 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	public EList<Employe> getEntreteneurs() {
+		return (EList<Employe>)eDynamicGet(MutPackage.ETABLISSEMENT__ENTRETENEURS, MutPackage.Literals.ETABLISSEMENT__ENTRETENEURS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -178,6 +189,8 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 				if (responsable != null)
 					msgs = ((InternalEObject)responsable).eInverseRemove(this, MutPackage.EMPLOYE__ETABLISSEMENTS_EN_RESPONSABILITE, Employe.class, msgs);
 				return basicSetResponsable((Employe)otherEnd, msgs);
+			case MutPackage.ETABLISSEMENT__ENTRETENEURS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEntreteneurs()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -194,6 +207,8 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 				return ((InternalEList<?>)getEmployes()).basicRemove(otherEnd, msgs);
 			case MutPackage.ETABLISSEMENT__RESPONSABLE:
 				return basicSetResponsable(null, msgs);
+			case MutPackage.ETABLISSEMENT__ENTRETENEURS:
+				return ((InternalEList<?>)getEntreteneurs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,6 +230,8 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 			case MutPackage.ETABLISSEMENT__RESPONSABLE:
 				if (resolve) return getResponsable();
 				return basicGetResponsable();
+			case MutPackage.ETABLISSEMENT__ENTRETENEURS:
+				return getEntreteneurs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -241,6 +258,10 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 			case MutPackage.ETABLISSEMENT__RESPONSABLE:
 				setResponsable((Employe)newValue);
 				return;
+			case MutPackage.ETABLISSEMENT__ENTRETENEURS:
+				getEntreteneurs().clear();
+				getEntreteneurs().addAll((Collection<? extends Employe>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -265,6 +286,9 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 			case MutPackage.ETABLISSEMENT__RESPONSABLE:
 				setResponsable((Employe)null);
 				return;
+			case MutPackage.ETABLISSEMENT__ENTRETENEURS:
+				getEntreteneurs().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -285,6 +309,8 @@ public class EtablissementImpl extends CDOObjectImpl implements Etablissement {
 				return getId() != ID_EDEFAULT;
 			case MutPackage.ETABLISSEMENT__RESPONSABLE:
 				return basicGetResponsable() != null;
+			case MutPackage.ETABLISSEMENT__ENTRETENEURS:
+				return !getEntreteneurs().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

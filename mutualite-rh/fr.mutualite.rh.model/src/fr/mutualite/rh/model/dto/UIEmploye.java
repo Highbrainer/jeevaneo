@@ -61,7 +61,7 @@ public interface UIEmploye extends CDOObject {
 	 * @return the value of the '<em>Matricule</em>' attribute.
 	 * @see #setMatricule(int)
 	 * @see fr.mutualite.rh.model.dto.DtoPackage#getUIEmploye_Matricule()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	int getMatricule();

@@ -61,7 +61,17 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		FileDialog fileDialog = new FileDialog(shell);
+
+		run(shell);
+	}
+
+	/**
+	 * stateless variant.
+	 * 
+	 * @param aShell
+	 */
+	public void run(Shell aShell) {
+		FileDialog fileDialog = new FileDialog(aShell);
 		fileDialog.setText("Veuillez sélectionner le fichier csv des établissements Ã  importer...");
 		String filename = fileDialog.open();
 		if (null == filename) {
@@ -70,70 +80,86 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 
 		Path path = new File(filename).toPath();
 
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(etabs);
-		domain.getCommandStack().execute(new ChangeCommand(etabs) {
-			
+		ChangeCommand command = new ChangeCommand(etabs) {
+
 			@Override
 			public String getLabel() {
 				return "Import du fichier des etablissements " + path.getFileName();
 			}
-			
+
 			@Override
 			protected void doExecute() {
-				
-//				try {
-//					ECollections.sort(CdoServlet.getMutualite().getUtilisateurs().getUtilisateurs(), (u1,u2)->u1.getEmploye().getNom().compareTo(u2.getEmploye().getNom()));
-//					((Mutualite)etabs.eContainer()).getEmplois().getEmplois().forEach(e -> {e.setIntitule(e.getIntitule().replaceAll("_",  " "));});
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
 
-				try {
-					Files.lines(path, StandardCharsets.ISO_8859_1)/*.skip(1)*/
-					//.filter(s->!s.toLowerCase().replaceAll("\\s", "").startsWith("matricule;nom"))
-					.collect(Collectors.toSet()).stream()
-							.forEach(ImportEtablissementsAction.this::parse);
-					MessageDialog.openInformation(shell, "Mut Model", "Importer les établissements was executed.");
-				} catch (Throwable t) {
-					StringWriter error = new StringWriter();
-					t.printStackTrace(new PrintWriter(error));
-					ErrorDialog.openError(shell, "Erreur!",
-							"Une erreur a empêché le chargement du fichier des établissements : " + t.getMessage(),
-							new Status(IStatus.ERROR, "fr.mutualite.rh.model", error.getBuffer().toString()));
-				}
+				doImport(aShell, path);
 
 			}
-		});
+
+		};
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(etabs);
+		if (null != domain) {
+			domain.getCommandStack().execute(command);
+		} else {
+			CdoServlet.getCdo().doInTransaction(transaction -> {
+				if (null == etabs) {
+					etabs = CdoServlet.getCdo().findMutualite(transaction).getEtablissements();
+				}
+				etabs = transaction.getObject(etabs);
+
+				doImport(shell, path);
+				return true;
+			});
+		}
 	}
 
+	public void doImport(Shell aShell, Path path) {
+		// try {
+		// ECollections.sort(CdoServlet.getMutualite().getUtilisateurs().getUtilisateurs(), (u1,u2)->u1.getEmploye().getNom().compareTo(u2.getEmploye().getNom()));
+		// ((Mutualite)etabs.eContainer()).getEmplois().getEmplois().forEach(e -> {e.setIntitule(e.getIntitule().replaceAll("_", " "));});
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
+		try {
+			Files.lines(path, StandardCharsets.ISO_8859_1)/* .skip(1) */
+					// .filter(s->!s.toLowerCase().replaceAll("\\s", "").startsWith("matricule;nom"))
+					.collect(Collectors.toSet()).stream().forEach(ImportEtablissementsAction.this::parse);
+			MessageDialog.openInformation(aShell, "Mut Model", "Importer les établissements was executed.");
+		} catch (Throwable t) {
+			StringWriter error = new StringWriter();
+			t.printStackTrace(new PrintWriter(error));
+			ErrorDialog.openError(aShell, "Erreur!", "Une erreur a empêché le chargement du fichier des établissements : " + t.getMessage(),
+					new Status(IStatus.ERROR, "fr.mutualite.rh.model", error.getBuffer().toString()));
+		}
+	}
 
 	private Etablissement parse(String line) {
 		String[] strings = line.split(";");
-		if (strings.length<2) {
+		if (strings.length < 2) {
 			throw new IllegalStateException("Format de fichier incorrect : " + line);
 		}
 		String sId = strings[0];
 		String label = strings[1];
 		int id = Integer.parseInt(sId);
-		
-		Etablissement etablissement = etabs.getEtablissements().stream().filter(et -> et.getId()==id).findAny().orElseGet(() -> {
-		
-		Etablissement etab = MutFactory.eINSTANCE.createEtablissement();
-		etab.setId(id);
-		etabs.getEtablissements().add(etab);
-		return etab;
+
+		Etablissement etablissement = etabs.getEtablissements().stream().filter(et -> et.getId() == id).findAny().orElseGet(() -> {
+
+			Etablissement etab = MutFactory.eINSTANCE.createEtablissement();
+			etab.setId(id);
+			etabs.getEtablissements().add(etab);
+			return etab;
 		});
 		etablissement.setNom(label);
-		
-		if(strings.length>2) {
+
+		if (strings.length > 2) {
 			String sMatResponsable = strings[2];
 			int matResponsable = Integer.parseInt(sMatResponsable);
 			Employe resp = findOrCreateEmploye(matResponsable);
 			etablissement.setResponsable(resp);
 		}
-		if(strings.length>3) {
+		if (strings.length > 3) {
 			String matsEntreteneurs = strings[3];
-			if(!matsEntreteneurs.trim().isEmpty()) {
+			if (!matsEntreteneurs.trim().isEmpty()) {
+				etablissement.getEntreteneurs().clear();
 				Arrays.stream(matsEntreteneurs.trim().split(",")).map(Integer::parseInt).forEach(matEntreteneur -> {
 					addEntreteneurIfNotAlready(etablissement, matEntreteneur);
 				});
@@ -144,7 +170,7 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 
 	private Employe findOrCreateEmploye(int matResponsable) {
 		Mutualite mut = (Mutualite) etabs.eContainer();
-		return mut.getEffectif().getEmployes().stream().filter(emp -> emp.getMatricule()==matResponsable).findAny().orElseGet(() -> {
+		return mut.getEffectif().getEmployes().stream().filter(emp -> emp.getMatricule() == matResponsable).findAny().orElseGet(() -> {
 			Employe resp = MutFactory.eINSTANCE.createEmploye();
 			resp.setNom("A définir!");
 			resp.setMatricule(matResponsable);
@@ -154,8 +180,11 @@ public class ImportEtablissementsAction implements IObjectActionDelegate {
 	}
 
 	private void addEntreteneurIfNotAlready(Etablissement etablissement, Integer matEntreteneur) {
-		System.err.println("Les entreteneurs ne sont pas encore gérés dans le modèle!!!!!!!!");
-		
+		if (!etablissement.getEntreteneurs().stream().anyMatch(emp -> emp.getMatricule() == matEntreteneur)) {
+			Employe entreteneur = findOrCreateEmploye(matEntreteneur);
+			etablissement.getEntreteneurs().add(entreteneur);
+		}
+
 	}
 
 	/**

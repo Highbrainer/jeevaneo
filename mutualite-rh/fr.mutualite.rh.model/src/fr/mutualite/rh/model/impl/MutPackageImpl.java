@@ -348,6 +348,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEtablissement_Entreteneurs() {
+		return (EReference)etablissementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUtilisateur() {
 		return utilisateurEClass;
 	}
@@ -609,6 +618,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEmploye_EtablissementsEntretenus() {
+		return (EReference)employeEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEmploye__HasValidAffectationEmploiCourante__DiagnosticChain_Map() {
 		return employeEClass.getEOperations().get(0);
 	}
@@ -647,6 +665,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 */
 	public EOperation getEmploye__Responsable() {
 		return employeEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEmploye__Entreteneurs() {
+		return employeEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -1438,11 +1465,13 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEReference(employeEClass, EMPLOYE__ENTRETENEURS);
 		createEReference(employeEClass, EMPLOYE__EMPLOYES_ENTRETENUS);
 		createEAttribute(employeEClass, EMPLOYE__LABEL);
+		createEReference(employeEClass, EMPLOYE__ETABLISSEMENTS_ENTRETENUS);
 		createEOperation(employeEClass, EMPLOYE___HAS_VALID_AFFECTATION_EMPLOI_COURANTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeEClass, EMPLOYE___HAS_ONE_AND_ONLY_ONE_AFFECTATION_EMPLOI_COURANTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeEClass, EMPLOYE___HAS_ONE_AND_ONLY_ONE_AFFECTATION_CLASSIFICATION_COURANTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeEClass, EMPLOYE___HAS_VALID_AFFECTATION_CLASSIFICATION_COURANTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeEClass, EMPLOYE___RESPONSABLE);
+		createEOperation(employeEClass, EMPLOYE___ENTRETENEURS);
 
 		affectationEClass = createEClass(AFFECTATION);
 		createEAttribute(affectationEClass, AFFECTATION__DATE_DEBUT);
@@ -1543,6 +1572,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEReference(etablissementEClass, ETABLISSEMENT__EMPLOYES);
 		createEAttribute(etablissementEClass, ETABLISSEMENT__ID);
 		createEReference(etablissementEClass, ETABLISSEMENT__RESPONSABLE);
+		createEReference(etablissementEClass, ETABLISSEMENT__ENTRETENEURS);
 
 		utilisateurEClass = createEClass(UTILISATEUR);
 		createEReference(utilisateurEClass, UTILISATEUR__EMPLOYE);
@@ -1599,7 +1629,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(employeEClass, Employe.class, "Employe", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEmploye_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEmploye_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEmploye_Prenom(), ecorePackage.getEString(), "prenom", null, 1, 1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEmploye_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEmploye_NomJeuneFille(), ecorePackage.getEString(), "nomJeuneFille", null, 0, 1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1621,6 +1651,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEReference(getEmploye_Entreteneurs(), this.getEmploye(), this.getEmploye_EmployesEntretenus(), "entreteneurs", null, 1, -1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEmploye_EmployesEntretenus(), this.getEmploye(), this.getEmploye_Entreteneurs(), "employesEntretenus", null, 0, -1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEmploye_Label(), ecorePackage.getEString(), "label", null, 1, 1, Employe.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getEmploye_EtablissementsEntretenus(), this.getEtablissement(), this.getEtablissement_Entreteneurs(), "etablissementsEntretenus", null, 0, -1, Employe.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getEmploye__HasValidAffectationEmploiCourante__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasValidAffectationEmploiCourante", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1660,13 +1691,19 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 
 		initEOperation(getEmploye__Responsable(), this.getEmploye(), "responsable", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getEmploye__Entreteneurs(), null, "entreteneurs", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(this.getEmploye());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(affectationEClass, Affectation.class, "Affectation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAffectation_DateDebut(), ecorePackage.getEDate(), "dateDebut", null, 1, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAffectation_DateFin(), ecorePackage.getEDate(), "dateFin", null, 0, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAffectation_Emploi(), this.getEmploi(), null, "emploi", null, 1, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(emploiEClass, Emploi.class, "Emploi", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEmploi_Intitule(), ecorePackage.getEString(), "intitule", null, 1, 1, Emploi.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEmploi_Intitule(), ecorePackage.getEString(), "intitule", null, 1, 1, Emploi.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(affectationClassificationEClass, AffectationClassification.class, "AffectationClassification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAffectationClassification_DateDebut(), ecorePackage.getEDate(), "dateDebut", null, 0, 1, AffectationClassification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1678,7 +1715,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEReference(getFormation_Sessionformation(), this.getSessionFormation(), null, "sessionformation", null, 0, -1, Formation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(organismeFormationEClass, OrganismeFormation.class, "OrganismeFormation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOrganismeFormation_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, OrganismeFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOrganismeFormation_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, OrganismeFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOrganismeFormation_Formations(), this.getFormation(), null, "formations", null, 0, -1, OrganismeFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sessionFormationEClass, SessionFormation.class, "SessionFormation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1772,10 +1809,11 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEReference(getOrganismes_OrganismeFormations(), this.getOrganismeFormation(), null, "organismeFormations", null, 0, -1, Organismes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(etablissementEClass, Etablissement.class, "Etablissement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEtablissement_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, Etablissement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEtablissement_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, Etablissement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEtablissement_Employes(), this.getEmploye(), this.getEmploye_Etablissement(), "employes", null, 1, -1, Etablissement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEtablissement_Id(), ecorePackage.getEInt(), "id", null, 1, 1, Etablissement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEtablissement_Responsable(), this.getEmploye(), this.getEmploye_EtablissementsEnResponsabilite(), "responsable", null, 0, 1, Etablissement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEtablissement_Entreteneurs(), this.getEmploye(), this.getEmploye_EtablissementsEntretenus(), "entreteneurs", null, 0, -1, Etablissement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(utilisateurEClass, Utilisateur.class, "Utilisateur", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUtilisateur_Employe(), this.getEmploye(), null, "employe", null, 1, 1, Utilisateur.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -277,13 +277,22 @@ public interface MutPackage extends EPackage {
 	int EMPLOYE__LABEL = 21;
 
 	/**
+	 * The feature id for the '<em><b>Etablissements Entretenus</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPLOYE__ETABLISSEMENTS_ENTRETENUS = 22;
+
+	/**
 	 * The number of structural features of the '<em>Employe</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPLOYE_FEATURE_COUNT = 22;
+	int EMPLOYE_FEATURE_COUNT = 23;
 
 	/**
 	 * The operation id for the '<em>Has Valid Affectation Emploi Courante</em>' operation.
@@ -331,13 +340,22 @@ public interface MutPackage extends EPackage {
 	int EMPLOYE___RESPONSABLE = 4;
 
 	/**
+	 * The operation id for the '<em>Entreteneurs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPLOYE___ENTRETENEURS = 5;
+
+	/**
 	 * The number of operations of the '<em>Employe</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPLOYE_OPERATION_COUNT = 5;
+	int EMPLOYE_OPERATION_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.AffectationImpl <em>Affectation</em>}' class.
@@ -1445,13 +1463,22 @@ public interface MutPackage extends EPackage {
 	int ETABLISSEMENT__RESPONSABLE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Entreteneurs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ETABLISSEMENT__ENTRETENEURS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Etablissement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ETABLISSEMENT_FEATURE_COUNT = 4;
+	int ETABLISSEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Etablissement</em>' class.
@@ -1650,6 +1677,17 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEtablissement_Responsable();
+
+	/**
+	 * Returns the meta object for the reference list '{@link fr.mutualite.rh.model.Etablissement#getEntreteneurs <em>Entreteneurs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Entreteneurs</em>'.
+	 * @see fr.mutualite.rh.model.Etablissement#getEntreteneurs()
+	 * @see #getEtablissement()
+	 * @generated
+	 */
+	EReference getEtablissement_Entreteneurs();
 
 	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.Utilisateur <em>Utilisateur</em>}'.
@@ -1968,6 +2006,17 @@ public interface MutPackage extends EPackage {
 	EAttribute getEmploye_Label();
 
 	/**
+	 * Returns the meta object for the reference list '{@link fr.mutualite.rh.model.Employe#getEtablissementsEntretenus <em>Etablissements Entretenus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Etablissements Entretenus</em>'.
+	 * @see fr.mutualite.rh.model.Employe#getEtablissementsEntretenus()
+	 * @see #getEmploye()
+	 * @generated
+	 */
+	EReference getEmploye_EtablissementsEntretenus();
+
+	/**
 	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Employe#hasValidAffectationEmploiCourante(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Valid Affectation Emploi Courante</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2016,6 +2065,16 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEmploye__Responsable();
+
+	/**
+	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Employe#entreteneurs() <em>Entreteneurs</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Entreteneurs</em>' operation.
+	 * @see fr.mutualite.rh.model.Employe#entreteneurs()
+	 * @generated
+	 */
+	EOperation getEmploye__Entreteneurs();
 
 	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.Affectation <em>Affectation</em>}'.
@@ -2962,6 +3021,14 @@ public interface MutPackage extends EPackage {
 		EReference ETABLISSEMENT__RESPONSABLE = eINSTANCE.getEtablissement_Responsable();
 
 		/**
+		 * The meta object literal for the '<em><b>Entreteneurs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ETABLISSEMENT__ENTRETENEURS = eINSTANCE.getEtablissement_Entreteneurs();
+
+		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.UtilisateurImpl <em>Utilisateur</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3200,6 +3267,14 @@ public interface MutPackage extends EPackage {
 		EAttribute EMPLOYE__LABEL = eINSTANCE.getEmploye_Label();
 
 		/**
+		 * The meta object literal for the '<em><b>Etablissements Entretenus</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EMPLOYE__ETABLISSEMENTS_ENTRETENUS = eINSTANCE.getEmploye_EtablissementsEntretenus();
+
+		/**
 		 * The meta object literal for the '<em><b>Has Valid Affectation Emploi Courante</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3238,6 +3313,14 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EMPLOYE___RESPONSABLE = eINSTANCE.getEmploye__Responsable();
+
+		/**
+		 * The meta object literal for the '<em><b>Entreteneurs</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EMPLOYE___ENTRETENEURS = eINSTANCE.getEmploye__Entreteneurs();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.AffectationImpl <em>Affectation</em>}' class.

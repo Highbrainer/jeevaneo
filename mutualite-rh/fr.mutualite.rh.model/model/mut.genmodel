@@ -61,9 +61,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/responsable.1"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/subalternes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/etablissementsEnResponsabilite"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/entreteneurs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/entreteneurs.1"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/employesEntretenus"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/label"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Employe/etablissementsEntretenus"/>
       <genOperations ecoreOperation="mut.ecore#//Employe/hasValidAffectationEmploiCourante">
         <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationEmploiCourante/chain"/>
         <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationEmploiCourante/context"/>
@@ -81,6 +82,7 @@
         <genParameters ecoreParameter="mut.ecore#//Employe/hasValidAffectationClassificationCourante/context"/>
       </genOperations>
       <genOperations ecoreOperation="mut.ecore#//Employe/responsable"/>
+      <genOperations ecoreOperation="mut.ecore#//Employe/entreteneurs"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//Affectation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Affectation/dateDebut"/>
@@ -187,6 +189,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Etablissement/employes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Etablissement/id"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Etablissement/responsable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Etablissement/entreteneurs"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//Utilisateur">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Utilisateur/employe"/>

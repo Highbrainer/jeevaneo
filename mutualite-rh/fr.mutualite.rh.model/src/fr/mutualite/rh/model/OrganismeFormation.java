@@ -35,7 +35,7 @@ public interface OrganismeFormation extends CDOObject {
 	 * @return the value of the '<em>Nom</em>' attribute.
 	 * @see #setNom(String)
 	 * @see fr.mutualite.rh.model.MutPackage#getOrganismeFormation_Nom()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getNom();

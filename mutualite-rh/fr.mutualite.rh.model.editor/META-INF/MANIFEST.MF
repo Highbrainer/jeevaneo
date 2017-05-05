@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.mutualite.rh.model.config.presentation,
  fr.mutualite.rh.model.dto.presentation,
+ fr.mutualite.rh.model.popup.actions,
  fr.mutualite.rh.model.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
