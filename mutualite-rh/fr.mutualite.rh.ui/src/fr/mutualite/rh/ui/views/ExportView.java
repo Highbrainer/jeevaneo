@@ -123,6 +123,15 @@ public class ExportView extends ViewPart {
 				}
 			});
 		}
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Suivi des formations", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Exporter pour chaque salarié la liste des sessions de formations qui lui sont rattachées, au format excel.");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					sessionsFormation();
+				}
+			});
+		}
 	}
 
 	private void souhaitsFormation() {
@@ -269,6 +278,26 @@ public class ExportView extends ViewPart {
 				throw new RuntimeException(e1);
 			}
 			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Demandes de rencontres exportées vers " + file.getAbsolutePath());
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+		}
+	}
+
+	private void sessionsFormation() {
+		File file = chooseFile("sessions-formation-", "xls", "xslx");
+		if (null != file) {
+			Response resp = new ReportResource().xlsSessionsFormation();
+			StreamingOutput output = (StreamingOutput) resp.getEntity();
+			try (FileOutputStream out = new FileOutputStream(file);) {
+				output.write(out);
+				out.flush();
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Suivi des formations exporté vers " + file.getAbsolutePath());
 			try {
 				Desktop.getDesktop().open(file);
 			} catch (IOException e1) {
