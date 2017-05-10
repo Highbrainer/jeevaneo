@@ -94,6 +94,9 @@ legend {
 	var formbean = null;
 
 	function validate() {
+		setTimeout("_validate();", 500);
+	}
+	function _validate() {
 		if(bean.enCours) {
 			enregistrerThen(exportPdf);
 		} else {
@@ -102,6 +105,10 @@ legend {
 	}
 
 	function exportPdf() {
+		setTimeout("_exportPdf();", 500);
+	}
+
+	function _exportPdf() {
 		webix.ajax()/*.sync()*/.headers({
 			"Content-type" : "application/json",
 			"Authorization" : "Bearer " + window.sessionStorage.token
@@ -122,8 +129,8 @@ legend {
 		 var getType = {};
 		 return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 	}
-	function enregistrer() {
-		enregistrerThen(null);
+	function enregistrer() {		
+		setTimeout("enregistrerThen(null);", 500);
 	}
 	function enregistrerThen(thenFunc) {
 		var promise = webix.ajax()/*.sync()*/.headers({
