@@ -1,0 +1,52 @@
+body {
+	background-color: #cacaca;
+}
+
+.big-title {
+	color: white;
+	background-color: #3498db;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.cartouche-titre {
+	font-weight: bolder;
+}
+
+legend {
+	font-weight: bolder;
+	font-size: 128px;
+}
+
+.webix_inp_label {
+	font-weight: bolder;
+}
+
+.webix_inp_top_label {
+	font-weight: bolder;
+}
+
+.webix_segment_0 {
+	background-color: #999999
+}
+
+.webix_segment_1 {
+	background-color: #999999
+}
+
+.webix_segment_N {
+	background-color: #999999
+}
+
+.warning {
+	color: darkred;
+	font-style: italic;
+}
+
+/* .webix_inp_textarea {
+	color: navy;
+}
+.webix_el_textarea textarea {
+	color : darkgreen;
+} */
+.webix_dt_editor input,.webix_cell,.webix_el_textarea textarea {color:red;}

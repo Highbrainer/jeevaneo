@@ -174,6 +174,20 @@ public class MutValidator extends EObjectValidator {
 				return validateUtilisateur((Utilisateur)value, diagnostics, context);
 			case MutPackage.UTILISATEURS:
 				return validateUtilisateurs((Utilisateurs)value, diagnostics, context);
+			case MutPackage.ENTRETIEN_ANNUEL:
+				return validateEntretienAnnuel((EntretienAnnuel)value, diagnostics, context);
+			case MutPackage.EVALUATION_TENUE_POSTE:
+				return validateEvaluationTenuePoste((EvaluationTenuePoste)value, diagnostics, context);
+			case MutPackage.EVALUATION_COMPETENCE:
+				return validateEvaluationCompetence((EvaluationCompetence)value, diagnostics, context);
+			case MutPackage.EVALUATION_SAVOIR_ETRE:
+				return validateEvaluationSavoirEtre((EvaluationSavoirEtre)value, diagnostics, context);
+			case MutPackage.OBJECTIF:
+				return validateObjectif((Objectif)value, diagnostics, context);
+			case MutPackage.OBJECTIF_PRECEDENT:
+				return validateObjectifPrecedent((ObjectifPrecedent)value, diagnostics, context);
+			case MutPackage.PHOTO_EMPLOYE:
+				return validatePhotoEmploye((PhotoEmploye)value, diagnostics, context);
 			case MutPackage.CLASSIFICATION_STATUT:
 				return validateClassificationStatut((ClassificationStatut)value, diagnostics, context);
 			case MutPackage.APPRECIATION:
@@ -182,6 +196,16 @@ public class MutValidator extends EObjectValidator {
 				return validateAvis((Avis)value, diagnostics, context);
 			case MutPackage.ROLE:
 				return validateRole((Role)value, diagnostics, context);
+			case MutPackage.EVALUATION:
+				return validateEvaluation((Evaluation)value, diagnostics, context);
+			case MutPackage.EVOLUTION:
+				return validateEvolution((Evolution)value, diagnostics, context);
+			case MutPackage.COMPETENCE:
+				return validateCompetence((Competence)value, diagnostics, context);
+			case MutPackage.SAVOIR_ETRE:
+				return validateSavoirEtre((SavoirEtre)value, diagnostics, context);
+			case MutPackage.EVALUATION_ATTEINTE_OBJECTIF:
+				return validateEvaluationAtteinteObjectif((EvaluationAtteinteObjectif)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -212,6 +236,79 @@ public class MutValidator extends EObjectValidator {
 	 */
 	public boolean validateUtilisateurs(Utilisateurs utilisateurs, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)utilisateurs, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEntretienAnnuel(EntretienAnnuel entretienAnnuel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment((EObject)entretienAnnuel, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)entretienAnnuel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEntretien_hasValidMeneur(entretienAnnuel, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEvaluationTenuePoste(EvaluationTenuePoste evaluationTenuePoste, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)evaluationTenuePoste, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEvaluationCompetence(EvaluationCompetence evaluationCompetence, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)evaluationCompetence, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEvaluationSavoirEtre(EvaluationSavoirEtre evaluationSavoirEtre, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)evaluationSavoirEtre, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateObjectif(Objectif objectif, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)objectif, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateObjectifPrecedent(ObjectifPrecedent objectifPrecedent, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)objectifPrecedent, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePhotoEmploye(PhotoEmploye photoEmploye, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)photoEmploye, diagnostics, context);
 	}
 
 	/**
@@ -494,6 +591,51 @@ public class MutValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateRole(Role role, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEvaluation(Evaluation evaluation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEvolution(Evolution evolution, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompetence(Competence competence, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSavoirEtre(SavoirEtre savoirEtre, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEvaluationAtteinteObjectif(EvaluationAtteinteObjectif evaluationAtteinteObjectif, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

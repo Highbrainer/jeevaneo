@@ -594,4 +594,20 @@ public interface Employe extends CDOObject {
 	 */
 	EList<Employe> entreteneurs();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	PhotoEmploye photo(Date e);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	int age(Date d);
+
 } // Employe

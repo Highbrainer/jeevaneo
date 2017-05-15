@@ -148,6 +148,34 @@ public class MutAdapterFactory extends AdapterFactoryImpl {
 				return createUtilisateursAdapter();
 			}
 			@Override
+			public Adapter caseEntretienAnnuel(EntretienAnnuel object) {
+				return createEntretienAnnuelAdapter();
+			}
+			@Override
+			public Adapter caseEvaluationTenuePoste(EvaluationTenuePoste object) {
+				return createEvaluationTenuePosteAdapter();
+			}
+			@Override
+			public Adapter caseEvaluationCompetence(EvaluationCompetence object) {
+				return createEvaluationCompetenceAdapter();
+			}
+			@Override
+			public Adapter caseEvaluationSavoirEtre(EvaluationSavoirEtre object) {
+				return createEvaluationSavoirEtreAdapter();
+			}
+			@Override
+			public Adapter caseObjectif(Objectif object) {
+				return createObjectifAdapter();
+			}
+			@Override
+			public Adapter caseObjectifPrecedent(ObjectifPrecedent object) {
+				return createObjectifPrecedentAdapter();
+			}
+			@Override
+			public Adapter casePhotoEmploye(PhotoEmploye object) {
+				return createPhotoEmployeAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -206,6 +234,104 @@ public class MutAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUtilisateursAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.EntretienAnnuel <em>Entretien Annuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel
+	 * @generated
+	 */
+	public Adapter createEntretienAnnuelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.EvaluationTenuePoste <em>Evaluation Tenue Poste</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.EvaluationTenuePoste
+	 * @generated
+	 */
+	public Adapter createEvaluationTenuePosteAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.EvaluationCompetence <em>Evaluation Competence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.EvaluationCompetence
+	 * @generated
+	 */
+	public Adapter createEvaluationCompetenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.EvaluationSavoirEtre <em>Evaluation Savoir Etre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.EvaluationSavoirEtre
+	 * @generated
+	 */
+	public Adapter createEvaluationSavoirEtreAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.Objectif <em>Objectif</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.Objectif
+	 * @generated
+	 */
+	public Adapter createObjectifAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.ObjectifPrecedent <em>Objectif Precedent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent
+	 * @generated
+	 */
+	public Adapter createObjectifPrecedentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.mutualite.rh.model.PhotoEmploye <em>Photo Employe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.mutualite.rh.model.PhotoEmploye
+	 * @generated
+	 */
+	public Adapter createPhotoEmployeAdapter() {
 		return null;
 	}
 

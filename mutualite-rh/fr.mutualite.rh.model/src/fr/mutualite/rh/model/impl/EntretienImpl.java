@@ -2,7 +2,9 @@
  */
 package fr.mutualite.rh.model.impl;
 
+import fr.mutualite.rh.model.AppreciationSessionFormation;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 
@@ -13,11 +15,15 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
 import fr.mutualite.rh.model.MutPackage;
+import fr.mutualite.rh.model.PhotoEmploye;
+import fr.mutualite.rh.model.SouhaitFormationEvaluateur;
+import fr.mutualite.rh.model.SouhaitFormationSalarie;
 import fr.mutualite.rh.model.util.MutValidator;
 
 /**
@@ -31,6 +37,11 @@ import fr.mutualite.rh.model.util.MutValidator;
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#isEnCours <em>En Cours</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#isFake <em>Fake</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getScan <em>Scan</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getAppreciationsSessionFormation <em>Appreciations Session Formation</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getSouhaitsFormationSalarie <em>Souhaits Formation Salarie</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getPhotoEmploye <em>Photo Employe</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,6 +81,16 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 	 * @ordered
 	 */
 	protected static final byte[] SCAN_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getAutresActionsDeveloppementCompetences() <em>Autres Actions Developpement Competences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAutresActionsDeveloppementCompetences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -195,6 +216,82 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<AppreciationSessionFormation> getAppreciationsSessionFormation() {
+		return (EList<AppreciationSessionFormation>)eDynamicGet(MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION, MutPackage.Literals.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<SouhaitFormationSalarie> getSouhaitsFormationSalarie() {
+		return (EList<SouhaitFormationSalarie>)eDynamicGet(MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE, MutPackage.Literals.ENTRETIEN__SOUHAITS_FORMATION_SALARIE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<SouhaitFormationEvaluateur> getSouhaitsFormationEvaluateur() {
+		return (EList<SouhaitFormationEvaluateur>)eDynamicGet(MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR, MutPackage.Literals.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAutresActionsDeveloppementCompetences() {
+		return (String)eDynamicGet(MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, MutPackage.Literals.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAutresActionsDeveloppementCompetences(String newAutresActionsDeveloppementCompetences) {
+		eDynamicSet(MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, MutPackage.Literals.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, newAutresActionsDeveloppementCompetences);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PhotoEmploye getPhotoEmploye() {
+		return (PhotoEmploye)eDynamicGet(MutPackage.ENTRETIEN__PHOTO_EMPLOYE, MutPackage.Literals.ENTRETIEN__PHOTO_EMPLOYE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPhotoEmploye(PhotoEmploye newPhotoEmploye, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newPhotoEmploye, MutPackage.ENTRETIEN__PHOTO_EMPLOYE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPhotoEmploye(PhotoEmploye newPhotoEmploye) {
+		eDynamicSet(MutPackage.ENTRETIEN__PHOTO_EMPLOYE, MutPackage.Literals.ENTRETIEN__PHOTO_EMPLOYE, newPhotoEmploye);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -248,6 +345,14 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 		switch (featureID) {
 			case MutPackage.ENTRETIEN__MENEUR:
 				return basicSetMeneur(null, msgs);
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:
+				return ((InternalEList<?>)getAppreciationsSessionFormation()).basicRemove(otherEnd, msgs);
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE:
+				return ((InternalEList<?>)getSouhaitsFormationSalarie()).basicRemove(otherEnd, msgs);
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR:
+				return ((InternalEList<?>)getSouhaitsFormationEvaluateur()).basicRemove(otherEnd, msgs);
+			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
+				return basicSetPhotoEmploye(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -270,6 +375,16 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return isFake();
 			case MutPackage.ENTRETIEN__SCAN:
 				return getScan();
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:
+				return getAppreciationsSessionFormation();
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE:
+				return getSouhaitsFormationSalarie();
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR:
+				return getSouhaitsFormationEvaluateur();
+			case MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
+				return getAutresActionsDeveloppementCompetences();
+			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
+				return getPhotoEmploye();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,6 +393,7 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -295,6 +411,24 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return;
 			case MutPackage.ENTRETIEN__SCAN:
 				setScan((byte[])newValue);
+				return;
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:
+				getAppreciationsSessionFormation().clear();
+				getAppreciationsSessionFormation().addAll((Collection<? extends AppreciationSessionFormation>)newValue);
+				return;
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE:
+				getSouhaitsFormationSalarie().clear();
+				getSouhaitsFormationSalarie().addAll((Collection<? extends SouhaitFormationSalarie>)newValue);
+				return;
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR:
+				getSouhaitsFormationEvaluateur().clear();
+				getSouhaitsFormationEvaluateur().addAll((Collection<? extends SouhaitFormationEvaluateur>)newValue);
+				return;
+			case MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
+				setAutresActionsDeveloppementCompetences((String)newValue);
+				return;
+			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
+				setPhotoEmploye((PhotoEmploye)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -322,6 +456,21 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 			case MutPackage.ENTRETIEN__SCAN:
 				setScan(SCAN_EDEFAULT);
 				return;
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:
+				getAppreciationsSessionFormation().clear();
+				return;
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE:
+				getSouhaitsFormationSalarie().clear();
+				return;
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR:
+				getSouhaitsFormationEvaluateur().clear();
+				return;
+			case MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
+				setAutresActionsDeveloppementCompetences(AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT);
+				return;
+			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
+				setPhotoEmploye((PhotoEmploye)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -343,6 +492,16 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return isFake() != FAKE_EDEFAULT;
 			case MutPackage.ENTRETIEN__SCAN:
 				return SCAN_EDEFAULT == null ? getScan() != null : !SCAN_EDEFAULT.equals(getScan());
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:
+				return !getAppreciationsSessionFormation().isEmpty();
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE:
+				return !getSouhaitsFormationSalarie().isEmpty();
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR:
+				return !getSouhaitsFormationEvaluateur().isEmpty();
+			case MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
+				return AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT == null ? getAutresActionsDeveloppementCompetences() != null : !AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT.equals(getAutresActionsDeveloppementCompetences());
+			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
+				return getPhotoEmploye() != null;
 		}
 		return super.eIsSet(featureID);
 	}

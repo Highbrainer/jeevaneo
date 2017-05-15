@@ -640,6 +640,11 @@ public class EmployeItemProvider
 			(createChildParameter
 				(MutPackage.Literals.EMPLOYE__ENTRETIENS,
 				 MutFactory.eINSTANCE.createEntretienProfessionnel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MutPackage.Literals.EMPLOYE__ENTRETIENS,
+				 MutFactory.eINSTANCE.createEntretienAnnuel()));
 	}
 
 	/**

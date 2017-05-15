@@ -47,6 +47,7 @@ import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
 import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.MutFactory;
+import fr.mutualite.rh.model.PhotoEmploye;
 import fr.mutualite.rh.model.Role;
 import fr.mutualite.rh.model.SouhaitFormationEvaluateur;
 import fr.mutualite.rh.model.SouhaitFormationSalarie;
@@ -351,27 +352,33 @@ public class EntretienProfessionnelResource extends BaseResource {
 	private EntretienProfessionnel getOrCreateEntretienProfessionnel(Employe employe) {
 		EntretienProfessionnel entretien = (EntretienProfessionnel) employe.getEntretiens().stream()
 				.filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).filter(Entretien::isEnCours)
-				.findAny().orElseGet(() -> {
-					EntretienProfessionnel ret = MutFactory.eINSTANCE.createEntretienProfessionnel();
-					ret.setDate(new Date());
-
-					Date datePrecedentEntretien = employe.getEntretiens().stream()
-							.filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).map(Entretien::getDate)
-							.max(Date::compareTo).orElse(new Date(0));
-
-					employe.getSessionsFormation().stream()
-							.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien)).map(session -> {
-								AppreciationSessionFormation apprec = MutFactory.eINSTANCE
-										.createAppreciationSessionFormation();
-								apprec.setSessionFormation(session);
-								apprec.setValeur(null);
-								return apprec;
-							}).forEach(ret.getAppreciationsSessionFormation()::add);
-
-					employe.getEntretiens().add(ret);
-					return ret;
-				});
+				.findAny().orElseGet(() -> newEntretienPro(employe));
 		return entretien;
+	}
+
+	private Entretien newEntretienPro(Employe employe) {
+		EntretienProfessionnel ret = MutFactory.eINSTANCE.createEntretienProfessionnel();
+		ret.setDate(new Date());
+		
+		PhotoEmploye photo = employe.photo(ret.getDate());
+		
+		ret.setPhotoEmploye(photo);
+
+		Date datePrecedentEntretien = employe.getEntretiens().stream()
+				.filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).map(Entretien::getDate)
+				.max(Date::compareTo).orElse(new Date(0));
+
+		employe.getSessionsFormation().stream()
+				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien)).map(session -> {
+					AppreciationSessionFormation apprec = MutFactory.eINSTANCE
+							.createAppreciationSessionFormation();
+					apprec.setSessionFormation(session);
+					apprec.setValeur(null);
+					return apprec;
+				}).forEach(ret.getAppreciationsSessionFormation()::add);
+
+		employe.getEntretiens().add(ret);
+		return ret;
 	}
 
 	private EntretienProfessionnel getCurrentEntretienProfessionnel(Employe employe) {
@@ -395,6 +402,11 @@ public class EntretienProfessionnelResource extends BaseResource {
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
 			EntretienProfessionnel entretien = (EntretienProfessionnel) mut.cdoView()
 					.getObject(CDOIDUtil.createLong(cdoId));
+			
+			entretien.setDate(new Date());
+			
+			//TODO reprendre la photo de l'employé au cas où??
+			entretien.setPhotoEmploye(entretien.employe().photo(entretien.getDate()));
 
 			if (entretien.isEnCours()) {
 				entretien.setEnCours(false);
@@ -516,7 +528,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 			IContext ctx = report.createContext();
 			// ctx.put("entretien", entretien);
 			// ctx.put("employe", employe);
-			// ctx.put("formulaire", formulaire);
+				// ctx.put("formulaire", formulaire);
 
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);

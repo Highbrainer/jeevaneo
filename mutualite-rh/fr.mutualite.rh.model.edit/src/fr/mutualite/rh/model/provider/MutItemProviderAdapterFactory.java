@@ -72,6 +72,29 @@ public class MutItemProviderAdapterFactory extends MutAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.Employe} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EmployeItemProvider employeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.Employe}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEmployeAdapter() {
+		if (employeItemProvider == null) {
+			employeItemProvider = new EmployeItemProvider(this);
+		}
+
+		return employeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.Etablissement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,26 +164,164 @@ public class MutItemProviderAdapterFactory extends MutAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.Employe} instances.
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.EntretienAnnuel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EmployeItemProvider employeItemProvider;
+	protected EntretienAnnuelItemProvider entretienAnnuelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link fr.mutualite.rh.model.Employe}.
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.EntretienAnnuel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createEmployeAdapter() {
-		if (employeItemProvider == null) {
-			employeItemProvider = new EmployeItemProvider(this);
+	public Adapter createEntretienAnnuelAdapter() {
+		if (entretienAnnuelItemProvider == null) {
+			entretienAnnuelItemProvider = new EntretienAnnuelItemProvider(this);
 		}
 
-		return employeItemProvider;
+		return entretienAnnuelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.EvaluationTenuePoste} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EvaluationTenuePosteItemProvider evaluationTenuePosteItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.EvaluationTenuePoste}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEvaluationTenuePosteAdapter() {
+		if (evaluationTenuePosteItemProvider == null) {
+			evaluationTenuePosteItemProvider = new EvaluationTenuePosteItemProvider(this);
+		}
+
+		return evaluationTenuePosteItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.EvaluationCompetence} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EvaluationCompetenceItemProvider evaluationCompetenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.EvaluationCompetence}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEvaluationCompetenceAdapter() {
+		if (evaluationCompetenceItemProvider == null) {
+			evaluationCompetenceItemProvider = new EvaluationCompetenceItemProvider(this);
+		}
+
+		return evaluationCompetenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.EvaluationSavoirEtre} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EvaluationSavoirEtreItemProvider evaluationSavoirEtreItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.EvaluationSavoirEtre}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEvaluationSavoirEtreAdapter() {
+		if (evaluationSavoirEtreItemProvider == null) {
+			evaluationSavoirEtreItemProvider = new EvaluationSavoirEtreItemProvider(this);
+		}
+
+		return evaluationSavoirEtreItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.Objectif} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ObjectifItemProvider objectifItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.Objectif}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectifAdapter() {
+		if (objectifItemProvider == null) {
+			objectifItemProvider = new ObjectifItemProvider(this);
+		}
+
+		return objectifItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.ObjectifPrecedent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ObjectifPrecedentItemProvider objectifPrecedentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.ObjectifPrecedent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectifPrecedentAdapter() {
+		if (objectifPrecedentItemProvider == null) {
+			objectifPrecedentItemProvider = new ObjectifPrecedentItemProvider(this);
+		}
+
+		return objectifPrecedentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.PhotoEmploye} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PhotoEmployeItemProvider photoEmployeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.PhotoEmploye}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPhotoEmployeAdapter() {
+		if (photoEmployeItemProvider == null) {
+			photoEmployeItemProvider = new PhotoEmployeItemProvider(this);
+		}
+
+		return photoEmployeItemProvider;
 	}
 
 	/**
@@ -626,6 +787,13 @@ public class MutItemProviderAdapterFactory extends MutAdapterFactory implements 
 		if (etablissementItemProvider != null) etablissementItemProvider.dispose();
 		if (utilisateurItemProvider != null) utilisateurItemProvider.dispose();
 		if (utilisateursItemProvider != null) utilisateursItemProvider.dispose();
+		if (entretienAnnuelItemProvider != null) entretienAnnuelItemProvider.dispose();
+		if (evaluationTenuePosteItemProvider != null) evaluationTenuePosteItemProvider.dispose();
+		if (evaluationCompetenceItemProvider != null) evaluationCompetenceItemProvider.dispose();
+		if (evaluationSavoirEtreItemProvider != null) evaluationSavoirEtreItemProvider.dispose();
+		if (objectifItemProvider != null) objectifItemProvider.dispose();
+		if (objectifPrecedentItemProvider != null) objectifPrecedentItemProvider.dispose();
+		if (photoEmployeItemProvider != null) photoEmployeItemProvider.dispose();
 	}
 
 }

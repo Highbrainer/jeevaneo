@@ -12,60 +12,7 @@
 	webix_debug_proto = true;
 	webix.debug_time = true;
 </script>
-<style type="text/css">
-body {
-	background-color: #cacaca;
-}
-
-.big-title {
-	color: white;
-	background-color: #3498db;
-	font-size: 24px;
-	font-weight: bold;
-}
-
-.cartouche-titre {
-	font-weight: bolder;
-}
-
-legend {
-	font-weight: bolder;
-	font-size: 128px;
-}
-
-.webix_inp_label {
-	font-weight: bolder;
-}
-
-.webix_inp_top_label {
-	font-weight: bolder;
-}
-
-.webix_segment_0 {
-	background-color: #999999
-}
-
-.webix_segment_1 {
-	background-color: #999999
-}
-
-.webix_segment_N {
-	background-color: #999999
-}
-
-.warning {
-	color: darkred;
-	font-style: italic;
-}
-
-/* .webix_inp_textarea {
-	color: navy;
-}
-.webix_el_textarea textarea {
-	color : darkgreen;
-} */
-.webix_dt_editor input,.webix_cell,.webix_el_textarea textarea {color:red;}
-</style>
+<link rel="stylesheet" type="text/css" href="entretien.css">
 
 <script type="text/javascript">
 	function val(s) {
@@ -170,40 +117,40 @@ legend {
 			<tr>
 				<td>
 					<div>
-						<span class="cartouche-titre">Nom :</span> #nom#
+						<span class="cartouche-titre">Nom :</span> #entretien.photoEmploye.nom#
 					</div>
 					<div>
-						<span class="cartouche-titre">Prénom :</span> #prenom#
+						<span class="cartouche-titre">Prénom :</span> #entretien.photoEmploye.prenom#
 					</div>
 					<div>
-						<span class="cartouche-titre">Service :</span> #service#
+						<span class="cartouche-titre">Service :</span> #entretien.photoEmploye.etablissement#
 					</div>
 					<div>
-						<span class="cartouche-titre">Poste occupé :</span> #poste#
+						<span class="cartouche-titre">Poste occupé :</span> #entretien.photoEmploye.emploi#  #entretien.photoEmploye.classification#
 					</div>
 					<div>
 						<span class="cartouche-titre">Date d'entrée dans
-							l'entreprise : </span> #dateEntreeEntreprise#
+							l'entreprise : </span> #entretien.photoEmploye.dateEmbauche#
 					</div>
 				</td>
 				<td>
 					<div>
 						<span class="cartouche-titre">Responsable hiérarchique :</span>
-						#responsable#
+						#entretien.photoEmploye.responsable#
 					</div>
 					<div>
 						<span class="cartouche-titre">Entretien mené par :</span>
-						#menePar#
+						#form.menePar#
 					</div>
 					<div>
-						<span class="cartouche-titre">Date de l'entretien :</span> #date#
+						<span class="cartouche-titre">Date de l'entretien :</span> #form.date#
 					</div>
 					<div>
 						<span class="cartouche-titre">Date du précédent entretien :</span>
-						#datePrecedentEntretien#
+						#entretien.photoEmploye.datePrecedentEntretien#
 					</div>
 					<div>
-						<span class="cartouche-titre">Diplômes :</span> #diplomes#
+						<span class="cartouche-titre">Diplômes :</span> #entretien.photoEmploye.diplomes#
 					</div>
 				</td>
 			</tr>
@@ -318,6 +265,10 @@ legend {
 			bean.souhaits = [];
 			bean.souhaitEvaluateurRemovals = [];
 			bean.souhaitRemovals = [];
+			var superbean = new Object();
+			superbean.form = formbean;
+			superbean.entretien = entretienbean;
+			console.log(superbean);
 			var page = {
 				id : "mainForm",
 				container : "data_container",
@@ -356,7 +307,7 @@ legend {
 						},
 						{
 							view : "template",
-							data : formbean,
+							data : superbean,
 							height : 120,
 							template : document.getElementById("header").innerHTML
 						},

@@ -5,11 +5,14 @@ import fr.mutualite.rh.model.AffectationClassification;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
 import fr.mutualite.rh.model.Etablissement;
+import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.MutPackage;
+import fr.mutualite.rh.model.PhotoEmploye;
 import fr.mutualite.rh.model.SessionFormation;
 
 import fr.mutualite.rh.model.util.MutValidator;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -27,9 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Employe</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Employe</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -64,8 +65,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 public class EmployeImpl extends CDOObjectImpl implements Employe {
 	/**
 	 * The default value of the '{@link #getMatricule() <em>Matricule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMatricule()
 	 * @generated
 	 * @ordered
@@ -73,8 +73,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final int MATRICULE_EDEFAULT = 0;
 	/**
 	 * The default value of the '{@link #getPrenom() <em>Prenom</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getPrenom()
 	 * @generated
 	 * @ordered
@@ -82,8 +81,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final String PRENOM_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNom()
 	 * @generated
 	 * @ordered
@@ -91,8 +89,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final String NOM_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getNomJeuneFille() <em>Nom Jeune Fille</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNomJeuneFille()
 	 * @generated
 	 * @ordered
@@ -100,8 +97,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final String NOM_JEUNE_FILLE_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getDateNaissance() <em>Date Naissance</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDateNaissance()
 	 * @generated
 	 * @ordered
@@ -109,8 +105,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final Date DATE_NAISSANCE_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getDateEmbauche() <em>Date Embauche</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDateEmbauche()
 	 * @generated
 	 * @ordered
@@ -118,8 +113,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final Date DATE_EMBAUCHE_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getDateSortieEntreprise() <em>Date Sortie Entreprise</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDateSortieEntreprise()
 	 * @generated
 	 * @ordered
@@ -128,8 +122,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 
 	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -137,8 +130,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	protected static final String LABEL_EDEFAULT = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EmployeImpl() {
@@ -146,8 +138,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -156,8 +147,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -166,8 +156,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getMatricule() {
@@ -175,8 +164,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setMatricule(int newMatricule) {
@@ -184,8 +172,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getPrenom() {
@@ -193,8 +180,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setPrenom(String newPrenom) {
@@ -202,8 +188,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getNom() {
@@ -211,8 +196,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setNom(String newNom) {
@@ -220,8 +204,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getNomJeuneFille() {
@@ -229,8 +212,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setNomJeuneFille(String newNomJeuneFille) {
@@ -238,39 +220,36 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getDateNaissance/*Gen*/() {
+	public Date getDateNaissance/* Gen */() {
 		return (Date)eDynamicGet(MutPackage.EMPLOYE__DATE_NAISSANCE, MutPackage.Literals.EMPLOYE__DATE_NAISSANCE, true, true);
 	}
-	
-//	public Date getDateNaissance() {
-//		if(null==getDateNaissanceGen()) {
-//			return null;
-//		}
-//		return new Date(getDateNaissanceGen().getTime()-(long)30*365*24*3600*1000);
-//	}
+
+	// public Date getDateNaissance() {
+	// if(null==getDateNaissanceGen()) {
+	// return null;
+	// }
+	// return new Date(getDateNaissanceGen().getTime()-(long)30*365*24*3600*1000);
+	// }
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDateNaissance/*Gen*/(Date newDateNaissance) {
+	public void setDateNaissance/* Gen */(Date newDateNaissance) {
 		eDynamicSet(MutPackage.EMPLOYE__DATE_NAISSANCE, MutPackage.Literals.EMPLOYE__DATE_NAISSANCE, newDateNaissance);
 	}
-//	public void setDateNaissance(Date newDateNaissance) {
-//		if(null==newDateNaissance) {
-//			setDateNaissanceGen(null);
-//		}
-//		setDateNaissanceGen(new Date(newDateNaissance.getTime()+(long)30*365*24*3600*1000));
-//	}
+	// public void setDateNaissance(Date newDateNaissance) {
+	// if(null==newDateNaissance) {
+	// setDateNaissanceGen(null);
+	// }
+	// setDateNaissanceGen(new Date(newDateNaissance.getTime()+(long)30*365*24*3600*1000));
+	// }
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Date getDateEmbauche() {
@@ -278,8 +257,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDateEmbauche(Date newDateEmbauche) {
@@ -287,8 +265,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -297,8 +274,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Etablissement getEtablissement() {
@@ -306,8 +282,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Etablissement basicGetEtablissement() {
@@ -315,8 +290,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetEtablissement(Etablissement newEtablissement, NotificationChain msgs) {
@@ -325,8 +299,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setEtablissement(Etablissement newEtablissement) {
@@ -334,8 +307,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -344,8 +316,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Affectation getAffectationEmploiCourante() {
@@ -353,8 +324,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Affectation basicGetAffectationEmploiCourante() {
@@ -362,8 +332,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setAffectationEmploiCourante(Affectation newAffectationEmploiCourante) {
@@ -371,8 +340,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -381,8 +349,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AffectationClassification getAffectationClassificationCourante() {
@@ -390,8 +357,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AffectationClassification basicGetAffectationClassificationCourante() {
@@ -399,8 +365,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setAffectationClassificationCourante(AffectationClassification newAffectationClassificationCourante) {
@@ -408,8 +373,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -418,8 +382,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -428,8 +391,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -438,8 +400,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Date getDateSortieEntreprise() {
@@ -447,8 +408,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDateSortieEntreprise(Date newDateSortieEntreprise) {
@@ -456,8 +416,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Employe getResponsable() {
@@ -465,8 +424,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Employe basicGetResponsable() {
@@ -474,8 +432,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetResponsable(Employe newResponsable, NotificationChain msgs) {
@@ -484,8 +441,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setResponsable(Employe newResponsable) {
@@ -493,8 +449,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -503,8 +458,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -513,8 +467,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -523,8 +476,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -533,17 +485,18 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String getLabel() {
-		return "" + getNom() + " " + getPrenom() + ((getNomJeuneFille()!=null && !getNomJeuneFille().trim().isEmpty() && !getNomJeuneFille().equalsIgnoreCase(getNom()))?(", née " + getNomJeuneFille()):"") + " (" + getMatricule() + ")";
+		return "" + getNom() + " " + getPrenom()
+				+ ((getNomJeuneFille() != null && !getNomJeuneFille().trim().isEmpty() && !getNomJeuneFille().equalsIgnoreCase(getNom())) ? (", née " + getNomJeuneFille()) : "")
+				+ " (" + getMatricule() + ")";
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -552,21 +505,18 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean hasValidAffectationEmploiCourante(DiagnosticChain chain, Map<Object, Object> context) {
-		
-		if (getAffectationEmploiCourante()!=null && !getAffectationsEmploi().contains(getAffectationEmploiCourante())) {
+
+		if (getAffectationEmploiCourante() != null && !getAffectationsEmploi().contains(getAffectationEmploiCourante())) {
 			if (chain != null) {
-				chain.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 MutValidator.DIAGNOSTIC_SOURCE,
-						 MutValidator.EMPLOYE__HAS_VALID_AFFECTATION_EMPLOI_COURANTE,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasValidAffectationEmploiCourante", EObjectValidator.getObjectLabel(this, context) }),
-						 new Object [] { this }));
+				chain.add(new BasicDiagnostic(Diagnostic.ERROR,
+						MutValidator.DIAGNOSTIC_SOURCE, MutValidator.EMPLOYE__HAS_VALID_AFFECTATION_EMPLOI_COURANTE, EcorePlugin.INSTANCE
+								.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasValidAffectationEmploiCourante", EObjectValidator.getObjectLabel(this, context) }),
+						new Object[] { this }));
 			}
 			return false;
 		}
@@ -574,27 +524,24 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean hasOneAndOnlyOneAffectationEmploiCourante(DiagnosticChain chain, Map<Object, Object> context) {
-		int counter=0;
+		int counter = 0;
 		EList<Affectation> affectationsEmploi2 = getAffectationsEmploi();
 		for (Affectation ae : affectationsEmploi2) {
-			if(ae.getDateFin()==null) {
+			if (ae.getDateFin() == null) {
 				++counter;
 			}
 		}
-		if (counter==0 || counter>1) {
+		if (counter == 0 || counter > 1) {
 			if (chain != null) {
-				chain.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 MutValidator.DIAGNOSTIC_SOURCE,
-						 MutValidator.EMPLOYE__HAS_ONE_AND_ONLY_ONE_AFFECTATION_EMPLOI_COURANTE,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasOneAndOnlyOneAffectationEmploiCourante", EObjectValidator.getObjectLabel(this, context) }),
-						 new Object [] { this }));
+				chain.add(new BasicDiagnostic(Diagnostic.ERROR, MutValidator.DIAGNOSTIC_SOURCE, MutValidator.EMPLOYE__HAS_ONE_AND_ONLY_ONE_AFFECTATION_EMPLOI_COURANTE,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "hasOneAndOnlyOneAffectationEmploiCourante", EObjectValidator.getObjectLabel(this, context) }),
+						new Object[] { this }));
 			}
 			return false;
 		}
@@ -602,27 +549,25 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean hasOneAndOnlyOneAffectationClassificationCourante(DiagnosticChain chain, Map<Object, Object> context) {
-		int counter=0;
+		int counter = 0;
 		EList<AffectationClassification> affectations = getAffectationsClassification();
 		for (AffectationClassification a : affectations) {
-			if(a.getDateFin()==null) {
+			if (a.getDateFin() == null) {
 				++counter;
 			}
 		}
-		if (counter==0 || counter>1) {
+		if (counter == 0 || counter > 1) {
 			if (chain != null) {
-				chain.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 MutValidator.DIAGNOSTIC_SOURCE,
-						 MutValidator.EMPLOYE__HAS_ONE_AND_ONLY_ONE_AFFECTATION_CLASSIFICATION_COURANTE,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasOneAndOnlyOneAffectationClassificationCourante", EObjectValidator.getObjectLabel(this, context) }),
-						 new Object [] { this }));
+				chain.add(
+						new BasicDiagnostic(Diagnostic.ERROR, MutValidator.DIAGNOSTIC_SOURCE, MutValidator.EMPLOYE__HAS_ONE_AND_ONLY_ONE_AFFECTATION_CLASSIFICATION_COURANTE,
+								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+										new Object[] { "hasOneAndOnlyOneAffectationClassificationCourante", EObjectValidator.getObjectLabel(this, context) }),
+								new Object[] { this }));
 			}
 			return false;
 		}
@@ -630,20 +575,17 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean hasValidAffectationClassificationCourante(DiagnosticChain chain, Map<Object, Object> context) {
-		if (getAffectationClassificationCourante()!=null && !getAffectationsClassification().contains(getAffectationClassificationCourante())) {
+		if (getAffectationClassificationCourante() != null && !getAffectationsClassification().contains(getAffectationClassificationCourante())) {
 			if (chain != null) {
-				chain.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 MutValidator.DIAGNOSTIC_SOURCE,
-						 MutValidator.EMPLOYE__HAS_VALID_AFFECTATION_CLASSIFICATION_COURANTE,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasValidAffectationClassificationCourante", EObjectValidator.getObjectLabel(this, context) }),
-						 new Object [] { this }));
+				chain.add(new BasicDiagnostic(Diagnostic.ERROR, MutValidator.DIAGNOSTIC_SOURCE, MutValidator.EMPLOYE__HAS_VALID_AFFECTATION_CLASSIFICATION_COURANTE,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "hasValidAffectationClassificationCourante", EObjectValidator.getObjectLabel(this, context) }),
+						new Object[] { this }));
 			}
 			return false;
 		}
@@ -651,42 +593,87 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Employe responsable() {
 		Employe responsable = getResponsable();
-		if(null!=responsable) {
+		if (null != responsable) {
 			return responsable;
 		}
 		Etablissement etablissement = getEtablissement();
-		if(null==etablissement) {
+		if (null == etablissement) {
 			return null;
 		}
 		return etablissement.getResponsable();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public EList<Employe> entreteneurs() {
 		EList<Employe> entreteneurs = getEntreteneurs();
-		if(null!=entreteneurs) {
+		if (null != entreteneurs) {
 			return entreteneurs;
 		}
-		if(null==getEtablissement()) {
-			System.err.println("Employe sans etablissement! Matricule:" + getMatricule() );
+		if (null == getEtablissement()) {
+			System.err.println("Employe sans etablissement! Matricule:" + getMatricule());
 			return null;
 		}
 		return getEtablissement().getEntreteneurs();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public PhotoEmploye photo(Date d) {
+		PhotoEmploye photo = MutFactory.eINSTANCE.createPhotoEmploye();
+		if (getDateNaissance() != null) {
+			photo.setAge(age(d));
+		}
+		AffectationClassification affectationClassificationCourante = getAffectationClassificationCourante();
+		if (null != affectationClassificationCourante) {
+			photo.setClassification(affectationClassificationCourante.getClassification().getLiteral());
+		}
+		photo.setDateEmbauche(getDateEmbauche());
+		getEntretiens().stream().filter(ent -> ent.getDate().before(d)&&!ent.isEnCours()).sorted((ent1, ent2) -> ent2.getDate().compareTo(ent1.getDate())).findFirst().ifPresent(last -> photo.setDatePrecedentEntretien(last.getDate()));
+		photo.getDiplomes().addAll(getDiplomes());
+		Affectation affectationEmploiCourante = getAffectationEmploiCourante();
+		if (null != affectationEmploiCourante) {
+			photo.setEmploi(affectationEmploiCourante.getEmploi().getIntitule());
+		}
+		Etablissement etablissement = getEtablissement();
+		if (null != etablissement) {
+			photo.setEtablissement(etablissement.getNom());
+		}
+		photo.setNom(getNom());
+		photo.setPrenom(getPrenom());
+		Employe responsable = getResponsable();
+		if(responsable!=null) {
+			photo.setResponsable(responsable.getLabel());
+		}
+		return photo;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public int age(Date d) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(d.getTime() - getDateNaissance().getTime()));
+		int age = cal.get(Calendar.YEAR) - 1970;
+		return age;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -722,8 +709,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -758,8 +744,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -820,8 +805,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -910,8 +894,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -988,8 +971,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1046,8 +1028,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1066,8 +1047,12 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 				return responsable();
 			case MutPackage.EMPLOYE___ENTRETENEURS:
 				return entreteneurs();
+			case MutPackage.EMPLOYE___PHOTO__DATE:
+				return photo((Date)arguments.get(0));
+			case MutPackage.EMPLOYE___AGE__DATE:
+				return age((Date)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //EmployeImpl
+} // EmployeImpl

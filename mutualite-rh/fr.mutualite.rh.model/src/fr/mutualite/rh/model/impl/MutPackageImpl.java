@@ -8,21 +8,33 @@ import fr.mutualite.rh.model.Appreciation;
 import fr.mutualite.rh.model.AppreciationSessionFormation;
 import fr.mutualite.rh.model.Avis;
 import fr.mutualite.rh.model.ClassificationStatut;
+import fr.mutualite.rh.model.Competence;
 import fr.mutualite.rh.model.Effectif;
 import fr.mutualite.rh.model.Emploi;
 import fr.mutualite.rh.model.Emplois;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
+import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.model.Etablissements;
+import fr.mutualite.rh.model.Evaluation;
+import fr.mutualite.rh.model.EvaluationAtteinteObjectif;
+import fr.mutualite.rh.model.EvaluationCompetence;
+import fr.mutualite.rh.model.EvaluationSavoirEtre;
+import fr.mutualite.rh.model.EvaluationTenuePoste;
+import fr.mutualite.rh.model.Evolution;
 import fr.mutualite.rh.model.Formation;
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.MutPackage;
 import fr.mutualite.rh.model.Mutualite;
+import fr.mutualite.rh.model.Objectif;
+import fr.mutualite.rh.model.ObjectifPrecedent;
 import fr.mutualite.rh.model.OrganismeFormation;
 import fr.mutualite.rh.model.Organismes;
+import fr.mutualite.rh.model.PhotoEmploye;
 import fr.mutualite.rh.model.Role;
+import fr.mutualite.rh.model.SavoirEtre;
 import fr.mutualite.rh.model.SessionFormation;
 
 import fr.mutualite.rh.model.SouhaitFormationEvaluateur;
@@ -72,6 +84,55 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * @generated
 	 */
 	private EClass utilisateursEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass entretienAnnuelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass evaluationTenuePosteEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass evaluationCompetenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass evaluationSavoirEtreEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectifEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectifPrecedentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass photoEmployeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -219,6 +280,41 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * @generated
 	 */
 	private EEnum roleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum evaluationEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum evolutionEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum competenceEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum savoirEtreEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum evaluationAtteinteObjectifEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -404,6 +500,456 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 */
 	public EReference getUtilisateurs_Utilisateurs() {
 		return (EReference)utilisateursEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEntretienAnnuel() {
+		return entretienAnnuelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_BilanFaitsMarquants() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_BilanActivitesSatisfactions() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_BilanActivitesDifficultes() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretienAnnuel_EvaluationsTenuePosteMissionsPrincipales() {
+		return (EReference)entretienAnnuelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretienAnnuel_EvaluationsTenuePosteMissionsSpecifiques() {
+		return (EReference)entretienAnnuelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_RevoirFicheFonction() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_RevoirFicheFonctionPrecisions() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretienAnnuel_EvaluationsCompetences() {
+		return (EReference)entretienAnnuelEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretienAnnuel_EvaluationsSavoirEtre() {
+		return (EReference)entretienAnnuelEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_PointsForts() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_PointsAmeliorer() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_ObjectifsCommentaires() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_SyntheseEvaluateur() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_SyntheseSalarie() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretienAnnuel_Objectifs() {
+		return (EReference)entretienAnnuelEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretienAnnuel_ObjectifsPrecedents() {
+		return (EReference)entretienAnnuelEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEvaluationTenuePoste() {
+		return evaluationTenuePosteEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationTenuePoste_Mission() {
+		return (EAttribute)evaluationTenuePosteEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationTenuePoste_Eval() {
+		return (EAttribute)evaluationTenuePosteEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationTenuePoste_Commentaire() {
+		return (EAttribute)evaluationTenuePosteEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEvaluationCompetence() {
+		return evaluationCompetenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationCompetence_Competence() {
+		return (EAttribute)evaluationCompetenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationCompetence_Eval() {
+		return (EAttribute)evaluationCompetenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationCompetence_Evol() {
+		return (EAttribute)evaluationCompetenceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEvaluationSavoirEtre() {
+		return evaluationSavoirEtreEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationSavoirEtre_SavoirEtre() {
+		return (EAttribute)evaluationSavoirEtreEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationSavoirEtre_Eval() {
+		return (EAttribute)evaluationSavoirEtreEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvaluationSavoirEtre_Evol() {
+		return (EAttribute)evaluationSavoirEtreEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectif() {
+		return objectifEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectif_Libelle() {
+		return (EAttribute)objectifEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectif_Echeance() {
+		return (EAttribute)objectifEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectif_Indicateurs() {
+		return (EAttribute)objectifEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectif_Moyens() {
+		return (EAttribute)objectifEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getObjectif_EvaluationAtteinte() {
+		return (EReference)objectifEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectifPrecedent() {
+		return objectifPrecedentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getObjectifPrecedent_Objectif() {
+		return (EReference)objectifPrecedentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectifPrecedent_Evaluation() {
+		return (EAttribute)objectifPrecedentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectifPrecedent_Commentaire() {
+		return (EAttribute)objectifPrecedentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPhotoEmploye() {
+		return photoEmployeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Prenom() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Age() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Etablissement() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Emploi() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Classification() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Responsable() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Nom() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_DateEmbauche() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_Diplomes() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_DatePrecedentEntretien() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -681,6 +1227,24 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getEmploye__Photo__Date() {
+		return employeEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEmploye__Age__Date() {
+		return employeEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAffectation() {
 		return affectationEClass;
 	}
@@ -942,6 +1506,51 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEntretien_AppreciationsSessionFormation() {
+		return (EReference)entretienEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretien_SouhaitsFormationSalarie() {
+		return (EReference)entretienEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretien_SouhaitsFormationEvaluateur() {
+		return (EReference)entretienEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretien_AutresActionsDeveloppementCompetences() {
+		return (EAttribute)entretienEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEntretien_PhotoEmploye() {
+		return (EReference)entretienEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEntretien__Employe() {
 		return entretienEClass.getEOperations().get(0);
 	}
@@ -1041,7 +1650,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_AutresActionsDeveloppementCompetences() {
+	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelle() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -1050,7 +1659,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelle() {
+	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelleCompetencesAssociees() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -1059,7 +1668,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelleCompetencesAssociees() {
+	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntreprise() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -1068,7 +1677,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntreprise() {
+	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntrepriseCommentaire() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -1077,7 +1686,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntrepriseCommentaire() {
+	public EAttribute getEntretienProfessionnel_RencontreRh() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -1086,7 +1695,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_RencontreRh() {
+	public EAttribute getEntretienProfessionnel_RencontreRhCommentaire() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -1095,44 +1704,8 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_RencontreRhCommentaire() {
-		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getEntretienProfessionnel_Synthese() {
-		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEntretienProfessionnel_AppreciationsSessionFormation() {
-		return (EReference)entretienProfessionnelEClass.getEStructuralFeatures().get(16);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEntretienProfessionnel_SouhaitsFormationSalarie() {
-		return (EReference)entretienProfessionnelEClass.getEStructuralFeatures().get(17);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEntretienProfessionnel_SouhaitsFormationEvaluateur() {
-		return (EReference)entretienProfessionnelEClass.getEStructuralFeatures().get(18);
+		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -1428,6 +2001,51 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getEvaluation() {
+		return evaluationEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEvolution() {
+		return evolutionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getCompetence() {
+		return competenceEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSavoirEtre() {
+		return savoirEtreEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getEvaluationAtteinteObjectif() {
+		return evaluationAtteinteObjectifEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MutFactory getMutFactory() {
 		return (MutFactory)getEFactoryInstance();
 	}
@@ -1481,6 +2099,8 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEOperation(employeEClass, EMPLOYE___HAS_VALID_AFFECTATION_CLASSIFICATION_COURANTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeEClass, EMPLOYE___RESPONSABLE);
 		createEOperation(employeEClass, EMPLOYE___ENTRETENEURS);
+		createEOperation(employeEClass, EMPLOYE___PHOTO__DATE);
+		createEOperation(employeEClass, EMPLOYE___AGE__DATE);
 
 		affectationEClass = createEClass(AFFECTATION);
 		createEAttribute(affectationEClass, AFFECTATION__DATE_DEBUT);
@@ -1517,6 +2137,11 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEAttribute(entretienEClass, ENTRETIEN__EN_COURS);
 		createEAttribute(entretienEClass, ENTRETIEN__FAKE);
 		createEAttribute(entretienEClass, ENTRETIEN__SCAN);
+		createEReference(entretienEClass, ENTRETIEN__APPRECIATIONS_SESSION_FORMATION);
+		createEReference(entretienEClass, ENTRETIEN__SOUHAITS_FORMATION_SALARIE);
+		createEReference(entretienEClass, ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR);
+		createEAttribute(entretienEClass, ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES);
+		createEReference(entretienEClass, ENTRETIEN__PHOTO_EMPLOYE);
 		createEOperation(entretienEClass, ENTRETIEN___EMPLOYE);
 		createEOperation(entretienEClass, ENTRETIEN___HAS_VALID_MENEUR__DIAGNOSTICCHAIN_MAP);
 
@@ -1529,7 +2154,6 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_ACQUISES);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_REQUISES);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION);
-		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE);
@@ -1537,9 +2161,6 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH_COMMENTAIRE);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__SYNTHESE);
-		createEReference(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION);
-		createEReference(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE);
-		createEReference(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR);
 		createEOperation(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL___HAS_VALID_SYNTHESE__DIAGNOSTICCHAIN_MAP);
 
 		appreciationSessionFormationEClass = createEClass(APPRECIATION_SESSION_FORMATION);
@@ -1592,11 +2213,73 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		utilisateursEClass = createEClass(UTILISATEURS);
 		createEReference(utilisateursEClass, UTILISATEURS__UTILISATEURS);
 
+		entretienAnnuelEClass = createEClass(ENTRETIEN_ANNUEL);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__BILAN_FAITS_MARQUANTS);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__BILAN_ACTIVITES_SATISFACTIONS);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__BILAN_ACTIVITES_DIFFICULTES);
+		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES);
+		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__REVOIR_FICHE_FONCTION);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__REVOIR_FICHE_FONCTION_PRECISIONS);
+		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__EVALUATIONS_COMPETENCES);
+		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__EVALUATIONS_SAVOIR_ETRE);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__POINTS_FORTS);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__POINTS_AMELIORER);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__OBJECTIFS_COMMENTAIRES);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__SYNTHESE_EVALUATEUR);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__SYNTHESE_SALARIE);
+		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__OBJECTIFS);
+		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS);
+
+		evaluationTenuePosteEClass = createEClass(EVALUATION_TENUE_POSTE);
+		createEAttribute(evaluationTenuePosteEClass, EVALUATION_TENUE_POSTE__MISSION);
+		createEAttribute(evaluationTenuePosteEClass, EVALUATION_TENUE_POSTE__EVAL);
+		createEAttribute(evaluationTenuePosteEClass, EVALUATION_TENUE_POSTE__COMMENTAIRE);
+
+		evaluationCompetenceEClass = createEClass(EVALUATION_COMPETENCE);
+		createEAttribute(evaluationCompetenceEClass, EVALUATION_COMPETENCE__COMPETENCE);
+		createEAttribute(evaluationCompetenceEClass, EVALUATION_COMPETENCE__EVAL);
+		createEAttribute(evaluationCompetenceEClass, EVALUATION_COMPETENCE__EVOL);
+
+		evaluationSavoirEtreEClass = createEClass(EVALUATION_SAVOIR_ETRE);
+		createEAttribute(evaluationSavoirEtreEClass, EVALUATION_SAVOIR_ETRE__SAVOIR_ETRE);
+		createEAttribute(evaluationSavoirEtreEClass, EVALUATION_SAVOIR_ETRE__EVAL);
+		createEAttribute(evaluationSavoirEtreEClass, EVALUATION_SAVOIR_ETRE__EVOL);
+
+		objectifEClass = createEClass(OBJECTIF);
+		createEAttribute(objectifEClass, OBJECTIF__LIBELLE);
+		createEAttribute(objectifEClass, OBJECTIF__ECHEANCE);
+		createEAttribute(objectifEClass, OBJECTIF__INDICATEURS);
+		createEAttribute(objectifEClass, OBJECTIF__MOYENS);
+		createEReference(objectifEClass, OBJECTIF__EVALUATION_ATTEINTE);
+
+		objectifPrecedentEClass = createEClass(OBJECTIF_PRECEDENT);
+		createEReference(objectifPrecedentEClass, OBJECTIF_PRECEDENT__OBJECTIF);
+		createEAttribute(objectifPrecedentEClass, OBJECTIF_PRECEDENT__EVALUATION);
+		createEAttribute(objectifPrecedentEClass, OBJECTIF_PRECEDENT__COMMENTAIRE);
+
+		photoEmployeEClass = createEClass(PHOTO_EMPLOYE);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__PRENOM);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__AGE);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__ETABLISSEMENT);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__EMPLOI);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__CLASSIFICATION);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__RESPONSABLE);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__NOM);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DATE_EMBAUCHE);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DIPLOMES);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN);
+
 		// Create enums
 		classificationStatutEEnum = createEEnum(CLASSIFICATION_STATUT);
 		appreciationEEnum = createEEnum(APPRECIATION);
 		avisEEnum = createEEnum(AVIS);
 		roleEEnum = createEEnum(ROLE);
+		evaluationEEnum = createEEnum(EVALUATION);
+		evolutionEEnum = createEEnum(EVOLUTION);
+		competenceEEnum = createEEnum(COMPETENCE);
+		savoirEtreEEnum = createEEnum(SAVOIR_ETRE);
+		evaluationAtteinteObjectifEEnum = createEEnum(EVALUATION_ATTEINTE_OBJECTIF);
 	}
 
 	/**
@@ -1636,6 +2319,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 
 		// Add supertypes to classes
 		entretienProfessionnelEClass.getESuperTypes().add(this.getEntretien());
+		entretienAnnuelEClass.getESuperTypes().add(this.getEntretien());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(employeEClass, Employe.class, "Employe", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1707,6 +2391,12 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
+		op = initEOperation(getEmploye__Photo__Date(), this.getPhotoEmploye(), "photo", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDate(), "e", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getEmploye__Age__Date(), ecorePackage.getEInt(), "age", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDate(), "d", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(affectationEClass, Affectation.class, "Affectation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAffectation_DateDebut(), ecorePackage.getEDate(), "dateDebut", null, 1, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAffectation_DateFin(), ecorePackage.getEDate(), "dateFin", null, 0, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1742,6 +2432,11 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEAttribute(getEntretien_EnCours(), ecorePackage.getEBoolean(), "enCours", "true", 1, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretien_Fake(), ecorePackage.getEBoolean(), "fake", "false", 1, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretien_Scan(), ecorePackage.getEByteArray(), "scan", null, 0, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretien_AppreciationsSessionFormation(), this.getAppreciationSessionFormation(), null, "appreciationsSessionFormation", null, 0, -1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretien_SouhaitsFormationSalarie(), this.getSouhaitFormationSalarie(), null, "souhaitsFormationSalarie", null, 0, -1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretien_SouhaitsFormationEvaluateur(), this.getSouhaitFormationEvaluateur(), null, "souhaitsFormationEvaluateur", null, 0, -1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretien_AutresActionsDeveloppementCompetences(), ecorePackage.getEString(), "autresActionsDeveloppementCompetences", null, 0, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretien_PhotoEmploye(), this.getPhotoEmploye(), null, "photoEmploye", null, 1, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEntretien__Employe(), this.getEmploye(), "employe", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1763,7 +2458,6 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEAttribute(getEntretienProfessionnel_EvolutionSouhaiteeCompetencesAcquises(), ecorePackage.getEString(), "evolutionSouhaiteeCompetencesAcquises", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_EvolutionSouhaiteeCompetencesRequises(), ecorePackage.getEString(), "evolutionSouhaiteeCompetencesRequises", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_EvolutionSouhaiteeMoyensRealisation(), ecorePackage.getEString(), "evolutionSouhaiteeMoyensRealisation", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEntretienProfessionnel_AutresActionsDeveloppementCompetences(), ecorePackage.getEString(), "autresActionsDeveloppementCompetences", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_PerspectivesEvolutionProfessionnelle(), ecorePackage.getEString(), "perspectivesEvolutionProfessionnelle", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_PerspectivesEvolutionProfessionnelleCompetencesAssociees(), ecorePackage.getEString(), "perspectivesEvolutionProfessionnelleCompetencesAssociees", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_AdequationProjetProBesoinsEntreprise(), ecorePackage.getEBoolean(), "adequationProjetProBesoinsEntreprise", "true", 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1771,9 +2465,6 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEAttribute(getEntretienProfessionnel_RencontreRh(), ecorePackage.getEBoolean(), "rencontreRh", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_RencontreRhCommentaire(), ecorePackage.getEString(), "rencontreRhCommentaire", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_Synthese(), ecorePackage.getEString(), "synthese", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEntretienProfessionnel_AppreciationsSessionFormation(), this.getAppreciationSessionFormation(), null, "appreciationsSessionFormation", null, 0, -1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEntretienProfessionnel_SouhaitsFormationSalarie(), this.getSouhaitFormationSalarie(), null, "souhaitsFormationSalarie", null, 0, -1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEntretienProfessionnel_SouhaitsFormationEvaluateur(), this.getSouhaitFormationEvaluateur(), null, "souhaitsFormationEvaluateur", null, 0, -1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getEntretienProfessionnel__HasValidSynthese__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasValidSynthese", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1834,6 +2525,63 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEClass(utilisateursEClass, Utilisateurs.class, "Utilisateurs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUtilisateurs_Utilisateurs(), this.getUtilisateur(), null, "utilisateurs", null, 0, -1, Utilisateurs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(entretienAnnuelEClass, EntretienAnnuel.class, "EntretienAnnuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEntretienAnnuel_BilanFaitsMarquants(), ecorePackage.getEString(), "bilanFaitsMarquants", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_BilanActivitesSatisfactions(), ecorePackage.getEString(), "bilanActivitesSatisfactions", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_BilanActivitesDifficultes(), ecorePackage.getEString(), "bilanActivitesDifficultes", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretienAnnuel_EvaluationsTenuePosteMissionsPrincipales(), this.getEvaluationTenuePoste(), null, "evaluationsTenuePosteMissionsPrincipales", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretienAnnuel_EvaluationsTenuePosteMissionsSpecifiques(), this.getEvaluationTenuePoste(), null, "evaluationsTenuePosteMissionsSpecifiques", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_RevoirFicheFonction(), ecorePackage.getEBoolean(), "revoirFicheFonction", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_RevoirFicheFonctionPrecisions(), ecorePackage.getEString(), "revoirFicheFonctionPrecisions", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretienAnnuel_EvaluationsCompetences(), this.getEvaluationCompetence(), null, "evaluationsCompetences", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretienAnnuel_EvaluationsSavoirEtre(), this.getEvaluationSavoirEtre(), null, "evaluationsSavoirEtre", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_PointsForts(), ecorePackage.getEString(), "pointsForts", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_PointsAmeliorer(), ecorePackage.getEString(), "pointsAmeliorer", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_ObjectifsCommentaires(), ecorePackage.getEString(), "objectifsCommentaires", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_SyntheseEvaluateur(), ecorePackage.getEString(), "syntheseEvaluateur", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_SyntheseSalarie(), ecorePackage.getEString(), "syntheseSalarie", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretienAnnuel_Objectifs(), this.getObjectif(), null, "objectifs", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretienAnnuel_ObjectifsPrecedents(), this.getObjectifPrecedent(), null, "objectifsPrecedents", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(evaluationTenuePosteEClass, EvaluationTenuePoste.class, "EvaluationTenuePoste", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEvaluationTenuePoste_Mission(), ecorePackage.getEString(), "mission", null, 1, 1, EvaluationTenuePoste.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationTenuePoste_Eval(), this.getEvaluation(), "eval", null, 1, 1, EvaluationTenuePoste.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationTenuePoste_Commentaire(), ecorePackage.getEString(), "commentaire", null, 0, 1, EvaluationTenuePoste.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(evaluationCompetenceEClass, EvaluationCompetence.class, "EvaluationCompetence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEvaluationCompetence_Competence(), this.getCompetence(), "competence", null, 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationCompetence_Eval(), this.getEvaluation(), "eval", "-/+", 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationCompetence_Evol(), this.getEvolution(), "evol", "STABLE", 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(evaluationSavoirEtreEClass, EvaluationSavoirEtre.class, "EvaluationSavoirEtre", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEvaluationSavoirEtre_SavoirEtre(), this.getSavoirEtre(), "savoirEtre", null, 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationSavoirEtre_Eval(), this.getEvaluation(), "eval", "-/+", 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationSavoirEtre_Evol(), this.getEvolution(), "evol", "STABLE", 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectifEClass, Objectif.class, "Objectif", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getObjectif_Libelle(), ecorePackage.getEString(), "libelle", null, 1, 1, Objectif.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectif_Echeance(), ecorePackage.getEString(), "echeance", null, 1, 1, Objectif.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectif_Indicateurs(), ecorePackage.getEString(), "indicateurs", null, 1, 1, Objectif.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectif_Moyens(), ecorePackage.getEString(), "moyens", null, 1, 1, Objectif.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getObjectif_EvaluationAtteinte(), this.getObjectifPrecedent(), this.getObjectifPrecedent_Objectif(), "evaluationAtteinte", null, 0, 1, Objectif.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectifPrecedentEClass, ObjectifPrecedent.class, "ObjectifPrecedent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getObjectifPrecedent_Objectif(), this.getObjectif(), this.getObjectif_EvaluationAtteinte(), "objectif", null, 0, 1, ObjectifPrecedent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectifPrecedent_Evaluation(), this.getEvaluationAtteinteObjectif(), "evaluation", null, 1, 1, ObjectifPrecedent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectifPrecedent_Commentaire(), ecorePackage.getEString(), "commentaire", null, 0, 1, ObjectifPrecedent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(photoEmployeEClass, PhotoEmploye.class, "PhotoEmploye", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPhotoEmploye_Prenom(), ecorePackage.getEString(), "prenom", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Age(), ecorePackage.getEInt(), "age", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Etablissement(), ecorePackage.getEString(), "etablissement", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Emploi(), ecorePackage.getEString(), "emploi", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Classification(), ecorePackage.getEString(), "classification", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Responsable(), ecorePackage.getEString(), "responsable", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_DateEmbauche(), ecorePackage.getEDate(), "dateEmbauche", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_Diplomes(), ecorePackage.getEString(), "diplomes", null, 0, -1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_DatePrecedentEntretien(), ecorePackage.getEDate(), "datePrecedentEntretien", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(classificationStatutEEnum, ClassificationStatut.class, "ClassificationStatut");
 		addEEnumLiteral(classificationStatutEEnum, ClassificationStatut.E1);
@@ -1866,6 +2614,52 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEEnum(roleEEnum, Role.class, "Role");
 		addEEnumLiteral(roleEEnum, Role.RESPONSABLE_ENTRETIEN);
 		addEEnumLiteral(roleEEnum, Role.DRH);
+
+		initEEnum(evaluationEEnum, Evaluation.class, "Evaluation");
+		addEEnumLiteral(evaluationEEnum, Evaluation.MOINS);
+		addEEnumLiteral(evaluationEEnum, Evaluation.NEUTRE);
+		addEEnumLiteral(evaluationEEnum, Evaluation.PLUS);
+
+		initEEnum(evolutionEEnum, Evolution.class, "Evolution");
+		addEEnumLiteral(evolutionEEnum, Evolution.DOWN);
+		addEEnumLiteral(evolutionEEnum, Evolution.STABLE);
+		addEEnumLiteral(evolutionEEnum, Evolution.UP);
+
+		initEEnum(competenceEEnum, Competence.class, "Competence");
+		addEEnumLiteral(competenceEEnum, Competence.RESPECT_PROCEDURES_NORMES);
+		addEEnumLiteral(competenceEEnum, Competence.CAPACITE_DECELER_URGENCES);
+		addEEnumLiteral(competenceEEnum, Competence.AUTONOMIE);
+		addEEnumLiteral(competenceEEnum, Competence.ANTICIPATION_ORGANISATION);
+		addEEnumLiteral(competenceEEnum, Competence.VOLONTAIRE_DISPONIBLE);
+		addEEnumLiteral(competenceEEnum, Competence.COLLABORATION_COLLEGUES);
+		addEEnumLiteral(competenceEEnum, Competence.COLLABORATION_CLIENTS);
+		addEEnumLiteral(competenceEEnum, Competence.ECOUTE);
+		addEEnumLiteral(competenceEEnum, Competence.IMAGE_POSITIVE);
+		addEEnumLiteral(competenceEEnum, Competence.DELEGUER);
+		addEEnumLiteral(competenceEEnum, Competence.REALISATION_OBJECTIFS);
+		addEEnumLiteral(competenceEEnum, Competence.CONTROLE_OBJECTIFS);
+		addEEnumLiteral(competenceEEnum, Competence.RENDRE_COMPTE);
+		addEEnumLiteral(competenceEEnum, Competence.TRANSMETTRE);
+		addEEnumLiteral(competenceEEnum, Competence.RESPECT_CONSIGNES_ENVIRONNEMENT);
+		addEEnumLiteral(competenceEEnum, Competence.CONTRIBUTION_SECURITE);
+
+		initEEnum(savoirEtreEEnum, SavoirEtre.class, "SavoirEtre");
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.ASSIDUITE);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.TENUE);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.MOTIVATION);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.ESPRIT_EQUIPE);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.ESPRIT_INITIATIVE);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.RIGUEUR);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.DYNAMISME);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.DISCRETION);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.CONTROLE_SOI);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.PERSEVERANCE);
+		addEEnumLiteral(savoirEtreEEnum, SavoirEtre.ADAPTATION);
+
+		initEEnum(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.class, "EvaluationAtteinteObjectif");
+		addEEnumLiteral(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.NON);
+		addEEnumLiteral(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.PARTIEL);
+		addEEnumLiteral(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.OUI);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1945,6 +2739,12 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		   });	
 		addAnnotation
 		  (getAppreciationSessionFormation_DateFormation(), 
+		   source, 
+		   new String[] {
+			 "columnType", "DATE"
+		   });	
+		addAnnotation
+		  (getPhotoEmploye_DateEmbauche(), 
 		   source, 
 		   new String[] {
 			 "columnType", "DATE"

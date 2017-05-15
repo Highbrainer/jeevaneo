@@ -2,24 +2,17 @@
  */
 package fr.mutualite.rh.model.impl;
 
-import fr.mutualite.rh.model.AppreciationSessionFormation;
 import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.MutPackage;
-import fr.mutualite.rh.model.SouhaitFormationEvaluateur;
-import fr.mutualite.rh.model.SouhaitFormationSalarie;
 import fr.mutualite.rh.model.util.MutValidator;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import java.util.Map;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +30,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEvolutionSouhaiteeCompetencesAcquises <em>Evolution Souhaitee Competences Acquises</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEvolutionSouhaiteeCompetencesRequises <em>Evolution Souhaitee Competences Requises</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEvolutionSouhaiteeMoyensRealisation <em>Evolution Souhaitee Moyens Realisation</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getPerspectivesEvolutionProfessionnelle <em>Perspectives Evolution Professionnelle</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getPerspectivesEvolutionProfessionnelleCompetencesAssociees <em>Perspectives Evolution Professionnelle Competences Associees</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#isAdequationProjetProBesoinsEntreprise <em>Adequation Projet Pro Besoins Entreprise</em>}</li>
@@ -45,9 +37,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#isRencontreRh <em>Rencontre Rh</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getRencontreRhCommentaire <em>Rencontre Rh Commentaire</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getSynthese <em>Synthese</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getAppreciationsSessionFormation <em>Appreciations Session Formation</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getSouhaitsFormationSalarie <em>Souhaits Formation Salarie</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}</li>
  * </ul>
  *
  * @generated
@@ -125,15 +114,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	 * @ordered
 	 */
 	protected static final String EVOLUTION_SOUHAITEE_MOYENS_REALISATION_EDEFAULT = null;
-	/**
-	 * The default value of the '{@link #getAutresActionsDeveloppementCompetences() <em>Autres Actions Developpement Competences</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAutresActionsDeveloppementCompetences()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getPerspectivesEvolutionProfessionnelle() <em>Perspectives Evolution Professionnelle</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -366,24 +346,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAutresActionsDeveloppementCompetences() {
-		return (String)eDynamicGet(MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAutresActionsDeveloppementCompetences(String newAutresActionsDeveloppementCompetences) {
-		eDynamicSet(MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES, newAutresActionsDeveloppementCompetences);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getPerspectivesEvolutionProfessionnelle() {
 		return (String)eDynamicGet(MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE, true, true);
 	}
@@ -508,36 +470,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<AppreciationSessionFormation> getAppreciationsSessionFormation() {
-		return (EList<AppreciationSessionFormation>)eDynamicGet(MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<SouhaitFormationSalarie> getSouhaitsFormationSalarie() {
-		return (EList<SouhaitFormationSalarie>)eDynamicGet(MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<SouhaitFormationEvaluateur> getSouhaitsFormationEvaluateur() {
-		return (EList<SouhaitFormationEvaluateur>)eDynamicGet(MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean hasValidSynthese(DiagnosticChain chain, Map<Object, Object> context) {
@@ -565,24 +497,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION:
-				return ((InternalEList<?>)getAppreciationsSessionFormation()).basicRemove(otherEnd, msgs);
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE:
-				return ((InternalEList<?>)getSouhaitsFormationSalarie()).basicRemove(otherEnd, msgs);
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR:
-				return ((InternalEList<?>)getSouhaitsFormationEvaluateur()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN:
@@ -601,8 +515,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 				return getEvolutionSouhaiteeCompetencesRequises();
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION:
 				return getEvolutionSouhaiteeMoyensRealisation();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
-				return getAutresActionsDeveloppementCompetences();
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE:
 				return getPerspectivesEvolutionProfessionnelle();
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES:
@@ -617,12 +529,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 				return getRencontreRhCommentaire();
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__SYNTHESE:
 				return getSynthese();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION:
-				return getAppreciationsSessionFormation();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE:
-				return getSouhaitsFormationSalarie();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR:
-				return getSouhaitsFormationEvaluateur();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -660,9 +566,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION:
 				setEvolutionSouhaiteeMoyensRealisation((String)newValue);
 				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
-				setAutresActionsDeveloppementCompetences((String)newValue);
-				return;
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE:
 				setPerspectivesEvolutionProfessionnelle((String)newValue);
 				return;
@@ -683,18 +586,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 				return;
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__SYNTHESE:
 				setSynthese((String)newValue);
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION:
-				getAppreciationsSessionFormation().clear();
-				getAppreciationsSessionFormation().addAll((Collection<? extends AppreciationSessionFormation>)newValue);
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE:
-				getSouhaitsFormationSalarie().clear();
-				getSouhaitsFormationSalarie().addAll((Collection<? extends SouhaitFormationSalarie>)newValue);
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR:
-				getSouhaitsFormationEvaluateur().clear();
-				getSouhaitsFormationEvaluateur().addAll((Collection<? extends SouhaitFormationEvaluateur>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -732,9 +623,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION:
 				setEvolutionSouhaiteeMoyensRealisation(EVOLUTION_SOUHAITEE_MOYENS_REALISATION_EDEFAULT);
 				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
-				setAutresActionsDeveloppementCompetences(AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT);
-				return;
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE:
 				setPerspectivesEvolutionProfessionnelle(PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_EDEFAULT);
 				return;
@@ -755,15 +643,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 				return;
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__SYNTHESE:
 				setSynthese(SYNTHESE_EDEFAULT);
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION:
-				getAppreciationsSessionFormation().clear();
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE:
-				getSouhaitsFormationSalarie().clear();
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR:
-				getSouhaitsFormationEvaluateur().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -793,8 +672,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 				return EVOLUTION_SOUHAITEE_COMPETENCES_REQUISES_EDEFAULT == null ? getEvolutionSouhaiteeCompetencesRequises() != null : !EVOLUTION_SOUHAITEE_COMPETENCES_REQUISES_EDEFAULT.equals(getEvolutionSouhaiteeCompetencesRequises());
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION:
 				return EVOLUTION_SOUHAITEE_MOYENS_REALISATION_EDEFAULT == null ? getEvolutionSouhaiteeMoyensRealisation() != null : !EVOLUTION_SOUHAITEE_MOYENS_REALISATION_EDEFAULT.equals(getEvolutionSouhaiteeMoyensRealisation());
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
-				return AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT == null ? getAutresActionsDeveloppementCompetences() != null : !AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT.equals(getAutresActionsDeveloppementCompetences());
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE:
 				return PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_EDEFAULT == null ? getPerspectivesEvolutionProfessionnelle() != null : !PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_EDEFAULT.equals(getPerspectivesEvolutionProfessionnelle());
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES:
@@ -809,12 +686,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 				return RENCONTRE_RH_COMMENTAIRE_EDEFAULT == null ? getRencontreRhCommentaire() != null : !RENCONTRE_RH_COMMENTAIRE_EDEFAULT.equals(getRencontreRhCommentaire());
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__SYNTHESE:
 				return SYNTHESE_EDEFAULT == null ? getSynthese() != null : !SYNTHESE_EDEFAULT.equals(getSynthese());
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION:
-				return !getAppreciationsSessionFormation().isEmpty();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE:
-				return !getSouhaitsFormationSalarie().isEmpty();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR:
-				return !getSouhaitsFormationEvaluateur().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

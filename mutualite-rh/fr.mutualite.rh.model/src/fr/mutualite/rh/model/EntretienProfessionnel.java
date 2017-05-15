@@ -4,7 +4,6 @@ package fr.mutualite.rh.model;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionSouhaiteeCompetencesAcquises <em>Evolution Souhaitee Competences Acquises</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionSouhaiteeCompetencesRequises <em>Evolution Souhaitee Competences Requises</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionSouhaiteeMoyensRealisation <em>Evolution Souhaitee Moyens Realisation</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getPerspectivesEvolutionProfessionnelle <em>Perspectives Evolution Professionnelle</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getPerspectivesEvolutionProfessionnelleCompetencesAssociees <em>Perspectives Evolution Professionnelle Competences Associees</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#isAdequationProjetProBesoinsEntreprise <em>Adequation Projet Pro Besoins Entreprise</em>}</li>
@@ -31,9 +29,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#isRencontreRh <em>Rencontre Rh</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getRencontreRhCommentaire <em>Rencontre Rh Commentaire</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getSynthese <em>Synthese</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getAppreciationsSessionFormation <em>Appreciations Session Formation</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getSouhaitsFormationSalarie <em>Souhaits Formation Salarie</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEntretienProfessionnel()
@@ -250,32 +245,6 @@ public interface EntretienProfessionnel extends Entretien {
 	void setEvolutionSouhaiteeMoyensRealisation(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Autres Actions Developpement Competences</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Autres Actions Developpement Competences</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Autres Actions Developpement Competences</em>' attribute.
-	 * @see #setAutresActionsDeveloppementCompetences(String)
-	 * @see fr.mutualite.rh.model.MutPackage#getEntretienProfessionnel_AutresActionsDeveloppementCompetences()
-	 * @model
-	 * @generated
-	 */
-	String getAutresActionsDeveloppementCompetences();
-
-	/**
-	 * Sets the value of the '{@link fr.mutualite.rh.model.EntretienProfessionnel#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Autres Actions Developpement Competences</em>' attribute.
-	 * @see #getAutresActionsDeveloppementCompetences()
-	 * @generated
-	 */
-	void setAutresActionsDeveloppementCompetences(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Perspectives Evolution Professionnelle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -457,54 +426,6 @@ public interface EntretienProfessionnel extends Entretien {
 	 * @generated
 	 */
 	void setSynthese(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Appreciations Session Formation</b></em>' containment reference list.
-	 * The list contents are of type {@link fr.mutualite.rh.model.AppreciationSessionFormation}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Appreciations Session Formation</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Appreciations Session Formation</em>' containment reference list.
-	 * @see fr.mutualite.rh.model.MutPackage#getEntretienProfessionnel_AppreciationsSessionFormation()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<AppreciationSessionFormation> getAppreciationsSessionFormation();
-
-	/**
-	 * Returns the value of the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list.
-	 * The list contents are of type {@link fr.mutualite.rh.model.SouhaitFormationSalarie}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Souhaits Formation Salarie</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Souhaits Formation Salarie</em>' containment reference list.
-	 * @see fr.mutualite.rh.model.MutPackage#getEntretienProfessionnel_SouhaitsFormationSalarie()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<SouhaitFormationSalarie> getSouhaitsFormationSalarie();
-
-	/**
-	 * Returns the value of the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list.
-	 * The list contents are of type {@link fr.mutualite.rh.model.SouhaitFormationEvaluateur}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Souhaits Formation Evaluateur</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Souhaits Formation Evaluateur</em>' containment reference list.
-	 * @see fr.mutualite.rh.model.MutPackage#getEntretienProfessionnel_SouhaitsFormationEvaluateur()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<SouhaitFormationEvaluateur> getSouhaitsFormationEvaluateur();
 
 	/**
 	 * <!-- begin-user-doc -->

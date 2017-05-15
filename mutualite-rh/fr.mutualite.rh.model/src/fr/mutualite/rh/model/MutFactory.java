@@ -22,6 +22,15 @@ public interface MutFactory extends EFactory {
 	MutFactory eINSTANCE = fr.mutualite.rh.model.impl.MutFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Employe</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Employe</em>'.
+	 * @generated
+	 */
+	Employe createEmploye();
+
+	/**
 	 * Returns a new object of class '<em>Etablissement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,13 +58,67 @@ public interface MutFactory extends EFactory {
 	Utilisateurs createUtilisateurs();
 
 	/**
-	 * Returns a new object of class '<em>Employe</em>'.
+	 * Returns a new object of class '<em>Entretien Annuel</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Employe</em>'.
+	 * @return a new object of class '<em>Entretien Annuel</em>'.
 	 * @generated
 	 */
-	Employe createEmploye();
+	EntretienAnnuel createEntretienAnnuel();
+
+	/**
+	 * Returns a new object of class '<em>Evaluation Tenue Poste</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Evaluation Tenue Poste</em>'.
+	 * @generated
+	 */
+	EvaluationTenuePoste createEvaluationTenuePoste();
+
+	/**
+	 * Returns a new object of class '<em>Evaluation Competence</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Evaluation Competence</em>'.
+	 * @generated
+	 */
+	EvaluationCompetence createEvaluationCompetence();
+
+	/**
+	 * Returns a new object of class '<em>Evaluation Savoir Etre</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Evaluation Savoir Etre</em>'.
+	 * @generated
+	 */
+	EvaluationSavoirEtre createEvaluationSavoirEtre();
+
+	/**
+	 * Returns a new object of class '<em>Objectif</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Objectif</em>'.
+	 * @generated
+	 */
+	Objectif createObjectif();
+
+	/**
+	 * Returns a new object of class '<em>Objectif Precedent</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Objectif Precedent</em>'.
+	 * @generated
+	 */
+	ObjectifPrecedent createObjectifPrecedent();
+
+	/**
+	 * Returns a new object of class '<em>Photo Employe</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Photo Employe</em>'.
+	 * @generated
+	 */
+	PhotoEmploye createPhotoEmploye();
 
 	/**
 	 * Returns a new object of class '<em>Affectation</em>'.

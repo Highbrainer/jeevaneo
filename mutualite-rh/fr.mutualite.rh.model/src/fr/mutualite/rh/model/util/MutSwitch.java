@@ -187,6 +187,49 @@ public class MutSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MutPackage.ENTRETIEN_ANNUEL: {
+				EntretienAnnuel entretienAnnuel = (EntretienAnnuel)theEObject;
+				T result = caseEntretienAnnuel(entretienAnnuel);
+				if (result == null) result = caseEntretien(entretienAnnuel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MutPackage.EVALUATION_TENUE_POSTE: {
+				EvaluationTenuePoste evaluationTenuePoste = (EvaluationTenuePoste)theEObject;
+				T result = caseEvaluationTenuePoste(evaluationTenuePoste);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MutPackage.EVALUATION_COMPETENCE: {
+				EvaluationCompetence evaluationCompetence = (EvaluationCompetence)theEObject;
+				T result = caseEvaluationCompetence(evaluationCompetence);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MutPackage.EVALUATION_SAVOIR_ETRE: {
+				EvaluationSavoirEtre evaluationSavoirEtre = (EvaluationSavoirEtre)theEObject;
+				T result = caseEvaluationSavoirEtre(evaluationSavoirEtre);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MutPackage.OBJECTIF: {
+				Objectif objectif = (Objectif)theEObject;
+				T result = caseObjectif(objectif);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MutPackage.OBJECTIF_PRECEDENT: {
+				ObjectifPrecedent objectifPrecedent = (ObjectifPrecedent)theEObject;
+				T result = caseObjectifPrecedent(objectifPrecedent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MutPackage.PHOTO_EMPLOYE: {
+				PhotoEmploye photoEmploye = (PhotoEmploye)theEObject;
+				T result = casePhotoEmploye(photoEmploye);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -233,6 +276,111 @@ public class MutSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUtilisateurs(Utilisateurs object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Entretien Annuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Entretien Annuel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEntretienAnnuel(EntretienAnnuel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Evaluation Tenue Poste</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Evaluation Tenue Poste</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEvaluationTenuePoste(EvaluationTenuePoste object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Evaluation Competence</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Evaluation Competence</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEvaluationCompetence(EvaluationCompetence object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Evaluation Savoir Etre</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Evaluation Savoir Etre</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEvaluationSavoirEtre(EvaluationSavoirEtre object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Objectif</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Objectif</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectif(Objectif object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Objectif Precedent</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Objectif Precedent</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectifPrecedent(ObjectifPrecedent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Photo Employe</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Photo Employe</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePhotoEmploye(PhotoEmploye object) {
 		return null;
 	}
 

@@ -4,7 +4,6 @@ package fr.mutualite.rh.model.provider;
 
 
 import fr.mutualite.rh.model.EntretienProfessionnel;
-import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.MutPackage;
 
 import java.util.Collection;
@@ -13,9 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -57,7 +53,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 			addEvolutionSouhaiteeCompetencesAcquisesPropertyDescriptor(object);
 			addEvolutionSouhaiteeCompetencesRequisesPropertyDescriptor(object);
 			addEvolutionSouhaiteeMoyensRealisationPropertyDescriptor(object);
-			addAutresActionsDeveloppementCompetencesPropertyDescriptor(object);
 			addPerspectivesEvolutionProfessionnellePropertyDescriptor(object);
 			addPerspectivesEvolutionProfessionnelleCompetencesAssocieesPropertyDescriptor(object);
 			addAdequationProjetProBesoinsEntreprisePropertyDescriptor(object);
@@ -246,28 +241,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Autres Actions Developpement Competences feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAutresActionsDeveloppementCompetencesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EntretienProfessionnel_autresActionsDeveloppementCompetences_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienProfessionnel_autresActionsDeveloppementCompetences_feature", "_UI_EntretienProfessionnel_type"),
-				 MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Perspectives Evolution Professionnelle feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -422,38 +395,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION);
-			childrenFeatures.add(MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE);
-			childrenFeatures.add(MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
 	 * This returns EntretienProfessionnel.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -500,7 +441,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_ACQUISES:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_REQUISES:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION:
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE:
@@ -509,11 +449,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH_COMMENTAIRE:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__SYNTHESE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION:
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE:
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -529,21 +464,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION,
-				 MutFactory.eINSTANCE.createAppreciationSessionFormation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE,
-				 MutFactory.eINSTANCE.createSouhaitFormationSalarie()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR,
-				 MutFactory.eINSTANCE.createSouhaitFormationEvaluateur()));
 	}
 
 }

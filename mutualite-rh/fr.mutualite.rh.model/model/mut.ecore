@@ -44,6 +44,12 @@
         <eTypeArguments eClassifier="#//Employe"/>
       </eGenericType>
     </eOperations>
+    <eOperations name="photo" lowerBound="1" eType="#//PhotoEmploye">
+      <eParameters name="e" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
+    <eOperations name="age" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eParameters name="d" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" lowerBound="1"
@@ -209,6 +215,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fake" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scan" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appreciationsSessionFormation"
+        upperBound="-1" eType="#//AppreciationSessionFormation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="souhaitsFormationSalarie"
+        upperBound="-1" eType="#//SouhaitFormationSalarie" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="souhaitsFormationEvaluateur"
+        upperBound="-1" eType="#//SouhaitFormationEvaluateur" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="autresActionsDeveloppementCompetences"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="photoEmploye" lowerBound="1"
+        eType="#//PhotoEmploye" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EntretienProfessionnel" eSuperTypes="#//Entretien">
     <eOperations name="hasValidSynthese" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -235,8 +251,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeMoyensRealisation"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="autresActionsDeveloppementCompetences"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="perspectivesEvolutionProfessionnelle"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="perspectivesEvolutionProfessionnelleCompetencesAssociees"
@@ -249,12 +263,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rencontreRhCommentaire"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="synthese" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="appreciationsSessionFormation"
-        upperBound="-1" eType="#//AppreciationSessionFormation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="souhaitsFormationSalarie"
-        upperBound="-1" eType="#//SouhaitFormationSalarie" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="souhaitsFormationEvaluateur"
-        upperBound="-1" eType="#//SouhaitFormationEvaluateur" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AppreciationSessionFormation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valeur" lowerBound="1"
@@ -349,6 +357,139 @@
   <eClassifiers xsi:type="ecore:EClass" name="Utilisateurs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="utilisateurs" upperBound="-1"
         eType="#//Utilisateur" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntretienAnnuel" eSuperTypes="#//Entretien">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bilanFaitsMarquants" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bilanActivitesSatisfactions"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bilanActivitesDifficultes"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluationsTenuePosteMissionsPrincipales"
+        upperBound="-1" eType="#//EvaluationTenuePoste" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluationsTenuePosteMissionsSpecifiques"
+        upperBound="-1" eType="#//EvaluationTenuePoste" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revoirFicheFonction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revoirFicheFonctionPrecisions"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluationsCompetences"
+        upperBound="-1" eType="#//EvaluationCompetence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluationsSavoirEtre"
+        upperBound="-1" eType="#//EvaluationSavoirEtre" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pointsForts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pointsAmeliorer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectifsCommentaires"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="syntheseEvaluateur" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="syntheseSalarie" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectifs" upperBound="-1"
+        eType="#//Objectif" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectifsPrecedents" upperBound="-1"
+        eType="#//ObjectifPrecedent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Evaluation">
+    <eLiterals name="MOINS" literal="-"/>
+    <eLiterals name="NEUTRE" value="1" literal="-/+"/>
+    <eLiterals name="PLUS" value="2" literal="+"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EvaluationTenuePoste">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mission" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaire" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Evolution">
+    <eLiterals name="DOWN"/>
+    <eLiterals name="STABLE" value="1"/>
+    <eLiterals name="UP" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EvaluationCompetence">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="competence" lowerBound="1"
+        eType="#//Competence"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"
+        defaultValueLiteral="-/+"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evol" lowerBound="1" eType="#//Evolution"
+        defaultValueLiteral="STABLE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Competence">
+    <eLiterals name="RespectProceduresNormes"/>
+    <eLiterals name="CapaciteDecelerUrgences" value="1"/>
+    <eLiterals name="Autonomie" value="2"/>
+    <eLiterals name="AnticipationOrganisation" value="3"/>
+    <eLiterals name="VolontaireDisponible" value="4"/>
+    <eLiterals name="CollaborationCollegues" value="5"/>
+    <eLiterals name="CollaborationClients" value="6"/>
+    <eLiterals name="Ecoute" value="7"/>
+    <eLiterals name="ImagePositive" value="8"/>
+    <eLiterals name="Deleguer" value="9"/>
+    <eLiterals name="RealisationObjectifs" value="10"/>
+    <eLiterals name="ControleObjectifs" value="11"/>
+    <eLiterals name="RendreCompte" value="12"/>
+    <eLiterals name="Transmettre" value="13"/>
+    <eLiterals name="RespectConsignesEnvironnement" value="14"/>
+    <eLiterals name="ContributionSecurite" value="15"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SavoirEtre">
+    <eLiterals name="Assiduite"/>
+    <eLiterals name="Tenue" value="1"/>
+    <eLiterals name="Motivation" value="2"/>
+    <eLiterals name="EspritEquipe" value="3"/>
+    <eLiterals name="EspritInitiative" value="4"/>
+    <eLiterals name="Rigueur" value="5"/>
+    <eLiterals name="Dynamisme" value="6"/>
+    <eLiterals name="Discretion" value="7"/>
+    <eLiterals name="ControleSoi" value="8"/>
+    <eLiterals name="Perseverance" value="9"/>
+    <eLiterals name="Adaptation" value="10"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EvaluationSavoirEtre">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="savoirEtre" lowerBound="1"
+        eType="#//SavoirEtre"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"
+        defaultValueLiteral="-/+"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evol" lowerBound="1" eType="#//Evolution"
+        defaultValueLiteral="STABLE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Objectif">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="echeance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indicateurs" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="moyens" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluationAtteinte" eType="#//ObjectifPrecedent"
+        eOpposite="#//ObjectifPrecedent/objectif"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectifPrecedent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectif" eType="#//Objectif"
+        eOpposite="#//Objectif/evaluationAtteinte"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evaluation" lowerBound="1"
+        eType="#//EvaluationAtteinteObjectif"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaire" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EvaluationAtteinteObjectif">
+    <eLiterals name="NON" literal="Non atteint"/>
+    <eLiterals name="PARTIEL" value="1" literal="Partiellement atteint"/>
+    <eLiterals name="OUI" value="2" literal="Atteint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PhotoEmploye">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etablissement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="emploi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classification" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="responsable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateEmbauche" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diplomes" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretien"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eSubpackages name="dto" nsURI="http://www.mutualite.fr/mut/1.0/dto" nsPrefix="dto">
     <eClassifiers xsi:type="ecore:EClass" name="Formulaire">

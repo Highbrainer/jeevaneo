@@ -4,6 +4,7 @@ package fr.mutualite.rh.model.provider;
 
 
 import fr.mutualite.rh.model.Entretien;
+import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.MutPackage;
 
 import java.util.Collection;
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -66,6 +68,7 @@ public class EntretienItemProvider
 			addEnCoursPropertyDescriptor(object);
 			addFakePropertyDescriptor(object);
 			addScanPropertyDescriptor(object);
+			addAutresActionsDeveloppementCompetencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -181,6 +184,61 @@ public class EntretienItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Autres Actions Developpement Competences feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAutresActionsDeveloppementCompetencesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Entretien_autresActionsDeveloppementCompetences_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Entretien_autresActionsDeveloppementCompetences_feature", "_UI_Entretien_type"),
+				 MutPackage.Literals.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(MutPackage.Literals.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION);
+			childrenFeatures.add(MutPackage.Literals.ENTRETIEN__SOUHAITS_FORMATION_SALARIE);
+			childrenFeatures.add(MutPackage.Literals.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR);
+			childrenFeatures.add(MutPackage.Literals.ENTRETIEN__PHOTO_EMPLOYE);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns Entretien.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -223,7 +281,14 @@ public class EntretienItemProvider
 			case MutPackage.ENTRETIEN__EN_COURS:
 			case MutPackage.ENTRETIEN__FAKE:
 			case MutPackage.ENTRETIEN__SCAN:
+			case MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_SALARIE:
+			case MutPackage.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR:
+			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -239,6 +304,26 @@ public class EntretienItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MutPackage.Literals.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION,
+				 MutFactory.eINSTANCE.createAppreciationSessionFormation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MutPackage.Literals.ENTRETIEN__SOUHAITS_FORMATION_SALARIE,
+				 MutFactory.eINSTANCE.createSouhaitFormationSalarie()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MutPackage.Literals.ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR,
+				 MutFactory.eINSTANCE.createSouhaitFormationEvaluateur()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MutPackage.Literals.ENTRETIEN__PHOTO_EMPLOYE,
+				 MutFactory.eINSTANCE.createPhotoEmploye()));
 	}
 
 	/**

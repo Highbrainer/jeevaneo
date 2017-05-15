@@ -349,13 +349,31 @@ public interface MutPackage extends EPackage {
 	int EMPLOYE___ENTRETENEURS = 5;
 
 	/**
+	 * The operation id for the '<em>Photo</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPLOYE___PHOTO__DATE = 6;
+
+	/**
+	 * The operation id for the '<em>Age</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPLOYE___AGE__DATE = 7;
+
+	/**
 	 * The number of operations of the '<em>Employe</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPLOYE_OPERATION_COUNT = 6;
+	int EMPLOYE_OPERATION_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.AffectationImpl <em>Affectation</em>}' class.
@@ -734,13 +752,58 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN__SCAN = 4;
 
 	/**
+	 * The feature id for the '<em><b>Appreciations Session Formation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__APPRECIATIONS_SESSION_FORMATION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__SOUHAITS_FORMATION_SALARIE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR = 7;
+
+	/**
+	 * The feature id for the '<em><b>Autres Actions Developpement Competences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES = 8;
+
+	/**
+	 * The feature id for the '<em><b>Photo Employe</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__PHOTO_EMPLOYE = 9;
+
+	/**
 	 * The number of structural features of the '<em>Entretien</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_FEATURE_COUNT = 5;
+	int ENTRETIEN_FEATURE_COUNT = 10;
 
 	/**
 	 * The operation id for the '<em>Employe</em>' operation.
@@ -825,6 +888,51 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN_PROFESSIONNEL__SCAN = ENTRETIEN__SCAN;
 
 	/**
+	 * The feature id for the '<em><b>Appreciations Session Formation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION = ENTRETIEN__APPRECIATIONS_SESSION_FORMATION;
+
+	/**
+	 * The feature id for the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE = ENTRETIEN__SOUHAITS_FORMATION_SALARIE;
+
+	/**
+	 * The feature id for the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR = ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR;
+
+	/**
+	 * The feature id for the '<em><b>Autres Actions Developpement Competences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES = ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES;
+
+	/**
+	 * The feature id for the '<em><b>Photo Employe</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__PHOTO_EMPLOYE = ENTRETIEN__PHOTO_EMPLOYE;
+
+	/**
 	 * The feature id for the '<em><b>Evolution Depuis Dernier Entretien</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -897,22 +1005,13 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION = ENTRETIEN_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Autres Actions Developpement Competences</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES = ENTRETIEN_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Perspectives Evolution Professionnelle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE = ENTRETIEN_FEATURE_COUNT + 9;
+	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE = ENTRETIEN_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Perspectives Evolution Professionnelle Competences Associees</b></em>' attribute.
@@ -921,7 +1020,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES = ENTRETIEN_FEATURE_COUNT + 10;
+	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES = ENTRETIEN_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Adequation Projet Pro Besoins Entreprise</b></em>' attribute.
@@ -930,7 +1029,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE = ENTRETIEN_FEATURE_COUNT + 11;
+	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE = ENTRETIEN_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Adequation Projet Pro Besoins Entreprise Commentaire</b></em>' attribute.
@@ -939,7 +1038,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 12;
+	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Rencontre Rh</b></em>' attribute.
@@ -948,7 +1047,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH = ENTRETIEN_FEATURE_COUNT + 13;
+	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH = ENTRETIEN_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Rencontre Rh Commentaire</b></em>' attribute.
@@ -957,7 +1056,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 14;
+	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Synthese</b></em>' attribute.
@@ -966,34 +1065,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__SYNTHESE = ENTRETIEN_FEATURE_COUNT + 15;
-
-	/**
-	 * The feature id for the '<em><b>Appreciations Session Formation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION = ENTRETIEN_FEATURE_COUNT + 16;
-
-	/**
-	 * The feature id for the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE = ENTRETIEN_FEATURE_COUNT + 17;
-
-	/**
-	 * The feature id for the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR = ENTRETIEN_FEATURE_COUNT + 18;
+	int ENTRETIEN_PROFESSIONNEL__SYNTHESE = ENTRETIEN_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Entretien Professionnel</em>' class.
@@ -1002,7 +1074,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 19;
+	int ENTRETIEN_PROFESSIONNEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Employe</em>' operation.
@@ -1591,6 +1663,697 @@ public interface MutPackage extends EPackage {
 	int UTILISATEURS_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl <em>Entretien Annuel</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.EntretienAnnuelImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEntretienAnnuel()
+	 * @generated
+	 */
+	int ENTRETIEN_ANNUEL = 20;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__DATE = ENTRETIEN__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Meneur</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__MENEUR = ENTRETIEN__MENEUR;
+
+	/**
+	 * The feature id for the '<em><b>En Cours</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__EN_COURS = ENTRETIEN__EN_COURS;
+
+	/**
+	 * The feature id for the '<em><b>Fake</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__FAKE = ENTRETIEN__FAKE;
+
+	/**
+	 * The feature id for the '<em><b>Scan</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__SCAN = ENTRETIEN__SCAN;
+
+	/**
+	 * The feature id for the '<em><b>Appreciations Session Formation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__APPRECIATIONS_SESSION_FORMATION = ENTRETIEN__APPRECIATIONS_SESSION_FORMATION;
+
+	/**
+	 * The feature id for the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__SOUHAITS_FORMATION_SALARIE = ENTRETIEN__SOUHAITS_FORMATION_SALARIE;
+
+	/**
+	 * The feature id for the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__SOUHAITS_FORMATION_EVALUATEUR = ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR;
+
+	/**
+	 * The feature id for the '<em><b>Autres Actions Developpement Competences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES = ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES;
+
+	/**
+	 * The feature id for the '<em><b>Photo Employe</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__PHOTO_EMPLOYE = ENTRETIEN__PHOTO_EMPLOYE;
+
+	/**
+	 * The feature id for the '<em><b>Bilan Faits Marquants</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__BILAN_FAITS_MARQUANTS = ENTRETIEN_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Bilan Activites Satisfactions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__BILAN_ACTIVITES_SATISFACTIONS = ENTRETIEN_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Bilan Activites Difficultes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__BILAN_ACTIVITES_DIFFICULTES = ENTRETIEN_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Evaluations Tenue Poste Missions Principales</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES = ENTRETIEN_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Evaluations Tenue Poste Missions Specifiques</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES = ENTRETIEN_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Revoir Fiche Fonction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__REVOIR_FICHE_FONCTION = ENTRETIEN_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Revoir Fiche Fonction Precisions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__REVOIR_FICHE_FONCTION_PRECISIONS = ENTRETIEN_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Evaluations Competences</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__EVALUATIONS_COMPETENCES = ENTRETIEN_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Evaluations Savoir Etre</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__EVALUATIONS_SAVOIR_ETRE = ENTRETIEN_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Points Forts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__POINTS_FORTS = ENTRETIEN_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Points Ameliorer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__POINTS_AMELIORER = ENTRETIEN_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Objectifs Commentaires</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__OBJECTIFS_COMMENTAIRES = ENTRETIEN_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Synthese Evaluateur</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__SYNTHESE_EVALUATEUR = ENTRETIEN_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Synthese Salarie</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__SYNTHESE_SALARIE = ENTRETIEN_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Objectifs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__OBJECTIFS = ENTRETIEN_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Objectifs Precedents</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS = ENTRETIEN_FEATURE_COUNT + 15;
+
+	/**
+	 * The number of structural features of the '<em>Entretien Annuel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 16;
+
+	/**
+	 * The operation id for the '<em>Employe</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL___EMPLOYE = ENTRETIEN___EMPLOYE;
+
+	/**
+	 * The operation id for the '<em>Has Valid Meneur</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL___HAS_VALID_MENEUR__DIAGNOSTICCHAIN_MAP = ENTRETIEN___HAS_VALID_MENEUR__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The number of operations of the '<em>Entretien Annuel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL_OPERATION_COUNT = ENTRETIEN_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl <em>Evaluation Tenue Poste</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationTenuePoste()
+	 * @generated
+	 */
+	int EVALUATION_TENUE_POSTE = 21;
+
+	/**
+	 * The feature id for the '<em><b>Mission</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_TENUE_POSTE__MISSION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Eval</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_TENUE_POSTE__EVAL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Commentaire</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_TENUE_POSTE__COMMENTAIRE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Evaluation Tenue Poste</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_TENUE_POSTE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Evaluation Tenue Poste</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_TENUE_POSTE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.EvaluationCompetenceImpl <em>Evaluation Competence</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.EvaluationCompetenceImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationCompetence()
+	 * @generated
+	 */
+	int EVALUATION_COMPETENCE = 22;
+
+	/**
+	 * The feature id for the '<em><b>Competence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_COMPETENCE__COMPETENCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Eval</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_COMPETENCE__EVAL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Evol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_COMPETENCE__EVOL = 2;
+
+	/**
+	 * The number of structural features of the '<em>Evaluation Competence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_COMPETENCE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Evaluation Competence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_COMPETENCE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.EvaluationSavoirEtreImpl <em>Evaluation Savoir Etre</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.EvaluationSavoirEtreImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationSavoirEtre()
+	 * @generated
+	 */
+	int EVALUATION_SAVOIR_ETRE = 23;
+
+	/**
+	 * The feature id for the '<em><b>Savoir Etre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_SAVOIR_ETRE__SAVOIR_ETRE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Eval</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_SAVOIR_ETRE__EVAL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Evol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_SAVOIR_ETRE__EVOL = 2;
+
+	/**
+	 * The number of structural features of the '<em>Evaluation Savoir Etre</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_SAVOIR_ETRE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Evaluation Savoir Etre</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVALUATION_SAVOIR_ETRE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.ObjectifImpl <em>Objectif</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.ObjectifImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getObjectif()
+	 * @generated
+	 */
+	int OBJECTIF = 24;
+
+	/**
+	 * The feature id for the '<em><b>Libelle</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF__LIBELLE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Echeance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF__ECHEANCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Indicateurs</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF__INDICATEURS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Moyens</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF__MOYENS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Evaluation Atteinte</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF__EVALUATION_ATTEINTE = 4;
+
+	/**
+	 * The number of structural features of the '<em>Objectif</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Objectif</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.ObjectifPrecedentImpl <em>Objectif Precedent</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.ObjectifPrecedentImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getObjectifPrecedent()
+	 * @generated
+	 */
+	int OBJECTIF_PRECEDENT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Objectif</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_PRECEDENT__OBJECTIF = 0;
+
+	/**
+	 * The feature id for the '<em><b>Evaluation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_PRECEDENT__EVALUATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Commentaire</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_PRECEDENT__COMMENTAIRE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Objectif Precedent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_PRECEDENT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Objectif Precedent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_PRECEDENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl <em>Photo Employe</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.impl.PhotoEmployeImpl
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getPhotoEmploye()
+	 * @generated
+	 */
+	int PHOTO_EMPLOYE = 26;
+
+	/**
+	 * The feature id for the '<em><b>Prenom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__PRENOM = 0;
+
+	/**
+	 * The feature id for the '<em><b>Age</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__AGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Etablissement</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__ETABLISSEMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Emploi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__EMPLOI = 3;
+
+	/**
+	 * The feature id for the '<em><b>Classification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__CLASSIFICATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Responsable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__RESPONSABLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Nom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__NOM = 6;
+
+	/**
+	 * The feature id for the '<em><b>Date Embauche</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__DATE_EMBAUCHE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Diplomes</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__DIPLOMES = 8;
+
+	/**
+	 * The feature id for the '<em><b>Date Precedent Entretien</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN = 9;
+
+	/**
+	 * The number of structural features of the '<em>Photo Employe</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE_FEATURE_COUNT = 10;
+
+	/**
+	 * The number of operations of the '<em>Photo Employe</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link fr.mutualite.rh.model.ClassificationStatut <em>Classification Statut</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1598,7 +2361,7 @@ public interface MutPackage extends EPackage {
 	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getClassificationStatut()
 	 * @generated
 	 */
-	int CLASSIFICATION_STATUT = 20;
+	int CLASSIFICATION_STATUT = 27;
 
 
 	/**
@@ -1609,7 +2372,7 @@ public interface MutPackage extends EPackage {
 	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getAppreciation()
 	 * @generated
 	 */
-	int APPRECIATION = 21;
+	int APPRECIATION = 28;
 
 	/**
 	 * The meta object id for the '{@link fr.mutualite.rh.model.Avis <em>Avis</em>}' enum.
@@ -1619,7 +2382,7 @@ public interface MutPackage extends EPackage {
 	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getAvis()
 	 * @generated
 	 */
-	int AVIS = 22;
+	int AVIS = 29;
 
 
 	/**
@@ -1630,7 +2393,58 @@ public interface MutPackage extends EPackage {
 	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getRole()
 	 * @generated
 	 */
-	int ROLE = 23;
+	int ROLE = 30;
+
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.Evaluation <em>Evaluation</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.Evaluation
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluation()
+	 * @generated
+	 */
+	int EVALUATION = 31;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.Evolution <em>Evolution</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.Evolution
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvolution()
+	 * @generated
+	 */
+	int EVOLUTION = 32;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.Competence <em>Competence</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.Competence
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getCompetence()
+	 * @generated
+	 */
+	int COMPETENCE = 33;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.SavoirEtre <em>Savoir Etre</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.SavoirEtre
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getSavoirEtre()
+	 * @generated
+	 */
+	int SAVOIR_ETRE = 34;
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.EvaluationAtteinteObjectif <em>Evaluation Atteinte Objectif</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.EvaluationAtteinteObjectif
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationAtteinteObjectif()
+	 * @generated
+	 */
+	int EVALUATION_ATTEINTE_OBJECTIF = 35;
 
 
 	/**
@@ -1761,6 +2575,549 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUtilisateurs_Utilisateurs();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.EntretienAnnuel <em>Entretien Annuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Entretien Annuel</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel
+	 * @generated
+	 */
+	EClass getEntretienAnnuel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getBilanFaitsMarquants <em>Bilan Faits Marquants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bilan Faits Marquants</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getBilanFaitsMarquants()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_BilanFaitsMarquants();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getBilanActivitesSatisfactions <em>Bilan Activites Satisfactions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bilan Activites Satisfactions</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getBilanActivitesSatisfactions()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_BilanActivitesSatisfactions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getBilanActivitesDifficultes <em>Bilan Activites Difficultes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bilan Activites Difficultes</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getBilanActivitesDifficultes()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_BilanActivitesDifficultes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsTenuePosteMissionsPrincipales <em>Evaluations Tenue Poste Missions Principales</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Evaluations Tenue Poste Missions Principales</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsTenuePosteMissionsPrincipales()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EReference getEntretienAnnuel_EvaluationsTenuePosteMissionsPrincipales();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsTenuePosteMissionsSpecifiques <em>Evaluations Tenue Poste Missions Specifiques</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Evaluations Tenue Poste Missions Specifiques</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsTenuePosteMissionsSpecifiques()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EReference getEntretienAnnuel_EvaluationsTenuePosteMissionsSpecifiques();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#isRevoirFicheFonction <em>Revoir Fiche Fonction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Revoir Fiche Fonction</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#isRevoirFicheFonction()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_RevoirFicheFonction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getRevoirFicheFonctionPrecisions <em>Revoir Fiche Fonction Precisions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Revoir Fiche Fonction Precisions</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getRevoirFicheFonctionPrecisions()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_RevoirFicheFonctionPrecisions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsCompetences <em>Evaluations Competences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Evaluations Competences</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsCompetences()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EReference getEntretienAnnuel_EvaluationsCompetences();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsSavoirEtre <em>Evaluations Savoir Etre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Evaluations Savoir Etre</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getEvaluationsSavoirEtre()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EReference getEntretienAnnuel_EvaluationsSavoirEtre();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getPointsForts <em>Points Forts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Points Forts</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getPointsForts()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_PointsForts();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getPointsAmeliorer <em>Points Ameliorer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Points Ameliorer</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getPointsAmeliorer()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_PointsAmeliorer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getObjectifsCommentaires <em>Objectifs Commentaires</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Objectifs Commentaires</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getObjectifsCommentaires()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_ObjectifsCommentaires();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getSyntheseEvaluateur <em>Synthese Evaluateur</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Synthese Evaluateur</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getSyntheseEvaluateur()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_SyntheseEvaluateur();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getSyntheseSalarie <em>Synthese Salarie</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Synthese Salarie</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getSyntheseSalarie()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_SyntheseSalarie();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienAnnuel#getObjectifs <em>Objectifs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Objectifs</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getObjectifs()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EReference getEntretienAnnuel_Objectifs();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienAnnuel#getObjectifsPrecedents <em>Objectifs Precedents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Objectifs Precedents</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getObjectifsPrecedents()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EReference getEntretienAnnuel_ObjectifsPrecedents();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.EvaluationTenuePoste <em>Evaluation Tenue Poste</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Evaluation Tenue Poste</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationTenuePoste
+	 * @generated
+	 */
+	EClass getEvaluationTenuePoste();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationTenuePoste#getMission <em>Mission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mission</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationTenuePoste#getMission()
+	 * @see #getEvaluationTenuePoste()
+	 * @generated
+	 */
+	EAttribute getEvaluationTenuePoste_Mission();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationTenuePoste#getEval <em>Eval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eval</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationTenuePoste#getEval()
+	 * @see #getEvaluationTenuePoste()
+	 * @generated
+	 */
+	EAttribute getEvaluationTenuePoste_Eval();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationTenuePoste#getCommentaire <em>Commentaire</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationTenuePoste#getCommentaire()
+	 * @see #getEvaluationTenuePoste()
+	 * @generated
+	 */
+	EAttribute getEvaluationTenuePoste_Commentaire();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.EvaluationCompetence <em>Evaluation Competence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Evaluation Competence</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationCompetence
+	 * @generated
+	 */
+	EClass getEvaluationCompetence();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationCompetence#getCompetence <em>Competence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Competence</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationCompetence#getCompetence()
+	 * @see #getEvaluationCompetence()
+	 * @generated
+	 */
+	EAttribute getEvaluationCompetence_Competence();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationCompetence#getEval <em>Eval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eval</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationCompetence#getEval()
+	 * @see #getEvaluationCompetence()
+	 * @generated
+	 */
+	EAttribute getEvaluationCompetence_Eval();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationCompetence#getEvol <em>Evol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Evol</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationCompetence#getEvol()
+	 * @see #getEvaluationCompetence()
+	 * @generated
+	 */
+	EAttribute getEvaluationCompetence_Evol();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.EvaluationSavoirEtre <em>Evaluation Savoir Etre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Evaluation Savoir Etre</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationSavoirEtre
+	 * @generated
+	 */
+	EClass getEvaluationSavoirEtre();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationSavoirEtre#getSavoirEtre <em>Savoir Etre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Savoir Etre</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationSavoirEtre#getSavoirEtre()
+	 * @see #getEvaluationSavoirEtre()
+	 * @generated
+	 */
+	EAttribute getEvaluationSavoirEtre_SavoirEtre();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationSavoirEtre#getEval <em>Eval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eval</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationSavoirEtre#getEval()
+	 * @see #getEvaluationSavoirEtre()
+	 * @generated
+	 */
+	EAttribute getEvaluationSavoirEtre_Eval();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationSavoirEtre#getEvol <em>Evol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Evol</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationSavoirEtre#getEvol()
+	 * @see #getEvaluationSavoirEtre()
+	 * @generated
+	 */
+	EAttribute getEvaluationSavoirEtre_Evol();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.Objectif <em>Objectif</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Objectif</em>'.
+	 * @see fr.mutualite.rh.model.Objectif
+	 * @generated
+	 */
+	EClass getObjectif();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Objectif#getLibelle <em>Libelle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Libelle</em>'.
+	 * @see fr.mutualite.rh.model.Objectif#getLibelle()
+	 * @see #getObjectif()
+	 * @generated
+	 */
+	EAttribute getObjectif_Libelle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Objectif#getEcheance <em>Echeance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Echeance</em>'.
+	 * @see fr.mutualite.rh.model.Objectif#getEcheance()
+	 * @see #getObjectif()
+	 * @generated
+	 */
+	EAttribute getObjectif_Echeance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Objectif#getIndicateurs <em>Indicateurs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Indicateurs</em>'.
+	 * @see fr.mutualite.rh.model.Objectif#getIndicateurs()
+	 * @see #getObjectif()
+	 * @generated
+	 */
+	EAttribute getObjectif_Indicateurs();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Objectif#getMoyens <em>Moyens</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Moyens</em>'.
+	 * @see fr.mutualite.rh.model.Objectif#getMoyens()
+	 * @see #getObjectif()
+	 * @generated
+	 */
+	EAttribute getObjectif_Moyens();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.mutualite.rh.model.Objectif#getEvaluationAtteinte <em>Evaluation Atteinte</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Evaluation Atteinte</em>'.
+	 * @see fr.mutualite.rh.model.Objectif#getEvaluationAtteinte()
+	 * @see #getObjectif()
+	 * @generated
+	 */
+	EReference getObjectif_EvaluationAtteinte();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.ObjectifPrecedent <em>Objectif Precedent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Objectif Precedent</em>'.
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent
+	 * @generated
+	 */
+	EClass getObjectifPrecedent();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.mutualite.rh.model.ObjectifPrecedent#getObjectif <em>Objectif</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Objectif</em>'.
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent#getObjectif()
+	 * @see #getObjectifPrecedent()
+	 * @generated
+	 */
+	EReference getObjectifPrecedent_Objectif();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.ObjectifPrecedent#getEvaluation <em>Evaluation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Evaluation</em>'.
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent#getEvaluation()
+	 * @see #getObjectifPrecedent()
+	 * @generated
+	 */
+	EAttribute getObjectifPrecedent_Evaluation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.ObjectifPrecedent#getCommentaire <em>Commentaire</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire</em>'.
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent#getCommentaire()
+	 * @see #getObjectifPrecedent()
+	 * @generated
+	 */
+	EAttribute getObjectifPrecedent_Commentaire();
+
+	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.PhotoEmploye <em>Photo Employe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Photo Employe</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye
+	 * @generated
+	 */
+	EClass getPhotoEmploye();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getPrenom <em>Prenom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Prenom</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getPrenom()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Prenom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getAge <em>Age</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Age</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getAge()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Age();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getEtablissement <em>Etablissement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Etablissement</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getEtablissement()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Etablissement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getEmploi <em>Emploi</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Emploi</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getEmploi()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Emploi();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getClassification <em>Classification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Classification</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getClassification()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Classification();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getResponsable <em>Responsable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Responsable</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getResponsable()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Responsable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getNom <em>Nom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nom</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getNom()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Nom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getDateEmbauche <em>Date Embauche</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date Embauche</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getDateEmbauche()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_DateEmbauche();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.mutualite.rh.model.PhotoEmploye#getDiplomes <em>Diplomes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Diplomes</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getDiplomes()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_Diplomes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretien <em>Date Precedent Entretien</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date Precedent Entretien</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretien()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_DatePrecedentEntretien();
 
 	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.Employe <em>Employe</em>}'.
@@ -2086,6 +3443,26 @@ public interface MutPackage extends EPackage {
 	EOperation getEmploye__Entreteneurs();
 
 	/**
+	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Employe#photo(java.util.Date) <em>Photo</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Photo</em>' operation.
+	 * @see fr.mutualite.rh.model.Employe#photo(java.util.Date)
+	 * @generated
+	 */
+	EOperation getEmploye__Photo__Date();
+
+	/**
+	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Employe#age(java.util.Date) <em>Age</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Age</em>' operation.
+	 * @see fr.mutualite.rh.model.Employe#age(java.util.Date)
+	 * @generated
+	 */
+	EOperation getEmploye__Age__Date();
+
+	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.Affectation <em>Affectation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2398,6 +3775,61 @@ public interface MutPackage extends EPackage {
 	EAttribute getEntretien_Scan();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.Entretien#getAppreciationsSessionFormation <em>Appreciations Session Formation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Appreciations Session Formation</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getAppreciationsSessionFormation()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EReference getEntretien_AppreciationsSessionFormation();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.Entretien#getSouhaitsFormationSalarie <em>Souhaits Formation Salarie</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Souhaits Formation Salarie</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getSouhaitsFormationSalarie()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EReference getEntretien_SouhaitsFormationSalarie();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.Entretien#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Souhaits Formation Evaluateur</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getSouhaitsFormationEvaluateur()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EReference getEntretien_SouhaitsFormationEvaluateur();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Entretien#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Autres Actions Developpement Competences</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getAutresActionsDeveloppementCompetences()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EAttribute getEntretien_AutresActionsDeveloppementCompetences();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.mutualite.rh.model.Entretien#getPhotoEmploye <em>Photo Employe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Photo Employe</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getPhotoEmploye()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EReference getEntretien_PhotoEmploye();
+
+	/**
 	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Entretien#employe() <em>Employe</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2516,17 +3948,6 @@ public interface MutPackage extends EPackage {
 	EAttribute getEntretienProfessionnel_EvolutionSouhaiteeMoyensRealisation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienProfessionnel#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Autres Actions Developpement Competences</em>'.
-	 * @see fr.mutualite.rh.model.EntretienProfessionnel#getAutresActionsDeveloppementCompetences()
-	 * @see #getEntretienProfessionnel()
-	 * @generated
-	 */
-	EAttribute getEntretienProfessionnel_AutresActionsDeveloppementCompetences();
-
-	/**
 	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienProfessionnel#getPerspectivesEvolutionProfessionnelle <em>Perspectives Evolution Professionnelle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2602,39 +4023,6 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEntretienProfessionnel_Synthese();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienProfessionnel#getAppreciationsSessionFormation <em>Appreciations Session Formation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Appreciations Session Formation</em>'.
-	 * @see fr.mutualite.rh.model.EntretienProfessionnel#getAppreciationsSessionFormation()
-	 * @see #getEntretienProfessionnel()
-	 * @generated
-	 */
-	EReference getEntretienProfessionnel_AppreciationsSessionFormation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienProfessionnel#getSouhaitsFormationSalarie <em>Souhaits Formation Salarie</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Souhaits Formation Salarie</em>'.
-	 * @see fr.mutualite.rh.model.EntretienProfessionnel#getSouhaitsFormationSalarie()
-	 * @see #getEntretienProfessionnel()
-	 * @generated
-	 */
-	EReference getEntretienProfessionnel_SouhaitsFormationSalarie();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link fr.mutualite.rh.model.EntretienProfessionnel#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Souhaits Formation Evaluateur</em>'.
-	 * @see fr.mutualite.rh.model.EntretienProfessionnel#getSouhaitsFormationEvaluateur()
-	 * @see #getEntretienProfessionnel()
-	 * @generated
-	 */
-	EReference getEntretienProfessionnel_SouhaitsFormationEvaluateur();
 
 	/**
 	 * Returns the meta object for the '{@link fr.mutualite.rh.model.EntretienProfessionnel#hasValidSynthese(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Valid Synthese</em>}' operation.
@@ -2976,6 +4364,56 @@ public interface MutPackage extends EPackage {
 	EEnum getRole();
 
 	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.model.Evaluation <em>Evaluation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Evaluation</em>'.
+	 * @see fr.mutualite.rh.model.Evaluation
+	 * @generated
+	 */
+	EEnum getEvaluation();
+
+	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.model.Evolution <em>Evolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Evolution</em>'.
+	 * @see fr.mutualite.rh.model.Evolution
+	 * @generated
+	 */
+	EEnum getEvolution();
+
+	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.model.Competence <em>Competence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Competence</em>'.
+	 * @see fr.mutualite.rh.model.Competence
+	 * @generated
+	 */
+	EEnum getCompetence();
+
+	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.model.SavoirEtre <em>Savoir Etre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Savoir Etre</em>'.
+	 * @see fr.mutualite.rh.model.SavoirEtre
+	 * @generated
+	 */
+	EEnum getSavoirEtre();
+
+	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.model.EvaluationAtteinteObjectif <em>Evaluation Atteinte Objectif</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Evaluation Atteinte Objectif</em>'.
+	 * @see fr.mutualite.rh.model.EvaluationAtteinteObjectif
+	 * @generated
+	 */
+	EEnum getEvaluationAtteinteObjectif();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3099,6 +4537,420 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UTILISATEURS__UTILISATEURS = eINSTANCE.getUtilisateurs_Utilisateurs();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl <em>Entretien Annuel</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.EntretienAnnuelImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEntretienAnnuel()
+		 * @generated
+		 */
+		EClass ENTRETIEN_ANNUEL = eINSTANCE.getEntretienAnnuel();
+
+		/**
+		 * The meta object literal for the '<em><b>Bilan Faits Marquants</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__BILAN_FAITS_MARQUANTS = eINSTANCE.getEntretienAnnuel_BilanFaitsMarquants();
+
+		/**
+		 * The meta object literal for the '<em><b>Bilan Activites Satisfactions</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__BILAN_ACTIVITES_SATISFACTIONS = eINSTANCE.getEntretienAnnuel_BilanActivitesSatisfactions();
+
+		/**
+		 * The meta object literal for the '<em><b>Bilan Activites Difficultes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__BILAN_ACTIVITES_DIFFICULTES = eINSTANCE.getEntretienAnnuel_BilanActivitesDifficultes();
+
+		/**
+		 * The meta object literal for the '<em><b>Evaluations Tenue Poste Missions Principales</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES = eINSTANCE.getEntretienAnnuel_EvaluationsTenuePosteMissionsPrincipales();
+
+		/**
+		 * The meta object literal for the '<em><b>Evaluations Tenue Poste Missions Specifiques</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES = eINSTANCE.getEntretienAnnuel_EvaluationsTenuePosteMissionsSpecifiques();
+
+		/**
+		 * The meta object literal for the '<em><b>Revoir Fiche Fonction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__REVOIR_FICHE_FONCTION = eINSTANCE.getEntretienAnnuel_RevoirFicheFonction();
+
+		/**
+		 * The meta object literal for the '<em><b>Revoir Fiche Fonction Precisions</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__REVOIR_FICHE_FONCTION_PRECISIONS = eINSTANCE.getEntretienAnnuel_RevoirFicheFonctionPrecisions();
+
+		/**
+		 * The meta object literal for the '<em><b>Evaluations Competences</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN_ANNUEL__EVALUATIONS_COMPETENCES = eINSTANCE.getEntretienAnnuel_EvaluationsCompetences();
+
+		/**
+		 * The meta object literal for the '<em><b>Evaluations Savoir Etre</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN_ANNUEL__EVALUATIONS_SAVOIR_ETRE = eINSTANCE.getEntretienAnnuel_EvaluationsSavoirEtre();
+
+		/**
+		 * The meta object literal for the '<em><b>Points Forts</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__POINTS_FORTS = eINSTANCE.getEntretienAnnuel_PointsForts();
+
+		/**
+		 * The meta object literal for the '<em><b>Points Ameliorer</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__POINTS_AMELIORER = eINSTANCE.getEntretienAnnuel_PointsAmeliorer();
+
+		/**
+		 * The meta object literal for the '<em><b>Objectifs Commentaires</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__OBJECTIFS_COMMENTAIRES = eINSTANCE.getEntretienAnnuel_ObjectifsCommentaires();
+
+		/**
+		 * The meta object literal for the '<em><b>Synthese Evaluateur</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__SYNTHESE_EVALUATEUR = eINSTANCE.getEntretienAnnuel_SyntheseEvaluateur();
+
+		/**
+		 * The meta object literal for the '<em><b>Synthese Salarie</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__SYNTHESE_SALARIE = eINSTANCE.getEntretienAnnuel_SyntheseSalarie();
+
+		/**
+		 * The meta object literal for the '<em><b>Objectifs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN_ANNUEL__OBJECTIFS = eINSTANCE.getEntretienAnnuel_Objectifs();
+
+		/**
+		 * The meta object literal for the '<em><b>Objectifs Precedents</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS = eINSTANCE.getEntretienAnnuel_ObjectifsPrecedents();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl <em>Evaluation Tenue Poste</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationTenuePoste()
+		 * @generated
+		 */
+		EClass EVALUATION_TENUE_POSTE = eINSTANCE.getEvaluationTenuePoste();
+
+		/**
+		 * The meta object literal for the '<em><b>Mission</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_TENUE_POSTE__MISSION = eINSTANCE.getEvaluationTenuePoste_Mission();
+
+		/**
+		 * The meta object literal for the '<em><b>Eval</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_TENUE_POSTE__EVAL = eINSTANCE.getEvaluationTenuePoste_Eval();
+
+		/**
+		 * The meta object literal for the '<em><b>Commentaire</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_TENUE_POSTE__COMMENTAIRE = eINSTANCE.getEvaluationTenuePoste_Commentaire();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EvaluationCompetenceImpl <em>Evaluation Competence</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.EvaluationCompetenceImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationCompetence()
+		 * @generated
+		 */
+		EClass EVALUATION_COMPETENCE = eINSTANCE.getEvaluationCompetence();
+
+		/**
+		 * The meta object literal for the '<em><b>Competence</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_COMPETENCE__COMPETENCE = eINSTANCE.getEvaluationCompetence_Competence();
+
+		/**
+		 * The meta object literal for the '<em><b>Eval</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_COMPETENCE__EVAL = eINSTANCE.getEvaluationCompetence_Eval();
+
+		/**
+		 * The meta object literal for the '<em><b>Evol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_COMPETENCE__EVOL = eINSTANCE.getEvaluationCompetence_Evol();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EvaluationSavoirEtreImpl <em>Evaluation Savoir Etre</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.EvaluationSavoirEtreImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationSavoirEtre()
+		 * @generated
+		 */
+		EClass EVALUATION_SAVOIR_ETRE = eINSTANCE.getEvaluationSavoirEtre();
+
+		/**
+		 * The meta object literal for the '<em><b>Savoir Etre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_SAVOIR_ETRE__SAVOIR_ETRE = eINSTANCE.getEvaluationSavoirEtre_SavoirEtre();
+
+		/**
+		 * The meta object literal for the '<em><b>Eval</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_SAVOIR_ETRE__EVAL = eINSTANCE.getEvaluationSavoirEtre_Eval();
+
+		/**
+		 * The meta object literal for the '<em><b>Evol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVALUATION_SAVOIR_ETRE__EVOL = eINSTANCE.getEvaluationSavoirEtre_Evol();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.ObjectifImpl <em>Objectif</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.ObjectifImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getObjectif()
+		 * @generated
+		 */
+		EClass OBJECTIF = eINSTANCE.getObjectif();
+
+		/**
+		 * The meta object literal for the '<em><b>Libelle</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF__LIBELLE = eINSTANCE.getObjectif_Libelle();
+
+		/**
+		 * The meta object literal for the '<em><b>Echeance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF__ECHEANCE = eINSTANCE.getObjectif_Echeance();
+
+		/**
+		 * The meta object literal for the '<em><b>Indicateurs</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF__INDICATEURS = eINSTANCE.getObjectif_Indicateurs();
+
+		/**
+		 * The meta object literal for the '<em><b>Moyens</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF__MOYENS = eINSTANCE.getObjectif_Moyens();
+
+		/**
+		 * The meta object literal for the '<em><b>Evaluation Atteinte</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OBJECTIF__EVALUATION_ATTEINTE = eINSTANCE.getObjectif_EvaluationAtteinte();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.ObjectifPrecedentImpl <em>Objectif Precedent</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.ObjectifPrecedentImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getObjectifPrecedent()
+		 * @generated
+		 */
+		EClass OBJECTIF_PRECEDENT = eINSTANCE.getObjectifPrecedent();
+
+		/**
+		 * The meta object literal for the '<em><b>Objectif</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OBJECTIF_PRECEDENT__OBJECTIF = eINSTANCE.getObjectifPrecedent_Objectif();
+
+		/**
+		 * The meta object literal for the '<em><b>Evaluation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF_PRECEDENT__EVALUATION = eINSTANCE.getObjectifPrecedent_Evaluation();
+
+		/**
+		 * The meta object literal for the '<em><b>Commentaire</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF_PRECEDENT__COMMENTAIRE = eINSTANCE.getObjectifPrecedent_Commentaire();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl <em>Photo Employe</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.impl.PhotoEmployeImpl
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getPhotoEmploye()
+		 * @generated
+		 */
+		EClass PHOTO_EMPLOYE = eINSTANCE.getPhotoEmploye();
+
+		/**
+		 * The meta object literal for the '<em><b>Prenom</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__PRENOM = eINSTANCE.getPhotoEmploye_Prenom();
+
+		/**
+		 * The meta object literal for the '<em><b>Age</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__AGE = eINSTANCE.getPhotoEmploye_Age();
+
+		/**
+		 * The meta object literal for the '<em><b>Etablissement</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__ETABLISSEMENT = eINSTANCE.getPhotoEmploye_Etablissement();
+
+		/**
+		 * The meta object literal for the '<em><b>Emploi</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__EMPLOI = eINSTANCE.getPhotoEmploye_Emploi();
+
+		/**
+		 * The meta object literal for the '<em><b>Classification</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__CLASSIFICATION = eINSTANCE.getPhotoEmploye_Classification();
+
+		/**
+		 * The meta object literal for the '<em><b>Responsable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__RESPONSABLE = eINSTANCE.getPhotoEmploye_Responsable();
+
+		/**
+		 * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__NOM = eINSTANCE.getPhotoEmploye_Nom();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Embauche</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__DATE_EMBAUCHE = eINSTANCE.getPhotoEmploye_DateEmbauche();
+
+		/**
+		 * The meta object literal for the '<em><b>Diplomes</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__DIPLOMES = eINSTANCE.getPhotoEmploye_Diplomes();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Precedent Entretien</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN = eINSTANCE.getPhotoEmploye_DatePrecedentEntretien();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EmployeImpl <em>Employe</em>}' class.
@@ -3341,6 +5193,22 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EMPLOYE___ENTRETENEURS = eINSTANCE.getEmploye__Entreteneurs();
+
+		/**
+		 * The meta object literal for the '<em><b>Photo</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EMPLOYE___PHOTO__DATE = eINSTANCE.getEmploye__Photo__Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Age</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EMPLOYE___AGE__DATE = eINSTANCE.getEmploye__Age__Date();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.AffectationImpl <em>Affectation</em>}' class.
@@ -3589,6 +5457,46 @@ public interface MutPackage extends EPackage {
 		EAttribute ENTRETIEN__SCAN = eINSTANCE.getEntretien_Scan();
 
 		/**
+		 * The meta object literal for the '<em><b>Appreciations Session Formation</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN__APPRECIATIONS_SESSION_FORMATION = eINSTANCE.getEntretien_AppreciationsSessionFormation();
+
+		/**
+		 * The meta object literal for the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN__SOUHAITS_FORMATION_SALARIE = eINSTANCE.getEntretien_SouhaitsFormationSalarie();
+
+		/**
+		 * The meta object literal for the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR = eINSTANCE.getEntretien_SouhaitsFormationEvaluateur();
+
+		/**
+		 * The meta object literal for the '<em><b>Autres Actions Developpement Competences</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES = eINSTANCE.getEntretien_AutresActionsDeveloppementCompetences();
+
+		/**
+		 * The meta object literal for the '<em><b>Photo Employe</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN__PHOTO_EMPLOYE = eINSTANCE.getEntretien_PhotoEmploye();
+
+		/**
 		 * The meta object literal for the '<em><b>Employe</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3679,14 +5587,6 @@ public interface MutPackage extends EPackage {
 		EAttribute ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION = eINSTANCE.getEntretienProfessionnel_EvolutionSouhaiteeMoyensRealisation();
 
 		/**
-		 * The meta object literal for the '<em><b>Autres Actions Developpement Competences</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ENTRETIEN_PROFESSIONNEL__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES = eINSTANCE.getEntretienProfessionnel_AutresActionsDeveloppementCompetences();
-
-		/**
 		 * The meta object literal for the '<em><b>Perspectives Evolution Professionnelle</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3741,30 +5641,6 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ENTRETIEN_PROFESSIONNEL__SYNTHESE = eINSTANCE.getEntretienProfessionnel_Synthese();
-
-		/**
-		 * The meta object literal for the '<em><b>Appreciations Session Formation</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION = eINSTANCE.getEntretienProfessionnel_AppreciationsSessionFormation();
-
-		/**
-		 * The meta object literal for the '<em><b>Souhaits Formation Salarie</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_SALARIE = eINSTANCE.getEntretienProfessionnel_SouhaitsFormationSalarie();
-
-		/**
-		 * The meta object literal for the '<em><b>Souhaits Formation Evaluateur</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENTRETIEN_PROFESSIONNEL__SOUHAITS_FORMATION_EVALUATEUR = eINSTANCE.getEntretienProfessionnel_SouhaitsFormationEvaluateur();
 
 		/**
 		 * The meta object literal for the '<em><b>Has Valid Synthese</b></em>' operation.
@@ -4045,6 +5921,56 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ROLE = eINSTANCE.getRole();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.Evaluation <em>Evaluation</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.Evaluation
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluation()
+		 * @generated
+		 */
+		EEnum EVALUATION = eINSTANCE.getEvaluation();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.Evolution <em>Evolution</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.Evolution
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvolution()
+		 * @generated
+		 */
+		EEnum EVOLUTION = eINSTANCE.getEvolution();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.Competence <em>Competence</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.Competence
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getCompetence()
+		 * @generated
+		 */
+		EEnum COMPETENCE = eINSTANCE.getCompetence();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.SavoirEtre <em>Savoir Etre</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.SavoirEtre
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getSavoirEtre()
+		 * @generated
+		 */
+		EEnum SAVOIR_ETRE = eINSTANCE.getSavoirEtre();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.EvaluationAtteinteObjectif <em>Evaluation Atteinte Objectif</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.EvaluationAtteinteObjectif
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getEvaluationAtteinteObjectif()
+		 * @generated
+		 */
+		EEnum EVALUATION_ATTEINTE_OBJECTIF = eINSTANCE.getEvaluationAtteinteObjectif();
 
 	}
 

@@ -4,9 +4,7 @@ package fr.mutualite.rh.model.tests;
 
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.MutFactory;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**
@@ -28,6 +26,8 @@ import junit.textui.TestRunner;
  *   <li>{@link fr.mutualite.rh.model.Employe#hasValidAffectationClassificationCourante(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Valid Affectation Classification Courante</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Employe#responsable() <em>Responsable</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Employe#entreteneurs() <em>Entreteneurs</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Employe#photo(java.util.Date) <em>Photo</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Employe#age(java.util.Date) <em>Age</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -189,6 +189,32 @@ public class EmployeTest extends TestCase {
 	 * @generated
 	 */
 	public void testEntreteneurs() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link fr.mutualite.rh.model.Employe#photo(java.util.Date) <em>Photo</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.Employe#photo(java.util.Date)
+	 * @generated
+	 */
+	public void testPhoto__Date() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link fr.mutualite.rh.model.Employe#age(java.util.Date) <em>Age</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.Employe#age(java.util.Date)
+	 * @generated
+	 */
+	public void testAge__Date() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

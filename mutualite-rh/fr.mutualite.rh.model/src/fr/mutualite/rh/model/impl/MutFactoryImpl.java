@@ -76,6 +76,13 @@ public class MutFactoryImpl extends EFactoryImpl implements MutFactory {
 			case MutPackage.ETABLISSEMENT: return (EObject)createEtablissement();
 			case MutPackage.UTILISATEUR: return (EObject)createUtilisateur();
 			case MutPackage.UTILISATEURS: return (EObject)createUtilisateurs();
+			case MutPackage.ENTRETIEN_ANNUEL: return (EObject)createEntretienAnnuel();
+			case MutPackage.EVALUATION_TENUE_POSTE: return (EObject)createEvaluationTenuePoste();
+			case MutPackage.EVALUATION_COMPETENCE: return (EObject)createEvaluationCompetence();
+			case MutPackage.EVALUATION_SAVOIR_ETRE: return (EObject)createEvaluationSavoirEtre();
+			case MutPackage.OBJECTIF: return (EObject)createObjectif();
+			case MutPackage.OBJECTIF_PRECEDENT: return (EObject)createObjectifPrecedent();
+			case MutPackage.PHOTO_EMPLOYE: return (EObject)createPhotoEmploye();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -97,6 +104,16 @@ public class MutFactoryImpl extends EFactoryImpl implements MutFactory {
 				return createAvisFromString(eDataType, initialValue);
 			case MutPackage.ROLE:
 				return createRoleFromString(eDataType, initialValue);
+			case MutPackage.EVALUATION:
+				return createEvaluationFromString(eDataType, initialValue);
+			case MutPackage.EVOLUTION:
+				return createEvolutionFromString(eDataType, initialValue);
+			case MutPackage.COMPETENCE:
+				return createCompetenceFromString(eDataType, initialValue);
+			case MutPackage.SAVOIR_ETRE:
+				return createSavoirEtreFromString(eDataType, initialValue);
+			case MutPackage.EVALUATION_ATTEINTE_OBJECTIF:
+				return createEvaluationAtteinteObjectifFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -118,9 +135,29 @@ public class MutFactoryImpl extends EFactoryImpl implements MutFactory {
 				return convertAvisToString(eDataType, instanceValue);
 			case MutPackage.ROLE:
 				return convertRoleToString(eDataType, instanceValue);
+			case MutPackage.EVALUATION:
+				return convertEvaluationToString(eDataType, instanceValue);
+			case MutPackage.EVOLUTION:
+				return convertEvolutionToString(eDataType, instanceValue);
+			case MutPackage.COMPETENCE:
+				return convertCompetenceToString(eDataType, instanceValue);
+			case MutPackage.SAVOIR_ETRE:
+				return convertSavoirEtreToString(eDataType, instanceValue);
+			case MutPackage.EVALUATION_ATTEINTE_OBJECTIF:
+				return convertEvaluationAtteinteObjectifToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Employe createEmploye() {
+		EmployeImpl employe = new EmployeImpl();
+		return employe;
 	}
 
 	/**
@@ -158,9 +195,69 @@ public class MutFactoryImpl extends EFactoryImpl implements MutFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Employe createEmploye() {
-		EmployeImpl employe = new EmployeImpl();
-		return employe;
+	public EntretienAnnuel createEntretienAnnuel() {
+		EntretienAnnuelImpl entretienAnnuel = new EntretienAnnuelImpl();
+		return entretienAnnuel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EvaluationTenuePoste createEvaluationTenuePoste() {
+		EvaluationTenuePosteImpl evaluationTenuePoste = new EvaluationTenuePosteImpl();
+		return evaluationTenuePoste;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EvaluationCompetence createEvaluationCompetence() {
+		EvaluationCompetenceImpl evaluationCompetence = new EvaluationCompetenceImpl();
+		return evaluationCompetence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EvaluationSavoirEtre createEvaluationSavoirEtre() {
+		EvaluationSavoirEtreImpl evaluationSavoirEtre = new EvaluationSavoirEtreImpl();
+		return evaluationSavoirEtre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Objectif createObjectif() {
+		ObjectifImpl objectif = new ObjectifImpl();
+		return objectif;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectifPrecedent createObjectifPrecedent() {
+		ObjectifPrecedentImpl objectifPrecedent = new ObjectifPrecedentImpl();
+		return objectifPrecedent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PhotoEmploye createPhotoEmploye() {
+		PhotoEmployeImpl photoEmploye = new PhotoEmployeImpl();
+		return photoEmploye;
 	}
 
 	/**
@@ -390,6 +487,106 @@ public class MutFactoryImpl extends EFactoryImpl implements MutFactory {
 	 * @generated
 	 */
 	public String convertRoleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Evaluation createEvaluationFromString(EDataType eDataType, String initialValue) {
+		Evaluation result = Evaluation.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEvaluationToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Evolution createEvolutionFromString(EDataType eDataType, String initialValue) {
+		Evolution result = Evolution.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEvolutionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Competence createCompetenceFromString(EDataType eDataType, String initialValue) {
+		Competence result = Competence.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCompetenceToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SavoirEtre createSavoirEtreFromString(EDataType eDataType, String initialValue) {
+		SavoirEtre result = SavoirEtre.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSavoirEtreToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EvaluationAtteinteObjectif createEvaluationAtteinteObjectifFromString(EDataType eDataType, String initialValue) {
+		EvaluationAtteinteObjectif result = EvaluationAtteinteObjectif.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEvaluationAtteinteObjectifToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
