@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -55,11 +56,37 @@ import fr.mutualite.rh.webapp.cdo.ICDO;
 // @Secured
 public class AdminResource {
 
-
 	private Mutualite getMutualite() {
 		return CdoServlet.getMutualite();
 	}
-	
+
+	@GET
+	@Path("/drop-all")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String dropAllTables() throws ClassNotFoundException, SQLException {
+
+		String ret = "";
+
+		Configuration config = CdoServlet.getConfig();
+		Class.forName(config.getJdbcDriver());
+
+		try (Connection con = DriverManager.getConnection(config.getJdbcUrl(), config.getJdbcUser(), config.getJdbcPassword());
+				Statement s = con.createStatement();
+				ResultSet rs = s.executeQuery("SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '"
+						+ config.getJdbcUrl().replaceAll(".*/", "") + "'");) {
+			while (rs.next()) {
+				String drop = rs.getString(1);
+				System.out.println(drop);
+				ret += drop + "\r\n";
+
+				s.addBatch(drop);
+			}
+			s.executeBatch();
+		}
+
+		return ret;
+	}
+
 	@GET
 	@Produces(MediaType.TEXT_XML)
 	@Path("/backup.xml")
@@ -68,12 +95,12 @@ public class AdminResource {
 			@Override
 			public void write(OutputStream os) throws IOException, WebApplicationException {
 				Mutualite mutualite = getMutualite();
-				//mutualite.cdoDirectResource().save(os, Collections.EMPTY_MAP);
+				// mutualite.cdoDirectResource().save(os, Collections.EMPTY_MAP);
 				ResourceSet rs = new ResourceSetImpl();
 				Resource resource = rs.createResource(URI.createFileURI("bidon"));
 				resource.getContents().add(EcoreUtil.copy(mutualite));
 				resource.save(os, Collections.EMPTY_MAP);
-				
+
 			}
 
 		};
@@ -262,7 +289,7 @@ public class AdminResource {
 	public void restore() throws IOException {
 
 		File f = new File("/E:/temp/2017/04/05/backup-20170404.xml");
-		if(!f.exists()) {
+		if (!f.exists()) {
 			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
 		}
 		ResourceSet rs = new ResourceSetImpl();
@@ -272,7 +299,7 @@ public class AdminResource {
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
 			CDOResource cdoResource = mut.cdoResource();
 			if (!resource.getContents().isEmpty()) {
-//				EcoreUtil.delete(resource.getContents().get(0));
+				// EcoreUtil.delete(resource.getContents().get(0));
 				cdoResource.getContents().clear();
 			}
 			return true;
@@ -288,7 +315,7 @@ public class AdminResource {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			cdoResource.getContents().add(mutualite);
+			// cdoResource.getContents().add(mutualite);
 			return true;
 		});
 	}
@@ -299,7 +326,7 @@ public class AdminResource {
 	public String bidon() throws IOException {
 
 		File f = new File("/E:/temp/2017/04/05/backup-20170404.xml");
-		if(!f.exists()) {
+		if (!f.exists()) {
 			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
 		}
 		ResourceSet rs = new ResourceSetImpl();
@@ -307,20 +334,20 @@ public class AdminResource {
 		resource.load(Collections.EMPTY_MAP);
 
 		String ret = "";
-		
+
 		Mutualite mutualite = (Mutualite) resource.getContents().get(0);
 		EList<Employe> employes = mutualite.getEffectif().getEmployes();
 		for (Employe employe : employes) {
 			ret += employe.getLabel() + "\n";
-			if(null==employe.getEtablissement()) {
+			if (null == employe.getEtablissement()) {
 				ret += "\tSANS ETABLISSEMENT\n";
 			}
-			if(employe.getAffectationEmploiCourante()!=null) {
-				if(employe.getAffectationEmploiCourante().getEmploi()==null) {
-				 ret += "\tEMPLOI COURANT SANS EMPLOI\n";
+			if (employe.getAffectationEmploiCourante() != null) {
+				if (employe.getAffectationEmploiCourante().getEmploi() == null) {
+					ret += "\tEMPLOI COURANT SANS EMPLOI\n";
 				}
 			} else {
-				 ret += "\tSANS EMPLOI COURANT\n";
+				ret += "\tSANS EMPLOI COURANT\n";
 			}
 			ret += "\n";
 		}
@@ -440,18 +467,18 @@ public class AdminResource {
 	public static void main(String[] args) throws IOException {
 		File f = new File("/E:/temp/2017/04/07/backup.xml");
 		File f2 = new File("/E:/temp/2017/04/07/backup2.xml");
-		if(!f.exists()) {
+		if (!f.exists()) {
 			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
 		}
-		
+
 		MutPackage.eINSTANCE.eClass();
 
-        // Register the XMI resource factory for the .website extension
+		// Register the XMI resource factory for the .website extension
 
-        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-        Map<String, Object> m = reg.getExtensionToFactoryMap();
-        m.put("xml", new XMIResourceFactoryImpl());
-		
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("xml", new XMIResourceFactoryImpl());
+
 		ResourceSet rs = new ResourceSetImpl();
 		Resource resource = rs.createResource(URI.createFileURI(f.getAbsolutePath()));
 		resource.load(Collections.EMPTY_MAP);
@@ -459,5 +486,5 @@ public class AdminResource {
 		mut.getEmplois().getEmplois().stream().map(Emploi::getIntitule).forEach(System.out::println);
 		resource.save(new FileOutputStream(f2), Collections.EMPTY_MAP);
 	}
-	
+
 }
