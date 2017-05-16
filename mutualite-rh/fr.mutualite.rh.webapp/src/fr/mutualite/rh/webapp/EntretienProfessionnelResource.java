@@ -514,7 +514,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 		// InputStream in = new FileInputStream(
 		// "E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.webapp\\resources\\fr\\mutualite\\rh\\webapp\\odt\\template-entretien-pro4.odt");
 		InputStream in = fr.mutualite.rh.webapp.Activator.getContext().getBundle()
-				.getResource("/fr/mutualite/rh/webapp/odt/template-entretien-pro6.odt").openStream();
+				.getResource("/fr/mutualite/rh/webapp/odt/template-entretien-pro7.1.odt").openStream();
 		try {
 			// Prepare the IXDocReport instance based on the template, using
 			// Freemarker template engine
@@ -525,6 +525,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 			// Add properties to the context
 			Employe employe = entretien.employe();
 			Formulaire formulaire = makeFormulaire(entretien);
+			PhotoEmploye photoEmploye = entretien.getPhotoEmploye();
 			IContext ctx = report.createContext();
 			// ctx.put("entretien", entretien);
 			// ctx.put("employe", employe);
@@ -532,7 +533,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);
-				String sVal = string(rawVal);
+				Object sVal = string(rawVal);
 				ctx.put(att.getName(), sVal);
 			});
 			entretien.eClass().getEAllReferences().forEach(ref -> {
@@ -540,7 +541,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 			});
 			employe.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = employe.eGet(att);
-				String sVal = string(rawVal);
+				Object sVal = string(rawVal);
 				ctx.put("employe_" + att.getName(), sVal);
 			});
 			// employe.eClass().getEAllReferences().forEach(ref -> {
@@ -548,8 +549,13 @@ public class EntretienProfessionnelResource extends BaseResource {
 			// });
 			formulaire.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = formulaire.eGet(att);
-				String sVal = string(rawVal);
+				Object sVal = string(rawVal);
 				ctx.put("formulaire_" + att.getName(), sVal);
+			});
+			photoEmploye.eClass().getEAllAttributes().forEach(att -> {
+				Object rawVal = photoEmploye.eGet(att);
+				Object sVal = string(rawVal);
+				ctx.put("photo_" + att.getName(), sVal);
 			});
 			// formulaire.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("formulaire." + ref.getName(), formulaire.eGet(ref));
@@ -564,10 +570,14 @@ public class EntretienProfessionnelResource extends BaseResource {
 		}
 	}
 
-	public String string(Object rawVal) {
+	public Object string(Object rawVal) {
 		if (rawVal instanceof Date) {
 			Date date = (Date) rawVal;
 			return df.format(date);
+		}
+		if(rawVal instanceof Collection<?>) {
+			Collection col = (Collection) rawVal;
+			return col.stream().map(this::string).toArray();
 		}
 		String sVal = rawVal == null ? "Non renseigné" : rawVal.toString();
 		sVal = sVal.replaceAll("true", "oui").replaceAll("false", "non");
