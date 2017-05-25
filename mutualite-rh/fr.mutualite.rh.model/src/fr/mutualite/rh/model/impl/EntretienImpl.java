@@ -42,6 +42,7 @@ import fr.mutualite.rh.model.util.MutValidator;
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getPhotoEmploye <em>Photo Employe</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,6 +92,16 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 	 * @ordered
 	 */
 	protected static final String AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getCommentaireBilanFormation() <em>Commentaire Bilan Formation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommentaireBilanFormation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENTAIRE_BILAN_FORMATION_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -292,6 +303,24 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCommentaireBilanFormation() {
+		return (String)eDynamicGet(MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION, MutPackage.Literals.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommentaireBilanFormation(String newCommentaireBilanFormation) {
+		eDynamicSet(MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION, MutPackage.Literals.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION, newCommentaireBilanFormation);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -385,6 +414,8 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return getAutresActionsDeveloppementCompetences();
 			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
 				return getPhotoEmploye();
+			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
+				return getCommentaireBilanFormation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -430,6 +461,9 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
 				setPhotoEmploye((PhotoEmploye)newValue);
 				return;
+			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
+				setCommentaireBilanFormation((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -471,6 +505,9 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
 				setPhotoEmploye((PhotoEmploye)null);
 				return;
+			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
+				setCommentaireBilanFormation(COMMENTAIRE_BILAN_FORMATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -502,6 +539,8 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT == null ? getAutresActionsDeveloppementCompetences() != null : !AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES_EDEFAULT.equals(getAutresActionsDeveloppementCompetences());
 			case MutPackage.ENTRETIEN__PHOTO_EMPLOYE:
 				return getPhotoEmploye() != null;
+			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
+				return COMMENTAIRE_BILAN_FORMATION_EDEFAULT == null ? getCommentaireBilanFormation() != null : !COMMENTAIRE_BILAN_FORMATION_EDEFAULT.equals(getCommentaireBilanFormation());
 		}
 		return super.eIsSet(featureID);
 	}

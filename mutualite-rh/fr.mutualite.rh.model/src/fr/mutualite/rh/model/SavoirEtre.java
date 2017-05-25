@@ -26,7 +26,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ASSIDUITE(0, "Assiduite", "Assiduite"),
+	ASSIDUITE(0, "Assiduite", "Assiduite /ponctualit\u00e9"),
 
 	/**
 	 * The '<em><b>Tenue</b></em>' literal object.
@@ -36,7 +36,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TENUE(1, "Tenue", "Tenue"),
+	TENUE(1, "Tenue", "Tenue (comportementale et vestimentaire)"),
 
 	/**
 	 * The '<em><b>Motivation</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MOTIVATION(2, "Motivation", "Motivation"),
+	MOTIVATION(2, "Motivation", "Motivation/implication (r\u00e9gularit\u00e9 dans le travail)"),
 
 	/**
 	 * The '<em><b>Esprit Equipe</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ESPRIT_EQUIPE(3, "EspritEquipe", "EspritEquipe"),
+	ESPRIT_EQUIPE(3, "EspritEquipe", "Esprit d\'\u00e9quipe (bon \u00e9tat d\'esprit)"),
 
 	/**
 	 * The '<em><b>Esprit Initiative</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ESPRIT_INITIATIVE(4, "EspritInitiative", "EspritInitiative"),
+	ESPRIT_INITIATIVE(4, "EspritInitiative", "Esprit d\'initiative"),
 
 	/**
 	 * The '<em><b>Rigueur</b></em>' literal object.
@@ -96,7 +96,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DISCRETION(7, "Discretion", "Discretion"),
+	DISCRETION(7, "Discretion", "Discr\u00e9tion/confidentialit\u00e9"),
 
 	/**
 	 * The '<em><b>Controle Soi</b></em>' literal object.
@@ -106,7 +106,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTROLE_SOI(8, "ControleSoi", "ControleSoi"),
+	CONTROLE_SOI(8, "ControleSoi", "Contr\u00f4le de soi"),
 
 	/**
 	 * The '<em><b>Perseverance</b></em>' literal object.
@@ -116,7 +116,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERSEVERANCE(9, "Perseverance", "Perseverance"),
+	PERSEVERANCE(9, "Perseverance", "Pers\u00e9v\u00e9rance"),
 
 	/**
 	 * The '<em><b>Adaptation</b></em>' literal object.
@@ -126,7 +126,7 @@ public enum SavoirEtre implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADAPTATION(10, "Adaptation", "Adaptation");
+	ADAPTATION(10, "Adaptation", "Facult\u00e9 d\'adaptation");
 
 	/**
 	 * The '<em><b>Assiduite</b></em>' literal value.
@@ -137,7 +137,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ASSIDUITE
-	 * @model name="Assiduite"
+	 * @model name="Assiduite" literal="Assiduite /ponctualit\351"
 	 * @generated
 	 * @ordered
 	 */
@@ -152,7 +152,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #TENUE
-	 * @model name="Tenue"
+	 * @model name="Tenue" literal="Tenue (comportementale et vestimentaire)"
 	 * @generated
 	 * @ordered
 	 */
@@ -167,7 +167,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #MOTIVATION
-	 * @model name="Motivation"
+	 * @model name="Motivation" literal="Motivation/implication (r\351gularit\351 dans le travail)"
 	 * @generated
 	 * @ordered
 	 */
@@ -182,7 +182,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ESPRIT_EQUIPE
-	 * @model name="EspritEquipe"
+	 * @model name="EspritEquipe" literal="Esprit d\'\351quipe (bon \351tat d\'esprit)"
 	 * @generated
 	 * @ordered
 	 */
@@ -197,7 +197,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ESPRIT_INITIATIVE
-	 * @model name="EspritInitiative"
+	 * @model name="EspritInitiative" literal="Esprit d\'initiative"
 	 * @generated
 	 * @ordered
 	 */
@@ -242,7 +242,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #DISCRETION
-	 * @model name="Discretion"
+	 * @model name="Discretion" literal="Discr\351tion/confidentialit\351"
 	 * @generated
 	 * @ordered
 	 */
@@ -257,7 +257,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #CONTROLE_SOI
-	 * @model name="ControleSoi"
+	 * @model name="ControleSoi" literal="Contr\364le de soi"
 	 * @generated
 	 * @ordered
 	 */
@@ -272,7 +272,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PERSEVERANCE
-	 * @model name="Perseverance"
+	 * @model name="Perseverance" literal="Pers\351v\351rance"
 	 * @generated
 	 * @ordered
 	 */
@@ -287,7 +287,7 @@ public enum SavoirEtre implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ADAPTATION
-	 * @model name="Adaptation"
+	 * @model name="Adaptation" literal="Facult\351 d\'adaptation"
 	 * @generated
 	 * @ordered
 	 */

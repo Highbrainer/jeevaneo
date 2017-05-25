@@ -225,6 +225,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="photoEmploye" lowerBound="1"
         eType="#//PhotoEmploye" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireBilanFormation"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EntretienProfessionnel" eSuperTypes="#//Entretien">
     <eOperations name="hasValidSynthese" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -237,8 +239,6 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionDepuisDernierEntretien"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireBilanFormation"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="evolutionSouhaiteeDansEmploiActuel"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -385,17 +385,25 @@
         eType="#//Objectif" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objectifsPrecedents" upperBound="-1"
         eType="#//ObjectifPrecedent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireEvaluationsTenuePosteMissionsPrincipales"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireEvaluationsTenuePosteMissionsSpecifiques"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireCompetences"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaireSavoirEtre"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Evaluation">
     <eLiterals name="MOINS" literal="-"/>
     <eLiterals name="NEUTRE" value="1" literal="-/+"/>
     <eLiterals name="PLUS" value="2" literal="+"/>
+    <eLiterals name="NC" value="3" literal="Non concerné(e)"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EvaluationTenuePoste">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mission" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaire" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Evolution">
     <eLiterals name="DOWN"/>
@@ -411,35 +419,35 @@
         defaultValueLiteral="STABLE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Competence">
-    <eLiterals name="RespectProceduresNormes"/>
-    <eLiterals name="CapaciteDecelerUrgences" value="1"/>
-    <eLiterals name="Autonomie" value="2"/>
-    <eLiterals name="AnticipationOrganisation" value="3"/>
-    <eLiterals name="VolontaireDisponible" value="4"/>
-    <eLiterals name="CollaborationCollegues" value="5"/>
-    <eLiterals name="CollaborationClients" value="6"/>
-    <eLiterals name="Ecoute" value="7"/>
-    <eLiterals name="ImagePositive" value="8"/>
-    <eLiterals name="Deleguer" value="9"/>
-    <eLiterals name="RealisationObjectifs" value="10"/>
-    <eLiterals name="ControleObjectifs" value="11"/>
-    <eLiterals name="RendreCompte" value="12"/>
-    <eLiterals name="Transmettre" value="13"/>
-    <eLiterals name="RespectConsignesEnvironnement" value="14"/>
-    <eLiterals name="ContributionSecurite" value="15"/>
+    <eLiterals name="RespectProceduresNormes" literal="Respect des procédures et des normes"/>
+    <eLiterals name="CapaciteDecelerUrgences" value="1" literal="Capacité à déceler les urgences, priorités et anomalies"/>
+    <eLiterals name="Autonomie" value="2" literal="Autonomie dans la fonction"/>
+    <eLiterals name="AnticipationOrganisation" value="3" literal="Anticipation et organisation du travail"/>
+    <eLiterals name="VolontaireDisponible" value="4" literal="Contribution au bon fonctionnement du service (volontaire, disponible, adaptation...)"/>
+    <eLiterals name="CollaborationCollegues" value="5" literal="Collaboration avec les collègues"/>
+    <eLiterals name="CollaborationClients" value="6" literal="Collaboration avec les patients, clients, fournisseurs, autres..."/>
+    <eLiterals name="Ecoute" value="7" literal="Ecoute et compréhension des besoins des interlocuteurs"/>
+    <eLiterals name="ImagePositive" value="8" literal="Présentation d'une image positive de l'entreprise"/>
+    <eLiterals name="Deleguer" value="9" literal="Capacité à déléguer"/>
+    <eLiterals name="RealisationObjectifs" value="10" literal="Capacité à la réalisation d'objectifs"/>
+    <eLiterals name="ControleObjectifs" value="11" literal="Capacité à contrôler les objectifs"/>
+    <eLiterals name="RendreCompte" value="12" literal="Savoir rendre compte au responsable"/>
+    <eLiterals name="Transmettre" value="13" literal="Transmettre son savoir"/>
+    <eLiterals name="RespectConsignesEnvironnement" value="14" literal="Contribuer au respect des consignes environnementales (savoir éteindre les lumières, éviter le gaspillage papier...)"/>
+    <eLiterals name="ContributionSecurite" value="15" literal="Contribuer au bon fonctionnement de son service (fermeture et contrôle de la sécurité, fermeture des portes et fenêtres)"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SavoirEtre">
-    <eLiterals name="Assiduite"/>
-    <eLiterals name="Tenue" value="1"/>
-    <eLiterals name="Motivation" value="2"/>
-    <eLiterals name="EspritEquipe" value="3"/>
-    <eLiterals name="EspritInitiative" value="4"/>
+    <eLiterals name="Assiduite" literal="Assiduite /ponctualité"/>
+    <eLiterals name="Tenue" value="1" literal="Tenue (comportementale et vestimentaire)"/>
+    <eLiterals name="Motivation" value="2" literal="Motivation/implication (régularité dans le travail)"/>
+    <eLiterals name="EspritEquipe" value="3" literal="Esprit d'équipe (bon état d'esprit)"/>
+    <eLiterals name="EspritInitiative" value="4" literal="Esprit d'initiative"/>
     <eLiterals name="Rigueur" value="5"/>
     <eLiterals name="Dynamisme" value="6"/>
-    <eLiterals name="Discretion" value="7"/>
-    <eLiterals name="ControleSoi" value="8"/>
-    <eLiterals name="Perseverance" value="9"/>
-    <eLiterals name="Adaptation" value="10"/>
+    <eLiterals name="Discretion" value="7" literal="Discrétion/confidentialité"/>
+    <eLiterals name="ControleSoi" value="8" literal="Contrôle de soi"/>
+    <eLiterals name="Perseverance" value="9" literal="Persévérance"/>
+    <eLiterals name="Adaptation" value="10" literal="Faculté d'adaptation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EvaluationSavoirEtre">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="savoirEtre" lowerBound="1"
@@ -490,6 +498,17 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretien"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretienPro"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretienAnnuel"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CategorieCompetence">
+    <eLiterals name="TECHNIQUE" literal="Compétences Techniques"/>
+    <eLiterals name="ORGA" value="1" literal="Compétences organisationnelles"/>
+    <eLiterals name="RELATION" value="2" literal="Compétences relationnelles"/>
+    <eLiterals name="MANAGER" value="3" literal="Compétences managériales"/>
+    <eLiterals name="ECO" value="4" literal="Compétences économiques / Environnement"/>
   </eClassifiers>
   <eSubpackages name="dto" nsURI="http://www.mutualite.fr/mut/1.0/dto" nsPrefix="dto">
     <eClassifiers xsi:type="ecore:EClass" name="Formulaire">

@@ -31,6 +31,8 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl#getDateEmbauche <em>Date Embauche</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl#getDiplomes <em>Diplomes</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl#getDatePrecedentEntretien <em>Date Precedent Entretien</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl#getDatePrecedentEntretienPro <em>Date Precedent Entretien Pro</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl#getDatePrecedentEntretienAnnuel <em>Date Precedent Entretien Annuel</em>}</li>
  * </ul>
  *
  * @generated
@@ -125,6 +127,26 @@ public class PhotoEmployeImpl extends CDOObjectImpl implements PhotoEmploye {
 	 * @ordered
 	 */
 	protected static final Date DATE_PRECEDENT_ENTRETIEN_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getDatePrecedentEntretienPro() <em>Date Precedent Entretien Pro</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDatePrecedentEntretienPro()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DATE_PRECEDENT_ENTRETIEN_PRO_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getDatePrecedentEntretienAnnuel() <em>Date Precedent Entretien Annuel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDatePrecedentEntretienAnnuel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DATE_PRECEDENT_ENTRETIEN_ANNUEL_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -332,6 +354,42 @@ public class PhotoEmployeImpl extends CDOObjectImpl implements PhotoEmploye {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Date getDatePrecedentEntretienPro() {
+		return (Date)eDynamicGet(MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO, MutPackage.Literals.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDatePrecedentEntretienPro(Date newDatePrecedentEntretienPro) {
+		eDynamicSet(MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO, MutPackage.Literals.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO, newDatePrecedentEntretienPro);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getDatePrecedentEntretienAnnuel() {
+		return (Date)eDynamicGet(MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL, MutPackage.Literals.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDatePrecedentEntretienAnnuel(Date newDatePrecedentEntretienAnnuel) {
+		eDynamicSet(MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL, MutPackage.Literals.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL, newDatePrecedentEntretienAnnuel);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -355,6 +413,10 @@ public class PhotoEmployeImpl extends CDOObjectImpl implements PhotoEmploye {
 				return getDiplomes();
 			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN:
 				return getDatePrecedentEntretien();
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO:
+				return getDatePrecedentEntretienPro();
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL:
+				return getDatePrecedentEntretienAnnuel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -399,6 +461,12 @@ public class PhotoEmployeImpl extends CDOObjectImpl implements PhotoEmploye {
 			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN:
 				setDatePrecedentEntretien((Date)newValue);
 				return;
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO:
+				setDatePrecedentEntretienPro((Date)newValue);
+				return;
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL:
+				setDatePrecedentEntretienAnnuel((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -441,6 +509,12 @@ public class PhotoEmployeImpl extends CDOObjectImpl implements PhotoEmploye {
 			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN:
 				setDatePrecedentEntretien(DATE_PRECEDENT_ENTRETIEN_EDEFAULT);
 				return;
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO:
+				setDatePrecedentEntretienPro(DATE_PRECEDENT_ENTRETIEN_PRO_EDEFAULT);
+				return;
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL:
+				setDatePrecedentEntretienAnnuel(DATE_PRECEDENT_ENTRETIEN_ANNUEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -473,6 +547,10 @@ public class PhotoEmployeImpl extends CDOObjectImpl implements PhotoEmploye {
 				return !getDiplomes().isEmpty();
 			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN:
 				return DATE_PRECEDENT_ENTRETIEN_EDEFAULT == null ? getDatePrecedentEntretien() != null : !DATE_PRECEDENT_ENTRETIEN_EDEFAULT.equals(getDatePrecedentEntretien());
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO:
+				return DATE_PRECEDENT_ENTRETIEN_PRO_EDEFAULT == null ? getDatePrecedentEntretienPro() != null : !DATE_PRECEDENT_ENTRETIEN_PRO_EDEFAULT.equals(getDatePrecedentEntretienPro());
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL:
+				return DATE_PRECEDENT_ENTRETIEN_ANNUEL_EDEFAULT == null ? getDatePrecedentEntretienAnnuel() != null : !DATE_PRECEDENT_ENTRETIEN_ANNUEL_EDEFAULT.equals(getDatePrecedentEntretienAnnuel());
 		}
 		return super.eIsSet(featureID);
 	}

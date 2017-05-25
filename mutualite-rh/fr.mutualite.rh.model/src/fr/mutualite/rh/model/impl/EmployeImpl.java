@@ -4,6 +4,8 @@ import fr.mutualite.rh.model.Affectation;
 import fr.mutualite.rh.model.AffectationClassification;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
+import fr.mutualite.rh.model.EntretienAnnuel;
+import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.MutPackage;
@@ -642,6 +644,8 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 		}
 		photo.setDateEmbauche(getDateEmbauche());
 		getEntretiens().stream().filter(ent -> ent.getDate().before(d)&&!ent.isEnCours()).sorted((ent1, ent2) -> ent2.getDate().compareTo(ent1.getDate())).findFirst().ifPresent(last -> photo.setDatePrecedentEntretien(last.getDate()));
+		getEntretiens().stream().filter(ent -> ent instanceof EntretienAnnuel && ent.getDate().before(d)&&!ent.isEnCours()).sorted((ent1, ent2) -> ent2.getDate().compareTo(ent1.getDate())).findFirst().map(Entretien::getDate).ifPresent(photo::setDatePrecedentEntretienAnnuel);
+		getEntretiens().stream().filter(ent -> ent instanceof EntretienProfessionnel && ent.getDate().before(d)&&!ent.isEnCours()).sorted((ent1, ent2) -> ent2.getDate().compareTo(ent1.getDate())).findFirst().map(Entretien::getDate).ifPresent(photo::setDatePrecedentEntretienPro);
 		photo.getDiplomes().addAll(getDiplomes());
 		Affectation affectationEmploiCourante = getAffectationEmploiCourante();
 		if (null != affectationEmploiCourante) {

@@ -26,6 +26,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.PhotoEmploye#getDateEmbauche <em>Date Embauche</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.PhotoEmploye#getDiplomes <em>Diplomes</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretien <em>Date Precedent Entretien</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienPro <em>Date Precedent Entretien Pro</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienAnnuel <em>Date Precedent Entretien Annuel</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getPhotoEmploye()
@@ -283,5 +285,57 @@ public interface PhotoEmploye extends CDOObject {
 	 * @generated
 	 */
 	void setDatePrecedentEntretien(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Date Precedent Entretien Pro</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Date Precedent Entretien Pro</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Date Precedent Entretien Pro</em>' attribute.
+	 * @see #setDatePrecedentEntretienPro(Date)
+	 * @see fr.mutualite.rh.model.MutPackage#getPhotoEmploye_DatePrecedentEntretienPro()
+	 * @model
+	 * @generated
+	 */
+	Date getDatePrecedentEntretienPro();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienPro <em>Date Precedent Entretien Pro</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Date Precedent Entretien Pro</em>' attribute.
+	 * @see #getDatePrecedentEntretienPro()
+	 * @generated
+	 */
+	void setDatePrecedentEntretienPro(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Date Precedent Entretien Annuel</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Date Precedent Entretien Annuel</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Date Precedent Entretien Annuel</em>' attribute.
+	 * @see #setDatePrecedentEntretienAnnuel(Date)
+	 * @see fr.mutualite.rh.model.MutPackage#getPhotoEmploye_DatePrecedentEntretienAnnuel()
+	 * @model
+	 * @generated
+	 */
+	Date getDatePrecedentEntretienAnnuel();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienAnnuel <em>Date Precedent Entretien Annuel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Date Precedent Entretien Annuel</em>' attribute.
+	 * @see #getDatePrecedentEntretienAnnuel()
+	 * @generated
+	 */
+	void setDatePrecedentEntretienAnnuel(Date value);
 
 } // PhotoEmploye

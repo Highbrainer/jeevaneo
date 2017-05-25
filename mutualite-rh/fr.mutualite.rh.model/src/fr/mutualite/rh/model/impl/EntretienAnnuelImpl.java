@@ -45,6 +45,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getSyntheseSalarie <em>Synthese Salarie</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getObjectifs <em>Objectifs</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getObjectifsPrecedents <em>Objectifs Precedents</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getCommentaireEvaluationsTenuePosteMissionsPrincipales <em>Commentaire Evaluations Tenue Poste Missions Principales</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getCommentaireEvaluationsTenuePosteMissionsSpecifiques <em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getCommentaireCompetences <em>Commentaire Competences</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienAnnuelImpl#getCommentaireSavoirEtre <em>Commentaire Savoir Etre</em>}</li>
  * </ul>
  *
  * @generated
@@ -149,6 +153,46 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 	 * @ordered
 	 */
 	protected static final String SYNTHESE_SALARIE_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getCommentaireEvaluationsTenuePosteMissionsPrincipales() <em>Commentaire Evaluations Tenue Poste Missions Principales</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommentaireEvaluationsTenuePosteMissionsPrincipales()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getCommentaireEvaluationsTenuePosteMissionsSpecifiques() <em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommentaireEvaluationsTenuePosteMissionsSpecifiques()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getCommentaireCompetences() <em>Commentaire Competences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommentaireCompetences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENTAIRE_COMPETENCES_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getCommentaireSavoirEtre() <em>Commentaire Savoir Etre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommentaireSavoirEtre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENTAIRE_SAVOIR_ETRE_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -414,6 +458,78 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCommentaireEvaluationsTenuePosteMissionsPrincipales() {
+		return (String)eDynamicGet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommentaireEvaluationsTenuePosteMissionsPrincipales(String newCommentaireEvaluationsTenuePosteMissionsPrincipales) {
+		eDynamicSet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES, newCommentaireEvaluationsTenuePosteMissionsPrincipales);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCommentaireEvaluationsTenuePosteMissionsSpecifiques() {
+		return (String)eDynamicGet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommentaireEvaluationsTenuePosteMissionsSpecifiques(String newCommentaireEvaluationsTenuePosteMissionsSpecifiques) {
+		eDynamicSet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES, newCommentaireEvaluationsTenuePosteMissionsSpecifiques);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCommentaireCompetences() {
+		return (String)eDynamicGet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommentaireCompetences(String newCommentaireCompetences) {
+		eDynamicSet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES, newCommentaireCompetences);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCommentaireSavoirEtre() {
+		return (String)eDynamicGet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommentaireSavoirEtre(String newCommentaireSavoirEtre) {
+		eDynamicSet(MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE, MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE, newCommentaireSavoirEtre);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -473,6 +589,14 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 				return getObjectifs();
 			case MutPackage.ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS:
 				return getObjectifsPrecedents();
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES:
+				return getCommentaireEvaluationsTenuePosteMissionsPrincipales();
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES:
+				return getCommentaireEvaluationsTenuePosteMissionsSpecifiques();
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES:
+				return getCommentaireCompetences();
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE:
+				return getCommentaireSavoirEtre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -540,6 +664,18 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 				getObjectifsPrecedents().clear();
 				getObjectifsPrecedents().addAll((Collection<? extends ObjectifPrecedent>)newValue);
 				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES:
+				setCommentaireEvaluationsTenuePosteMissionsPrincipales((String)newValue);
+				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES:
+				setCommentaireEvaluationsTenuePosteMissionsSpecifiques((String)newValue);
+				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES:
+				setCommentaireCompetences((String)newValue);
+				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE:
+				setCommentaireSavoirEtre((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -600,6 +736,18 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 			case MutPackage.ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS:
 				getObjectifsPrecedents().clear();
 				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES:
+				setCommentaireEvaluationsTenuePosteMissionsPrincipales(COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES_EDEFAULT);
+				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES:
+				setCommentaireEvaluationsTenuePosteMissionsSpecifiques(COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES_EDEFAULT);
+				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES:
+				setCommentaireCompetences(COMMENTAIRE_COMPETENCES_EDEFAULT);
+				return;
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE:
+				setCommentaireSavoirEtre(COMMENTAIRE_SAVOIR_ETRE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -644,6 +792,14 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 				return !getObjectifs().isEmpty();
 			case MutPackage.ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS:
 				return !getObjectifsPrecedents().isEmpty();
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES:
+				return COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES_EDEFAULT == null ? getCommentaireEvaluationsTenuePosteMissionsPrincipales() != null : !COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES_EDEFAULT.equals(getCommentaireEvaluationsTenuePosteMissionsPrincipales());
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES:
+				return COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES_EDEFAULT == null ? getCommentaireEvaluationsTenuePosteMissionsSpecifiques() != null : !COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES_EDEFAULT.equals(getCommentaireEvaluationsTenuePosteMissionsSpecifiques());
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES:
+				return COMMENTAIRE_COMPETENCES_EDEFAULT == null ? getCommentaireCompetences() != null : !COMMENTAIRE_COMPETENCES_EDEFAULT.equals(getCommentaireCompetences());
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE:
+				return COMMENTAIRE_SAVOIR_ETRE_EDEFAULT == null ? getCommentaireSavoirEtre() != null : !COMMENTAIRE_SAVOIR_ETRE_EDEFAULT.equals(getCommentaireSavoirEtre());
 		}
 		return super.eIsSet(featureID);
 	}

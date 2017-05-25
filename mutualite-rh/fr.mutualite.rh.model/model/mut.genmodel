@@ -45,6 +45,7 @@
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Evaluation/MOINS"/>
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Evaluation/NEUTRE"/>
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Evaluation/PLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Evaluation/NC"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mut.ecore#//Evolution">
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//Evolution/DOWN"/>
@@ -86,6 +87,13 @@
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//EvaluationAtteinteObjectif/NON"/>
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//EvaluationAtteinteObjectif/PARTIEL"/>
       <genEnumLiterals ecoreEnumLiteral="mut.ecore#//EvaluationAtteinteObjectif/OUI"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mut.ecore#//CategorieCompetence">
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//CategorieCompetence/TECHNIQUE"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//CategorieCompetence/ORGA"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//CategorieCompetence/RELATION"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//CategorieCompetence/MANAGER"/>
+      <genEnumLiterals ecoreEnumLiteral="mut.ecore#//CategorieCompetence/ECO"/>
     </genEnums>
     <genClasses ecoreClass="mut.ecore#//Employe" labelFeature="#//model/Employe/label">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Employe/matricule"/>
@@ -176,6 +184,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Entretien/souhaitsFormationEvaluateur"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/autresActionsDeveloppementCompetences"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Entretien/photoEmploye"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/commentaireBilanFormation"/>
       <genOperations ecoreOperation="mut.ecore#//Entretien/employe"/>
       <genOperations ecoreOperation="mut.ecore#//Entretien/hasValidMeneur">
         <genParameters ecoreParameter="mut.ecore#//Entretien/hasValidMeneur/chain"/>
@@ -184,7 +193,6 @@
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//EntretienProfessionnel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionDepuisDernierEntretien"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/commentaireBilanFormation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeDansEmploiActuel"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/evolutionSouhaiteeDansNouvelEmploi"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienProfessionnel/echeance"/>
@@ -270,11 +278,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienAnnuel/syntheseSalarie"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//EntretienAnnuel/objectifs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//EntretienAnnuel/objectifsPrecedents"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienAnnuel/commentaireEvaluationsTenuePosteMissionsPrincipales"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienAnnuel/commentaireEvaluationsTenuePosteMissionsSpecifiques"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienAnnuel/commentaireCompetences"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EntretienAnnuel/commentaireSavoirEtre"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//EvaluationTenuePoste">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EvaluationTenuePoste/mission"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EvaluationTenuePoste/eval"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EvaluationTenuePoste/commentaire"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//EvaluationCompetence">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//EvaluationCompetence/competence"/>
@@ -309,6 +320,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//PhotoEmploye/dateEmbauche"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//PhotoEmploye/diplomes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//PhotoEmploye/datePrecedentEntretien"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//PhotoEmploye/datePrecedentEntretienPro"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//PhotoEmploye/datePrecedentEntretienAnnuel"/>
     </genClasses>
     <nestedGenPackages prefix="Dto" disposableProviderFactory="true" ecorePackage="mut.ecore#//dto">
       <genClasses ecoreClass="mut.ecore#//dto/Formulaire">

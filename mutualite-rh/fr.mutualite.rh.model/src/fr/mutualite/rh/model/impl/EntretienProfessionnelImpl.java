@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEvolutionDepuisDernierEntretien <em>Evolution Depuis Dernier Entretien</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEvolutionSouhaiteeDansEmploiActuel <em>Evolution Souhaitee Dans Emploi Actuel</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEvolutionSouhaiteeDansNouvelEmploi <em>Evolution Souhaitee Dans Nouvel Emploi</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienProfessionnelImpl#getEcheance <em>Echeance</em>}</li>
@@ -51,15 +50,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	 * @ordered
 	 */
 	protected static final String EVOLUTION_DEPUIS_DERNIER_ENTRETIEN_EDEFAULT = null;
-	/**
-	 * The default value of the '{@link #getCommentaireBilanFormation() <em>Commentaire Bilan Formation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCommentaireBilanFormation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COMMENTAIRE_BILAN_FORMATION_EDEFAULT = null;
 	/**
 	 * The default value of the '{@link #getEvolutionSouhaiteeDansEmploiActuel() <em>Evolution Souhaitee Dans Emploi Actuel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -177,7 +167,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	 * @ordered
 	 */
 	protected static final String SYNTHESE_EDEFAULT = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,24 +202,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 	 */
 	public void setEvolutionDepuisDernierEntretien(String newEvolutionDepuisDernierEntretien) {
 		eDynamicSet(MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN, newEvolutionDepuisDernierEntretien);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getCommentaireBilanFormation() {
-		return (String)eDynamicGet(MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCommentaireBilanFormation(String newCommentaireBilanFormation) {
-		eDynamicSet(MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION, MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION, newCommentaireBilanFormation);
 	}
 
 	/**
@@ -501,8 +472,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 		switch (featureID) {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN:
 				return getEvolutionDepuisDernierEntretien();
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION:
-				return getCommentaireBilanFormation();
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL:
 				return getEvolutionSouhaiteeDansEmploiActuel();
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_NOUVEL_EMPLOI:
@@ -544,9 +513,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 		switch (featureID) {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN:
 				setEvolutionDepuisDernierEntretien((String)newValue);
-				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION:
-				setCommentaireBilanFormation((String)newValue);
 				return;
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL:
 				setEvolutionSouhaiteeDansEmploiActuel((String)newValue);
@@ -602,9 +568,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN:
 				setEvolutionDepuisDernierEntretien(EVOLUTION_DEPUIS_DERNIER_ENTRETIEN_EDEFAULT);
 				return;
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION:
-				setCommentaireBilanFormation(COMMENTAIRE_BILAN_FORMATION_EDEFAULT);
-				return;
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL:
 				setEvolutionSouhaiteeDansEmploiActuel(EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL_EDEFAULT);
 				return;
@@ -658,8 +621,6 @@ public class EntretienProfessionnelImpl extends EntretienImpl implements Entreti
 		switch (featureID) {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN:
 				return EVOLUTION_DEPUIS_DERNIER_ENTRETIEN_EDEFAULT == null ? getEvolutionDepuisDernierEntretien() != null : !EVOLUTION_DEPUIS_DERNIER_ENTRETIEN_EDEFAULT.equals(getEvolutionDepuisDernierEntretien());
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION:
-				return COMMENTAIRE_BILAN_FORMATION_EDEFAULT == null ? getCommentaireBilanFormation() != null : !COMMENTAIRE_BILAN_FORMATION_EDEFAULT.equals(getCommentaireBilanFormation());
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL:
 				return EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL_EDEFAULT == null ? getEvolutionSouhaiteeDansEmploiActuel() != null : !EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL_EDEFAULT.equals(getEvolutionSouhaiteeDansEmploiActuel());
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_NOUVEL_EMPLOI:

@@ -15,7 +15,6 @@ import org.eclipse.emf.cdo.CDOObject;
  * <ul>
  *   <li>{@link fr.mutualite.rh.model.EvaluationTenuePoste#getMission <em>Mission</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EvaluationTenuePoste#getEval <em>Eval</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.EvaluationTenuePoste#getCommentaire <em>Commentaire</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEvaluationTenuePoste()
@@ -78,31 +77,5 @@ public interface EvaluationTenuePoste extends CDOObject {
 	 * @generated
 	 */
 	void setEval(Evaluation value);
-
-	/**
-	 * Returns the value of the '<em><b>Commentaire</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Commentaire</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Commentaire</em>' attribute.
-	 * @see #setCommentaire(String)
-	 * @see fr.mutualite.rh.model.MutPackage#getEvaluationTenuePoste_Commentaire()
-	 * @model
-	 * @generated
-	 */
-	String getCommentaire();
-
-	/**
-	 * Sets the value of the '{@link fr.mutualite.rh.model.EvaluationTenuePoste#getCommentaire <em>Commentaire</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Commentaire</em>' attribute.
-	 * @see #getCommentaire()
-	 * @generated
-	 */
-	void setCommentaire(String value);
 
 } // EvaluationTenuePoste

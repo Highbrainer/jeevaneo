@@ -7,6 +7,7 @@ import fr.mutualite.rh.model.AffectationClassification;
 import fr.mutualite.rh.model.Appreciation;
 import fr.mutualite.rh.model.AppreciationSessionFormation;
 import fr.mutualite.rh.model.Avis;
+import fr.mutualite.rh.model.CategorieCompetence;
 import fr.mutualite.rh.model.ClassificationStatut;
 import fr.mutualite.rh.model.Competence;
 import fr.mutualite.rh.model.Effectif;
@@ -315,6 +316,13 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * @generated
 	 */
 	private EEnum evaluationAtteinteObjectifEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum categorieCompetenceEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -660,6 +668,42 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsPrincipales() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsSpecifiques() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_CommentaireCompetences() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEntretienAnnuel_CommentaireSavoirEtre() {
+		return (EAttribute)entretienAnnuelEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEvaluationTenuePoste() {
 		return evaluationTenuePosteEClass;
 	}
@@ -680,15 +724,6 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 */
 	public EAttribute getEvaluationTenuePoste_Eval() {
 		return (EAttribute)evaluationTenuePosteEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEvaluationTenuePoste_Commentaire() {
-		return (EAttribute)evaluationTenuePosteEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -950,6 +985,24 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 */
 	public EAttribute getPhotoEmploye_DatePrecedentEntretien() {
 		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_DatePrecedentEntretienPro() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPhotoEmploye_DatePrecedentEntretienAnnuel() {
+		return (EAttribute)photoEmployeEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -1551,6 +1604,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEntretien_CommentaireBilanFormation() {
+		return (EAttribute)entretienEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEntretien__Employe() {
 		return entretienEClass.getEOperations().get(0);
 	}
@@ -1587,7 +1649,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_CommentaireBilanFormation() {
+	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeDansEmploiActuel() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1596,7 +1658,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeDansEmploiActuel() {
+	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeDansNouvelEmploi() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1605,7 +1667,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeDansNouvelEmploi() {
+	public EAttribute getEntretienProfessionnel_Echeance() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1614,7 +1676,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_Echeance() {
+	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeCompetencesAcquises() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1623,7 +1685,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeCompetencesAcquises() {
+	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeCompetencesRequises() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1632,7 +1694,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeCompetencesRequises() {
+	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeMoyensRealisation() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -1641,7 +1703,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_EvolutionSouhaiteeMoyensRealisation() {
+	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelle() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -1650,7 +1712,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelle() {
+	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelleCompetencesAssociees() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -1659,7 +1721,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_PerspectivesEvolutionProfessionnelleCompetencesAssociees() {
+	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntreprise() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -1668,7 +1730,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntreprise() {
+	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntrepriseCommentaire() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -1677,7 +1739,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_AdequationProjetProBesoinsEntrepriseCommentaire() {
+	public EAttribute getEntretienProfessionnel_RencontreRh() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -1686,7 +1748,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_RencontreRh() {
+	public EAttribute getEntretienProfessionnel_RencontreRhCommentaire() {
 		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -1695,17 +1757,8 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEntretienProfessionnel_RencontreRhCommentaire() {
-		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getEntretienProfessionnel_Synthese() {
-		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(14);
+		return (EAttribute)entretienProfessionnelEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -2046,6 +2099,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getCategorieCompetence() {
+		return categorieCompetenceEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MutFactory getMutFactory() {
 		return (MutFactory)getEFactoryInstance();
 	}
@@ -2142,12 +2204,12 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEReference(entretienEClass, ENTRETIEN__SOUHAITS_FORMATION_EVALUATEUR);
 		createEAttribute(entretienEClass, ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES);
 		createEReference(entretienEClass, ENTRETIEN__PHOTO_EMPLOYE);
+		createEAttribute(entretienEClass, ENTRETIEN__COMMENTAIRE_BILAN_FORMATION);
 		createEOperation(entretienEClass, ENTRETIEN___EMPLOYE);
 		createEOperation(entretienEClass, ENTRETIEN___HAS_VALID_MENEUR__DIAGNOSTICCHAIN_MAP);
 
 		entretienProfessionnelEClass = createEClass(ENTRETIEN_PROFESSIONNEL);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN);
-		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_NOUVEL_EMPLOI);
 		createEAttribute(entretienProfessionnelEClass, ENTRETIEN_PROFESSIONNEL__ECHEANCE);
@@ -2230,11 +2292,14 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__SYNTHESE_SALARIE);
 		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__OBJECTIFS);
 		createEReference(entretienAnnuelEClass, ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES);
+		createEAttribute(entretienAnnuelEClass, ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE);
 
 		evaluationTenuePosteEClass = createEClass(EVALUATION_TENUE_POSTE);
 		createEAttribute(evaluationTenuePosteEClass, EVALUATION_TENUE_POSTE__MISSION);
 		createEAttribute(evaluationTenuePosteEClass, EVALUATION_TENUE_POSTE__EVAL);
-		createEAttribute(evaluationTenuePosteEClass, EVALUATION_TENUE_POSTE__COMMENTAIRE);
 
 		evaluationCompetenceEClass = createEClass(EVALUATION_COMPETENCE);
 		createEAttribute(evaluationCompetenceEClass, EVALUATION_COMPETENCE__COMPETENCE);
@@ -2269,6 +2334,8 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DATE_EMBAUCHE);
 		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DIPLOMES);
 		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO);
+		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL);
 
 		// Create enums
 		classificationStatutEEnum = createEEnum(CLASSIFICATION_STATUT);
@@ -2280,6 +2347,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		competenceEEnum = createEEnum(COMPETENCE);
 		savoirEtreEEnum = createEEnum(SAVOIR_ETRE);
 		evaluationAtteinteObjectifEEnum = createEEnum(EVALUATION_ATTEINTE_OBJECTIF);
+		categorieCompetenceEEnum = createEEnum(CATEGORIE_COMPETENCE);
 	}
 
 	/**
@@ -2437,6 +2505,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEReference(getEntretien_SouhaitsFormationEvaluateur(), this.getSouhaitFormationEvaluateur(), null, "souhaitsFormationEvaluateur", null, 0, -1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretien_AutresActionsDeveloppementCompetences(), ecorePackage.getEString(), "autresActionsDeveloppementCompetences", null, 0, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEntretien_PhotoEmploye(), this.getPhotoEmploye(), null, "photoEmploye", null, 1, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretien_CommentaireBilanFormation(), ecorePackage.getEString(), "commentaireBilanFormation", null, 0, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEntretien__Employe(), this.getEmploye(), "employe", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -2451,7 +2520,6 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 
 		initEClass(entretienProfessionnelEClass, EntretienProfessionnel.class, "EntretienProfessionnel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEntretienProfessionnel_EvolutionDepuisDernierEntretien(), ecorePackage.getEString(), "evolutionDepuisDernierEntretien", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEntretienProfessionnel_CommentaireBilanFormation(), ecorePackage.getEString(), "commentaireBilanFormation", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_EvolutionSouhaiteeDansEmploiActuel(), ecorePackage.getEString(), "evolutionSouhaiteeDansEmploiActuel", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_EvolutionSouhaiteeDansNouvelEmploi(), ecorePackage.getEString(), "evolutionSouhaiteeDansNouvelEmploi", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretienProfessionnel_Echeance(), ecorePackage.getEString(), "echeance", null, 0, 1, EntretienProfessionnel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2542,11 +2610,14 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEAttribute(getEntretienAnnuel_SyntheseSalarie(), ecorePackage.getEString(), "syntheseSalarie", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEntretienAnnuel_Objectifs(), this.getObjectif(), null, "objectifs", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEntretienAnnuel_ObjectifsPrecedents(), this.getObjectifPrecedent(), null, "objectifsPrecedents", null, 0, -1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsPrincipales(), ecorePackage.getEString(), "commentaireEvaluationsTenuePosteMissionsPrincipales", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsSpecifiques(), ecorePackage.getEString(), "commentaireEvaluationsTenuePosteMissionsSpecifiques", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_CommentaireCompetences(), ecorePackage.getEString(), "commentaireCompetences", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEntretienAnnuel_CommentaireSavoirEtre(), ecorePackage.getEString(), "commentaireSavoirEtre", null, 0, 1, EntretienAnnuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(evaluationTenuePosteEClass, EvaluationTenuePoste.class, "EvaluationTenuePoste", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEvaluationTenuePoste_Mission(), ecorePackage.getEString(), "mission", null, 1, 1, EvaluationTenuePoste.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvaluationTenuePoste_Eval(), this.getEvaluation(), "eval", null, 1, 1, EvaluationTenuePoste.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEvaluationTenuePoste_Commentaire(), ecorePackage.getEString(), "commentaire", null, 0, 1, EvaluationTenuePoste.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(evaluationCompetenceEClass, EvaluationCompetence.class, "EvaluationCompetence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEvaluationCompetence_Competence(), this.getCompetence(), "competence", null, 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2581,6 +2652,8 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEAttribute(getPhotoEmploye_DateEmbauche(), ecorePackage.getEDate(), "dateEmbauche", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPhotoEmploye_Diplomes(), ecorePackage.getEString(), "diplomes", null, 0, -1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPhotoEmploye_DatePrecedentEntretien(), ecorePackage.getEDate(), "datePrecedentEntretien", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_DatePrecedentEntretienPro(), ecorePackage.getEDate(), "datePrecedentEntretienPro", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPhotoEmploye_DatePrecedentEntretienAnnuel(), ecorePackage.getEDate(), "datePrecedentEntretienAnnuel", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(classificationStatutEEnum, ClassificationStatut.class, "ClassificationStatut");
@@ -2619,6 +2692,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		addEEnumLiteral(evaluationEEnum, Evaluation.MOINS);
 		addEEnumLiteral(evaluationEEnum, Evaluation.NEUTRE);
 		addEEnumLiteral(evaluationEEnum, Evaluation.PLUS);
+		addEEnumLiteral(evaluationEEnum, Evaluation.NC);
 
 		initEEnum(evolutionEEnum, Evolution.class, "Evolution");
 		addEEnumLiteral(evolutionEEnum, Evolution.DOWN);
@@ -2660,6 +2734,13 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		addEEnumLiteral(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.NON);
 		addEEnumLiteral(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.PARTIEL);
 		addEEnumLiteral(evaluationAtteinteObjectifEEnum, EvaluationAtteinteObjectif.OUI);
+
+		initEEnum(categorieCompetenceEEnum, CategorieCompetence.class, "CategorieCompetence");
+		addEEnumLiteral(categorieCompetenceEEnum, CategorieCompetence.TECHNIQUE);
+		addEEnumLiteral(categorieCompetenceEEnum, CategorieCompetence.ORGA);
+		addEEnumLiteral(categorieCompetenceEEnum, CategorieCompetence.RELATION);
+		addEEnumLiteral(categorieCompetenceEEnum, CategorieCompetence.MANAGER);
+		addEEnumLiteral(categorieCompetenceEEnum, CategorieCompetence.ECO);
 
 		// Create resource
 		createResource(eNS_URI);

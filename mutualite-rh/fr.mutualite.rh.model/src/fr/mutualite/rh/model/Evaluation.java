@@ -46,7 +46,15 @@ public enum Evaluation implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PLUS(2, "PLUS", "+");
+	PLUS(2, "PLUS", "+"), /**
+	 * The '<em><b>NC</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NC_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	NC(3, "NC", "Non concern\u00e9(e)");
 
 	/**
 	 * The '<em><b>MOINS</b></em>' literal value.
@@ -94,6 +102,21 @@ public enum Evaluation implements Enumerator {
 	public static final int PLUS_VALUE = 2;
 
 	/**
+	 * The '<em><b>NC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NC
+	 * @model literal="Non concern\351(e)"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NC_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Evaluation</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,6 +127,7 @@ public enum Evaluation implements Enumerator {
 			MOINS,
 			NEUTRE,
 			PLUS,
+			NC,
 		};
 
 	/**
@@ -163,6 +187,7 @@ public enum Evaluation implements Enumerator {
 			case MOINS_VALUE: return MOINS;
 			case NEUTRE_VALUE: return NEUTRE;
 			case PLUS_VALUE: return PLUS;
+			case NC_VALUE: return NC;
 		}
 		return null;
 	}

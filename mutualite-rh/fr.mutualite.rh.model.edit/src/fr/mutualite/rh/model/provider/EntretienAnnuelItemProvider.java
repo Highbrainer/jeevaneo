@@ -59,6 +59,10 @@ public class EntretienAnnuelItemProvider extends EntretienItemProvider {
 			addObjectifsCommentairesPropertyDescriptor(object);
 			addSyntheseEvaluateurPropertyDescriptor(object);
 			addSyntheseSalariePropertyDescriptor(object);
+			addCommentaireEvaluationsTenuePosteMissionsPrincipalesPropertyDescriptor(object);
+			addCommentaireEvaluationsTenuePosteMissionsSpecifiquesPropertyDescriptor(object);
+			addCommentaireCompetencesPropertyDescriptor(object);
+			addCommentaireSavoirEtrePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -284,6 +288,94 @@ public class EntretienAnnuelItemProvider extends EntretienItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Commentaire Evaluations Tenue Poste Missions Principales feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentaireEvaluationsTenuePosteMissionsPrincipalesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EntretienAnnuel_commentaireEvaluationsTenuePosteMissionsPrincipales_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienAnnuel_commentaireEvaluationsTenuePosteMissionsPrincipales_feature", "_UI_EntretienAnnuel_type"),
+				 MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Commentaire Evaluations Tenue Poste Missions Specifiques feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentaireEvaluationsTenuePosteMissionsSpecifiquesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EntretienAnnuel_commentaireEvaluationsTenuePosteMissionsSpecifiques_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienAnnuel_commentaireEvaluationsTenuePosteMissionsSpecifiques_feature", "_UI_EntretienAnnuel_type"),
+				 MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Commentaire Competences feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentaireCompetencesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EntretienAnnuel_commentaireCompetences_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienAnnuel_commentaireCompetences_feature", "_UI_EntretienAnnuel_type"),
+				 MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Commentaire Savoir Etre feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentaireSavoirEtrePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EntretienAnnuel_commentaireSavoirEtre_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienAnnuel_commentaireSavoirEtre_feature", "_UI_EntretienAnnuel_type"),
+				 MutPackage.Literals.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -367,6 +459,10 @@ public class EntretienAnnuelItemProvider extends EntretienItemProvider {
 			case MutPackage.ENTRETIEN_ANNUEL__OBJECTIFS_COMMENTAIRES:
 			case MutPackage.ENTRETIEN_ANNUEL__SYNTHESE_EVALUATEUR:
 			case MutPackage.ENTRETIEN_ANNUEL__SYNTHESE_SALARIE:
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES:
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES:
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES:
+			case MutPackage.ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MutPackage.ENTRETIEN_ANNUEL__EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES:

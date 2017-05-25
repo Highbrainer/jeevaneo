@@ -14,7 +14,7 @@
             load-on-startup="true">
          <init-param
                name="jersey.config.server.provider.classnames"
-               value="fr.mutualite.rh.webapp.ExceptionMapper,fr.mutualite.rh.webapp.admin.AdminResource,fr.mutualite.rh.webapp.LoaderResource,fr.mutualite.rh.webapp.EntretienProfessionnelResource,fr.mutualite.rh.webapp.ReportResource,fr.mutualite.rh.webapp.EtablissementResource,fr.mutualite.rh.webapp.EmployeResource,fr.mutualite.rh.webapp.security.AuthenticationEndpoint,fr.mutualite.rh.webapp.security.AuthenticationFilter,fr.mutualite.rh.webapp.security.AuthorizationFilter,fr.mutualite.rh.webapp.security.AuthenticatedUserProducer">
+               value="fr.mutualite.rh.webapp.ExceptionMapper,fr.mutualite.rh.webapp.admin.AdminResource,fr.mutualite.rh.webapp.LoaderResource,fr.mutualite.rh.webapp.EntretienResource,fr.mutualite.rh.webapp.EntretienAnnuelResource,fr.mutualite.rh.webapp.EntretienProfessionnelResource,fr.mutualite.rh.webapp.ReportResource,fr.mutualite.rh.webapp.EtablissementResource,fr.mutualite.rh.webapp.EmployeResource,fr.mutualite.rh.webapp.security.AuthenticationEndpoint,fr.mutualite.rh.webapp.security.AuthenticationFilter,fr.mutualite.rh.webapp.security.AuthorizationFilter,fr.mutualite.rh.webapp.security.AuthenticatedUserProducer">
          </init-param>
       </servlet>
    </extension>

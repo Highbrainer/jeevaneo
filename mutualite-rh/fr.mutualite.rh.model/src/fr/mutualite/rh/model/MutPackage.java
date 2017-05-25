@@ -797,13 +797,22 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN__PHOTO_EMPLOYE = 9;
 
 	/**
+	 * The feature id for the '<em><b>Commentaire Bilan Formation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__COMMENTAIRE_BILAN_FORMATION = 10;
+
+	/**
 	 * The number of structural features of the '<em>Entretien</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_FEATURE_COUNT = 10;
+	int ENTRETIEN_FEATURE_COUNT = 11;
 
 	/**
 	 * The operation id for the '<em>Employe</em>' operation.
@@ -933,6 +942,15 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN_PROFESSIONNEL__PHOTO_EMPLOYE = ENTRETIEN__PHOTO_EMPLOYE;
 
 	/**
+	 * The feature id for the '<em><b>Commentaire Bilan Formation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION = ENTRETIEN__COMMENTAIRE_BILAN_FORMATION;
+
+	/**
 	 * The feature id for the '<em><b>Evolution Depuis Dernier Entretien</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -942,22 +960,13 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN = ENTRETIEN_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Commentaire Bilan Formation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION = ENTRETIEN_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Evolution Souhaitee Dans Emploi Actuel</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL = ENTRETIEN_FEATURE_COUNT + 2;
+	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL = ENTRETIEN_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Evolution Souhaitee Dans Nouvel Emploi</b></em>' attribute.
@@ -966,7 +975,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_NOUVEL_EMPLOI = ENTRETIEN_FEATURE_COUNT + 3;
+	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_NOUVEL_EMPLOI = ENTRETIEN_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Echeance</b></em>' attribute.
@@ -975,7 +984,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__ECHEANCE = ENTRETIEN_FEATURE_COUNT + 4;
+	int ENTRETIEN_PROFESSIONNEL__ECHEANCE = ENTRETIEN_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Evolution Souhaitee Competences Acquises</b></em>' attribute.
@@ -984,7 +993,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_ACQUISES = ENTRETIEN_FEATURE_COUNT + 5;
+	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_ACQUISES = ENTRETIEN_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Evolution Souhaitee Competences Requises</b></em>' attribute.
@@ -993,7 +1002,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_REQUISES = ENTRETIEN_FEATURE_COUNT + 6;
+	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_COMPETENCES_REQUISES = ENTRETIEN_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Evolution Souhaitee Moyens Realisation</b></em>' attribute.
@@ -1002,7 +1011,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION = ENTRETIEN_FEATURE_COUNT + 7;
+	int ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_MOYENS_REALISATION = ENTRETIEN_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Perspectives Evolution Professionnelle</b></em>' attribute.
@@ -1011,7 +1020,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE = ENTRETIEN_FEATURE_COUNT + 8;
+	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE = ENTRETIEN_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Perspectives Evolution Professionnelle Competences Associees</b></em>' attribute.
@@ -1020,7 +1029,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES = ENTRETIEN_FEATURE_COUNT + 9;
+	int ENTRETIEN_PROFESSIONNEL__PERSPECTIVES_EVOLUTION_PROFESSIONNELLE_COMPETENCES_ASSOCIEES = ENTRETIEN_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Adequation Projet Pro Besoins Entreprise</b></em>' attribute.
@@ -1029,7 +1038,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE = ENTRETIEN_FEATURE_COUNT + 10;
+	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE = ENTRETIEN_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Adequation Projet Pro Besoins Entreprise Commentaire</b></em>' attribute.
@@ -1038,7 +1047,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 11;
+	int ENTRETIEN_PROFESSIONNEL__ADEQUATION_PROJET_PRO_BESOINS_ENTREPRISE_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Rencontre Rh</b></em>' attribute.
@@ -1047,7 +1056,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH = ENTRETIEN_FEATURE_COUNT + 12;
+	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH = ENTRETIEN_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Rencontre Rh Commentaire</b></em>' attribute.
@@ -1056,7 +1065,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 13;
+	int ENTRETIEN_PROFESSIONNEL__RENCONTRE_RH_COMMENTAIRE = ENTRETIEN_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Synthese</b></em>' attribute.
@@ -1065,7 +1074,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL__SYNTHESE = ENTRETIEN_FEATURE_COUNT + 14;
+	int ENTRETIEN_PROFESSIONNEL__SYNTHESE = ENTRETIEN_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Entretien Professionnel</em>' class.
@@ -1074,7 +1083,7 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_PROFESSIONNEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 15;
+	int ENTRETIEN_PROFESSIONNEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Employe</em>' operation.
@@ -1763,6 +1772,15 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN_ANNUEL__PHOTO_EMPLOYE = ENTRETIEN__PHOTO_EMPLOYE;
 
 	/**
+	 * The feature id for the '<em><b>Commentaire Bilan Formation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__COMMENTAIRE_BILAN_FORMATION = ENTRETIEN__COMMENTAIRE_BILAN_FORMATION;
+
+	/**
 	 * The feature id for the '<em><b>Bilan Faits Marquants</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1907,13 +1925,49 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS = ENTRETIEN_FEATURE_COUNT + 15;
 
 	/**
+	 * The feature id for the '<em><b>Commentaire Evaluations Tenue Poste Missions Principales</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES = ENTRETIEN_FEATURE_COUNT + 16;
+
+	/**
+	 * The feature id for the '<em><b>Commentaire Evaluations Tenue Poste Missions Specifiques</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES = ENTRETIEN_FEATURE_COUNT + 17;
+
+	/**
+	 * The feature id for the '<em><b>Commentaire Competences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES = ENTRETIEN_FEATURE_COUNT + 18;
+
+	/**
+	 * The feature id for the '<em><b>Commentaire Savoir Etre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE = ENTRETIEN_FEATURE_COUNT + 19;
+
+	/**
 	 * The number of structural features of the '<em>Entretien Annuel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_ANNUEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 16;
+	int ENTRETIEN_ANNUEL_FEATURE_COUNT = ENTRETIEN_FEATURE_COUNT + 20;
 
 	/**
 	 * The operation id for the '<em>Employe</em>' operation.
@@ -1971,22 +2025,13 @@ public interface MutPackage extends EPackage {
 	int EVALUATION_TENUE_POSTE__EVAL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Commentaire</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVALUATION_TENUE_POSTE__COMMENTAIRE = 2;
-
-	/**
 	 * The number of structural features of the '<em>Evaluation Tenue Poste</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVALUATION_TENUE_POSTE_FEATURE_COUNT = 3;
+	int EVALUATION_TENUE_POSTE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Evaluation Tenue Poste</em>' class.
@@ -2336,13 +2381,31 @@ public interface MutPackage extends EPackage {
 	int PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN = 9;
 
 	/**
+	 * The feature id for the '<em><b>Date Precedent Entretien Pro</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO = 10;
+
+	/**
+	 * The feature id for the '<em><b>Date Precedent Entretien Annuel</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL = 11;
+
+	/**
 	 * The number of structural features of the '<em>Photo Employe</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PHOTO_EMPLOYE_FEATURE_COUNT = 10;
+	int PHOTO_EMPLOYE_FEATURE_COUNT = 12;
 
 	/**
 	 * The number of operations of the '<em>Photo Employe</em>' class.
@@ -2445,6 +2508,17 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	int EVALUATION_ATTEINTE_OBJECTIF = 35;
+
+
+	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.CategorieCompetence <em>Categorie Competence</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.CategorieCompetence
+	 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getCategorieCompetence()
+	 * @generated
+	 */
+	int CATEGORIE_COMPETENCE = 36;
 
 
 	/**
@@ -2763,6 +2837,50 @@ public interface MutPackage extends EPackage {
 	EReference getEntretienAnnuel_ObjectifsPrecedents();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsPrincipales <em>Commentaire Evaluations Tenue Poste Missions Principales</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire Evaluations Tenue Poste Missions Principales</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsPrincipales()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsPrincipales();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsSpecifiques <em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsSpecifiques()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsSpecifiques();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireCompetences <em>Commentaire Competences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire Competences</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getCommentaireCompetences()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_CommentaireCompetences();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireSavoirEtre <em>Commentaire Savoir Etre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire Savoir Etre</em>'.
+	 * @see fr.mutualite.rh.model.EntretienAnnuel#getCommentaireSavoirEtre()
+	 * @see #getEntretienAnnuel()
+	 * @generated
+	 */
+	EAttribute getEntretienAnnuel_CommentaireSavoirEtre();
+
+	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.EvaluationTenuePoste <em>Evaluation Tenue Poste</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2793,17 +2911,6 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEvaluationTenuePoste_Eval();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EvaluationTenuePoste#getCommentaire <em>Commentaire</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Commentaire</em>'.
-	 * @see fr.mutualite.rh.model.EvaluationTenuePoste#getCommentaire()
-	 * @see #getEvaluationTenuePoste()
-	 * @generated
-	 */
-	EAttribute getEvaluationTenuePoste_Commentaire();
 
 	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.EvaluationCompetence <em>Evaluation Competence</em>}'.
@@ -3118,6 +3225,28 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPhotoEmploye_DatePrecedentEntretien();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienPro <em>Date Precedent Entretien Pro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date Precedent Entretien Pro</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienPro()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_DatePrecedentEntretienPro();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienAnnuel <em>Date Precedent Entretien Annuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date Precedent Entretien Annuel</em>'.
+	 * @see fr.mutualite.rh.model.PhotoEmploye#getDatePrecedentEntretienAnnuel()
+	 * @see #getPhotoEmploye()
+	 * @generated
+	 */
+	EAttribute getPhotoEmploye_DatePrecedentEntretienAnnuel();
 
 	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.Employe <em>Employe</em>}'.
@@ -3830,6 +3959,17 @@ public interface MutPackage extends EPackage {
 	EReference getEntretien_PhotoEmploye();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.Entretien#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commentaire Bilan Formation</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getCommentaireBilanFormation()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EAttribute getEntretien_CommentaireBilanFormation();
+
+	/**
 	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Entretien#employe() <em>Employe</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3869,17 +4009,6 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEntretienProfessionnel_EvolutionDepuisDernierEntretien();
-
-	/**
-	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienProfessionnel#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Commentaire Bilan Formation</em>'.
-	 * @see fr.mutualite.rh.model.EntretienProfessionnel#getCommentaireBilanFormation()
-	 * @see #getEntretienProfessionnel()
-	 * @generated
-	 */
-	EAttribute getEntretienProfessionnel_CommentaireBilanFormation();
 
 	/**
 	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionSouhaiteeDansEmploiActuel <em>Evolution Souhaitee Dans Emploi Actuel</em>}'.
@@ -4414,6 +4543,16 @@ public interface MutPackage extends EPackage {
 	EEnum getEvaluationAtteinteObjectif();
 
 	/**
+	 * Returns the meta object for enum '{@link fr.mutualite.rh.model.CategorieCompetence <em>Categorie Competence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Categorie Competence</em>'.
+	 * @see fr.mutualite.rh.model.CategorieCompetence
+	 * @generated
+	 */
+	EEnum getCategorieCompetence();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4677,6 +4816,38 @@ public interface MutPackage extends EPackage {
 		EReference ENTRETIEN_ANNUEL__OBJECTIFS_PRECEDENTS = eINSTANCE.getEntretienAnnuel_ObjectifsPrecedents();
 
 		/**
+		 * The meta object literal for the '<em><b>Commentaire Evaluations Tenue Poste Missions Principales</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_PRINCIPALES = eINSTANCE.getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsPrincipales();
+
+		/**
+		 * The meta object literal for the '<em><b>Commentaire Evaluations Tenue Poste Missions Specifiques</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__COMMENTAIRE_EVALUATIONS_TENUE_POSTE_MISSIONS_SPECIFIQUES = eINSTANCE.getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsSpecifiques();
+
+		/**
+		 * The meta object literal for the '<em><b>Commentaire Competences</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__COMMENTAIRE_COMPETENCES = eINSTANCE.getEntretienAnnuel_CommentaireCompetences();
+
+		/**
+		 * The meta object literal for the '<em><b>Commentaire Savoir Etre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN_ANNUEL__COMMENTAIRE_SAVOIR_ETRE = eINSTANCE.getEntretienAnnuel_CommentaireSavoirEtre();
+
+		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl <em>Evaluation Tenue Poste</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4701,14 +4872,6 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EVALUATION_TENUE_POSTE__EVAL = eINSTANCE.getEvaluationTenuePoste_Eval();
-
-		/**
-		 * The meta object literal for the '<em><b>Commentaire</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EVALUATION_TENUE_POSTE__COMMENTAIRE = eINSTANCE.getEvaluationTenuePoste_Commentaire();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EvaluationCompetenceImpl <em>Evaluation Competence</em>}' class.
@@ -4951,6 +5114,22 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN = eINSTANCE.getPhotoEmploye_DatePrecedentEntretien();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Precedent Entretien Pro</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO = eINSTANCE.getPhotoEmploye_DatePrecedentEntretienPro();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Precedent Entretien Annuel</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL = eINSTANCE.getPhotoEmploye_DatePrecedentEntretienAnnuel();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.EmployeImpl <em>Employe</em>}' class.
@@ -5497,6 +5676,14 @@ public interface MutPackage extends EPackage {
 		EReference ENTRETIEN__PHOTO_EMPLOYE = eINSTANCE.getEntretien_PhotoEmploye();
 
 		/**
+		 * The meta object literal for the '<em><b>Commentaire Bilan Formation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTRETIEN__COMMENTAIRE_BILAN_FORMATION = eINSTANCE.getEntretien_CommentaireBilanFormation();
+
+		/**
 		 * The meta object literal for the '<em><b>Employe</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5529,14 +5716,6 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN = eINSTANCE.getEntretienProfessionnel_EvolutionDepuisDernierEntretien();
-
-		/**
-		 * The meta object literal for the '<em><b>Commentaire Bilan Formation</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION = eINSTANCE.getEntretienProfessionnel_CommentaireBilanFormation();
 
 		/**
 		 * The meta object literal for the '<em><b>Evolution Souhaitee Dans Emploi Actuel</b></em>' attribute feature.
@@ -5971,6 +6150,16 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum EVALUATION_ATTEINTE_OBJECTIF = eINSTANCE.getEvaluationAtteinteObjectif();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.CategorieCompetence <em>Categorie Competence</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.CategorieCompetence
+		 * @see fr.mutualite.rh.model.impl.MutPackageImpl#getCategorieCompetence()
+		 * @generated
+		 */
+		EEnum CATEGORIE_COMPETENCE = eINSTANCE.getCategorieCompetence();
 
 	}
 

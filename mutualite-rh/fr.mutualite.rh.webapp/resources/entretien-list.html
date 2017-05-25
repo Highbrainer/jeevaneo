@@ -135,11 +135,26 @@ legend {
 		
 	}
 	
+	function addEntretienAnnuel() {
+		var matricule = $$("master").getSelectedId(true);
+		if(null==matricule || matricule.length==0	) {
+			webix.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
+			return;
+		}
+		webix.ajax().headers({
+			"Authorization" : "Bearer " + window.sessionStorage.token
+		})
+		.put("/rest/employes/" + matricule + "/entretien-annuel/current")
+		.then(function() {webix.message("Entretien créé!");updateDetail(matricule);})
+		.fail(function() {webix.alert("Erreur")});
+		
+	}
+	
 	function updateDetail(matricule) {
 		$$("detail").clearAll();
 		$$("detail").load(
 				"/rest/employes/" + matricule
-						+ "/entretien-pro/all.json", "json");
+						+ "/entretien/all.json", "json");
 		$$("detail").refresh();
 	}
 </script>
@@ -185,17 +200,31 @@ legend {
 				id : "detail",
 				view : "datatable",
 				columns : [
-						{
-							id : "employe",
-							header : "Employe",
-							width : 300,
-							template : "Entretien professionnel - #employe#"
-						},
-						{
-							id : "date",
-							header : "Date",
-							width : 110
-						},
+							{
+								id : "employe",
+								header : "Employe",
+								width : 300,
+								template : "#employe#"
+							},
+							{
+								id : "typeEntretien",
+								header : "Type",
+								width : 200,
+								template : function(entretien) {
+									if(entretien.typeEntretien=="EntretienAnnuel") {
+										return "Entretien annuel";
+									}
+									if(entretien.typeEntretien=="EntretienProfessionnel") {
+										return "Entretien professionnel";
+									}
+									return "Entretien";
+								}
+							},
+							{
+								id : "date",
+								header : "Date",
+								width : 110
+							},
 						{
 							id : "meneur",
 							header : "Meneur",
@@ -206,9 +235,19 @@ legend {
 							//header : "PDF",
 							template : function(entretien) {
 								console.log(entretien);
+								console.log(entretien.typeEntretien);
 								console.log(entretien.fake);
 								console.log(entretien.scan);
 								console.log(entretien.scan==null);
+								var mod1 = "entretien";
+								var mod2 = "entretiens";
+								if(entretien.typeEntretien=="EntretienAnnuel") {
+									mod1 += "-annuel";
+									mod2 += "-annuels";
+								} else if(entretien.typeEntretien=="EntretienProfessionnel") {
+									mod1 += "-professionnel";
+									mod2 += "-pro";
+								}
 								if (entretien.fake && entretien.scan==null) {
 									return "";
 								} else if (entretien.fake && entretien.scan!=null) {
@@ -216,19 +255,20 @@ legend {
 									+ entretien.id
 									+ ".pdf?token="
 									+ window.sessionStorage.token
-									+ "\"><span class=\"webix_icon fa-fa fa-file-pdf-o\"></span></a>";
+									+ "\"><span class=\"webix_icon fa fa-file-pdf-o\"></span></a>";
 								} else if (!entretien.enCours) {
-									return "<a href=\"/rest/entretiens-pro/"
+									return "<a href=\"/rest/" + mod2 + "/"
 											+ entretien.id
 											+ ".pdf?token="
 											+ window.sessionStorage.token
-											+ "\"><span class=\"webix_icon fa-fa fa-file-pdf-o\"></span></a>";
+											+ "\"><span class=\"webix_icon fa fa-file-pdf-o\"></span></a>";
 								} else
-									return "<a href='/files/entretien-professionnel-form.html?id="
+									var ret = "<a href='/files/" + mod1 +"-form.html?id="
 											+ entretien.id
 											+ "&token="
 											+ window.sessionStorage.token
 											+ "'><span class=\"webix_icon fa-pencil\"></span></a>";
+									return ret;
 							},
 							adjust : true
 						}/* ,
@@ -263,15 +303,24 @@ legend {
 				view : "toolbar",
 				id : "myToolbar",
 				cols : [{ gravity: 5},
-						{
+				        {
 					view : "button",
-					label : "Nouvel Entretien",
+					label : "Nouvel Entretien PRO",
 					//width : 180,
 					align : "right",
 					type : "icon",
 					icon : "plus",
 					click: addEntretienPro
-				} ]
+				},
+				{
+					view : "button",
+					label : "Nouvel Entretien ANNUEL",
+					//width : 180,
+					align : "right",
+					type : "icon",
+					icon : "plus",
+					click: addEntretienAnnuel
+				}]
 			}
 
 			var page = {cols : [ 

@@ -63,7 +63,6 @@ public class EvaluationTenuePosteItemProvider
 
 			addMissionPropertyDescriptor(object);
 			addEvalPropertyDescriptor(object);
-			addCommentairePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -113,28 +112,6 @@ public class EvaluationTenuePosteItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Commentaire feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCommentairePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EvaluationTenuePoste_commentaire_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EvaluationTenuePoste_commentaire_feature", "_UI_EvaluationTenuePoste_type"),
-				 MutPackage.Literals.EVALUATION_TENUE_POSTE__COMMENTAIRE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns EvaluationTenuePoste.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,7 +151,6 @@ public class EvaluationTenuePosteItemProvider
 		switch (notification.getFeatureID(EvaluationTenuePoste.class)) {
 			case MutPackage.EVALUATION_TENUE_POSTE__MISSION:
 			case MutPackage.EVALUATION_TENUE_POSTE__EVAL:
-			case MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

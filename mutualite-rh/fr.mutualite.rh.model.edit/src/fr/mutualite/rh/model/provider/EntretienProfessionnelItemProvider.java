@@ -46,7 +46,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addEvolutionDepuisDernierEntretienPropertyDescriptor(object);
-			addCommentaireBilanFormationPropertyDescriptor(object);
 			addEvolutionSouhaiteeDansEmploiActuelPropertyDescriptor(object);
 			addEvolutionSouhaiteeDansNouvelEmploiPropertyDescriptor(object);
 			addEcheancePropertyDescriptor(object);
@@ -78,28 +77,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 				 getString("_UI_EntretienProfessionnel_evolutionDepuisDernierEntretien_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienProfessionnel_evolutionDepuisDernierEntretien_feature", "_UI_EntretienProfessionnel_type"),
 				 MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Commentaire Bilan Formation feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCommentaireBilanFormationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EntretienProfessionnel_commentaireBilanFormation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EntretienProfessionnel_commentaireBilanFormation_feature", "_UI_EntretienProfessionnel_type"),
-				 MutPackage.Literals.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION,
 				 true,
 				 false,
 				 false,
@@ -434,7 +411,6 @@ public class EntretienProfessionnelItemProvider extends EntretienItemProvider {
 
 		switch (notification.getFeatureID(EntretienProfessionnel.class)) {
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_DEPUIS_DERNIER_ENTRETIEN:
-			case MutPackage.ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_EMPLOI_ACTUEL:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__EVOLUTION_SOUHAITEE_DANS_NOUVEL_EMPLOI:
 			case MutPackage.ENTRETIEN_PROFESSIONNEL__ECHEANCE:

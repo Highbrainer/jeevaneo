@@ -206,6 +206,8 @@ public class MutValidator extends EObjectValidator {
 				return validateSavoirEtre((SavoirEtre)value, diagnostics, context);
 			case MutPackage.EVALUATION_ATTEINTE_OBJECTIF:
 				return validateEvaluationAtteinteObjectif((EvaluationAtteinteObjectif)value, diagnostics, context);
+			case MutPackage.CATEGORIE_COMPETENCE:
+				return validateCategorieCompetence((CategorieCompetence)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -636,6 +638,15 @@ public class MutValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateEvaluationAtteinteObjectif(EvaluationAtteinteObjectif evaluationAtteinteObjectif, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCategorieCompetence(CategorieCompetence categorieCompetence, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

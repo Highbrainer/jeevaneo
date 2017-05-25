@@ -71,6 +71,8 @@ public class PhotoEmployeItemProvider
 			addDateEmbauchePropertyDescriptor(object);
 			addDiplomesPropertyDescriptor(object);
 			addDatePrecedentEntretienPropertyDescriptor(object);
+			addDatePrecedentEntretienProPropertyDescriptor(object);
+			addDatePrecedentEntretienAnnuelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -296,6 +298,50 @@ public class PhotoEmployeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Date Precedent Entretien Pro feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatePrecedentEntretienProPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PhotoEmploye_datePrecedentEntretienPro_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhotoEmploye_datePrecedentEntretienPro_feature", "_UI_PhotoEmploye_type"),
+				 MutPackage.Literals.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Date Precedent Entretien Annuel feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatePrecedentEntretienAnnuelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PhotoEmploye_datePrecedentEntretienAnnuel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PhotoEmploye_datePrecedentEntretienAnnuel_feature", "_UI_PhotoEmploye_type"),
+				 MutPackage.Literals.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns PhotoEmploye.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,6 +389,8 @@ public class PhotoEmployeItemProvider
 			case MutPackage.PHOTO_EMPLOYE__DATE_EMBAUCHE:
 			case MutPackage.PHOTO_EMPLOYE__DIPLOMES:
 			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN:
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_PRO:
+			case MutPackage.PHOTO_EMPLOYE__DATE_PRECEDENT_ENTRETIEN_ANNUEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

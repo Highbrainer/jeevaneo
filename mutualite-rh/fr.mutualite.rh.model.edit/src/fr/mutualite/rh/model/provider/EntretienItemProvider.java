@@ -69,6 +69,7 @@ public class EntretienItemProvider
 			addFakePropertyDescriptor(object);
 			addScanPropertyDescriptor(object);
 			addAutresActionsDeveloppementCompetencesPropertyDescriptor(object);
+			addCommentaireBilanFormationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -206,6 +207,28 @@ public class EntretienItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Commentaire Bilan Formation feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentaireBilanFormationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Entretien_commentaireBilanFormation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Entretien_commentaireBilanFormation_feature", "_UI_Entretien_type"),
+				 MutPackage.Literals.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -282,6 +305,7 @@ public class EntretienItemProvider
 			case MutPackage.ENTRETIEN__FAKE:
 			case MutPackage.ENTRETIEN__SCAN:
 			case MutPackage.ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES:
+			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION:

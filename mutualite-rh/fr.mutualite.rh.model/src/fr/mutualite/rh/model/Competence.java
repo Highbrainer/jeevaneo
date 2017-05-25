@@ -26,7 +26,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESPECT_PROCEDURES_NORMES(0, "RespectProceduresNormes", "RespectProceduresNormes"),
+	RESPECT_PROCEDURES_NORMES(0, "RespectProceduresNormes", "Respect des proc\u00e9dures et des normes"),
 
 	/**
 	 * The '<em><b>Capacite Deceler Urgences</b></em>' literal object.
@@ -36,7 +36,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CAPACITE_DECELER_URGENCES(1, "CapaciteDecelerUrgences", "CapaciteDecelerUrgences"),
+	CAPACITE_DECELER_URGENCES(1, "CapaciteDecelerUrgences", "Capacit\u00e9 \u00e0 d\u00e9celer les urgences, priorit\u00e9s et anomalies"),
 
 	/**
 	 * The '<em><b>Autonomie</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AUTONOMIE(2, "Autonomie", "Autonomie"),
+	AUTONOMIE(2, "Autonomie", "Autonomie dans la fonction"),
 
 	/**
 	 * The '<em><b>Anticipation Organisation</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ANTICIPATION_ORGANISATION(3, "AnticipationOrganisation", "AnticipationOrganisation"),
+	ANTICIPATION_ORGANISATION(3, "AnticipationOrganisation", "Anticipation et organisation du travail"),
 
 	/**
 	 * The '<em><b>Volontaire Disponible</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLONTAIRE_DISPONIBLE(4, "VolontaireDisponible", "VolontaireDisponible"),
+	VOLONTAIRE_DISPONIBLE(4, "VolontaireDisponible", "Contribution au bon fonctionnement du service (volontaire, disponible, adaptation...)"),
 
 	/**
 	 * The '<em><b>Collaboration Collegues</b></em>' literal object.
@@ -76,7 +76,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COLLABORATION_COLLEGUES(5, "CollaborationCollegues", "CollaborationCollegues"),
+	COLLABORATION_COLLEGUES(5, "CollaborationCollegues", "Collaboration avec les coll\u00e8gues"),
 
 	/**
 	 * The '<em><b>Collaboration Clients</b></em>' literal object.
@@ -86,7 +86,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COLLABORATION_CLIENTS(6, "CollaborationClients", "CollaborationClients"),
+	COLLABORATION_CLIENTS(6, "CollaborationClients", "Collaboration avec les patients, clients, fournisseurs, autres..."),
 
 	/**
 	 * The '<em><b>Ecoute</b></em>' literal object.
@@ -96,7 +96,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ECOUTE(7, "Ecoute", "Ecoute"),
+	ECOUTE(7, "Ecoute", "Ecoute et compr\u00e9hension des besoins des interlocuteurs"),
 
 	/**
 	 * The '<em><b>Image Positive</b></em>' literal object.
@@ -106,7 +106,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	IMAGE_POSITIVE(8, "ImagePositive", "ImagePositive"),
+	IMAGE_POSITIVE(8, "ImagePositive", "Pr\u00e9sentation d\'une image positive de l\'entreprise"),
 
 	/**
 	 * The '<em><b>Deleguer</b></em>' literal object.
@@ -116,7 +116,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DELEGUER(9, "Deleguer", "Deleguer"),
+	DELEGUER(9, "Deleguer", "Capacit\u00e9 \u00e0 d\u00e9l\u00e9guer"),
 
 	/**
 	 * The '<em><b>Realisation Objectifs</b></em>' literal object.
@@ -126,7 +126,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REALISATION_OBJECTIFS(10, "RealisationObjectifs", "RealisationObjectifs"),
+	REALISATION_OBJECTIFS(10, "RealisationObjectifs", "Capacit\u00e9 \u00e0 la r\u00e9alisation d\'objectifs"),
 
 	/**
 	 * The '<em><b>Controle Objectifs</b></em>' literal object.
@@ -136,7 +136,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTROLE_OBJECTIFS(11, "ControleObjectifs", "ControleObjectifs"),
+	CONTROLE_OBJECTIFS(11, "ControleObjectifs", "Capacit\u00e9 \u00e0 contr\u00f4ler les objectifs"),
 
 	/**
 	 * The '<em><b>Rendre Compte</b></em>' literal object.
@@ -146,7 +146,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RENDRE_COMPTE(12, "RendreCompte", "RendreCompte"),
+	RENDRE_COMPTE(12, "RendreCompte", "Savoir rendre compte au responsable"),
 
 	/**
 	 * The '<em><b>Transmettre</b></em>' literal object.
@@ -156,7 +156,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSMETTRE(13, "Transmettre", "Transmettre"),
+	TRANSMETTRE(13, "Transmettre", "Transmettre son savoir"),
 
 	/**
 	 * The '<em><b>Respect Consignes Environnement</b></em>' literal object.
@@ -166,7 +166,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESPECT_CONSIGNES_ENVIRONNEMENT(14, "RespectConsignesEnvironnement", "RespectConsignesEnvironnement"),
+	RESPECT_CONSIGNES_ENVIRONNEMENT(14, "RespectConsignesEnvironnement", "Contribuer au respect des consignes environnementales (savoir \u00e9teindre les lumi\u00e8res, \u00e9viter le gaspillage papier...)"),
 
 	/**
 	 * The '<em><b>Contribution Securite</b></em>' literal object.
@@ -176,7 +176,7 @@ public enum Competence implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTRIBUTION_SECURITE(15, "ContributionSecurite", "ContributionSecurite");
+	CONTRIBUTION_SECURITE(15, "ContributionSecurite", "Contribuer au bon fonctionnement de son service (fermeture et contr\u00f4le de la s\u00e9curit\u00e9, fermeture des portes et fen\u00eatres)");
 
 	/**
 	 * The '<em><b>Respect Procedures Normes</b></em>' literal value.
@@ -187,7 +187,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RESPECT_PROCEDURES_NORMES
-	 * @model name="RespectProceduresNormes"
+	 * @model name="RespectProceduresNormes" literal="Respect des proc\351dures et des normes"
 	 * @generated
 	 * @ordered
 	 */
@@ -202,7 +202,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #CAPACITE_DECELER_URGENCES
-	 * @model name="CapaciteDecelerUrgences"
+	 * @model name="CapaciteDecelerUrgences" literal="Capacit\351 \340 d\351celer les urgences, priorit\351s et anomalies"
 	 * @generated
 	 * @ordered
 	 */
@@ -217,7 +217,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #AUTONOMIE
-	 * @model name="Autonomie"
+	 * @model name="Autonomie" literal="Autonomie dans la fonction"
 	 * @generated
 	 * @ordered
 	 */
@@ -232,7 +232,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ANTICIPATION_ORGANISATION
-	 * @model name="AnticipationOrganisation"
+	 * @model name="AnticipationOrganisation" literal="Anticipation et organisation du travail"
 	 * @generated
 	 * @ordered
 	 */
@@ -247,7 +247,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #VOLONTAIRE_DISPONIBLE
-	 * @model name="VolontaireDisponible"
+	 * @model name="VolontaireDisponible" literal="Contribution au bon fonctionnement du service (volontaire, disponible, adaptation...)"
 	 * @generated
 	 * @ordered
 	 */
@@ -262,7 +262,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #COLLABORATION_COLLEGUES
-	 * @model name="CollaborationCollegues"
+	 * @model name="CollaborationCollegues" literal="Collaboration avec les coll\350gues"
 	 * @generated
 	 * @ordered
 	 */
@@ -277,7 +277,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #COLLABORATION_CLIENTS
-	 * @model name="CollaborationClients"
+	 * @model name="CollaborationClients" literal="Collaboration avec les patients, clients, fournisseurs, autres..."
 	 * @generated
 	 * @ordered
 	 */
@@ -292,7 +292,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ECOUTE
-	 * @model name="Ecoute"
+	 * @model name="Ecoute" literal="Ecoute et compr\351hension des besoins des interlocuteurs"
 	 * @generated
 	 * @ordered
 	 */
@@ -307,7 +307,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #IMAGE_POSITIVE
-	 * @model name="ImagePositive"
+	 * @model name="ImagePositive" literal="Pr\351sentation d\'une image positive de l\'entreprise"
 	 * @generated
 	 * @ordered
 	 */
@@ -322,7 +322,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #DELEGUER
-	 * @model name="Deleguer"
+	 * @model name="Deleguer" literal="Capacit\351 \340 d\351l\351guer"
 	 * @generated
 	 * @ordered
 	 */
@@ -337,7 +337,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #REALISATION_OBJECTIFS
-	 * @model name="RealisationObjectifs"
+	 * @model name="RealisationObjectifs" literal="Capacit\351 \340 la r\351alisation d\'objectifs"
 	 * @generated
 	 * @ordered
 	 */
@@ -352,7 +352,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #CONTROLE_OBJECTIFS
-	 * @model name="ControleObjectifs"
+	 * @model name="ControleObjectifs" literal="Capacit\351 \340 contr\364ler les objectifs"
 	 * @generated
 	 * @ordered
 	 */
@@ -367,7 +367,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RENDRE_COMPTE
-	 * @model name="RendreCompte"
+	 * @model name="RendreCompte" literal="Savoir rendre compte au responsable"
 	 * @generated
 	 * @ordered
 	 */
@@ -382,7 +382,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #TRANSMETTRE
-	 * @model name="Transmettre"
+	 * @model name="Transmettre" literal="Transmettre son savoir"
 	 * @generated
 	 * @ordered
 	 */
@@ -397,7 +397,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RESPECT_CONSIGNES_ENVIRONNEMENT
-	 * @model name="RespectConsignesEnvironnement"
+	 * @model name="RespectConsignesEnvironnement" literal="Contribuer au respect des consignes environnementales (savoir \351teindre les lumi\350res, \351viter le gaspillage papier...)"
 	 * @generated
 	 * @ordered
 	 */
@@ -412,7 +412,7 @@ public enum Competence implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #CONTRIBUTION_SECURITE
-	 * @model name="ContributionSecurite"
+	 * @model name="ContributionSecurite" literal="Contribuer au bon fonctionnement de son service (fermeture et contr\364le de la s\351curit\351, fermeture des portes et fen\352tres)"
 	 * @generated
 	 * @ordered
 	 */

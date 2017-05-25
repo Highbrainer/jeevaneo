@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.Entretien#getSouhaitsFormationEvaluateur <em>Souhaits Formation Evaluateur</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Entretien#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Entretien#getPhotoEmploye <em>Photo Employe</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Entretien#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEntretien()
@@ -270,6 +271,32 @@ public interface Entretien extends CDOObject {
 	 * @generated
 	 */
 	void setPhotoEmploye(PhotoEmploye value);
+
+	/**
+	 * Returns the value of the '<em><b>Commentaire Bilan Formation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commentaire Bilan Formation</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commentaire Bilan Formation</em>' attribute.
+	 * @see #setCommentaireBilanFormation(String)
+	 * @see fr.mutualite.rh.model.MutPackage#getEntretien_CommentaireBilanFormation()
+	 * @model
+	 * @generated
+	 */
+	String getCommentaireBilanFormation();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.Entretien#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commentaire Bilan Formation</em>' attribute.
+	 * @see #getCommentaireBilanFormation()
+	 * @generated
+	 */
+	void setCommentaireBilanFormation(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

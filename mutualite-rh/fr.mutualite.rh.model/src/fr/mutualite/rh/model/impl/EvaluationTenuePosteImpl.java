@@ -20,7 +20,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <ul>
  *   <li>{@link fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl#getMission <em>Mission</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl#getEval <em>Eval</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.impl.EvaluationTenuePosteImpl#getCommentaire <em>Commentaire</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,16 +44,6 @@ public class EvaluationTenuePosteImpl extends CDOObjectImpl implements Evaluatio
 	 * @ordered
 	 */
 	protected static final Evaluation EVAL_EDEFAULT = Evaluation.MOINS;
-
-	/**
-	 * The default value of the '{@link #getCommentaire() <em>Commentaire</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCommentaire()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COMMENTAIRE_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,24 +115,6 @@ public class EvaluationTenuePosteImpl extends CDOObjectImpl implements Evaluatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCommentaire() {
-		return (String)eDynamicGet(MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE, MutPackage.Literals.EVALUATION_TENUE_POSTE__COMMENTAIRE, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCommentaire(String newCommentaire) {
-		eDynamicSet(MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE, MutPackage.Literals.EVALUATION_TENUE_POSTE__COMMENTAIRE, newCommentaire);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -151,8 +122,6 @@ public class EvaluationTenuePosteImpl extends CDOObjectImpl implements Evaluatio
 				return getMission();
 			case MutPackage.EVALUATION_TENUE_POSTE__EVAL:
 				return getEval();
-			case MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE:
-				return getCommentaire();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,9 +139,6 @@ public class EvaluationTenuePosteImpl extends CDOObjectImpl implements Evaluatio
 				return;
 			case MutPackage.EVALUATION_TENUE_POSTE__EVAL:
 				setEval((Evaluation)newValue);
-				return;
-			case MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE:
-				setCommentaire((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,9 +158,6 @@ public class EvaluationTenuePosteImpl extends CDOObjectImpl implements Evaluatio
 			case MutPackage.EVALUATION_TENUE_POSTE__EVAL:
 				setEval(EVAL_EDEFAULT);
 				return;
-			case MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE:
-				setCommentaire(COMMENTAIRE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -211,8 +174,6 @@ public class EvaluationTenuePosteImpl extends CDOObjectImpl implements Evaluatio
 				return MISSION_EDEFAULT == null ? getMission() != null : !MISSION_EDEFAULT.equals(getMission());
 			case MutPackage.EVALUATION_TENUE_POSTE__EVAL:
 				return getEval() != EVAL_EDEFAULT;
-			case MutPackage.EVALUATION_TENUE_POSTE__COMMENTAIRE:
-				return COMMENTAIRE_EDEFAULT == null ? getCommentaire() != null : !COMMENTAIRE_EDEFAULT.equals(getCommentaire());
 		}
 		return super.eIsSet(featureID);
 	}

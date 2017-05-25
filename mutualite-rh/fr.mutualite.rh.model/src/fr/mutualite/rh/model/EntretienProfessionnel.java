@@ -15,7 +15,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </p>
  * <ul>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionDepuisDernierEntretien <em>Evolution Depuis Dernier Entretien</em>}</li>
- *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionSouhaiteeDansEmploiActuel <em>Evolution Souhaitee Dans Emploi Actuel</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEvolutionSouhaiteeDansNouvelEmploi <em>Evolution Souhaitee Dans Nouvel Emploi</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienProfessionnel#getEcheance <em>Echeance</em>}</li>
@@ -61,32 +60,6 @@ public interface EntretienProfessionnel extends Entretien {
 	 * @generated
 	 */
 	void setEvolutionDepuisDernierEntretien(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Commentaire Bilan Formation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Commentaire Bilan Formation</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Commentaire Bilan Formation</em>' attribute.
-	 * @see #setCommentaireBilanFormation(String)
-	 * @see fr.mutualite.rh.model.MutPackage#getEntretienProfessionnel_CommentaireBilanFormation()
-	 * @model
-	 * @generated
-	 */
-	String getCommentaireBilanFormation();
-
-	/**
-	 * Sets the value of the '{@link fr.mutualite.rh.model.EntretienProfessionnel#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Commentaire Bilan Formation</em>' attribute.
-	 * @see #getCommentaireBilanFormation()
-	 * @generated
-	 */
-	void setCommentaireBilanFormation(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Evolution Souhaitee Dans Emploi Actuel</b></em>' attribute.

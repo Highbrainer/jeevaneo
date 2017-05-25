@@ -29,6 +29,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getSyntheseSalarie <em>Synthese Salarie</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getObjectifs <em>Objectifs</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getObjectifsPrecedents <em>Objectifs Precedents</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsPrincipales <em>Commentaire Evaluations Tenue Poste Missions Principales</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsSpecifiques <em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireCompetences <em>Commentaire Competences</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireSavoirEtre <em>Commentaire Savoir Etre</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEntretienAnnuel()
@@ -391,5 +395,109 @@ public interface EntretienAnnuel extends Entretien {
 	 * @generated
 	 */
 	EList<ObjectifPrecedent> getObjectifsPrecedents();
+
+	/**
+	 * Returns the value of the '<em><b>Commentaire Evaluations Tenue Poste Missions Principales</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commentaire Evaluations Tenue Poste Missions Principales</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commentaire Evaluations Tenue Poste Missions Principales</em>' attribute.
+	 * @see #setCommentaireEvaluationsTenuePosteMissionsPrincipales(String)
+	 * @see fr.mutualite.rh.model.MutPackage#getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsPrincipales()
+	 * @model
+	 * @generated
+	 */
+	String getCommentaireEvaluationsTenuePosteMissionsPrincipales();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsPrincipales <em>Commentaire Evaluations Tenue Poste Missions Principales</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commentaire Evaluations Tenue Poste Missions Principales</em>' attribute.
+	 * @see #getCommentaireEvaluationsTenuePosteMissionsPrincipales()
+	 * @generated
+	 */
+	void setCommentaireEvaluationsTenuePosteMissionsPrincipales(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Commentaire Evaluations Tenue Poste Missions Specifiques</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>' attribute.
+	 * @see #setCommentaireEvaluationsTenuePosteMissionsSpecifiques(String)
+	 * @see fr.mutualite.rh.model.MutPackage#getEntretienAnnuel_CommentaireEvaluationsTenuePosteMissionsSpecifiques()
+	 * @model
+	 * @generated
+	 */
+	String getCommentaireEvaluationsTenuePosteMissionsSpecifiques();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireEvaluationsTenuePosteMissionsSpecifiques <em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commentaire Evaluations Tenue Poste Missions Specifiques</em>' attribute.
+	 * @see #getCommentaireEvaluationsTenuePosteMissionsSpecifiques()
+	 * @generated
+	 */
+	void setCommentaireEvaluationsTenuePosteMissionsSpecifiques(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Commentaire Competences</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commentaire Competences</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commentaire Competences</em>' attribute.
+	 * @see #setCommentaireCompetences(String)
+	 * @see fr.mutualite.rh.model.MutPackage#getEntretienAnnuel_CommentaireCompetences()
+	 * @model
+	 * @generated
+	 */
+	String getCommentaireCompetences();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireCompetences <em>Commentaire Competences</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commentaire Competences</em>' attribute.
+	 * @see #getCommentaireCompetences()
+	 * @generated
+	 */
+	void setCommentaireCompetences(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Commentaire Savoir Etre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commentaire Savoir Etre</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commentaire Savoir Etre</em>' attribute.
+	 * @see #setCommentaireSavoirEtre(String)
+	 * @see fr.mutualite.rh.model.MutPackage#getEntretienAnnuel_CommentaireSavoirEtre()
+	 * @model
+	 * @generated
+	 */
+	String getCommentaireSavoirEtre();
+
+	/**
+	 * Sets the value of the '{@link fr.mutualite.rh.model.EntretienAnnuel#getCommentaireSavoirEtre <em>Commentaire Savoir Etre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commentaire Savoir Etre</em>' attribute.
+	 * @see #getCommentaireSavoirEtre()
+	 * @generated
+	 */
+	void setCommentaireSavoirEtre(String value);
 
 } // EntretienAnnuel

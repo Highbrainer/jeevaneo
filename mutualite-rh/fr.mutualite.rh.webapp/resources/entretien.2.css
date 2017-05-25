@@ -3,8 +3,8 @@ body {
 }
 
 .big-title {
-	color: white;
-	background-color: #3498db;
+	color: white; /*#e42760;*/
+	background-color: transparent;
 	font-size: 24px;
 	font-weight: bold;
 }
@@ -39,7 +39,7 @@ legend {
 }
 
 .warning {
-	color: darkred;
+	color: #e42760;
 	font-style: italic;
 }
 
@@ -49,4 +49,4 @@ legend {
 .webix_el_textarea textarea {
 	color : darkgreen;
 } */
-.webix_dt_editor input,.webix_cell,.webix_el_textarea textarea {color:red;}
+.webix_dt_editor input,.webix_cell,.webix_el_textarea textarea {color:#e42760;}
