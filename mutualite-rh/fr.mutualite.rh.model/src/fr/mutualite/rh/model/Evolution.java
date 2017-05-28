@@ -26,7 +26,7 @@ public enum Evolution implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOWN(0, "DOWN", "DOWN"),
+	DOWN(0, "DOWN", "D\u00e9gradation"),
 
 	/**
 	 * The '<em><b>STABLE</b></em>' literal object.
@@ -36,7 +36,7 @@ public enum Evolution implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STABLE(1, "STABLE", "STABLE"),
+	STABLE(1, "STABLE", "Stable"),
 
 	/**
 	 * The '<em><b>UP</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum Evolution implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UP(2, "UP", "UP");
+	UP(2, "UP", "Am\u00e9lioration");
 
 	/**
 	 * The '<em><b>DOWN</b></em>' literal value.
@@ -57,7 +57,7 @@ public enum Evolution implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #DOWN
-	 * @model
+	 * @model literal="D\351gradation"
 	 * @generated
 	 * @ordered
 	 */
@@ -72,7 +72,7 @@ public enum Evolution implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #STABLE
-	 * @model
+	 * @model literal="Stable"
 	 * @generated
 	 * @ordered
 	 */
@@ -87,7 +87,7 @@ public enum Evolution implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #UP
-	 * @model
+	 * @model literal="Am\351lioration"
 	 * @generated
 	 * @ordered
 	 */

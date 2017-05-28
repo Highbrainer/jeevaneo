@@ -37,6 +37,7 @@ public class MutTests extends TestSuite {
 		suite.addTestSuite(SouhaitFormationEvaluateurTest.class);
 		suite.addTestSuite(SouhaitFormationSalarieTest.class);
 		suite.addTestSuite(EntretienAnnuelTest.class);
+		suite.addTestSuite(ObjectifPrecedentTest.class);
 		return suite;
 	}
 

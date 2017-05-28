@@ -85,7 +85,7 @@ public interface EvaluationSavoirEtre extends CDOObject {
 
 	/**
 	 * Returns the value of the '<em><b>Evol</b></em>' attribute.
-	 * The default value is <code>"STABLE"</code>.
+	 * The default value is <code>"Stable"</code>.
 	 * The literals are from the enumeration {@link fr.mutualite.rh.model.Evolution}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -97,7 +97,7 @@ public interface EvaluationSavoirEtre extends CDOObject {
 	 * @see fr.mutualite.rh.model.Evolution
 	 * @see #setEvol(Evolution)
 	 * @see fr.mutualite.rh.model.MutPackage#getEvaluationSavoirEtre_Evol()
-	 * @model default="STABLE" required="true"
+	 * @model default="Stable" required="true"
 	 * @generated
 	 */
 	Evolution getEvol();

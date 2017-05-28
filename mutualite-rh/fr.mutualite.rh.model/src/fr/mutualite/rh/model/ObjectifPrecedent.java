@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *   <li>{@link fr.mutualite.rh.model.ObjectifPrecedent#getObjectif <em>Objectif</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.ObjectifPrecedent#getEvaluation <em>Evaluation</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.ObjectifPrecedent#getCommentaire <em>Commentaire</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.ObjectifPrecedent#getLibelle <em>Libelle</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getObjectifPrecedent()
@@ -106,5 +107,20 @@ public interface ObjectifPrecedent extends CDOObject {
 	 * @generated
 	 */
 	void setCommentaire(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Libelle</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Libelle</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Libelle</em>' attribute.
+	 * @see fr.mutualite.rh.model.MutPackage#getObjectifPrecedent_Libelle()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	String getLibelle();
 
 } // ObjectifPrecedent

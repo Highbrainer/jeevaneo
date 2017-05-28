@@ -893,6 +893,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getObjectifPrecedent_Libelle() {
+		return (EAttribute)objectifPrecedentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPhotoEmploye() {
 		return photoEmployeEClass;
 	}
@@ -2322,6 +2331,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEReference(objectifPrecedentEClass, OBJECTIF_PRECEDENT__OBJECTIF);
 		createEAttribute(objectifPrecedentEClass, OBJECTIF_PRECEDENT__EVALUATION);
 		createEAttribute(objectifPrecedentEClass, OBJECTIF_PRECEDENT__COMMENTAIRE);
+		createEAttribute(objectifPrecedentEClass, OBJECTIF_PRECEDENT__LIBELLE);
 
 		photoEmployeEClass = createEClass(PHOTO_EMPLOYE);
 		createEAttribute(photoEmployeEClass, PHOTO_EMPLOYE__PRENOM);
@@ -2622,12 +2632,12 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEClass(evaluationCompetenceEClass, EvaluationCompetence.class, "EvaluationCompetence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEvaluationCompetence_Competence(), this.getCompetence(), "competence", null, 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvaluationCompetence_Eval(), this.getEvaluation(), "eval", "-/+", 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEvaluationCompetence_Evol(), this.getEvolution(), "evol", "STABLE", 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationCompetence_Evol(), this.getEvolution(), "evol", "Stable", 1, 1, EvaluationCompetence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(evaluationSavoirEtreEClass, EvaluationSavoirEtre.class, "EvaluationSavoirEtre", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEvaluationSavoirEtre_SavoirEtre(), this.getSavoirEtre(), "savoirEtre", null, 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEvaluationSavoirEtre_Eval(), this.getEvaluation(), "eval", "-/+", 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEvaluationSavoirEtre_Evol(), this.getEvolution(), "evol", "STABLE", 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluationSavoirEtre_Evol(), this.getEvolution(), "evol", "Stable", 1, 1, EvaluationSavoirEtre.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectifEClass, Objectif.class, "Objectif", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getObjectif_Libelle(), ecorePackage.getEString(), "libelle", null, 1, 1, Objectif.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2640,6 +2650,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEReference(getObjectifPrecedent_Objectif(), this.getObjectif(), this.getObjectif_EvaluationAtteinte(), "objectif", null, 0, 1, ObjectifPrecedent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getObjectifPrecedent_Evaluation(), this.getEvaluationAtteinteObjectif(), "evaluation", null, 1, 1, ObjectifPrecedent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getObjectifPrecedent_Commentaire(), ecorePackage.getEString(), "commentaire", null, 0, 1, ObjectifPrecedent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getObjectifPrecedent_Libelle(), ecorePackage.getEString(), "libelle", null, 1, 1, ObjectifPrecedent.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(photoEmployeEClass, PhotoEmploye.class, "PhotoEmploye", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPhotoEmploye_Prenom(), ecorePackage.getEString(), "prenom", null, 0, 1, PhotoEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

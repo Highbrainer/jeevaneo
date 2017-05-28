@@ -11,6 +11,8 @@ import fr.mutualite.rh.model.Objectif;
 import fr.mutualite.rh.model.ObjectifPrecedent;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -802,6 +804,14 @@ public class EntretienAnnuelImpl extends EntretienImpl implements EntretienAnnue
 				return COMMENTAIRE_SAVOIR_ETRE_EDEFAULT == null ? getCommentaireSavoirEtre() != null : !COMMENTAIRE_SAVOIR_ETRE_EDEFAULT.equals(getCommentaireSavoirEtre());
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	public Map<String, String> bidon() {
+		Map<String, String> map = new HashMap<>();
+		map.put("one", "un");
+		map.put("two", "deux");
+		map.put("three", "trois");
+		return map;
 	}
 
 } //EntretienAnnuelImpl

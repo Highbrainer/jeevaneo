@@ -65,6 +65,7 @@ public class ObjectifPrecedentItemProvider
 			addObjectifPropertyDescriptor(object);
 			addEvaluationPropertyDescriptor(object);
 			addCommentairePropertyDescriptor(object);
+			addLibellePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +137,28 @@ public class ObjectifPrecedentItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Libelle feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLibellePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ObjectifPrecedent_libelle_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectifPrecedent_libelle_feature", "_UI_ObjectifPrecedent_type"),
+				 MutPackage.Literals.OBJECTIF_PRECEDENT__LIBELLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ObjectifPrecedent.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,6 +199,7 @@ public class ObjectifPrecedentItemProvider
 		switch (notification.getFeatureID(ObjectifPrecedent.class)) {
 			case MutPackage.OBJECTIF_PRECEDENT__EVALUATION:
 			case MutPackage.OBJECTIF_PRECEDENT__COMMENTAIRE:
+			case MutPackage.OBJECTIF_PRECEDENT__LIBELLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

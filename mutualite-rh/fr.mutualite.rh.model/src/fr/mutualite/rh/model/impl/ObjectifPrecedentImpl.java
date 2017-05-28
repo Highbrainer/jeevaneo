@@ -25,6 +25,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link fr.mutualite.rh.model.impl.ObjectifPrecedentImpl#getObjectif <em>Objectif</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.ObjectifPrecedentImpl#getEvaluation <em>Evaluation</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.ObjectifPrecedentImpl#getCommentaire <em>Commentaire</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.ObjectifPrecedentImpl#getLibelle <em>Libelle</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,6 +50,16 @@ public class ObjectifPrecedentImpl extends CDOObjectImpl implements ObjectifPrec
 	 * @ordered
 	 */
 	protected static final String COMMENTAIRE_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getLibelle() <em>Libelle</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibelle()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LIBELLE_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,6 +166,19 @@ public class ObjectifPrecedentImpl extends CDOObjectImpl implements ObjectifPrec
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getLibelle() {
+		Objectif objectif = getObjectif();
+		if(null==objectif) {
+			return null;
+		}
+		return objectif.getLibelle();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -198,6 +222,8 @@ public class ObjectifPrecedentImpl extends CDOObjectImpl implements ObjectifPrec
 				return getEvaluation();
 			case MutPackage.OBJECTIF_PRECEDENT__COMMENTAIRE:
 				return getCommentaire();
+			case MutPackage.OBJECTIF_PRECEDENT__LIBELLE:
+				return getLibelle();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,6 +284,8 @@ public class ObjectifPrecedentImpl extends CDOObjectImpl implements ObjectifPrec
 				return getEvaluation() != EVALUATION_EDEFAULT;
 			case MutPackage.OBJECTIF_PRECEDENT__COMMENTAIRE:
 				return COMMENTAIRE_EDEFAULT == null ? getCommentaire() != null : !COMMENTAIRE_EDEFAULT.equals(getCommentaire());
+			case MutPackage.OBJECTIF_PRECEDENT__LIBELLE:
+				return LIBELLE_EDEFAULT == null ? getLibelle() != null : !LIBELLE_EDEFAULT.equals(getLibelle());
 		}
 		return super.eIsSet(featureID);
 	}

@@ -308,6 +308,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//ObjectifPrecedent/objectif"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//ObjectifPrecedent/evaluation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//ObjectifPrecedent/commentaire"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//ObjectifPrecedent/libelle"/>
     </genClasses>
     <genClasses ecoreClass="mut.ecore#//PhotoEmploye">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//PhotoEmploye/prenom"/>

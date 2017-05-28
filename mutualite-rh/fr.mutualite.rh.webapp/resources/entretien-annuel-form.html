@@ -80,7 +80,7 @@
 				&& getType.toString.call(functionToCheck) === '[object Function]';
 	}
 	function enregistrer() {
-		setTimeout("enregistrerThen(null);", 500);
+		setTimeout("enregistrerThen(function() {location.reload();});", 500);
 	}
 	function enregistrerThen(thenFunc) {
 		var promise = webix.ajax()/*.sync()*/.headers({
@@ -96,6 +96,10 @@
 					bean.missionsSpecifiques = [];
 					bean.missionSpecifiqueRemovals = [];
 					//bean.objectifs = [];
+					
+					for(var i in bean.objectifs) {
+						bean.objectifs[i].added = false;
+					}
 					bean.objectifRemovals = [];
 					if (thenFunc != null) {
 						thenFunc();
@@ -1133,7 +1137,7 @@
 													multiview : true,
 													bean : evaluationCompetenceBean,
 													value : evaluationCompetenceBean.evol,
-													options : [ {id:"DOWN", value:"&#8600;"}, {id:"STABLE", value:"&#10141;"}, {id:"UP", value:"&#8599;"} ],
+													options : [ {id:"Dégradation", value:"&#8600;"}, {id:"Stable", value:"&#10141;"}, {id:"Amélioration", value:"&#8599;"} ],
 													on : {
 														"onChange" : function(v) {
 															this.data.bean.evol = v;
@@ -1225,7 +1229,7 @@
 													multiview : true,
 													bean : evaluationSEBean,
 													value : evaluationSEBean.evol,
-													options : [ {id:"DOWN", value:"&#8600;"}, {id:"STABLE", value:"&#10141;"}, {id:"UP", value:"&#8599;"} ],
+													options : [ {id:"Dégradation", value:"&#8600;"}, {id:"Stable", value:"&#10141;"}, {id:"Amélioration", value:"&#8599;"} ],
 													on : {
 														"onChange" : function(v) {
 															this.data.bean.evol = v;

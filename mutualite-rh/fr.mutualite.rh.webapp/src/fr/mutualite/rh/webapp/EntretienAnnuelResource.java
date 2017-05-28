@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
@@ -67,6 +68,7 @@ import fr.mutualite.rh.model.SouhaitFormationSalarie;
 import fr.mutualite.rh.model.Utilisateur;
 import fr.mutualite.rh.model.dto.DtoFactory;
 import fr.mutualite.rh.model.dto.Formulaire;
+import fr.mutualite.rh.model.impl.EntretienAnnuelImpl;
 import fr.mutualite.rh.model.util.Activator;
 import fr.mutualite.rh.webapp.cdo.ICDO;
 import fr.mutualite.rh.webapp.cdo.MutualiteCDO;
@@ -278,8 +280,8 @@ public class EntretienAnnuelResource extends BaseResource {
 			AppreciationSessionFormation app = (AppreciationSessionFormation) e.cdoView()
 					.getObject(CDOIDUtil.createLong(id));
 			// e.getAppreciationsSessionFormation().stream().filter(app ->
-			// app.cdoID().toURIFragment().equals(""+id)).findAny().get().setValeur(Appreciation.get(node.get("valeur").asText())));
-			app.setValeur(Appreciation.get(node.get("valeur").asText()));
+			// app.cdoID().toURIFragment().equals(""+id)).findAny().get().setValeur(Appreciation.get(val(node, "valeur"))));
+			app.setValeur(Appreciation.get(val(node, "valeur")));
 		});
 
 		// Suppression des souhaits Evaluateur removed
@@ -317,7 +319,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateSouhaitsEvaluateur(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String texte = node.get("texte").asText();
+			String texte = val(node, "texte");
 			if (added) {
 				// create
 				SouhaitFormationEvaluateur souhait = MutFactory.eINSTANCE.createSouhaitFormationEvaluateur();
@@ -337,10 +339,10 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateObjectifs(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String libelle = node.get("libelle").asText();
-			String echeance = node.get("echeance").asText();
-			String indicateurs = node.get("indicateurs").asText();
-			String moyens = node.get("moyens").asText();
+			String libelle = val(node, "libelle");
+			String echeance = val(node, "echeance");
+			String indicateurs = val(node, "indicateurs");
+			String moyens = val(node, "moyens");
 			if (added) {
 				// create
 				Objectif objectif = MutFactory.eINSTANCE.createObjectif();
@@ -350,7 +352,12 @@ public class EntretienAnnuelResource extends BaseResource {
 				objectif.setMoyens(moyens);
 				e.getObjectifs().add(objectif);
 			} else {
-				long id = node.get("cdoId").asLong();
+				JsonNode cdoIdNode = node.get("cdoId");
+				if(null==cdoIdNode) {
+					System.err.println("CDOID manquant! " + node);
+					return; //on ignore, mais il faudrait en fait rediriger vers un reload de page en réponse à un enregistrement...
+				}
+				long id = cdoIdNode.asLong();
 				e.getObjectifs().stream().filter(s -> {
 					return id == Long.parseLong(s.cdoID().toURIFragment());
 				}).forEach(objectif -> {
@@ -365,8 +372,8 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateMissionsPrincipales(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String mission = node.get("mission").asText();
-			String sEval = node.get("eval").asText();
+			String mission = val(node, "mission");
+			String sEval = val(node, "eval");
 			Evaluation eval = Evaluation.get(sEval);
 			if (added) {
 				// create
@@ -388,8 +395,8 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateMissionsSpecifiques(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String mission = node.get("mission").asText();
-			String sEval = node.get("eval").asText();
+			String mission = val(node, "mission");
+			String sEval = val(node, "eval");
 			Evaluation eval = Evaluation.get(sEval);
 			if (added) {
 				// create
@@ -411,11 +418,11 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateEvaluationsCompetences(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String sCompetence = node.get("competence").asText();
+			String sCompetence = val(node, "competence");
 			Competence competence = Competence.get(sCompetence);
-			String sEval = node.get("eval").asText();
+			String sEval = val(node, "eval");
 			Evaluation eval = Evaluation.get(sEval);
-			String sEvol = node.get("evol").asText();
+			String sEvol = val(node, "evol");
 			Evolution evol = Evolution.get(sEvol);
 			if (added) {
 				// create
@@ -439,11 +446,11 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateEvaluationsSavoirEtre(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String sSavoirEtre = node.get("savoirEtre").asText();
+			String sSavoirEtre = val(node, "savoirEtre");
 			SavoirEtre savoirEtre = SavoirEtre.get(sSavoirEtre);
-			String sEval = node.get("eval").asText();
+			String sEval = val(node, "eval");
 			Evaluation eval = Evaluation.get(sEval);
-			String sEvol = node.get("evol").asText();
+			String sEvol = val(node, "evol");
 			Evolution evol = Evolution.get(sEvol);
 			if (added) {
 				// create
@@ -469,8 +476,8 @@ public class EntretienAnnuelResource extends BaseResource {
 	private void addOrUpdateObjectifsPrecedents(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String commentaire = node.get("commentaire").asText();
-			String sEval = node.get("evaluation").asText();
+			String commentaire = val(node, "commentaire");
+			String sEval = val(node, "evaluation");
 			EvaluationAtteinteObjectif eval = EvaluationAtteinteObjectif.get(sEval);
 			if (added) {
 				// create
@@ -490,11 +497,19 @@ public class EntretienAnnuelResource extends BaseResource {
 		});
 	}
 
+	public String val(JsonNode node, String name) {
+		JsonNode v = node.get(name);
+		if(v == null) {
+			return null;
+		}
+		return v.asText();
+	}
+
 	private void addOrUpdateSouhaits(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
-			String texte = node.get("texte").asText();
-			String avisEvaluateur = node.get("avisEvaluateur").asText();
+			String texte = val(node, "texte");
+			String avisEvaluateur = val(node, "avisEvaluateur");
 			if (added) {
 				// create
 				SouhaitFormationSalarie souhait = MutFactory.eINSTANCE.createSouhaitFormationSalarie();
@@ -528,9 +543,10 @@ public class EntretienAnnuelResource extends BaseResource {
 		
 		ret.setPhotoEmploye(photo);
 
-		Date datePrecedentEntretien = employe.getEntretiens().stream()
-				.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).map(Entretien::getDate)
-				.max(Date::compareTo).orElse(new Date(0));
+		Optional<Entretien> precedentEntretienOpt = employe.getEntretiens().stream()
+		.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).max((e1,e2) -> e1.getDate().compareTo(e2.getDate()));
+		
+		Date datePrecedentEntretien = precedentEntretienOpt.map(Entretien::getDate).orElse(new Date(0));
 
 		employe.getSessionsFormation().stream()
 				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien)).map(session -> {
@@ -548,11 +564,20 @@ public class EntretienAnnuelResource extends BaseResource {
 		}).forEach(ret.getEvaluationsCompetences()::add);
 		
 		Arrays.stream(SavoirEtre.values()).map(c -> {
-			EvaluationSavoirEtre evaluationCompetence = MutFactory.eINSTANCE.createEvaluationSavoirEtre();
-			evaluationCompetence.setSavoirEtre(c);
-			return evaluationCompetence;
+			EvaluationSavoirEtre eval = MutFactory.eINSTANCE.createEvaluationSavoirEtre();
+			eval.setSavoirEtre(c);
+			return eval;
 		}).forEach(ret.getEvaluationsSavoirEtre()::add);
 
+		if(precedentEntretienOpt.isPresent()) {
+			EntretienAnnuel precedent = (EntretienAnnuel) precedentEntretienOpt.get();
+			precedent.getObjectifs().stream().map(o -> {
+				ObjectifPrecedent objPrec = MutFactory.eINSTANCE.createObjectifPrecedent();
+				objPrec.setObjectif(o);
+				return objPrec;
+			}).forEach(ret.getObjectifsPrecedents()::add);;
+		}
+		
 		employe.getEntretiens().add(ret);
 		return ret;
 	}
@@ -635,23 +660,28 @@ public class EntretienAnnuelResource extends BaseResource {
 			Formulaire formulaire = makeFormulaire(entretien);
 			PhotoEmploye photoEmploye = entretien.getPhotoEmploye();
 			IContext ctx = report.createContext();
-			// ctx.put("entretien", entretien);
-			// ctx.put("employe", employe);
-				// ctx.put("formulaire", formulaire);
-
+			 ctx.put("entretien", entretien);
+			ctx.put("employe", employe);
+			ctx.put("formulaire", formulaire);
+			ctx.put("photo", photoEmploye);
+			
+//			System.out.println("Attributes");
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);
 				Object sVal = string(rawVal);
 				ctx.put(att.getName(), sVal);
+//				System.out.println("${" + att.getName() + "}");
 			});
 			entretien.eClass().getEAllReferences().forEach(ref -> {
 				ctx.put(ref.getName(), entretien.eGet(ref));
+//				System.out.println("${" + ref.getName() + "}");
 			});
-			employe.eClass().getEAllAttributes().forEach(att -> {
-				Object rawVal = employe.eGet(att);
-				Object sVal = string(rawVal);
-				ctx.put("employe_" + att.getName(), sVal);
-			});
+//			employe.eClass().getEAllAttributes().forEach(att -> {
+//				Object rawVal = employe.eGet(att);
+//				Object sVal = string(rawVal);
+//				ctx.put("employe_" + att.getName(), sVal);
+//				System.out.println("${employe_" + att.getName() + "}");
+//			});
 			// employe.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("employe." + ref.getName(), employe.eGet(ref));
 			// });
@@ -659,11 +689,13 @@ public class EntretienAnnuelResource extends BaseResource {
 				Object rawVal = formulaire.eGet(att);
 				Object sVal = string(rawVal);
 				ctx.put("formulaire_" + att.getName(), sVal);
+				System.out.println("${formulaire_" + att.getName() + "}");
 			});
 			photoEmploye.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = photoEmploye.eGet(att);
 				Object sVal = string(rawVal);
 				ctx.put("photo_" + att.getName(), sVal);
+//				System.out.println("${photo_" + att.getName() + "}");
 			});
 			// formulaire.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("formulaire." + ref.getName(), formulaire.eGet(ref));

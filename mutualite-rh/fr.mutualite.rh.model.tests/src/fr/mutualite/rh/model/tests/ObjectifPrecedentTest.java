@@ -13,6 +13,12 @@ import junit.textui.TestRunner;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Objectif Precedent</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are tested:
+ * <ul>
+ *   <li>{@link fr.mutualite.rh.model.ObjectifPrecedent#getLibelle() <em>Libelle</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class ObjectifPrecedentTest extends TestCase {
@@ -84,6 +90,19 @@ public class ObjectifPrecedentTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link fr.mutualite.rh.model.ObjectifPrecedent#getLibelle() <em>Libelle</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent#getLibelle()
+	 * @generated
+	 */
+	public void testGetLibelle() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //ObjectifPrecedentTest

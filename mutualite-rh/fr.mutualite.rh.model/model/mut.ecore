@@ -406,9 +406,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Evolution">
-    <eLiterals name="DOWN"/>
-    <eLiterals name="STABLE" value="1"/>
-    <eLiterals name="UP" value="2"/>
+    <eLiterals name="DOWN" literal="Dégradation"/>
+    <eLiterals name="STABLE" value="1" literal="Stable"/>
+    <eLiterals name="UP" value="2" literal="Amélioration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EvaluationCompetence">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="competence" lowerBound="1"
@@ -416,7 +416,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"
         defaultValueLiteral="-/+"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="evol" lowerBound="1" eType="#//Evolution"
-        defaultValueLiteral="STABLE"/>
+        defaultValueLiteral="Stable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Competence">
     <eLiterals name="RespectProceduresNormes" literal="Respect des procédures et des normes"/>
@@ -455,7 +455,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eval" lowerBound="1" eType="#//Evaluation"
         defaultValueLiteral="-/+"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="evol" lowerBound="1" eType="#//Evolution"
-        defaultValueLiteral="STABLE"/>
+        defaultValueLiteral="Stable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Objectif">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" lowerBound="1"
@@ -475,6 +475,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="evaluation" lowerBound="1"
         eType="#//EvaluationAtteinteObjectif"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentaire" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EvaluationAtteinteObjectif">
     <eLiterals name="NON" literal="Non atteint"/>

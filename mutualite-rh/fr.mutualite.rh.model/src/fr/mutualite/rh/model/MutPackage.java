@@ -2263,13 +2263,22 @@ public interface MutPackage extends EPackage {
 	int OBJECTIF_PRECEDENT__COMMENTAIRE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Libelle</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIF_PRECEDENT__LIBELLE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Objectif Precedent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECTIF_PRECEDENT_FEATURE_COUNT = 3;
+	int OBJECTIF_PRECEDENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Objectif Precedent</em>' class.
@@ -3105,6 +3114,17 @@ public interface MutPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getObjectifPrecedent_Commentaire();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.ObjectifPrecedent#getLibelle <em>Libelle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Libelle</em>'.
+	 * @see fr.mutualite.rh.model.ObjectifPrecedent#getLibelle()
+	 * @see #getObjectifPrecedent()
+	 * @generated
+	 */
+	EAttribute getObjectifPrecedent_Libelle();
 
 	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.PhotoEmploye <em>Photo Employe</em>}'.
@@ -5024,6 +5044,14 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OBJECTIF_PRECEDENT__COMMENTAIRE = eINSTANCE.getObjectifPrecedent_Commentaire();
+
+		/**
+		 * The meta object literal for the '<em><b>Libelle</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECTIF_PRECEDENT__LIBELLE = eINSTANCE.getObjectifPrecedent_Libelle();
 
 		/**
 		 * The meta object literal for the '{@link fr.mutualite.rh.model.impl.PhotoEmployeImpl <em>Photo Employe</em>}' class.
