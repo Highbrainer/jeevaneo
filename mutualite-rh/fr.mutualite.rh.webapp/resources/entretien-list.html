@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
 	type="text/css">
+	<link rel="stylesheet" href="http://cdn.webix.com/edge/skins/web.css" rel="stylesheet" type="text/css">
 <script src="http://cdn.webix.com/edge/webix_debug.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
@@ -57,6 +58,14 @@ legend {
 .warning {
 	color: darkred;
 	font-style: italic;
+}
+
+.orange button {
+background-color: orange;
+}
+
+.petrol button {
+background-color: #00acac;
 }
 </style>
 
@@ -308,8 +317,9 @@ legend {
 					label : "Nouvel Entretien PRO",
 					//width : 180,
 					align : "right",
-					type : "icon",
+					type : "htmlButton",
 					icon : "plus",
+					css : "petrol",
 					click: addEntretienPro
 				},
 				{
@@ -317,8 +327,9 @@ legend {
 					label : "Nouvel Entretien ANNUEL",
 					//width : 180,
 					align : "right",
-					type : "icon",
+					type : "htmlButton",
 					icon : "plus",
+					css: "orange",
 					click: addEntretienAnnuel
 				}]
 			}

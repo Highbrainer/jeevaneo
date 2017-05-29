@@ -12,7 +12,7 @@ body {
 .cartouche-titre {
 	font-weight: bolder;
 }
-
+/*
 legend {
 	font-weight: bolder;
 	font-size: 128px;
@@ -37,7 +37,7 @@ legend {
 .webix_segment_N {
 	background-color: #999999
 }
-
+*/ 
 .warning {
 	color: #e42760;
 	font-style: italic;

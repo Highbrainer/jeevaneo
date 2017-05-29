@@ -4,9 +4,11 @@
 <meta charset="ISO-8859-1">
 <!-- <script src="/files/webix/webix.js" type="text/javascript"></script> -->
 <script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
-<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css">
-<link rel="stylesheet" href="/files/webix/webix.css" type="text/css">
-<script src="/files/webix/skin.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
+	type="text/css">
+<link rel="stylesheet" href="/files/webix/orange/webix.css"
+	type="text/css">
+<script src="/files/webix/orange/skin.js" type="text/javascript"></script>
 <script type="text/javascript">
 	webix.debug = !true;
 	webix.debug_size = !true;
@@ -14,7 +16,7 @@
 	webix_debug_proto = !true;
 	webix.debug_time = !true;
 </script>
-<link rel="stylesheet" type="text/css" href="entretien.2.css">
+<link rel="stylesheet" type="text/css" href="entretien-custom.css">
 
 <script type="text/javascript">
 	function val(s) {
@@ -61,7 +63,10 @@
 		webix.ajax()/*.sync()*/.headers({
 			"Content-type" : "application/json",
 			"Authorization" : "Bearer " + window.sessionStorage.token
-		}).post("/rest/entretiens-annuels/" + bean.cdoId + "/validate").then(
+		}).post("/rest/entretiens-annuels/" + bean.cdoId + "/validate").fail(
+				function(err) {
+					webix.alert("Echec de la validation!\n" + err);
+				}).then(
 				function(realdata) {
 
 					window.location = "/rest/entretiens-annuels/" + bean.cdoId
@@ -71,7 +76,7 @@
 						token : window.sessionStorage.token
 					}, "GET", "_blank"); */
 				}).fail(function(err) {
-			webix.alert("Echec de la validation!");
+					webix.alert("Echec de l'enregistrement! \n" + err.responseText);
 		});
 	}
 	function isFunction(functionToCheck) {
@@ -96,8 +101,8 @@
 					bean.missionsSpecifiques = [];
 					bean.missionSpecifiqueRemovals = [];
 					//bean.objectifs = [];
-					
-					for(var i in bean.objectifs) {
+
+					for ( var i in bean.objectifs) {
 						bean.objectifs[i].added = false;
 					}
 					bean.objectifRemovals = [];
@@ -107,14 +112,14 @@
 						webix.message("Enregistré!");/*window.location.reload(true);*/
 					}
 				}).fail(function(err) {
-					if (isFunction(thenFunc)) {
+					/* if (isFunction(thenFunc)) {
 						console.log(thenFunc);
 						thenFunc();
 					} else {
 						//TODO il faudrait discernet l'erreur d'enregistrement du "pas en cours!"
-						webix.alert("Echec de l'enregistrement!");
 						console.log(err);
-					}
+					} */
+					webix.alert("Echec de l'enregistrement! \n" + err.responseText);
 				});
 
 	}
@@ -406,6 +411,7 @@
 									}, {
 										view : "button",
 										type : "iconButton",
+										zzzcss : "webix_icon fa-save",
 										icon : "save",
 										align : "right",
 										label : "Enregistrer",
@@ -646,7 +652,7 @@
 										body : {
 											id : "evaluationCompetencesSavoirFaire",
 
-											rows : [  ]
+											rows : []
 										}
 									},
 
@@ -656,7 +662,7 @@
 										body : {
 											id : "evaluationCompetencesSavoirEtre",
 
-											rows : [  ]
+											rows : []
 										}
 									},
 
@@ -696,14 +702,13 @@
 										}
 									},
 
-
 									{
 										collapsed : false,
 										header : "Atteinte des objectifs précédents",
 										body : {
 											id : "objectifsPrecedents",
 
-											rows : [  ]
+											rows : []
 										}
 									},
 									{
@@ -724,7 +729,7 @@
 											} ]
 										}
 									},
-									
+
 									{
 										header : "Formation professionnelle",
 										body : {
@@ -818,7 +823,7 @@
 													} ]
 										}
 									},
-									
+
 									{
 										header : "Définition des objectifs pour l'année à venir",
 										body : {
@@ -833,7 +838,7 @@
 																	editor : "popup",
 																	header : "Objectif",
 																	width : 350
-																	
+
 																},
 																{
 																	id : "echeance",
@@ -846,7 +851,7 @@
 																	editor : "popup",
 																	header : "Indicateurs de performance",
 																	width : 250
-																	
+
 																},
 																{
 																	id : "moyens",
@@ -1055,37 +1060,33 @@
 			}
 
 			//fin init map des competences
-			
+
 			//TITRES
-			$$("evaluationCompetencesSavoirFaire")
-							.addView(
-									{
-										autoheight:true,
-										cols : [
-												{
-													view : "label",
-													//height : 30,
-													label : ""
-												},												
-												{
-													view : "template",
-													width : 150,
-													template : "<b>Evaluation</b>"
-												},												
-												{
-													width : 150,
-													view:"template", autoheight:true, template:"<b>Evolution depuis le dernier entretien</b>"
-												}
-												]
-									});
+			$$("evaluationCompetencesSavoirFaire").addView({
+				autoheight : true,
+				cols : [ {
+					view : "label",
+					//height : 30,
+					label : ""
+				}, {
+					view : "template",
+					width : 150,
+					template : "<b>Evaluation</b>"
+				}, {
+					width : 150,
+					view : "template",
+					autoheight : true,
+					template : "<b>Evolution depuis le dernier entretien</b>"
+				} ]
+			});
 			//FIN TITRES
 			var evalCompetById = new Map();
-			
+
 			for (i in categoriesCompetencesBean) {
 				$$("evaluationCompetencesSavoirFaire").addView(
 						{
 							view : "label",
-							align: "left",
+							align : "left",
 							label : "<span><b>"
 									+ categoriesCompetencesBean[i].libelle
 									+ "</b></span>"
@@ -1096,7 +1097,7 @@
 					if (!evaluationCompetenceBean) {
 						continue;
 					}
-					evalCompetById[evaluationCompetenceBean.id] = evaluationCompetenceBean; 
+					evalCompetById[evaluationCompetenceBean.id] = evaluationCompetenceBean;
 					$$("evaluationCompetencesSavoirFaire")
 							.addView(
 									{
@@ -1105,9 +1106,9 @@
 												{
 													view : "template",
 													height : 30,
-													align:"left",
+													align : "left",
 													template : categoriesCompetencesBean[i].competences[j].libelle
-												},												
+												},
 												{
 													id : "categoriesCompetencesBean["
 															+ i
@@ -1118,7 +1119,10 @@
 													multiview : true,
 													bean : evaluationCompetenceBean,
 													value : evaluationCompetenceBean.eval,
-													options : [ {id:"Non concerné(e)", value:"NC"}, "-", "-/+", "+" ],
+													options : [ {
+														id : "Non concerné(e)",
+														value : "NC"
+													}, "-", "-/+", "+" ],
 													on : {
 														"onChange" : function(v) {
 															//webix.message("AVANT " + this.data.bean.cdoId +  " " + this.data.bean.eval);
@@ -1126,7 +1130,7 @@
 															//webix.message("APRES " + this.data.bean.cdoId +  " " + this.data.bean.eval);
 														}
 													}
-												},												
+												},
 												{
 													id : "categoriesCompetencesBean["
 															+ i
@@ -1137,7 +1141,16 @@
 													multiview : true,
 													bean : evaluationCompetenceBean,
 													value : evaluationCompetenceBean.evol,
-													options : [ {id:"Dégradation", value:"&#8600;"}, {id:"Stable", value:"&#10141;"}, {id:"Amélioration", value:"&#8599;"} ],
+													options : [ {
+														id : "Dégradation",
+														value : "&#8600;"
+													}, {
+														id : "Stable",
+														value : "&#10141;"
+													}, {
+														id : "Amélioration",
+														value : "&#8599;"
+													} ],
 													on : {
 														"onChange" : function(v) {
 															this.data.bean.evol = v;
@@ -1148,10 +1161,9 @@
 									});
 				}
 			}
-			
+
 			//Commentaires en tant que footer
-			$$("evaluationCompetencesSavoirFaire")
-			.addView({
+			$$("evaluationCompetencesSavoirFaire").addView({
 				view : "textarea",
 				height : 100,
 				label : "Commentaires:",
@@ -1165,83 +1177,79 @@
 			});
 		}
 
-
 		function createEvaluationSavoirEtreForm(formBean, entretienBean) {
-			
+
 			//TITRES
-			$$("evaluationCompetencesSavoirEtre")
-							.addView(
-									{
-										autoheight:true,
-										cols : [
-												{
-													view : "label",
-													//height : 30,
-													label : ""
-												},												
-												{
-													view : "template",
-													width : 150,
-													template : "<b>Evaluation</b>"
-												},												
-												{
-													width : 150,
-													view:"template", autoheight:true, template:"<b>Evolution depuis le dernier entretien</b>"
-												}
-												]
-									});
+			$$("evaluationCompetencesSavoirEtre").addView({
+				autoheight : true,
+				cols : [ {
+					view : "label",
+					//height : 30,
+					label : ""
+				}, {
+					view : "template",
+					width : 150,
+					template : "<b>Evaluation</b>"
+				}, {
+					width : 150,
+					view : "template",
+					autoheight : true,
+					template : "<b>Evolution depuis le dernier entretien</b>"
+				} ]
+			});
 			//FIN TITRES
-				for (j in entretienBean.evaluationsSavoirEtre) {
+			for (j in entretienBean.evaluationsSavoirEtre) {
 
-					evaluationSEBean = entretienBean.evaluationsSavoirEtre[j];
+				evaluationSEBean = entretienBean.evaluationsSavoirEtre[j];
 
-					$$("evaluationCompetencesSavoirEtre")
-							.addView(
-									{
-										//autoheight:true,
-										cols : [
-												{
-													view : "template",
-													height : 30,
-													align:"left",
-													template : evaluationSEBean.savoirEtre
-												},												
-												{
-													id : "evaluationSEBean["
-															+ j + "].eval",
-													view : "segmented",
-													width : 150,
-													multiview : true,
-													bean : evaluationSEBean,
-													value : evaluationSEBean.eval,
-													options : [ "-", "-/+", "+" ],
-													on : {
-														"onChange" : function(v) {
-															this.data.bean.eval = v;
-														}
-													}
-												},												
-												{
-													id : "evaluationSEBean["
-															+ j + "].evol",
-													view : "segmented",
-													width : 150,
-													multiview : true,
-													bean : evaluationSEBean,
-													value : evaluationSEBean.evol,
-													options : [ {id:"Dégradation", value:"&#8600;"}, {id:"Stable", value:"&#10141;"}, {id:"Amélioration", value:"&#8599;"} ],
-													on : {
-														"onChange" : function(v) {
-															this.data.bean.evol = v;
-														}
-													}
-												} ]
-									});
-				}
-			
+				$$("evaluationCompetencesSavoirEtre").addView({
+					//autoheight:true,
+					cols : [ {
+						view : "template",
+						height : 30,
+						align : "left",
+						template : evaluationSEBean.savoirEtre
+					}, {
+						id : "evaluationSEBean[" + j + "].eval",
+						view : "segmented",
+						width : 150,
+						multiview : true,
+						bean : evaluationSEBean,
+						value : evaluationSEBean.eval,
+						options : [ "-", "-/+", "+" ],
+						on : {
+							"onChange" : function(v) {
+								this.data.bean.eval = v;
+							}
+						}
+					}, {
+						id : "evaluationSEBean[" + j + "].evol",
+						view : "segmented",
+						width : 150,
+						multiview : true,
+						bean : evaluationSEBean,
+						value : evaluationSEBean.evol,
+						options : [ {
+							id : "Dégradation",
+							value : "&#8600;"
+						}, {
+							id : "Stable",
+							value : "&#10141;"
+						}, {
+							id : "Amélioration",
+							value : "&#8599;"
+						} ],
+						on : {
+							"onChange" : function(v) {
+								this.data.bean.evol = v;
+							}
+						}
+					} ]
+				});
+			}
+
 			//Commentaires en tant que footer
-			$$("evaluationCompetencesSavoirEtre")
-			.addView({
+			$$("evaluationCompetencesSavoirEtre").addView({
 				view : "textarea",
 				height : 100,
 				label : "Commentaires:",
@@ -1255,41 +1263,32 @@
 			});
 		}
 
-
-
 		function createObjectifsPrecedentsForm(formBean, entretienBean) {
-			
+
 			//TITRES
-			$$("objectifsPrecedents")
-							.addView(
-									{
-										autoheight:true,
-										cols : [
-												{
-													view : "label",
-													//height : 30,
-													width : 500,
-													label : "<b>Objectif</b>"
-												},												
-												{
-													view : "label",
-													width : 180,
-													label : "<b>Atteinte</b>"
-												},												
-												{
-													view : "label",
-													width : 500,
-													label : "<b>Commentaire</b>"
-												}
-												]
-									});
+			$$("objectifsPrecedents").addView({
+				autoheight : true,
+				cols : [ {
+					view : "label",
+					//height : 30,
+					width : 500,
+					label : "<b>Objectif</b>"
+				}, {
+					view : "label",
+					width : 180,
+					label : "<b>Atteinte</b>"
+				}, {
+					view : "label",
+					width : 500,
+					label : "<b>Commentaire</b>"
+				} ]
+			});
 			//FIN TITRES
 			for (j in entretienBean.objectifsPrecedents) {
-				createObjectifPrecedentLine(entretienBean.objectifsPrecedents[j]);	
-				}
+				createObjectifPrecedentLine(entretienBean.objectifsPrecedents[j]);
+			}
 		}
 
-		
 		function createObjectifPrecedentLine(objectifPrecedent) {
 			var objectifPrecedentBean = objectifPrecedent;
 
@@ -1299,27 +1298,32 @@
 								//autoheight:true,
 								cols : [
 										{
-											id : "objectifPrecedent_" + objectifPrecedentBean.cdoId,
+											id : "objectifPrecedent_"
+													+ objectifPrecedentBean.cdoId,
 											view : "template",
-											width: 500,
-											align:"left",
-											template : "<span style=\"width:100%;text-align:left;\">" + objectifPrecedentBean.cdoId + "</span>"
-										},												
+											width : 500,
+											align : "left",
+											template : "<span style=\"width:100%;text-align:left;\">"
+													+ objectifPrecedentBean.cdoId
+													+ "</span>"
+										},
 										{
 											view : "combo",
 											width : 180,
 											bean : objectifPrecedentBean,
 											value : objectifPrecedentBean.evaluation,
-											options : [ "Non atteint", "Partiellement atteint", "Atteint" ],
+											options : [ "Non atteint",
+													"Partiellement atteint",
+													"Atteint" ],
 											on : {
 												"onChange" : function(v) {
 													this.data.bean.evaluation = v;
 												}
 											}
-										},												
+										},
 										{
 											view : "textarea",
-											width: 500,
+											width : 500,
 											bean : objectifPrecedentBean,
 											value : objectifPrecedentBean.commentaire,
 											on : {
@@ -1328,30 +1332,33 @@
 												}
 											}
 										} ]
-							});	
-			
+							});
+
 			//update le libelle
 			webix
-			.ajax()
-			.headers(
-					{
-						"Authorization" : "Bearer "
-								+ window.sessionStorage.token
-					})
-			.get("/rest/objectif-precedent/" + objectifPrecedentBean.cdoId + "/libelle")
-			.fail(
-					function() {
-						webix
-								.alert("Erreur technique lors du chargement du libelle d'un objectif précédent.");
-					}).then(
-					function(libelle) {
-						$$("objectifPrecedent_" + objectifPrecedentBean.cdoId).setHTML(libelle.text());
-					});
+					.ajax()
+					.headers(
+							{
+								"Authorization" : "Bearer "
+										+ window.sessionStorage.token
+							})
+					.get(
+							"/rest/objectif-precedent/"
+									+ objectifPrecedentBean.cdoId + "/libelle")
+					.fail(
+							function() {
+								webix
+										.alert("Erreur technique lors du chargement du libelle d'un objectif précédent.");
+							}).then(
+							function(libelle) {
+								$$(
+										"objectifPrecedent_"
+												+ objectifPrecedentBean.cdoId)
+										.setHTML(libelle.text());
+							});
 
 		}
-		
-		
-		
+
 		/* //Gestion de la progressbar à la validation
 		//adding progress bar functionality to it
 		webix.extend($$("mainForm"), webix.ProgressBar);
