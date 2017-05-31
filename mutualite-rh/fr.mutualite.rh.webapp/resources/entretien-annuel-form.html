@@ -8,6 +8,7 @@
 	type="text/css">
 <link rel="stylesheet" href="/files/webix/orange/webix.css"
 	type="text/css">
+<!-- <script src="/files/webix/orange/webix.js" type="text/javascript"></script> -->
 <script src="/files/webix/orange/skin.js" type="text/javascript"></script>
 <script type="text/javascript">
 	webix.debug = !true;
@@ -76,7 +77,7 @@
 						token : window.sessionStorage.token
 					}, "GET", "_blank"); */
 				}).fail(function(err) {
-					webix.alert("Echec de l'enregistrement! \n" + err.responseText);
+			webix.alert("Echec de l'enregistrement! \n" + err.responseText);
 		});
 	}
 	function isFunction(functionToCheck) {
@@ -111,16 +112,18 @@
 					} else {
 						webix.message("Enregistré!");/*window.location.reload(true);*/
 					}
-				}).fail(function(err) {
-					/* if (isFunction(thenFunc)) {
-						console.log(thenFunc);
-						thenFunc();
-					} else {
-						//TODO il faudrait discernet l'erreur d'enregistrement du "pas en cours!"
-						console.log(err);
-					} */
-					webix.alert("Echec de l'enregistrement! \n" + err.responseText);
-				});
+				}).fail(
+						function(err) {
+							/* if (isFunction(thenFunc)) {
+								console.log(thenFunc);
+								thenFunc();
+							} else {
+								//TODO il faudrait discernet l'erreur d'enregistrement du "pas en cours!"
+								console.log(err);
+							} */
+							webix.alert("Echec de l'enregistrement! \n"
+									+ err.responseText);
+						});
 
 	}
 </script>
@@ -237,13 +240,35 @@
 		function ajouterObjectif() {
 			item = {
 				added : true,
-				libelle : "Décrire l'objectif ici...",
+				libelle : "",
 				echeance : "",
 				indicateurs : "",
 				moyens : ""
 			};
-			$$("datatable_objectifs").add(item);
+
+			var row = $$("datatable_objectifs").add(item);
 			bean.objectifs.push(item);
+			//$$("datatable_objectifs").editRow(row);
+			console.log($$("datatable_objectifs").editStop);
+			//$$("datatable_objectifs").editStop = function() {console.log("GROS STOP ");}
+
+			$$("truc").focus();
+			$$("datatable_objectifs").editCell(row, "libelle").focus();
+			/* var pop = webix.ui({
+				view   : 'popup',
+				id     : 'error_pop',
+				css    : { 'box-shadow': 'none' },
+				body   : {rows:[
+					{ css:{'font-weight':'bold'},
+			          autoheight:true,
+			          borderless:true,
+			          template: 'Cliquez ici pour éditer votre nouvel objectif...'},
+			    
+				]},
+				$init : function() {
+			    	setTimeout(function() {$$('error_pop').hide("error_pop");}, 2000);
+			    	}
+			}).show($$('datatable_objectifs').$view); */
 		}
 
 		function removeObjectif(identifiant) {
@@ -390,6 +415,40 @@
 				superbean.entretien.photoEmploye.datePrecedentEntretienAnnuel = "";
 			}
 			console.log(superbean);
+
+			webix.editors.placeholderpopup = webix.extend({
+				focus : function() {
+					console.log(this);
+					var textareaId = this.getInputNode().config.id;
+					if (this.config.placeholder) {
+						ta = document.getElementsByName(textareaId)[0]
+						ta.placeholder = this.config.placeholder
+								+ "\nMAJ+ENTREE: retour à la ligne";
+					}
+					ta.style.width = 600;
+					ta.style.height = 200;
+					this.getInputNode().focus();
+				}
+			}, webix.editors.popup);
+			/* webix.editors.placeholderpopup.linkInput=function(node){
+					console.log(e);
+				webix._event(webix.toNode(node), "keydown", webix.bind(function(e){
+				
+					var code = e.which || e.keyCode, list = this.getInputNode();
+					if(!list.isVisible()) return;
+
+					if(code === 40){
+						if(list.moveSelection)
+							list.moveSelection("down");
+						webix.UIManager.setFocus(list);
+					} 
+					// shift+enter support for 'popup' editor
+					else if(code === 13 && ( e.target.nodeName !=="TEXTAREA" || !e.shiftKey))
+						webix.callEvent("onEditEnd", []);
+					
+				}, this));
+			} */
+
 			var page = {
 				id : "mainForm",
 				container : "data_container",
@@ -835,29 +894,33 @@
 														columns : [
 																{
 																	id : "libelle",
-																	editor : "popup",
+																	editor : "placeholderpopup",
 																	header : "Objectif",
-																	width : 350
+																	width : 350,
+																	placeholder : "Décrire l'objectif ici...",
 
 																},
 																{
 																	id : "echeance",
-																	editor : "popup",
+																	editor : "placeholderpopup",
 																	header : "Echeance",
-																	width : 150
+																	width : 150,
+																	placeholder : "Décrire l'échéance ici...",
 																},
 																{
 																	id : "indicateurs",
-																	editor : "popup",
+																	editor : "placeholderpopup",
 																	header : "Indicateurs de performance",
-																	width : 250
+																	width : 250,
+																	placeholder : "Lister les indicateurs de performance ici...",
 
 																},
 																{
 																	id : "moyens",
-																	editor : "popup",
+																	editor : "placeholderpopup",
 																	header : "Moyens mis à disposition",
-																	width : 250
+																	width : 250,
+																	placeholder : "Indiquer les moyens à mettre à disposition ici...",
 																},
 																{
 																	id : "remove",
@@ -870,6 +933,17 @@
 														autoheight : true,
 														editable : true,
 														data : bean.objectifs
+													},
+													{
+														id : "truc",
+														view : "button",
+														type : "hidden",
+														icon : "plus-circle",
+														label : "Bidon",
+														align : "right",
+														autowidth : true,
+														height : 0,
+														visible : false
 													},
 													{
 														view : "button",
