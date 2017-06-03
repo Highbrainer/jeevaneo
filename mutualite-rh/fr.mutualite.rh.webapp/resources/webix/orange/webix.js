@@ -181,7 +181,10 @@ if(e)return t;var s=t.getParentView();if(!s)return this.getPrev(t,!0);var n=s.ge
 return this.lb[n]||(this.lb[n]=[]),this.lb[n].push(s),t},removeHotKey:function(t,e,i){var s=this.Cb(t),n=this.zb(s.letter,s.ctrl,s.shift,s.alt,s.meta);if(e||i){var r=this.lb[n];if(r){for(var a=r.length-1;a>=0;a--)i&&r[a].view!==i||e&&r[a].handler!==e||r.splice(a,1);r.length||delete this.lb[n]}}else delete this.lb[n];
 },zb:function(t,e,i,s,n){return t+"_"+["",e?"1":"0",i?"1":"0",s?"1":"0",n?"1":"0"].join("")},Bb:function(t,e,i){var s=this.getFocus();return this.lb[t]?this.Db(this.lb[t],s,i):e&&this.lb.ANY_0000?this.Db(this.lb.ANY_0000,s,i):!0},Db:function(t,e,i){for(var s=0;s<t.length;s++){var n=t[s];if(null===n.view||e===n.view||"string"==typeof n.view&&e&&e.name===n.view){
 var r=n.handler(e,i);if(!!r===r)return r}}return!0},Cb:function(t){var e,i,s,n,r=this.nb,a=t.toLowerCase().split(/[\+\-_]/);e=i=s=n=0;for(var o="",h=0;h<a.length;h++)if("ctrl"===a[h])e=1;else if("shift"===a[h])i=1;else if("alt"===a[h])s=1;else if("command"===a[h])n=1;else if(r[a[h]]){var l=r[a[h]];o=this.BA(l)?l.toString():String.fromCharCode(l);
-}else o=a[h];return{letter:o.toUpperCase(),ctrl:e,shift:i,alt:s,meta:n}}},webix.ready(function(){webix.UIManager.ob(),webix.UIManager.addHotKey("enter",function(t,e){if(t&&t.editStop&&t.Eb)return t.editStop(),!0;if(t&&t.touchable){var i=t.getFormView();i&&!t.Dt&&i.callEvent("onSubmit",[t,e])}}),webix.UIManager.addHotKey("esc",function(t){
+}else o=a[h];return{letter:o.toUpperCase(),ctrl:e,shift:i,alt:s,meta:n}}},webix.ready(function(){webix.UIManager.ob(),webix.UIManager.addHotKey("enter",function(t,e){
+		if(t&&t.editStop&&t.Eb)
+			return t.editStop(),!0;
+		if(t&&t.touchable){var i=t.getFormView();i&&!t.Dt&&i.callEvent("onSubmit",[t,e])}}),webix.UIManager.addHotKey("esc",function(t){
 if(t){if(t.editCancel&&t.Eb)return t.editCancel(),!0;var e=t.getTopParentView();e&&e.setPosition&&e.Fb()}}),webix.UIManager.addHotKey("shift+tab",webix.UIManager.WE),webix.UIManager.addHotKey("tab",webix.UIManager.WE)}),webix.IdSpace={$init:function(){this.Hb={},this.Ib={},this.getTopParentView=this.CD=webix.bind(function(){
 return this},this),this.Jb(),this.$ready.push(this.Kb)},$$:function(t){return this.Hb[t]},innerId:function(t){return this.Ib[t]},Jb:function(t){this.Lb=webix.Mb,webix.Mb=this},Kb:function(t){for(var e in this.Hb){var i=this.Hb[e];this.callEvent&&i.mapEvent&&!i.k.onitemclick&&i.mapEvent({onitemclick:this
 }),i.getTopParentView=this.CD}webix.Mb=this.Lb,this.Lb=0},oC:function(t){delete this.Hb[t]},ui:function(){this.Jb();var t=webix.ui.apply(webix,arguments);return this.Kb(),t}},function(){var t=[],e=webix.ui;if(!webix.ui){e=webix.ui=function(t,n,r){webix.Nb=!0;var a=webix.isArray(t),o=webix.toNode(t.container||n||document.body);
@@ -763,9 +766,28 @@ return a&&webix.UE(a,"click",this.fi),r&&webix.UE(r,"change",this.ki,{bind:{view
 },ei:function(t,e){var i=this.ai[t];i&&(this.ai[e]=i,i.id=e,delete this.ai[t])},ki:function(t){this.view.hasEvent("onEditorChange")&&this.view.callEvent("onEditorChange",[this.id,this.view.getEditorValue(this.id)])},li:function(t){return this.s},ji:function(t,e,i){var s=(e.config=this.li(t),e.render());
 e.$inline&&(s=this.mi(t)),e.node=s;var n=this.getItem(t),r=n[this.s.editValue||"value"];return webix.isUndefined(r)&&(r=""),e.setValue(r,n),e.value=r,this.ni(t,e),i!==!1&&this.showItem(t),e.$inline||this.oi(t,s,!0),e.afterRender&&e.afterRender(),s},pi:function(t){return this.getItemNode(t)},mi:function(t){
 var e=this.pi(t);return e&&(e=e.getElementsByTagName("input")[0]||e),e},ii:function(t){return this.s.editor},ni:function(t,e){e.id=t,this.ai[t]=this.di=e,this.Eb++},qi:function(t){this.di==t&&(this.di=0),t.destroy&&t.destroy(),delete t.popup,delete t.node,delete this.ai[t.id],this.Eb--},focusEditor:function(t){
-var e=this.getEditor.apply(this,arguments);e&&e.focus&&e.focus()},editCancel:function(){this.editStop(null,null,!0)},Xy:function(t){if(t){var e=this.getEditor();if(e&&e.getPopup&&e.getPopup()==t.getTopParentView())return}this.editStop()},editStop:function(t){if(!this.Zx){this.Zx=1;var e=arguments[2],i=1;
-return t?i=this.ri(this.ai[t],e):this.si(function(t){i*=this.ri(t,e)}),this.Zx=0,i}},ug:function(t){var e=this.getItemNode(t);return{left:e.offsetLeft,top:e.offsetTop,height:e.offsetHeight,width:e.offsetWidth,parent:this.w}},oi:function(t,e,i){if(e.style){var s=this.ug(t);e.style.top=s.top+"px",e.style.left=s.left+"px",
-e.style.width=s.width-1+"px",e.style.height=s.height-1+"px",e.top=s.top,i&&s.parent.appendChild(e)}},si:function(t){for(var e in this.ai)t.call(this,this.ai[e])},ri:function(t,e){if(t){var i={value:t.getValue(),old:t.value};if(this.callEvent("onBeforeEditStop",[i,t,e])){if(!e){var s=i.old;if("string"==typeof i.value&&(s+=""),
+var e=this.getEditor.apply(this,arguments);e&&e.focus&&e.focus()},editCancel:function(){this.editStop(null,null,!0)},Xy:function(t){if(t){var e=this.getEditor();if(e&&e.getPopup&&e.getPopup()==t.getTopParentView())return}this.editStop()},
+editStop:function(t){console.log("STOP");
+	if(!this.Zx){
+		this.Zx=1;
+		var e=arguments[2],i=1;
+		
+		if(t) {
+			console.log("t!")
+			return i=this.ri(this.ai[t],e);
+		} else {
+
+			console.log("PAS t!")
+			return this.si(function(t){
+				i*=this.ri(t,e)
+			}),
+					this.Zx=0,i 
+		}
+	}
+},
+ug:function(t){var e=this.getItemNode(t);return{left:e.offsetLeft,top:e.offsetTop,height:e.offsetHeight,width:e.offsetWidth,parent:this.w}},oi:function(t,e,i){if(e.style){var s=this.ug(t);e.style.top=s.top+"px",e.style.left=s.left+"px",
+e.style.width=s.width-1+"px",e.style.height=s.height-1+"px",e.top=s.top,i&&s.parent.appendChild(e)}}
+		,si:function(t){for(var e in this.ai)t.call(this,this.ai[e])},ri:function(t,e){if(t){var i={value:t.getValue(),old:t.value};if(this.callEvent("onBeforeEditStop",[i,t,e])){if(!e){var s=i.old;if("string"==typeof i.value&&(s+=""),
 s!=i.value||t.config.liveEdit){var n=this.ti(t,i.value,!0);this.updateItem(t.row||t.id,n)}}t.$inline?t.node=null:webix.html.remove(t.node);var r=t.config.suggest;return r&&"string"==typeof r&&webix.$$(r).hide(),this.qi(t),this.Ws&&this.detachEvent(this.Ws),this.callEvent("onAfterEditStop",[i,t,e]),1}
 return 0}},validateEditor:function(t){var e=!0;if(this.s.rules){var i=this.getEditor(t),s=i.column||this.s.editValue||"value",n=this.s.rules[s],r=this.s.rules.$all;if(n||r){var a=this.data.getItem(i.row||i.id),o=i.getValue(),h=i.getInputNode();n&&(e=n.call(this,o,a,s)),r&&(e=r.call(this,o,a,s)&&e),e?webix.html.removeCss(h,"webix_invalid"):webix.html.addCss(h,"webix_invalid"),
 webix.callEvent("onLiveValidation",[i,e,a,o])}}return e},getEditorValue:function(t){var e;return e=0===arguments.length?this.di:this.getEditor(t),e?e.getValue():void 0},getEditState:function(){return this.di||!1},editNext:function(t,e){if(t=t!==!1,1==this.Eb||e){var i=this.ui(this.di||e,function(t){return this.ii(t)?!0:!1;
@@ -1675,8 +1697,8 @@ for(var s=0;s<t.rangeCount;++s){t.getRangeAt(s);this.$view.contains(this.getInpu
 this.getInputNode().innerHTML=this.config.value},LE:function(t,e){var i,s;if(window.getSelection()?(i=window.getSelection(),s=i.toString().length):(i=document.selection.createRange(),s=i.text.length),s>0)for(var n=0;n<i.rangeCount;++n){var r=i.getRangeAt(n);if(i.isCollapsed){var a=i.focusNode.textContent,o=i.focusNode,h=i.anchorOffset,l=a.substring(0,h).match(/[A-Za-z]*$/)[0],c=a.substring(h).match(/^[A-Za-z]*/)[0],u=h-l.length,d=h+c.length;
 r.setStart(o,u),r.setEnd(o,d),i.removeAllRanges(),window.getSelection().addRange(r),document.execCommand(e,!1,"")}else document.execCommand(e,!1,"")}},JE:function(){var t=(this.config.action,this.getTopParentView()),e=t.getInputNode();this.$view.contains(this.getInputNode())&&t.LE(e,this.config.action);
 },focus:function(){var t=this.$view.querySelector(".webix_richtext_editor");t.focus()},setValue:function(t){var e=this.config.value;this.config.value=t||"",e!==t&&this.callEvent("onChange",[t,e]),this.refresh()},getValue:function(){return this.config.value||""}},webix.IdSpace,webix.ui.layout);
-//# sourceMappingURL=./webix.js.map
+// # sourceMappingURL=./webix.js.map
 
-//[Skin Customization]
+// [Skin Customization]
 webix.skin.flat.barHeight=45;webix.skin.flat.tabbarHeight=45;webix.skin.flat.rowHeight=34;webix.skin.flat.listItemHeight=34;webix.skin.flat.inputHeight=38;webix.skin.flat.layoutMargin.wide=10;webix.skin.flat.layoutMargin.space=10;webix.skin.flat.layoutPadding.space=10;
  webix.skin.set('flat')

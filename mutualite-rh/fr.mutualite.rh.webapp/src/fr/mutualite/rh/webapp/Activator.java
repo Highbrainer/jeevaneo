@@ -24,7 +24,7 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 		
-		System.out.println("YO");
+		System.out.println("Démarrage de GIC...");
 
 //		Logger.getLogger("org.eclipse.jetty.util.log").setLevel(Level.OFF);
 //		Logger.getLogger("org.glassfish.jersey.internal.Errors").setLevel(Level.SEVERE);
