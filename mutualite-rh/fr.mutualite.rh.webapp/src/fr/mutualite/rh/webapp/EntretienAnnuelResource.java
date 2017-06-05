@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -535,11 +536,19 @@ public class EntretienAnnuelResource extends BaseResource {
 		
 		ret.setPhotoEmploye(photo);
 
-		Optional<Entretien> precedentEntretienOpt = employe.getEntretiens().stream()
-		.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).max((e1,e2) -> e1.getDate().compareTo(e2.getDate()));
-		
-		Date datePrecedentEntretien = precedentEntretienOpt.map(Entretien::getDate).orElse(new Date(0));
+		Optional<EntretienAnnuel> precedentEntretienAnnuelOpt = employe.getEntretiens().stream()
+		.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).map(EntretienAnnuel.class::cast).max((e1,e2) -> e1.getDate().compareTo(e2.getDate()));
 
+		Date datePrecedentEntretienAnnuel = precedentEntretienAnnuelOpt.isPresent()?precedentEntretienAnnuelOpt.get().getDate():new Date(0);
+		
+		Date datePrecedentEntretien = employe.getEntretiens().stream()
+				.map(Entretien::getDate).max(Date::compareTo).orElse(new Date(0));
+
+		//les évalusations pré-existantes (probablement dans l'entretien pro précédent...)		
+		Stream<Entretien> entretiensIntermediaires = employe.getEntretiens().stream().filter(e -> e.getDate().after(datePrecedentEntretienAnnuel) && (e.getDate().before(datePrecedentEntretien) ||e.getDate().equals(datePrecedentEntretien) ));
+		entretiensIntermediaires.map(Entretien::getAppreciationsSessionFormation).forEach(ret.getAppreciationsSessionFormationEntretiensPrecedents()::addAll);
+		
+		//Les évaluations "propres"
 		
 		employe.getSessionsFormation().stream()
 				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien) && sf.getDateDebut().before(ret.getDate())).map(session -> {
@@ -562,8 +571,8 @@ public class EntretienAnnuelResource extends BaseResource {
 			return eval;
 		}).forEach(ret.getEvaluationsSavoirEtre()::add);
 
-		if(precedentEntretienOpt.isPresent()) {
-			EntretienAnnuel precedent = (EntretienAnnuel) precedentEntretienOpt.get();
+		if(precedentEntretienAnnuelOpt.isPresent()) {
+			EntretienAnnuel precedent = (EntretienAnnuel) precedentEntretienAnnuelOpt.get();
 			precedent.getObjectifs().stream().map(o -> {
 				ObjectifPrecedent objPrec = MutFactory.eINSTANCE.createObjectifPrecedent();
 				objPrec.setObjectif(o);
@@ -640,7 +649,7 @@ public class EntretienAnnuelResource extends BaseResource {
 		// InputStream in = new FileInputStream(
 		// "E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.webapp\\resources\\fr\\mutualite\\rh\\webapp\\odt\\template-entretien-annuel4.odt");
 		InputStream in = fr.mutualite.rh.webapp.Activator.getContext().getBundle()
-				.getResource("/fr/mutualite/rh/webapp/odt/template-entretien-annuel1.odt").openStream();
+				.getResource("/fr/mutualite/rh/webapp/odt/template-entretien-annuel2.odt").openStream();
 		try {
 			// Prepare the IXDocReport instance based on the template, using
 			// Freemarker template engine
@@ -657,6 +666,11 @@ public class EntretienAnnuelResource extends BaseResource {
 			ctx.put("employe", employe);
 			ctx.put("formulaire", formulaire);
 			ctx.put("photo", photoEmploye);
+			
+
+			String diplomes = photoEmploye.getDiplomes().stream().collect(Collectors.joining(", "));
+			log.debug(diplomes);
+			ctx.put("_diplomes", diplomes);
 			
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);

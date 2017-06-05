@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -45,6 +46,7 @@ import fr.mutualite.rh.model.AppreciationSessionFormation;
 import fr.mutualite.rh.model.Avis;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
+import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.PhotoEmploye;
@@ -79,41 +81,41 @@ public class EntretienProfessionnelResource extends BaseResource {
 		cdo = CdoServlet.getCdo();
 	}
 
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	@Path("/employes/{matricule}/entretien-pro/all.json")
-//	public Response list(@PathParam("matricule") int matricule) {
-//		final Employe employe = getEmploye(matricule, CdoServlet.getMutualite());
-//		ResponseBuilder response = Response.ok(new StreamingOutput() {
-//			@Override
-//			public void write(OutputStream out) throws IOException, WebApplicationException {
-//				JsonFactory jf = new JsonFactory();
-//				final JsonGenerator jg = jf.createGenerator(out);
-//				jg.writeStartArray();
-//				employe.getEntretiens().forEach(ent -> {
-//					Employe meneur = ent.getMeneur();
-//					try {
-//						jg.writeStartObject();
-//						jg.writeStringField("id", ent.cdoID().toURIFragment());
-//						jg.writeNumberField("matricule", matricule);
-//						jg.writeStringField("date", df.format(ent.getDate()));
-//						jg.writeBooleanField("enCours", ent.isEnCours());
-//						jg.writeBooleanField("fake", ent.isFake());
-//
-//						jg.writeStringField("meneur",
-//								meneur == null ? "" : (meneur.getPrenom() + " " + meneur.getNom()));
-//						jg.writeStringField("employe", employe.getPrenom() + " " + employe.getNom());
-//						jg.writeEndObject();
-//					} catch (IOException e) {
-//						throw new RuntimeException(e);
-//					}
-//				});
-//				jg.writeEndArray();
-//				jg.close();
-//			}
-//		});
-//		return response.build();
-//	}
+	// @GET
+	// @Produces(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-pro/all.json")
+	// public Response list(@PathParam("matricule") int matricule) {
+	// final Employe employe = getEmploye(matricule, CdoServlet.getMutualite());
+	// ResponseBuilder response = Response.ok(new StreamingOutput() {
+	// @Override
+	// public void write(OutputStream out) throws IOException, WebApplicationException {
+	// JsonFactory jf = new JsonFactory();
+	// final JsonGenerator jg = jf.createGenerator(out);
+	// jg.writeStartArray();
+	// employe.getEntretiens().forEach(ent -> {
+	// Employe meneur = ent.getMeneur();
+	// try {
+	// jg.writeStartObject();
+	// jg.writeStringField("id", ent.cdoID().toURIFragment());
+	// jg.writeNumberField("matricule", matricule);
+	// jg.writeStringField("date", df.format(ent.getDate()));
+	// jg.writeBooleanField("enCours", ent.isEnCours());
+	// jg.writeBooleanField("fake", ent.isFake());
+	//
+	// jg.writeStringField("meneur",
+	// meneur == null ? "" : (meneur.getPrenom() + " " + meneur.getNom()));
+	// jg.writeStringField("employe", employe.getPrenom() + " " + employe.getNom());
+	// jg.writeEndObject();
+	// } catch (IOException e) {
+	// throw new RuntimeException(e);
+	// }
+	// });
+	// jg.writeEndArray();
+	// jg.close();
+	// }
+	// });
+	// return response.build();
+	// }
 
 	@Secured
 	@GET
@@ -163,8 +165,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/entretiens-pro/{cdoId}")
 	public String get(@PathParam("cdoId") long id) {
-		EntretienProfessionnel entretien = (EntretienProfessionnel) CdoServlet.getMutualite().cdoView()
-				.getObject(CDOIDUtil.createLong(id));
+		EntretienProfessionnel entretien = (EntretienProfessionnel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(id));
 		Formulaire form = makeFormulaire(entretien);
 		return Activator.getDefault().getJsonGenerator().generateJson(form);
 	}
@@ -190,8 +191,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/entretiens-pro/{cdoId}/entretien")
 	public String getEntretienProfessionnel(@PathParam("cdoId") long id) {
-		EntretienProfessionnel entretien = (EntretienProfessionnel) CdoServlet.getMutualite().cdoView()
-				.getObject(CDOIDUtil.createLong(id));
+		EntretienProfessionnel entretien = (EntretienProfessionnel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(id));
 		return Activator.getDefault().getJsonGenerator().generateJson(entretien);
 	}
 
@@ -199,8 +199,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/employes/{matricule}/entretien-pro/current/entretien/entreteneur")
-	public void setEntreteneur(@PathParam("matricule") int matricule,
-			@QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
+	public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
 		cdo.doInMutualiteTransaction(mut -> {
 			Employe employe = getEmploye(matricule, mut);
 			EntretienProfessionnel entretien = getOrCreateEntretienProfessionnel(employe);
@@ -215,8 +214,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/entretiens-pro/{cdoId}/entretien")
-	public void enregistrer(@PathParam("cdoId") long id, InputStream in)
-			throws JsonParseException, JsonMappingException, IOException {
+	public void enregistrer(@PathParam("cdoId") long id, InputStream in) throws JsonParseException, JsonMappingException, IOException {
 		cdo.doInMutualiteTransaction(mut -> {
 			EntretienProfessionnel e = (EntretienProfessionnel) mut.cdoView().getObject(CDOIDUtil.createLong(id));
 			populate(e, in);
@@ -228,8 +226,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/employes/{matricule}/entretien-pro/current/entretien")
-	public void enregistrer(@PathParam("matricule") int matricule, InputStream in)
-			throws JsonParseException, JsonMappingException, IOException {
+	public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
 		cdo.doInMutualiteTransaction(mut -> {
 			EntretienProfessionnel e = getOrCreateEntretienProfessionnel(getEmploye(matricule, mut));
 			populate(e, in);
@@ -242,8 +239,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 
 		// check sécu
 		if (!e.isEnCours()) {
-			throw new WebApplicationException(
-					"Cet entretien a été validé, il n'est plus modifiable! Adressez-vous au Service RH!", 401);
+			throw new WebApplicationException("Cet entretien a été validé, il n'est plus modifiable! Adressez-vous au Service RH!", 401);
 		}
 
 		ObjectMapper om = new ObjectMapper();
@@ -282,8 +278,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 		// AppreciationsSessionFormation
 		tree.get("appreciationsSessionFormation").forEach(node -> {
 			long id = node.get("cdoId").asLong();
-			AppreciationSessionFormation app = (AppreciationSessionFormation) e.cdoView()
-					.getObject(CDOIDUtil.createLong(id));
+			AppreciationSessionFormation app = (AppreciationSessionFormation) e.cdoView().getObject(CDOIDUtil.createLong(id));
 			// e.getAppreciationsSessionFormation().stream().filter(app ->
 			// app.cdoID().toURIFragment().equals(""+id)).findAny().get().setValeur(Appreciation.get(node.get("valeur").asText())));
 			app.setValeur(Appreciation.get(node.get("valeur").asText()));
@@ -342,41 +337,45 @@ public class EntretienProfessionnelResource extends BaseResource {
 	}
 
 	private EntretienProfessionnel getOrCreateEntretienProfessionnel(Employe employe) {
-		EntretienProfessionnel entretien = (EntretienProfessionnel) employe.getEntretiens().stream()
-				.filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).filter(Entretien::isEnCours)
-				.findAny().orElseGet(() -> newEntretienPro(employe));
+		EntretienProfessionnel entretien = (EntretienProfessionnel) employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienProfessionnel)
+				.filter(Entretien::isEnCours).findAny().orElseGet(() -> newEntretienPro(employe));
 		return entretien;
 	}
 
 	private Entretien newEntretienPro(Employe employe) {
 		EntretienProfessionnel ret = MutFactory.eINSTANCE.createEntretienProfessionnel();
 		ret.setDate(new Date());
-		
+
 		PhotoEmploye photo = employe.photo(ret.getDate());
-		
+
 		ret.setPhotoEmploye(photo);
 
-		Date datePrecedentEntretien = employe.getEntretiens().stream()
-				.filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).map(Entretien::getDate)
+		Date datePrecedentEntretienPro = employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).map(Entretien::getDate)
 				.max(Date::compareTo).orElse(new Date(0));
 
-		employe.getSessionsFormation().stream()
-				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien)).map(session -> {
-					AppreciationSessionFormation apprec = MutFactory.eINSTANCE
-							.createAppreciationSessionFormation();
-					apprec.setSessionFormation(session);
-					apprec.setValeur(null);
-					return apprec;
-				}).forEach(ret.getAppreciationsSessionFormation()::add);
+		Date datePrecedentEntretien = employe.getEntretiens().stream().map(Entretien::getDate).max(Date::compareTo).orElse(new Date(0));
+
+		// les evals de formations déjà faites dans des entretiens précédents depuis le dernier entretien pro.
+		// (probablement dans l'entretien annuel précédent...)
+		Stream<Entretien> entretiensIntermediaires = employe.getEntretiens().stream()
+				.filter(e -> e.getDate().after(datePrecedentEntretienPro) && (e.getDate().before(datePrecedentEntretien) || e.getDate().equals(datePrecedentEntretien)));
+		entretiensIntermediaires.map(Entretien::getAppreciationsSessionFormation).forEach(ret.getAppreciationsSessionFormationEntretiensPrecedents()::addAll);
+
+		// les evals de formations "propres"
+		employe.getSessionsFormation().stream().filter(sf -> sf.getDateDebut().after(datePrecedentEntretien)).map(session -> {
+			AppreciationSessionFormation apprec = MutFactory.eINSTANCE.createAppreciationSessionFormation();
+			apprec.setSessionFormation(session);
+			apprec.setValeur(null);
+			return apprec;
+		}).forEach(ret.getAppreciationsSessionFormation()::add);
 
 		employe.getEntretiens().add(ret);
 		return ret;
 	}
 
 	private EntretienProfessionnel getCurrentEntretienProfessionnel(Employe employe) {
-		EntretienProfessionnel entretien = (EntretienProfessionnel) employe.getEntretiens().stream()
-				.filter(entretien2 -> entretien2 instanceof EntretienProfessionnel).filter(Entretien::isEnCours)
-				.findAny().get();
+		EntretienProfessionnel entretien = (EntretienProfessionnel) employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienProfessionnel)
+				.filter(Entretien::isEnCours).findAny().get();
 		return entretien;
 	}
 
@@ -385,19 +384,18 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@Path("/entretiens-pro/{cdoId}/validate")
 	public void validate(@PathParam("cdoId") long cdoId) {
 
-		boolean hasRole = AuthenticationFilter.getConnectedUtilisateur().getRoles().stream().anyMatch(
-				role -> role.name().equals(Role.DRH.name()) || role.name().equals(Role.RESPONSABLE_ENTRETIEN.name()));
+		boolean hasRole = AuthenticationFilter.getConnectedUtilisateur().getRoles().stream()
+				.anyMatch(role -> role.name().equals(Role.DRH.name()) || role.name().equals(Role.RESPONSABLE_ENTRETIEN.name()));
 		if (!hasRole) {
 			throw new WebApplicationException("Vous n'avez pas l'autorisation de valider cet entretien", 403);
 		}
 
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
-			EntretienProfessionnel entretien = (EntretienProfessionnel) mut.cdoView()
-					.getObject(CDOIDUtil.createLong(cdoId));
-			
+			EntretienProfessionnel entretien = (EntretienProfessionnel) mut.cdoView().getObject(CDOIDUtil.createLong(cdoId));
+
 			entretien.setDate(new Date());
-			
-			//TODO reprendre la photo de l'employé au cas où??
+
+			// TODO reprendre la photo de l'employé au cas où??
 			entretien.setPhotoEmploye(entretien.employe().photo(entretien.getDate()));
 
 			if (entretien.isEnCours()) {
@@ -414,8 +412,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 	@Path("/entretiens-pro/{cdoId}.pdf")
 	public Response toPdf(@PathParam("cdoId") long cdoId) {
 
-		EntretienProfessionnel entretien = (EntretienProfessionnel) CdoServlet.getMutualite().cdoView()
-				.getObject(CDOIDUtil.createLong(cdoId));
+		EntretienProfessionnel entretien = (EntretienProfessionnel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(cdoId));
 		ResponseBuilder response = Response.ok(new StreamingOutput() {
 			@Override
 			public void write(OutputStream out) throws IOException, WebApplicationException {
@@ -423,12 +420,11 @@ public class EntretienProfessionnelResource extends BaseResource {
 			}
 		});
 		Employe employe = entretien.employe();
-		response.header("Content-Disposition",
-				"inline; filename=entretien-professionel-" + employe.getNom() + "-" + employe.getPrenom() + "-"
-						+ DateFormat.getDateInstance(DateFormat.SHORT).format(entretien.getDate()) + ".pdf");
+		response.header("Content-Disposition", "inline; filename=entretien-professionel-" + employe.getNom() + "-" + employe.getPrenom() + "-"
+				+ DateFormat.getDateInstance(DateFormat.SHORT).format(entretien.getDate()) + ".pdf");
 		return response.build();
 	}
-	
+
 	private static final DateFormat df = DateFormat.getDateInstance();
 	private static final DateFormat dtf = DateFormat.getDateTimeInstance();
 
@@ -437,8 +433,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 		// getClass().getClassLoader().getResourceAsStream("fr/mutualite/rh/webapp/odt/template-entretien-pro.odt");
 		// InputStream in = new FileInputStream(
 		// "E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.webapp\\resources\\fr\\mutualite\\rh\\webapp\\odt\\template-entretien-pro4.odt");
-		InputStream in = fr.mutualite.rh.webapp.Activator.getContext().getBundle()
-				.getResource("/fr/mutualite/rh/webapp/odt/template-entretien-pro7.1.odt").openStream();
+		InputStream in = fr.mutualite.rh.webapp.Activator.getContext().getBundle().getResource("/fr/mutualite/rh/webapp/odt/template-entretien-pro7.1.odt").openStream();
 		try {
 			// Prepare the IXDocReport instance based on the template, using
 			// Freemarker template engine
@@ -453,7 +448,10 @@ public class EntretienProfessionnelResource extends BaseResource {
 			IContext ctx = report.createContext();
 			// ctx.put("entretien", entretien);
 			// ctx.put("employe", employe);
-				// ctx.put("formulaire", formulaire);
+			// ctx.put("formulaire", formulaire);
+			
+
+			ctx.put("_diplomes", photoEmploye.getDiplomes().stream().collect(Collectors.joining(", ")));
 
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);
@@ -476,11 +474,13 @@ public class EntretienProfessionnelResource extends BaseResource {
 				Object sVal = string(rawVal);
 				ctx.put("formulaire_" + att.getName(), sVal);
 			});
-			photoEmploye.eClass().getEAllAttributes().forEach(att -> {
-				Object rawVal = photoEmploye.eGet(att);
-				Object sVal = string(rawVal);
-				ctx.put("photo_" + att.getName(), sVal);
-			});
+			if (photoEmploye != null) {
+				photoEmploye.eClass().getEAllAttributes().forEach(att -> {
+					Object rawVal = photoEmploye.eGet(att);
+					Object sVal = string(rawVal);
+					ctx.put("photo_" + att.getName(), sVal);
+				});
+			}
 			// formulaire.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("formulaire." + ref.getName(), formulaire.eGet(ref));
 			// });
@@ -499,7 +499,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 			Date date = (Date) rawVal;
 			return df.format(date);
 		}
-		if(rawVal instanceof Collection<?>) {
+		if (rawVal instanceof Collection<?>) {
 			Collection col = (Collection) rawVal;
 			return col.stream().map(this::string).toArray();
 		}

@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link fr.mutualite.rh.model.Entretien#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Entretien#getPhotoEmploye <em>Photo Employe</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.Entretien#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.Entretien#getAppreciationsSessionFormationEntretiensPrecedents <em>Appreciations Session Formation Entretiens Precedents</em>}</li>
  * </ul>
  *
  * @see fr.mutualite.rh.model.MutPackage#getEntretien()
@@ -297,6 +298,22 @@ public interface Entretien extends CDOObject {
 	 * @generated
 	 */
 	void setCommentaireBilanFormation(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Appreciations Session Formation Entretiens Precedents</b></em>' reference list.
+	 * The list contents are of type {@link fr.mutualite.rh.model.AppreciationSessionFormation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Appreciations Session Formation Entretiens Precedents</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Appreciations Session Formation Entretiens Precedents</em>' reference list.
+	 * @see fr.mutualite.rh.model.MutPackage#getEntretien_AppreciationsSessionFormationEntretiensPrecedents()
+	 * @model
+	 * @generated
+	 */
+	EList<AppreciationSessionFormation> getAppreciationsSessionFormationEntretiensPrecedents();
 
 	/**
 	 * <!-- begin-user-doc -->

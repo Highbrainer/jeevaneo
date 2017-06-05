@@ -185,6 +185,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/autresActionsDeveloppementCompetences"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mut.ecore#//Entretien/photoEmploye"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//Entretien/commentaireBilanFormation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mut.ecore#//Entretien/appreciationsSessionFormationEntretiensPrecedents"/>
       <genOperations ecoreOperation="mut.ecore#//Entretien/employe"/>
       <genOperations ecoreOperation="mut.ecore#//Entretien/hasValidMeneur">
         <genParameters ecoreParameter="mut.ecore#//Entretien/hasValidMeneur/chain"/>

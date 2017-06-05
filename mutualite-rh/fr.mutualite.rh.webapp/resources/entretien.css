@@ -1,5 +1,13 @@
 body {
 	background-color: #cacaca;
+	margin: 0;
+}
+
+#data_container {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1280px; /* largeur obligatoire pour être centré */
 }
 
 .big-title {
@@ -12,19 +20,25 @@ body {
 .cartouche-titre {
 	font-weight: bolder;
 }
+.webix_inp_top_label {
+	font-weight: bolder;
+}
+.webix_el_label {
+	font-weight: bolder;
+}
+.webix_inp_label {
+	font-weight: bolder;
+}
+button {
+	font-weight: bolder;
+}
 /*
 legend {
 	font-weight: bolder;
 	font-size: 128px;
 }
 
-.webix_inp_label {
-	font-weight: bolder;
-}
 
-.webix_inp_top_label {
-	font-weight: bolder;
-}
 
 .webix_segment_0 {
 	background-color: #999999
@@ -37,7 +51,7 @@ legend {
 .webix_segment_N {
 	background-color: #999999
 }
-*/ 
+*/
 .warning {
 	color: #e42760;
 	font-style: italic;
@@ -49,4 +63,6 @@ legend {
 .webix_el_textarea textarea {
 	color : darkgreen;
 } */
-.webix_dt_editor input,.webix_cell,.webix_el_textarea textarea {color:#e42760;}
+.webix_dt_editor input, .webix_cell, .webix_el_textarea textarea {
+	color: #e42760;
+}

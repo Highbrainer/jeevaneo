@@ -806,13 +806,22 @@ public interface MutPackage extends EPackage {
 	int ENTRETIEN__COMMENTAIRE_BILAN_FORMATION = 10;
 
 	/**
+	 * The feature id for the '<em><b>Appreciations Session Formation Entretiens Precedents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS = 11;
+
+	/**
 	 * The number of structural features of the '<em>Entretien</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTRETIEN_FEATURE_COUNT = 11;
+	int ENTRETIEN_FEATURE_COUNT = 12;
 
 	/**
 	 * The operation id for the '<em>Employe</em>' operation.
@@ -949,6 +958,15 @@ public interface MutPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENTRETIEN_PROFESSIONNEL__COMMENTAIRE_BILAN_FORMATION = ENTRETIEN__COMMENTAIRE_BILAN_FORMATION;
+
+	/**
+	 * The feature id for the '<em><b>Appreciations Session Formation Entretiens Precedents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_PROFESSIONNEL__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS = ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS;
 
 	/**
 	 * The feature id for the '<em><b>Evolution Depuis Dernier Entretien</b></em>' attribute.
@@ -1779,6 +1797,15 @@ public interface MutPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENTRETIEN_ANNUEL__COMMENTAIRE_BILAN_FORMATION = ENTRETIEN__COMMENTAIRE_BILAN_FORMATION;
+
+	/**
+	 * The feature id for the '<em><b>Appreciations Session Formation Entretiens Precedents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTRETIEN_ANNUEL__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS = ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS;
 
 	/**
 	 * The feature id for the '<em><b>Bilan Faits Marquants</b></em>' attribute.
@@ -3990,6 +4017,17 @@ public interface MutPackage extends EPackage {
 	EAttribute getEntretien_CommentaireBilanFormation();
 
 	/**
+	 * Returns the meta object for the reference list '{@link fr.mutualite.rh.model.Entretien#getAppreciationsSessionFormationEntretiensPrecedents <em>Appreciations Session Formation Entretiens Precedents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Appreciations Session Formation Entretiens Precedents</em>'.
+	 * @see fr.mutualite.rh.model.Entretien#getAppreciationsSessionFormationEntretiensPrecedents()
+	 * @see #getEntretien()
+	 * @generated
+	 */
+	EReference getEntretien_AppreciationsSessionFormationEntretiensPrecedents();
+
+	/**
 	 * Returns the meta object for the '{@link fr.mutualite.rh.model.Entretien#employe() <em>Employe</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5710,6 +5748,14 @@ public interface MutPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ENTRETIEN__COMMENTAIRE_BILAN_FORMATION = eINSTANCE.getEntretien_CommentaireBilanFormation();
+
+		/**
+		 * The meta object literal for the '<em><b>Appreciations Session Formation Entretiens Precedents</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS = eINSTANCE.getEntretien_AppreciationsSessionFormationEntretiensPrecedents();
 
 		/**
 		 * The meta object literal for the '<em><b>Employe</b></em>' operation.

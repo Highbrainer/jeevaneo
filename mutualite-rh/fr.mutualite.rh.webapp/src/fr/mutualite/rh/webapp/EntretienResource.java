@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -196,4 +197,41 @@ public class EntretienResource extends BaseResource {
 			});
 
 		}
+		
+		@GET
+		@Path("/entretiens/fix-missing-photos")
+		@Produces(MediaType.TEXT_PLAIN)
+		public String fixMissingPhotos() {
+			List<String> ret = new ArrayList<>();
+
+			CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
+				Stream<Entretien> photolessEntretiens = mut.getEffectif().getEmployes().stream().flatMap(emp -> emp.getEntretiens().stream()).filter(e->{
+					return e.getPhotoEmploye()==null;
+				});
+				photolessEntretiens.forEach(e->{
+					Employe emp = e.employe();
+					PhotoEmploye photo = emp.photo(e.getDate());
+					e.setPhotoEmploye(photo);
+					ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate());
+				});
+//				.filter(e->e.getPhoto()==null);
+				return true;
+			});
+			return ret.stream().collect(Collectors.joining("\r\n", "Entretiens a qui il manquait la photo:\r\n", "C'est bon!"));
+		}
+
+		
+		@GET
+		@Path("/entretiens/{cdoId}/evaluations-sessions-formation-precedents-entretiens")
+		@Produces(MediaType.APPLICATION_JSON)
+		public String getEvaluationsSessionsFormationPrecedentsEntretiens(@PathParam("cdoId") long cdoId) {
+			String[] pRet = {null};
+			CdoServlet.getCdo().doInView(view -> {
+				Entretien entretien = (Entretien) view
+						.getObject(CDOIDUtil.createLong(cdoId));
+				pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(entretien.getAppreciationsSessionFormationEntretiensPrecedents());
+			});
+			return pRet[0];
+		}
+		
 }

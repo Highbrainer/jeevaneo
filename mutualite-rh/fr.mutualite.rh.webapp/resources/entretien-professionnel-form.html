@@ -5,8 +5,10 @@
 
 <!-- <script src="/files/webix/webix.js" type="text/javascript"></script> -->
 <script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
-<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css">
-<link rel="stylesheet" href="/files/webix/petrol/webix.css" type="text/css">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
+	type="text/css">
+<link rel="stylesheet" href="/files/webix/petrol/webix.css"
+	type="text/css">
 <script src="/files/webix/petrol/skin.js" type="text/javascript"></script>
 <script type="text/javascript">
 	webix.debug = true;
@@ -15,6 +17,7 @@
 	webix_debug_proto = true;
 	webix.debug_time = true;
 </script>
+<link rel="stylesheet" type="text/css" href="entretien.css">
 <link rel="stylesheet" type="text/css" href="entretien-custom.css">
 
 <script type="text/javascript">
@@ -47,7 +50,7 @@
 		setTimeout("_validate();", 500);
 	}
 	function _validate() {
-		if(bean.enCours) {
+		if (bean.enCours) {
 			enregistrerThen(exportPdf);
 		} else {
 			exportPdf();
@@ -76,10 +79,11 @@
 		});
 	}
 	function isFunction(functionToCheck) {
-		 var getType = {};
-		 return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+		var getType = {};
+		return functionToCheck
+				&& getType.toString.call(functionToCheck) === '[object Function]';
 	}
-	function enregistrer() {		
+	function enregistrer() {
 		setTimeout("enregistrerThen(null);", 500);
 	}
 	function enregistrerThen(thenFunc) {
@@ -112,24 +116,27 @@
 </script>
 </head>
 <body>
-	<center>
-		<div id="data_container" style="margin: 20px;"></div>
-	</center>
+	<div id="data_container"></div>
 	<div id="header" style="display: none">
 		<table style="width: 100%">
 			<tr>
 				<td>
 					<div>
-						<span class="cartouche-titre">Nom :</span> #entretien.photoEmploye.nom#
+						<span class="cartouche-titre">Nom :</span>
+						#entretien.photoEmploye.nom#
 					</div>
 					<div>
-						<span class="cartouche-titre">Prénom :</span> #entretien.photoEmploye.prenom#
+						<span class="cartouche-titre">Prénom :</span>
+						#entretien.photoEmploye.prenom#
 					</div>
 					<div>
-						<span class="cartouche-titre">Service :</span> #entretien.photoEmploye.etablissement#
+						<span class="cartouche-titre">Service :</span>
+						#entretien.photoEmploye.etablissement#
 					</div>
 					<div>
-						<span class="cartouche-titre">Poste occupé :</span> #entretien.photoEmploye.emploi#  #entretien.photoEmploye.classification#
+						<span class="cartouche-titre">Poste occupé :</span>
+						#entretien.photoEmploye.emploi#
+						#entretien.photoEmploye.classification#
 					</div>
 					<div>
 						<span class="cartouche-titre">Date d'entrée dans
@@ -146,14 +153,16 @@
 						#form.menePar#
 					</div>
 					<div>
-						<span class="cartouche-titre">Date de l'entretien :</span> #form.date#
+						<span class="cartouche-titre">Date de l'entretien :</span>
+						#form.date#
 					</div>
 					<div>
 						<span class="cartouche-titre">Date du précédent entretien :</span>
 						#entretien.photoEmploye.datePrecedentEntretienPro#
 					</div>
 					<div>
-						<span class="cartouche-titre">Diplômes :</span> #entretien.photoEmploye.diplomes#
+						<span class="cartouche-titre">Diplômes :</span>
+						#entretien.photoEmploye.diplomes#
 					</div>
 				</td>
 			</tr>
@@ -271,7 +280,7 @@
 			var superbean = new Object();
 			superbean.form = formbean;
 			superbean.entretien = entretienbean;
-			if(!superbean.entretien.photoEmploye.datePrecedentEntretienPro) {
+			if (!superbean.entretien.photoEmploye.datePrecedentEntretienPro) {
 				superbean.entretien.photoEmploye.datePrecedentEntretienPro = "";
 			}
 			console.log(superbean);
@@ -332,7 +341,7 @@
 														view : "template",
 														height : 30,
 														type : "clean",
-														template : "Ancienneté dans le poste actuel: #anciennete#",
+														template : "<span class='webix_el_label'>Ancienneté dans le poste actuel:</span> #anciennete#",
 														data : formbean
 													},
 													{
@@ -355,18 +364,7 @@
 										header : "Bilan des formations effectuées",
 										body : {
 											id : "bilanFormations",
-											rows : [ {
-												view : "textarea",
-												height : 100,
-												label : "Commentaires:",
-												labelPosition : "top",
-												value : val(entretienbean.commentaireBilanFormation),
-												on : {
-													"onChange" : function(v) {
-														bean.commentaireBilanFormation = v;
-													}
-												}
-											} ]
+											rows : []
 										}
 									},
 									{
@@ -686,19 +684,19 @@
 											height : 100,
 											type : "clean",
 											data : entretienbean,
-											template : "Fait le #date#"
+											template : "<span class='webix_inp_label'>Fait le</span> #date#" 
 										},
 										{
 											view : "template",
 											type : "clean",
 											data : formbean,
-											template : "Signature du salarié: #prenom# #nom#"
+											template : "<span class='webix_inp_label'>Signature du salarié :</span> #prenom# #nom#"
 										},
 										{
 											view : "template",
 											type : "clean",
 											data : formbean,
-											template : "Signature du chargé d'entretien: #menePar#"
+											template : "<span class='webix_inp_label'>Signature du chargé d'entretien :</span> #menePar#"
 										} ]
 							}
 						}, {
@@ -723,13 +721,62 @@
 			};
 			webix.ui(page);
 
+			//Evaluations de formations
+			$$("bilanFormations").addView({
+				view : "label",
+				id : "label_evaluations_precentes",
+				label : "Formations évaluées lors d'entretiens précédents:",
+			});
+			$$("bilanFormations")
+					.addView(
+							{
+								view : "datatable",
+								id : "databale_evaluations_precentes",
+								columns : [
+										{
+											template : "<span class='webix_view webix_template'>#libelleFormation# du #dateFormation#</span>",
+											width : 950
+										},
+										{
+											template : "<span class='webix_view webix_template'>#valeur#</span>",
+											width : 280
+										}, ],
+								autowidth : true,
+								autoheight : true,
+								editable : false,
+								editAction : "none",
+								header : false,
+								url : "/rest/entretiens/"
+										+ entretienbean.cdoId
+										+ "/evaluations-sessions-formation-precedents-entretiens"
+							});
+			$$("bilanFormations").addView({
+				view : "label",
+				id : "spacer_evaluations_precentes",
+			});
+			$$("databale_evaluations_precentes").attachEvent("onAfterLoad",
+					function() {
+						if (!this.count()) {
+							//this.showOverlay("Sorry, there is no data");
+							this.hide();
+							$$("label_evaluations_precentes").hide();
+							$$("spacer_evaluations_precentes").hide();
+						}
+					});
+
 			if (entretienbean.appreciationsSessionFormation.length < 1) {
 				$$("bilanFormations")
 						.addView(
 								{
 									view : "label",
 									label : "<span class='warning'>Il n'y a pas eu de formation depuis le dernier entretien!</span>"
-								}, 0);
+								});
+			} else {
+
+				$$("bilanFormations").addView({
+					view : "label",
+					label : "Formations à évaluer :",
+				});
 			}
 
 			for ( var i in entretienbean.appreciationsSessionFormation) {
@@ -755,7 +802,6 @@
 												"A compléter", "Inutile" ],
 										on : {
 											"onChange" : function(v) {
-												/* bean.rencontreRhCommentaire = v; */
 												var cmd = "bean."
 														+ this.config.id
 														+ ".valeur=\"" + v
@@ -765,10 +811,27 @@
 											}
 										}
 									} ]
-						}, 0
+						}
 				//, $$("mainForm").index($$("bilanFormations")) + 1
 				);
 			}
+			if (entretienbean.appreciationsSessionFormation.length > 0) {
+				$$("bilanFormations").addView({
+					view : "label",
+				});
+		  	}
+			$$("bilanFormations").addView({
+				view : "textarea",
+				height : 100,
+				label : "Commentaires:",
+				labelPosition : "top",
+				value : val(entretienbean.commentaireBilanFormation),
+				on : {
+					"onChange" : function(v) {
+						bean.commentaireBilanFormation = v;
+					}
+				}
+			});
 		}
 
 		/* //Gestion de la progressbar à la validation

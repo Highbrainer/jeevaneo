@@ -17,6 +17,7 @@
 	webix_debug_proto = !true;
 	webix.debug_time = !true;
 </script>
+<link rel="stylesheet" type="text/css" href="entretien.css">
 <link rel="stylesheet" type="text/css" href="entretien-custom.css">
 
 <script type="text/javascript">
@@ -129,9 +130,7 @@
 </script>
 </head>
 <body>
-	<center>
-		<div id="data_container" style="margin: 20px;"></div>
-	</center>
+	<div id="data_container"></div>
 	<div id="header" style="display: none">
 		<table style="width: 100%">
 			<tr>
@@ -775,18 +774,7 @@
 										header : "Bilan des formations effectuées",
 										body : {
 											id : "bilanFormations",
-											rows : [ {
-												view : "textarea",
-												height : 100,
-												label : "Commentaires:",
-												labelPosition : "top",
-												value : val(entretienbean.commentaireBilanFormation),
-												on : {
-													"onChange" : function(v) {
-														bean.commentaireBilanFormation = v;
-													}
-												}
-											} ]
+											rows : [ ]
 										}
 									},
 
@@ -1053,14 +1041,62 @@
 			};
 			webix.ui(page);
 
-			//début sessions formation
+			//Evaluations de formations
+			$$("bilanFormations").addView({
+				view : "label",
+				id : "label_evaluations_precentes",
+				label : "Formations évaluées lors d'entretiens précédents:",
+			});
+			$$("bilanFormations")
+					.addView(
+							{
+								view : "datatable",
+								id : "databale_evaluations_precentes",
+								columns : [
+										{
+											template : "<span class='webix_view webix_template'>#libelleFormation# du #dateFormation#</span>",
+											width : 950
+										},
+										{
+											template : "<span class='webix_view webix_template'>#valeur#</span>",
+											width : 280
+										}, ],
+								autowidth : true,
+								autoheight : true,
+								editable : false,
+								editAction : "none",
+								header : false,
+								url : "/rest/entretiens/"
+										+ entretienbean.cdoId
+										+ "/evaluations-sessions-formation-precedents-entretiens"
+							});
+			$$("bilanFormations").addView({
+				view : "label",
+				id : "spacer_evaluations_precentes",
+			});
+			$$("databale_evaluations_precentes").attachEvent("onAfterLoad",
+					function() {
+						if (!this.count()) {
+							//this.showOverlay("Sorry, there is no data");
+							this.hide();
+							$$("label_evaluations_precentes").hide();
+							$$("spacer_evaluations_precentes").hide();
+						}
+					});
+
 			if (entretienbean.appreciationsSessionFormation.length < 1) {
 				$$("bilanFormations")
 						.addView(
 								{
 									view : "label",
 									label : "<span class='warning'>Il n'y a pas eu de formation depuis le dernier entretien!</span>"
-								}, 0);
+								});
+			} else {
+
+				$$("bilanFormations").addView({
+					view : "label",
+					label : "Formations à évaluer :",
+				});
 			}
 
 			for ( var i in entretienbean.appreciationsSessionFormation) {
@@ -1086,7 +1122,6 @@
 												"A compléter", "Inutile" ],
 										on : {
 											"onChange" : function(v) {
-												/* bean.rencontreRhCommentaire = v; */
 												var cmd = "bean."
 														+ this.config.id
 														+ ".valeur=\"" + v
@@ -1096,10 +1131,28 @@
 											}
 										}
 									} ]
-						}, 0
+						}
 				//, $$("mainForm").index($$("bilanFormations")) + 1
 				);
 			}
+			if (entretienbean.appreciationsSessionFormation.length > 0) {
+				$$("bilanFormations").addView({
+					view : "label",
+				});
+		  	}
+			$$("bilanFormations").addView({
+				view : "textarea",
+				height : 100,
+				label : "Commentaires:",
+				labelPosition : "top",
+				value : val(entretienbean.commentaireBilanFormation),
+				on : {
+					"onChange" : function(v) {
+						bean.commentaireBilanFormation = v;
+					}
+				}
+			});
+
 			//fin sessions formations
 
 			// Chargement des evaluations de compétences

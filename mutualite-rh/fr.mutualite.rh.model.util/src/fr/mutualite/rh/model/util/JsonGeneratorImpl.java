@@ -136,4 +136,9 @@ public class JsonGeneratorImpl implements JsonGenerator {
 		System.out.println(moi.generateJson(e));
 	}
 
+	@Override
+	public String generateJson(List<? extends CDOObject> l) {
+		return l.stream().map(this::generateJson).collect(Collectors.joining(", ", "[", "]"));
+	}
+
 }

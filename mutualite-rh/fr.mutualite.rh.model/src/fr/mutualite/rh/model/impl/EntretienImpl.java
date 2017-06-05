@@ -43,6 +43,7 @@ import fr.mutualite.rh.model.util.MutValidator;
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getAutresActionsDeveloppementCompetences <em>Autres Actions Developpement Competences</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getPhotoEmploye <em>Photo Employe</em>}</li>
  *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getCommentaireBilanFormation <em>Commentaire Bilan Formation</em>}</li>
+ *   <li>{@link fr.mutualite.rh.model.impl.EntretienImpl#getAppreciationsSessionFormationEntretiensPrecedents <em>Appreciations Session Formation Entretiens Precedents</em>}</li>
  * </ul>
  *
  * @generated
@@ -321,6 +322,16 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<AppreciationSessionFormation> getAppreciationsSessionFormationEntretiensPrecedents() {
+		return (EList<AppreciationSessionFormation>)eDynamicGet(MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS, MutPackage.Literals.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS, true, true);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -416,6 +427,8 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return getPhotoEmploye();
 			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
 				return getCommentaireBilanFormation();
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS:
+				return getAppreciationsSessionFormationEntretiensPrecedents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -464,6 +477,10 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
 				setCommentaireBilanFormation((String)newValue);
 				return;
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS:
+				getAppreciationsSessionFormationEntretiensPrecedents().clear();
+				getAppreciationsSessionFormationEntretiensPrecedents().addAll((Collection<? extends AppreciationSessionFormation>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -508,6 +525,9 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
 				setCommentaireBilanFormation(COMMENTAIRE_BILAN_FORMATION_EDEFAULT);
 				return;
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS:
+				getAppreciationsSessionFormationEntretiensPrecedents().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -541,6 +561,8 @@ public abstract class EntretienImpl extends CDOObjectImpl implements Entretien {
 				return getPhotoEmploye() != null;
 			case MutPackage.ENTRETIEN__COMMENTAIRE_BILAN_FORMATION:
 				return COMMENTAIRE_BILAN_FORMATION_EDEFAULT == null ? getCommentaireBilanFormation() != null : !COMMENTAIRE_BILAN_FORMATION_EDEFAULT.equals(getCommentaireBilanFormation());
+			case MutPackage.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS:
+				return !getAppreciationsSessionFormationEntretiensPrecedents().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

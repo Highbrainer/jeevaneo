@@ -70,6 +70,7 @@ public class EntretienItemProvider
 			addScanPropertyDescriptor(object);
 			addAutresActionsDeveloppementCompetencesPropertyDescriptor(object);
 			addCommentaireBilanFormationPropertyDescriptor(object);
+			addAppreciationsSessionFormationEntretiensPrecedentsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -224,6 +225,28 @@ public class EntretienItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Appreciations Session Formation Entretiens Precedents feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAppreciationsSessionFormationEntretiensPrecedentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Entretien_appreciationsSessionFormationEntretiensPrecedents_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Entretien_appreciationsSessionFormationEntretiensPrecedents_feature", "_UI_Entretien_type"),
+				 MutPackage.Literals.ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

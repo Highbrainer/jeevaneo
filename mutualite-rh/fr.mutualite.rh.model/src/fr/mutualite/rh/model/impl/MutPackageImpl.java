@@ -1622,6 +1622,15 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEntretien_AppreciationsSessionFormationEntretiensPrecedents() {
+		return (EReference)entretienEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEntretien__Employe() {
 		return entretienEClass.getEOperations().get(0);
 	}
@@ -2214,6 +2223,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		createEAttribute(entretienEClass, ENTRETIEN__AUTRES_ACTIONS_DEVELOPPEMENT_COMPETENCES);
 		createEReference(entretienEClass, ENTRETIEN__PHOTO_EMPLOYE);
 		createEAttribute(entretienEClass, ENTRETIEN__COMMENTAIRE_BILAN_FORMATION);
+		createEReference(entretienEClass, ENTRETIEN__APPRECIATIONS_SESSION_FORMATION_ENTRETIENS_PRECEDENTS);
 		createEOperation(entretienEClass, ENTRETIEN___EMPLOYE);
 		createEOperation(entretienEClass, ENTRETIEN___HAS_VALID_MENEUR__DIAGNOSTICCHAIN_MAP);
 
@@ -2516,6 +2526,7 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		initEAttribute(getEntretien_AutresActionsDeveloppementCompetences(), ecorePackage.getEString(), "autresActionsDeveloppementCompetences", null, 0, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEntretien_PhotoEmploye(), this.getPhotoEmploye(), null, "photoEmploye", null, 1, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEntretien_CommentaireBilanFormation(), ecorePackage.getEString(), "commentaireBilanFormation", null, 0, 1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntretien_AppreciationsSessionFormationEntretiensPrecedents(), this.getAppreciationSessionFormation(), null, "appreciationsSessionFormationEntretiensPrecedents", null, 0, -1, Entretien.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEntretien__Employe(), this.getEmploye(), "employe", 1, 1, IS_UNIQUE, IS_ORDERED);
 
