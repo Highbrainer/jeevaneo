@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.view.CDOView;
 
@@ -17,6 +18,8 @@ import fr.mutualite.rh.webapp.cdo.MutualiteCdoClient;
 
 @SuppressWarnings("serial")
 public class CdoServlet extends HttpServlet {
+	
+	protected Logger log = Logger.getLogger(getClass());
 
 	private static Configuration config;
 
@@ -43,7 +46,7 @@ public class CdoServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		init(true);
-
+		log.info("GIC started!");
 	}
 
 	private void init(boolean embedded) throws ServletException {
