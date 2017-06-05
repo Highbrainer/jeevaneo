@@ -22,6 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -39,6 +40,8 @@ import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.webapp.CdoServlet;
 
 public class CongeSuiviIndividuelExporter {
+	
+	protected Logger log = Logger.getLogger(getClass());
 
 	// public XSSFColor setColor(XSSFWorkbook workbook, byte r,byte g, byte b){
 	// XSSFPalette palette = workbook.getCustomPalette();
@@ -223,7 +226,7 @@ public class CongeSuiviIndividuelExporter {
 
 				// TODO cloner weekStartStyle et weekEndStyle et leur appliquer une couleur choisie pour ce salarié, pour remplacer conges style!
 
-				System.out.println(" " + labelEtablissement + " " + e.getNom() + " " + sheet.getLastRowNum());
+				log.debug(" " + labelEtablissement + " " + e.getNom() + " " + sheet.getLastRowNum());
 
 //				XSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
 //				int i = -1;

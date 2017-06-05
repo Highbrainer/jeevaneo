@@ -9,6 +9,7 @@ import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.apache.log4j.Logger;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
@@ -17,6 +18,8 @@ import org.eclipse.equinox.app.IApplicationContext;
  */
 public class Application implements IApplication {
 
+	protected Logger log = Logger.getLogger(getClass());
+	
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
 
@@ -31,7 +34,7 @@ public class Application implements IApplication {
 		}
 
 		process(in);
-		System.out.println("Export terminé vers " + in.getAbsolutePath());
+		log.info("Export terminé vers " + in.getAbsolutePath());
 	}
 
 	private Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
@@ -52,7 +55,7 @@ public class Application implements IApplication {
 
 		if (ret == JFileChooser.APPROVE_OPTION) {
 			File in = chooser.getSelectedFile();
-			System.out.println("Yes " + in.getAbsolutePath());
+			log.debug("Chose " + in.getAbsolutePath());
 
 			prefs.put("file-dir", in.getAbsolutePath());
 			return in;
