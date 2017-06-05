@@ -98,13 +98,6 @@ public class AuthenticationEndpoint {
 	private String authenticate(String username, String password) throws NamingException {
 
 		LdapContext ctx = ldap.bindAsAdmin();
-		//
-		// filter="(objectClass=*)";
-		// SearchResult result = findAccountByAccountName(authContext, "",
-		// filter, username);
-		// System.out.println("GOT: " + result.getNameInNamespace());
-		// String rootDN = getRootDn();
-		// String base = getBase() /* + ',' + rootDN */;
 		String dn = ldap.findUniqueUser(ctx, username);
 		log.debug(dn);
 		ctx.close();
@@ -114,6 +107,7 @@ public class AuthenticationEndpoint {
 	}
 
 	private String issueToken(String username, String dn) {
+//		CdoServlet.getMutualite().getUtilisateurs().getUtilisateurs().forEach(u->log.debug(u.getLogin()));
 		Utilisateur utilisateur = CdoServlet.getMutualite().getUtilisateurs().getUtilisateurs().stream().filter(u -> {
 			return u.getLogin().equalsIgnoreCase(username);
 		}).findAny().orElseThrow(() -> {

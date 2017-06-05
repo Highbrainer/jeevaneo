@@ -1,5 +1,9 @@
 package fr.mutualite.rh.webapp.cdo;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
+import java.util.Collections;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -9,6 +13,11 @@ import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.util.InvalidURIException;
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.Mutualite;
@@ -111,5 +120,22 @@ public abstract class AbstractCDO implements ICDO {
 		}
 	}
 
-
+	@Override
+	public void restore(InputStream in) {
+		doInTransaction(transaction -> {
+			CDOResource resource = transaction.getOrCreateResource("/mutualite-rh");
+			resource.getContents().clear();
+			
+			ResourceSet rs = new ResourceSetImpl();
+			Resource res = rs.createResource(URI.createFileURI("bidon"));
+			try {
+				res.load(in, Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				throw new UncheckedIOException(e);
+			}
+			resource.getContents().addAll(res.getContents());
+			
+			return true;
+		});
+	}
 }

@@ -8,7 +8,7 @@ import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.util.container.IPluginContainer;
 
 public class MutualiteCdoClient extends AbstractCDO {
-	private static String DEFAULT_CDO_SERVER_URI = "tcp://rh-gic:2036"; // "tcp://localhost:2036";//
+	private static String DEFAULT_CDO_SERVER_URI = System.getProperty("cdo.url", "tcp://rh-gic:2036"); // "tcp://localhost:2036";//
 	private IConnector connector;
 	private CDONet4jSessionConfiguration sessionConfig;
 

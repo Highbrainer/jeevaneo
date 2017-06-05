@@ -401,9 +401,6 @@ public class ReportResource {
 								})
 
 								.ifPresent(entretien -> {
-									int size = entretien.getSouhaitsFormationSalarie().size();
-									if (size > 0)
-										System.out.println(size);
 
 									Stream<String[]> souhaitsEvaluateur = entretien.getSouhaitsFormationEvaluateur().stream()
 											.map(souhait -> new String[] { souhait.getTexte(), "Evaluateur", "" });
@@ -657,8 +654,6 @@ public class ReportResource {
 					int[] i = { 0 };
 					line.createCell(++i[0]).setCellValue(emp.getNom());
 					line.createCell(++i[0]).setCellValue(emp.getPrenom());
-					// System.out.println(emp.getNom() + " " + emp.getPrenom());
-					// System.out.println(emp.getEtablissement());
 					line.createCell(++i[0]).setCellValue(emp.getEtablissement().getNom());
 
 					formations.forEach(form -> {

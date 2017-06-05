@@ -236,13 +236,6 @@ public class EntretienProfessionnelResource extends BaseResource {
 			return true;
 		});
 
-		// try(Scanner s = new Scanner(in);) {
-		// s.useDelimiter("\\Z+");
-		// String content = s.next();
-		// System.out.println(content);
-		// }
-		// System.out.println("EvolutionDepuisDernierEntretien:" +
-		// entretien.getEvolutionDepuisDernierEntretien());
 	}
 
 	private void populate(EntretienProfessionnel e, InputStream in) {
@@ -303,7 +296,6 @@ public class EntretienProfessionnelResource extends BaseResource {
 				return id == Long.parseLong(s.cdoID().toURIFragment());
 			}).collect(Collectors.toList()));
 		});
-//		System.out.println(e.getEvolutionDepuisDernierEntretien());
 	}
 
 	private void addOrUpdateSouhaitsEvaluateur(EntretienProfessionnel e, JsonNode nodes) {

@@ -63,7 +63,6 @@ public class Application implements IApplication {
 			return IApplication.EXIT_OK;
 		}
 		File file = chooser.getSelectedFile();
-		System.out.println("Yes " + file.getAbsolutePath());
 		prefs.put(DIR, file.getParent());
 
 		String cdoServerURI = "tcp://rh-gic:2036";

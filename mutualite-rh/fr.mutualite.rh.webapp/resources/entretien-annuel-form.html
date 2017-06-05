@@ -283,6 +283,7 @@
 			$$("datatable_objectifs").filter(function(obj) {
 				return !obj.removed;
 			});
+			$$("truc").hide();	
 		}
 		//fin objectif
 
@@ -294,7 +295,7 @@
 				eval : "-/+"
 			};
 			$$("datatable_evaluationsTenuePosteMissionsPrincipales").add(item);
-			bean.missionsPrincipales.push(item);
+			bean.evaluationsTenuePosteMissionsPrincipales.push(item);
 		}
 
 		function removeMissionPrincipale(identifiant) {
@@ -304,7 +305,7 @@
 			if (!item.added) {
 				bean.missionPrincipaleRemovals.push(item);
 			}
-			bean.missionsPrincipales = bean.missionsPrincipales
+			bean.evaluationsTenuePosteMissionsPrincipales = bean.evaluationsTenuePosteMissionsPrincipales
 					.filter(function(i) {
 						return i.id != identifiant;
 					});
@@ -323,7 +324,7 @@
 				eval : "-/+"
 			};
 			$$("datatable_evaluationsTenuePosteMissionsSpecifiques").add(item);
-			bean.missionsSpecifiques.push(item);
+			bean.evaluationsTenuePosteMissionsSpecifiques.push(item);
 		}
 
 		function removeMissionSpecifique(identifiant) {
@@ -333,7 +334,7 @@
 			if (!item.added) {
 				bean.missionSpecifiqueRemovals.push(item);
 			}
-			bean.missionsSpecifiques = bean.missionsSpecifiques
+			bean.evaluationsTenuePosteMissionsSpecifiques = bean.evaluationsTenuePosteMissionsSpecifiques
 					.filter(function(i) {
 						return i.id != identifiant;
 					});
@@ -941,7 +942,7 @@
 														icon : "plus-circle",
 														label : "Bidon",
 														align : "right",
-														autowidth : true,
+														//autowidth : true,
 														height : 0,
 														visible : false
 													},

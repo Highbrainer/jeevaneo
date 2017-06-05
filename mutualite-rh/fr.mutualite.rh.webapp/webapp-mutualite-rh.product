@@ -25,6 +25,7 @@
 
    <windowImages/>
 
+
    <launcher name="rh-gic">
       <solaris/>
       <win useIco="false">
@@ -42,6 +43,7 @@
       <plugin id="com.ibm.icu"/>
       <plugin id="com.jeevaneo.commons.lambda"/>
       <plugin id="com.mysql.jdbc"/>
+      <plugin id="fr.mutualite.jetty.conf" fragment="true"/>
       <plugin id="fr.mutualite.rh.ldap"/>
       <plugin id="fr.mutualite.rh.log4j.conf" fragment="true"/>
       <plugin id="fr.mutualite.rh.model"/>

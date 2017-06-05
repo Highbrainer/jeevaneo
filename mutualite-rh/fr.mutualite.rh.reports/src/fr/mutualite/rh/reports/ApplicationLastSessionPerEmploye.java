@@ -45,7 +45,6 @@ public class ApplicationLastSessionPerEmploye implements IApplication {
 			return IApplication.EXIT_OK;
 		}
 		File file = chooser.getSelectedFile();
-		System.out.println("Yes " + file.getAbsolutePath());
 		
 		String cdoServerURI = "tcp://rh-gic:2036";
 		IConnector connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, cdoServerURI);

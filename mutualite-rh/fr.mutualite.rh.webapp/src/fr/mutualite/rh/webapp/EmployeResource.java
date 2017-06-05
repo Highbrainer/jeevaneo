@@ -66,7 +66,7 @@ public class EmployeResource extends BaseResource {
 			return true;
 		});
 	}
-	
+
 	@POST
 	@Path("cleanupEntreteneurs")
 	public void cleanupEntreteneurs() {
@@ -93,7 +93,34 @@ public class EmployeResource extends BaseResource {
 				if(entreteneurs.stream().map(Employe::getMatricule).allMatch(matriculesEntreteneursEtab::contains)) {
 					// exactement les mêmes entreteneurs que l'établissement (à l'ordre près)
 					emp.getEntreteneurs().clear();
-					System.out.println("J'ai resetté les entreteneurs de " + emp.getLabel());
+					log.info("J'ai resetté les entreteneurs de " + emp.getLabel());
+				}
+			});
+			return true;
+		});
+	}
+
+	@POST
+	@Path("cleanupResponsables")
+	public void cleanupResponsables() {
+		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
+			mut.getEffectif().getEmployes().forEach(emp -> {
+				Etablissement etablissement = emp.getEtablissement();
+				if(null==etablissement) {
+					return;
+				}
+				Employe responsable = emp.getResponsable();
+				if(null==responsable) {
+					return;
+				}
+				Employe responsableEtab = etablissement.getResponsable();
+				if(null==responsableEtab) {
+					return;
+				}
+				//aucun des deux n'est nul
+				if(responsable.getMatricule()==responsableEtab.getMatricule()) {
+					emp.setResponsable(null);
+					log.info("J'ai resetté le responsable de " + emp.getLabel());
 				}
 			});
 			return true;

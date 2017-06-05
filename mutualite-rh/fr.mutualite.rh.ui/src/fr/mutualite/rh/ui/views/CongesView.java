@@ -210,7 +210,6 @@ public class CongesView extends ViewPart {
 			return null;
 		}
 		File file = chooser.getSelectedFile();
-		System.out.println("Yes " + file.getAbsolutePath());
 		prefs.put(DIR, file.getParent());
 
 		return file;

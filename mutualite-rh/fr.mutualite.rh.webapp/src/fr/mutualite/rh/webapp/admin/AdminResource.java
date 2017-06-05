@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 
 import javax.naming.ldap.LdapContext;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -49,27 +51,39 @@ import fr.mutualite.rh.model.MutPackage;
 import fr.mutualite.rh.model.Mutualite;
 import fr.mutualite.rh.model.OrganismeFormation;
 import fr.mutualite.rh.model.config.Configuration;
+import fr.mutualite.rh.webapp.BaseResource;
 import fr.mutualite.rh.webapp.CdoServlet;
 import fr.mutualite.rh.webapp.cdo.ICDO;
 
 @Path("/admin")
 // @Secured
-public class AdminResource {
+public class AdminResource extends BaseResource {
 
 	private Mutualite getMutualite() {
 		return CdoServlet.getMutualite();
 	}
 
 	@GET
+	@Path("/reset")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String reset() {
+		CdoServlet.resetMutualite();
+		return "Reset OK " + DateFormat.getDateTimeInstance().format(new Date());
+	}
+	
+	@GET
 	@Path("/drop-all")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String dropAllTables() throws ClassNotFoundException, SQLException {
 
 		String ret = "";
+		log.debug("DROP ALL");
 
 		Configuration config = CdoServlet.getConfig();
 		Class.forName(config.getJdbcDriver());
 
+		log.debug("DROP ALL TABLES : " + config.getJdbcUrl() + " " + config.getJdbcUser() +" / "+ config.getJdbcPassword());
+		
 		try (Connection con = DriverManager.getConnection(config.getJdbcUrl(), config.getJdbcUser(), config.getJdbcPassword());
 				Statement s = con.createStatement();
 				ResultSet rs = s.executeQuery("SELECT concat('DROP TABLE IF EXISTS ', table_name, ';') FROM information_schema.tables WHERE table_schema = '"
@@ -106,6 +120,12 @@ public class AdminResource {
 		};
 
 		return Response.ok(stream).build();
+	}
+	
+	@PUT
+	@Path("/restore.xml")
+	public void restore(InputStream in) {
+		CdoServlet.getCdo().restore(in);
 	}
 
 	@GET
@@ -284,41 +304,41 @@ public class AdminResource {
 		return Response.ok(stream).build();
 	}
 
-	@GET
-	@Path("/restore")
-	public void restore() throws IOException {
-
-		File f = new File("/E:/temp/2017/04/05/backup-20170404.xml");
-		if (!f.exists()) {
-			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
-		}
-		ResourceSet rs = new ResourceSetImpl();
-		Resource resource = rs.createResource(URI.createFileURI(f.getAbsolutePath()));
-		resource.load(Collections.EMPTY_MAP);
-
-		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
-			CDOResource cdoResource = mut.cdoResource();
-			if (!resource.getContents().isEmpty()) {
-				// EcoreUtil.delete(resource.getContents().get(0));
-				cdoResource.getContents().clear();
-			}
-			return true;
-		});
-
-		Mutualite mutualite = (Mutualite) resource.getContents().get(0);
-
-		CdoServlet.getCdo().doInTransaction(trans -> {
-			CDOResource cdoResource = trans.getOrCreateResource("mutualite-rh");
-			try {
-				cdoResource.load(new FileInputStream(f), Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// cdoResource.getContents().add(mutualite);
-			return true;
-		});
-	}
+//	@GET
+//	@Path("/restore")
+//	public void restore() throws IOException {
+//
+//		File f = new File("/E:/temp/2017/04/05/backup-20170404.xml");
+//		if (!f.exists()) {
+//			throw new WebApplicationException("Fichier introuvable : " + f.getAbsolutePath(), 404);
+//		}
+//		ResourceSet rs = new ResourceSetImpl();
+//		Resource resource = rs.createResource(URI.createFileURI(f.getAbsolutePath()));
+//		resource.load(Collections.EMPTY_MAP);
+//
+//		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
+//			CDOResource cdoResource = mut.cdoResource();
+//			if (!resource.getContents().isEmpty()) {
+//				// EcoreUtil.delete(resource.getContents().get(0));
+//				cdoResource.getContents().clear();
+//			}
+//			return true;
+//		});
+//
+//		Mutualite mutualite = (Mutualite) resource.getContents().get(0);
+//
+//		CdoServlet.getCdo().doInTransaction(trans -> {
+//			CDOResource cdoResource = trans.getOrCreateResource("mutualite-rh");
+//			try {
+//				cdoResource.load(new FileInputStream(f), Collections.EMPTY_MAP);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			// cdoResource.getContents().add(mutualite);
+//			return true;
+//		});
+//	}
 
 	@GET
 	@Path("/bidon")

@@ -1,5 +1,6 @@
 package fr.mutualite.rh.webapp.cdo;
 
+import java.io.InputStream;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -41,5 +42,7 @@ public interface ICDO {
 	Mutualite findMutualite(CDOView view);
 
 	void doInMutualiteTransaction(Function<Mutualite, Boolean> worker);
+
+	void restore(InputStream in);
 
 }

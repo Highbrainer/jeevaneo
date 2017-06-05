@@ -80,7 +80,7 @@ public class ImportView extends ViewPart {
 			});
 		}
 		{
-			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Nettoyage Entreteneurs", SWT.WRAP);
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Nettoyage Entreteneurs et Responsables", SWT.WRAP);
 			toolkit.createLabel(form.getBody(), "Supprime les entreteneurs spécifiques des employés pour lesquels l'établissement possède exactement la même liste d'entreteneurs.");
 			link.addHyperlinkListener(new HyperlinkAdapter() {
 				public void linkActivated(HyperlinkEvent e) {
@@ -92,7 +92,10 @@ public class ImportView extends ViewPart {
 
 	protected void cleanupEntreteneurs() {
 		try {
-			new EmployeResource().cleanupEntreteneurs();
+			EmployeResource er = new EmployeResource();
+			er.cleanupEntreteneurs();
+			er.cleanupResponsables();
+			MessageDialog.openInformation(ImportView.this.getSite().getShell(), "Cleanup OK", "C'est tout propre!");
 		} catch (Throwable e1) {
 			MessageDialog.openError(ImportView.this.getSite().getShell(), "Cleanup KO", "Impossible de nettoyer les entreteneurs spécifiques " + e1.getMessage());
 			throw new RuntimeException(e1);

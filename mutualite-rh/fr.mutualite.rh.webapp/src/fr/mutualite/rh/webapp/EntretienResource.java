@@ -106,7 +106,6 @@ public class EntretienResource extends BaseResource {
 						jg.writeStringField("date", df.format(ent.getDate()));
 						jg.writeBooleanField("enCours", ent.isEnCours());
 						jg.writeBooleanField("fake", ent.isFake());
-//						System.out.println("Class: " + ent.eClass().getName());
 						jg.writeStringField("meneur",
 								meneur == null ? "" : (meneur.getPrenom() + " " + meneur.getNom()));
 						jg.writeStringField("employe", employe.getPrenom() + " " + employe.getNom());

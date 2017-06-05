@@ -23,11 +23,13 @@ public class CdoServlet extends HttpServlet {
 	private static ICDO cdo;
 
 	private static Mutualite mut;
+	
+	private static CdoServlet INSTANCE = new CdoServlet(); 
 
 	public static ICDO getCdo() {
 		if(null==cdo) {
 			try {
-				new CdoServlet().init(false);
+				INSTANCE.init(false);
 			} catch (ServletException e) {
 				throw new RuntimeException(e);
 			}
@@ -45,11 +47,7 @@ public class CdoServlet extends HttpServlet {
 	}
 
 	private void init(boolean embedded) throws ServletException {
-		try {
-			config = ConfigFactory.readDefaultConfiguration();
-		} catch (IOException e) {
-			throw new ServletException(e);
-		}
+		initConfig();
 		
 		if(embedded) {
 			cdo = new MutualiteCDO();
@@ -57,9 +55,21 @@ public class CdoServlet extends HttpServlet {
 			cdo = new MutualiteCdoClient();
 		}
 		cdo.start();
-		CDOSession session = cdo.openSession();
+		initMut();
+	}
+
+	private static void initMut() {
+		CDOSession session = getCdo().openSession();
 		CDOView view = session.openView();
 		mut = cdo.findMutualite(view);
+	}
+
+	private void initConfig() throws ServletException {
+		try {
+			config = ConfigFactory.readDefaultConfiguration();
+		} catch (IOException e) {
+			throw new ServletException(e);
+		}
 	}
 
 	
@@ -70,21 +80,35 @@ public class CdoServlet extends HttpServlet {
 
 	@Override
 	public void destroy() {
-		cdo.shutdown();
+		if(null!=cdo) {
+			cdo.shutdown();
+		}
 		mut = null;
 		config = null;
+		cdo=null;
 	}
 
 	public static Mutualite getMutualite() {
-		getCdo();
+		if(null==mut) {
+			initMut();
+		}
 		return mut;
 	}
 
 	public static Configuration getConfig() {
 		if(null==config) {
-			getCdo();
+			try {
+				INSTANCE.initConfig();
+			} catch (ServletException e) {
+				throw new RuntimeException(e);
+			}
 		}
 		return config;
+	}
+
+	public static void resetMutualite() {
+		mut = null;
+		initMut();
 	}
 
 }

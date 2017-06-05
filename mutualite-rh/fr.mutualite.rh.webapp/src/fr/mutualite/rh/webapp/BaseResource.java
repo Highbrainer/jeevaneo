@@ -1,11 +1,14 @@
 package fr.mutualite.rh.webapp;
 
+import org.apache.log4j.Logger;
 import org.osgi.framework.ServiceException;
 
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Mutualite;
 
 public class BaseResource {
+	
+	protected Logger log = Logger.getLogger(getClass());
 
 	protected static Employe getEmploye(int matricule, Mutualite mut) {
 		// CDOQuery query = mut.cdoView().createQuery("sql", "SELECT distinct

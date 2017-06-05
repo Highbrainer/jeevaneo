@@ -214,14 +214,6 @@ public class EntretienAnnuelResource extends BaseResource {
 			populate(e, in);
 			return true;
 		});
-
-		// try(Scanner s = new Scanner(in);) {
-		// s.useDelimiter("\\Z+");
-		// String content = s.next();
-		// System.out.println(content);
-		// }
-		// System.out.println("EvolutionDepuisDernierEntretien:" +
-		// entretien.getEvolutionDepuisDernierEntretien());
 	}
 
 	private void populate(EntretienAnnuel e, InputStream in) {
@@ -548,8 +540,9 @@ public class EntretienAnnuelResource extends BaseResource {
 		
 		Date datePrecedentEntretien = precedentEntretienOpt.map(Entretien::getDate).orElse(new Date(0));
 
+		
 		employe.getSessionsFormation().stream()
-				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien)).map(session -> {
+				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien) && sf.getDateDebut().before(ret.getDate())).map(session -> {
 					AppreciationSessionFormation apprec = MutFactory.eINSTANCE
 							.createAppreciationSessionFormation();
 					apprec.setSessionFormation(session);
@@ -665,22 +658,18 @@ public class EntretienAnnuelResource extends BaseResource {
 			ctx.put("formulaire", formulaire);
 			ctx.put("photo", photoEmploye);
 			
-//			System.out.println("Attributes");
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);
 				Object sVal = string(rawVal);
 				ctx.put(att.getName(), sVal);
-//				System.out.println("${" + att.getName() + "}");
 			});
 			entretien.eClass().getEAllReferences().forEach(ref -> {
 				ctx.put(ref.getName(), entretien.eGet(ref));
-//				System.out.println("${" + ref.getName() + "}");
 			});
 //			employe.eClass().getEAllAttributes().forEach(att -> {
 //				Object rawVal = employe.eGet(att);
 //				Object sVal = string(rawVal);
 //				ctx.put("employe_" + att.getName(), sVal);
-//				System.out.println("${employe_" + att.getName() + "}");
 //			});
 			// employe.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("employe." + ref.getName(), employe.eGet(ref));
@@ -689,13 +678,11 @@ public class EntretienAnnuelResource extends BaseResource {
 				Object rawVal = formulaire.eGet(att);
 				Object sVal = string(rawVal);
 				ctx.put("formulaire_" + att.getName(), sVal);
-				System.out.println("${formulaire_" + att.getName() + "}");
 			});
 			photoEmploye.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = photoEmploye.eGet(att);
 				Object sVal = string(rawVal);
 				ctx.put("photo_" + att.getName(), sVal);
-//				System.out.println("${photo_" + att.getName() + "}");
 			});
 			// formulaire.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("formulaire." + ref.getName(), formulaire.eGet(ref));
