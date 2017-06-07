@@ -271,7 +271,7 @@ public interface PhotoEmploye extends CDOObject {
 	 * @return the value of the '<em>Date Precedent Entretien</em>' attribute.
 	 * @see #setDatePrecedentEntretien(Date)
 	 * @see fr.mutualite.rh.model.MutPackage#getPhotoEmploye_DatePrecedentEntretien()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/CDO/DBStore columnType='DATE'"
 	 * @generated
 	 */
 	Date getDatePrecedentEntretien();
@@ -297,7 +297,7 @@ public interface PhotoEmploye extends CDOObject {
 	 * @return the value of the '<em>Date Precedent Entretien Pro</em>' attribute.
 	 * @see #setDatePrecedentEntretienPro(Date)
 	 * @see fr.mutualite.rh.model.MutPackage#getPhotoEmploye_DatePrecedentEntretienPro()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/CDO/DBStore columnType='DATE'"
 	 * @generated
 	 */
 	Date getDatePrecedentEntretienPro();
@@ -323,7 +323,7 @@ public interface PhotoEmploye extends CDOObject {
 	 * @return the value of the '<em>Date Precedent Entretien Annuel</em>' attribute.
 	 * @see #setDatePrecedentEntretienAnnuel(Date)
 	 * @see fr.mutualite.rh.model.MutPackage#getPhotoEmploye_DatePrecedentEntretienAnnuel()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/CDO/DBStore columnType='DATE'"
 	 * @generated
 	 */
 	Date getDatePrecedentEntretienAnnuel();

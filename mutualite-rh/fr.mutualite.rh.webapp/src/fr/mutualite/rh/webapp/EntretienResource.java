@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -213,6 +214,56 @@ public class EntretienResource extends BaseResource {
 					PhotoEmploye photo = emp.photo(e.getDate());
 					e.setPhotoEmploye(photo);
 					ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate());
+				});
+//				.filter(e->e.getPhoto()==null);
+				return true;
+			});
+			return ret.stream().collect(Collectors.joining("\r\n", "Entretiens a qui il manquait la photo:\r\n", "C'est bon!"));
+		}
+		
+		@GET
+		@Path("/entretiens/check-photos")
+		@Produces(MediaType.TEXT_PLAIN)
+		public String checkPhotos() {
+			List<String> ret = new ArrayList<>();
+
+			CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
+				Stream<Entretien> photolessEntretiens = mut.getEffectif().getEmployes().stream().flatMap(emp -> emp.getEntretiens().stream()).filter(e->{
+					return e.getPhotoEmploye()!=null;
+				});
+				photolessEntretiens.forEach(e->{
+					Employe emp = e.employe();
+					PhotoEmploye photo = e.getPhotoEmploye();
+					Optional<Entretien> opt = emp.getEntretiens().stream().filter(e2 -> e2.getDate().before(e.getDate()) && !e2.cdoID().equals(e.cdoID())).sorted((ent1,ent2)->ent1.getDate().compareTo(ent2.getDate())).findFirst();
+					Optional<Entretien> optPro = emp.getEntretiens().stream().filter(e2 -> e2.getDate().before(e.getDate()) && !e2.cdoID().equals(e.cdoID()) && e2 instanceof EntretienProfessionnel).sorted((ent1,ent2)->ent1.getDate().compareTo(ent2.getDate())).findFirst();
+					Optional<Entretien> optAnnuel = emp.getEntretiens().stream().filter(e2 -> e2.getDate().before(e.getDate()) && !e2.cdoID().equals(e.cdoID()) && e2 instanceof EntretienAnnuel).sorted((ent1,ent2)->ent1.getDate().compareTo(ent2.getDate())).findFirst();
+					if(!opt.isPresent()) {
+						if(photo.getDatePrecedentEntretien()!=null) {
+							ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate() + " : pas de précédent entretien mais daté du " + photo.getDatePrecedentEntretien());
+						}
+					} else {
+						if(!opt.get().getDate().equals(photo.getDatePrecedentEntretien())) {
+							ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate() + " : précédent entretien du " + opt.get().getDate() + " mais daté du " + photo.getDatePrecedentEntretien());
+						}
+					}
+					if(!optPro.isPresent()) {
+						if(photo.getDatePrecedentEntretienPro()!=null) {
+							ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate() + " : pas de précédent entretien pro mais daté du " + photo.getDatePrecedentEntretienPro());
+						}
+					} else {
+						if(!optPro.get().getDate().equals(photo.getDatePrecedentEntretienPro())) {
+							ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate() + " : précédent entretien du " + optPro.get().getDate() + " mais daté du " + photo.getDatePrecedentEntretienPro());
+						}
+					}
+					if(!optAnnuel.isPresent()) {
+						if(photo.getDatePrecedentEntretienAnnuel()!=null) {
+							ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate() + " : pas de précédent entretien annuel mais daté du " + photo.getDatePrecedentEntretienAnnuel());
+						}
+					} else {
+						if(!optAnnuel.get().getDate().equals(photo.getDatePrecedentEntretienAnnuel())) {
+							ret.add(" * " + emp.getLabel() + ", entretien du " + e.getDate() + " : précédent entretien du " + optAnnuel.get().getDate() + " mais daté du " + photo.getDatePrecedentEntretienAnnuel());
+						}
+					}
 				});
 //				.filter(e->e.getPhoto()==null);
 				return true;

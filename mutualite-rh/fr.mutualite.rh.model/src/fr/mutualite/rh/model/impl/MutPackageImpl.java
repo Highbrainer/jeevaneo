@@ -2851,6 +2851,24 @@ public class MutPackageImpl extends EPackageImpl implements MutPackage {
 		   source, 
 		   new String[] {
 			 "columnType", "DATE"
+		   });	
+		addAnnotation
+		  (getPhotoEmploye_DatePrecedentEntretien(), 
+		   source, 
+		   new String[] {
+			 "columnType", "DATE"
+		   });	
+		addAnnotation
+		  (getPhotoEmploye_DatePrecedentEntretienPro(), 
+		   source, 
+		   new String[] {
+			 "columnType", "DATE"
+		   });	
+		addAnnotation
+		  (getPhotoEmploye_DatePrecedentEntretienAnnuel(), 
+		   source, 
+		   new String[] {
+			 "columnType", "DATE"
 		   });
 	}
 

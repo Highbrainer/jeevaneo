@@ -502,11 +502,20 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diplomes" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretien"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations></eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretienPro"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations></eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretienAnnuel"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
+        <details key="columnType" value="DATE"/>
+      </eAnnotations></eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CategorieCompetence">
     <eLiterals name="TECHNIQUE" literal="Compétences Techniques"/>
