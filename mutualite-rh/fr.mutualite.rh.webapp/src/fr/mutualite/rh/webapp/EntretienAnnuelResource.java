@@ -96,23 +96,23 @@ public class EntretienAnnuelResource extends BaseResource {
 		cdo = CdoServlet.getCdo();
 	}
 
-	@Secured
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/employes/{matricule}/entretien-annuel/current")
-	public String prepareEntretienAnnuel(@PathParam("matricule") int matricule) {
-		// System.err.println("Je suis " + authenticatedUser.getNom());
-		String[] pRet = { null };
-		cdo.doInMutualiteTransaction(mut -> {
-			Employe employe = getEmploye(matricule, mut);
-			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
-			Formulaire form = makeFormulaire(entretien);
-			pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(form);
-			return true;
-		});
-		System.err.println("Je retourne " + pRet[0]);
-		return pRet[0];
-	}
+//	@Secured
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Path("/employes/{matricule}/entretien-annuel/current")
+//	public String prepareEntretienAnnuel(@PathParam("matricule") int matricule) {
+//		// System.err.println("Je suis " + authenticatedUser.getNom());
+//		String[] pRet = { null };
+//		cdo.doInMutualiteTransaction(mut -> {
+//			Employe employe = getEmploye(matricule, mut);
+//			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
+//			Formulaire form = makeFormulaire(entretien);
+//			pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(form);
+//			return true;
+//		});
+//		System.err.println("Je retourne " + pRet[0]);
+//		return pRet[0];
+//	}
 
 	@Secured
 	@PUT
@@ -123,7 +123,12 @@ public class EntretienAnnuelResource extends BaseResource {
 		cdo.doInMutualiteTransaction(mut -> {
 			CDOTransaction transaction = (CDOTransaction) mut.cdoView();
 			Employe employe = getEmploye(matricule, mut);
-			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
+			Optional<Entretien> preexisting = employe.getEntretiens().stream().filter(Entretien::isEnCours)
+			.findAny();
+			if(preexisting.isPresent()) {
+				throw new WebApplicationException("Impossible de créer un nouvel entretien : l'entretien du " + df.format(preexisting.get().getDate()) + " n'est pas encore validé.", 400);
+			}
+			EntretienAnnuel entretien = newEntretienAnnuel(employe);
 			Utilisateur utilisateur = AuthenticationFilter.getConnectedUtilisateur();
 			if (null != utilisateur) {
 				entretien.setMeneur(transaction.getObject(utilisateur.getEmploye()));
@@ -173,21 +178,21 @@ public class EntretienAnnuelResource extends BaseResource {
 		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(id));
 		return Activator.getDefault().getJsonGenerator().generateJson(entretien);
 	}
-
-	@Secured
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/employes/{matricule}/entretien-annuel/current/entretien/entreteneur")
-	public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
-		cdo.doInMutualiteTransaction(mut -> {
-			Employe employe = getEmploye(matricule, mut);
-			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
-			Employe entreteneur = getEmploye(matriculeEntreteneur, mut);
-			entretien.setMeneur(entreteneur);
-
-			return true;
-		});
-	}
+//
+//	@Secured
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Path("/employes/{matricule}/entretien-annuel/current/entretien/entreteneur")
+//	public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
+//		cdo.doInMutualiteTransaction(mut -> {
+//			Employe employe = getEmploye(matricule, mut);
+//			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
+//			Employe entreteneur = getEmploye(matriculeEntreteneur, mut);
+//			entretien.setMeneur(entreteneur);
+//
+//			return true;
+//		});
+//	}
 
 	@Secured
 	@POST
@@ -201,17 +206,17 @@ public class EntretienAnnuelResource extends BaseResource {
 		});
 	}
 
-	@Secured
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/employes/{matricule}/entretien-annuel/current/entretien")
-	public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
-		cdo.doInMutualiteTransaction(mut -> {
-			EntretienAnnuel e = getOrCreateEntretienAnnuel(getEmploye(matricule, mut));
-			populate(e, in);
-			return true;
-		});
-	}
+//	@Secured
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Path("/employes/{matricule}/entretien-annuel/current/entretien")
+//	public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
+//		cdo.doInMutualiteTransaction(mut -> {
+//			EntretienAnnuel e = getOrCreateEntretienAnnuel(getEmploye(matricule, mut));
+//			populate(e, in);
+//			return true;
+//		});
+//	}
 
 	private void populate(EntretienAnnuel e, InputStream in) {
 
@@ -517,13 +522,7 @@ public class EntretienAnnuelResource extends BaseResource {
 		});
 	}
 
-	private EntretienAnnuel getOrCreateEntretienAnnuel(Employe employe) {
-		EntretienAnnuel entretien = (EntretienAnnuel) employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienAnnuel).filter(Entretien::isEnCours)
-				.findAny().orElseGet(() -> newEntretienAnnuel(employe));
-		return entretien;
-	}
-
-	private Entretien newEntretienAnnuel(Employe employe) {
+	private EntretienAnnuel newEntretienAnnuel(Employe employe) {
 		EntretienAnnuel ret = MutFactory.eINSTANCE.createEntretienAnnuel();
 		ret.setDate(new Date());
 

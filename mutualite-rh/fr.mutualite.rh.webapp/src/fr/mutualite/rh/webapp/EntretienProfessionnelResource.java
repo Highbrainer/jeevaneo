@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -117,23 +118,23 @@ public class EntretienProfessionnelResource extends BaseResource {
 	// return response.build();
 	// }
 
-	@Secured
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/employes/{matricule}/entretien-pro/current")
-	public String prepareEntretienProfessionnel(@PathParam("matricule") int matricule) {
-		// System.err.println("Je suis " + authenticatedUser.getNom());
-		String[] pRet = { null };
-		cdo.doInMutualiteTransaction(mut -> {
-			Employe employe = getEmploye(matricule, mut);
-			EntretienProfessionnel entretien = getOrCreateEntretienProfessionnel(employe);
-			Formulaire form = makeFormulaire(entretien);
-			pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(form);
-			return true;
-		});
-		System.err.println("Je retourne " + pRet[0]);
-		return pRet[0];
-	}
+	// @Secured
+	// @GET
+	// @Produces(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-pro/current")
+	// public String prepareEntretienProfessionnel(@PathParam("matricule") int matricule) {
+	// // System.err.println("Je suis " + authenticatedUser.getNom());
+	// String[] pRet = { null };
+	// cdo.doInMutualiteTransaction(mut -> {
+	// Employe employe = getEmploye(matricule, mut);
+	// EntretienProfessionnel entretien = getOrCreateEntretienProfessionnel(employe);
+	// Formulaire form = makeFormulaire(entretien);
+	// pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(form);
+	// return true;
+	// });
+	// System.err.println("Je retourne " + pRet[0]);
+	// return pRet[0];
+	// }
 
 	@Secured
 	@PUT
@@ -144,7 +145,12 @@ public class EntretienProfessionnelResource extends BaseResource {
 		cdo.doInMutualiteTransaction(mut -> {
 			CDOTransaction transaction = (CDOTransaction) mut.cdoView();
 			Employe employe = getEmploye(matricule, mut);
-			EntretienProfessionnel entretien = getOrCreateEntretienProfessionnel(employe);
+			Optional<Entretien> preexisting = employe.getEntretiens().stream().filter(Entretien::isEnCours).findAny();
+			if (preexisting.isPresent()) {
+				throw new WebApplicationException(
+						"Impossible de créer un nouvel entretien : l'entretien du " + df.format(preexisting.get().getDate()) + " n'est pas encore validé.", 400);
+			}
+			EntretienProfessionnel entretien = newEntretienPro(employe);
 			Utilisateur utilisateur = AuthenticationFilter.getConnectedUtilisateur();
 			if (null != utilisateur) {
 				entretien.setMeneur(transaction.getObject(utilisateur.getEmploye()));
@@ -195,20 +201,20 @@ public class EntretienProfessionnelResource extends BaseResource {
 		return Activator.getDefault().getJsonGenerator().generateJson(entretien);
 	}
 
-	@Secured
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/employes/{matricule}/entretien-pro/current/entretien/entreteneur")
-	public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
-		cdo.doInMutualiteTransaction(mut -> {
-			Employe employe = getEmploye(matricule, mut);
-			EntretienProfessionnel entretien = getOrCreateEntretienProfessionnel(employe);
-			Employe entreteneur = getEmploye(matriculeEntreteneur, mut);
-			entretien.setMeneur(entreteneur);
-
-			return true;
-		});
-	}
+	// @Secured
+	// @POST
+	// @Consumes(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-pro/current/entretien/entreteneur")
+	// public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
+	// cdo.doInMutualiteTransaction(mut -> {
+	// Employe employe = getEmploye(matricule, mut);
+	// EntretienProfessionnel entretien = getOrCreateEntretienProfessionnel(employe);
+	// Employe entreteneur = getEmploye(matriculeEntreteneur, mut);
+	// entretien.setMeneur(entreteneur);
+	//
+	// return true;
+	// });
+	// }
 
 	@Secured
 	@POST
@@ -222,18 +228,18 @@ public class EntretienProfessionnelResource extends BaseResource {
 		});
 	}
 
-	@Secured
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/employes/{matricule}/entretien-pro/current/entretien")
-	public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
-		cdo.doInMutualiteTransaction(mut -> {
-			EntretienProfessionnel e = getOrCreateEntretienProfessionnel(getEmploye(matricule, mut));
-			populate(e, in);
-			return true;
-		});
-
-	}
+	// @Secured
+	// @POST
+	// @Consumes(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-pro/current/entretien")
+	// public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
+	// cdo.doInMutualiteTransaction(mut -> {
+	// EntretienProfessionnel e = getOrCreateEntretienProfessionnel(getEmploye(matricule, mut));
+	// populate(e, in);
+	// return true;
+	// });
+	//
+	// }
 
 	private void populate(EntretienProfessionnel e, InputStream in) {
 
@@ -336,13 +342,7 @@ public class EntretienProfessionnelResource extends BaseResource {
 		});
 	}
 
-	private EntretienProfessionnel getOrCreateEntretienProfessionnel(Employe employe) {
-		EntretienProfessionnel entretien = (EntretienProfessionnel) employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienProfessionnel)
-				.filter(Entretien::isEnCours).findAny().orElseGet(() -> newEntretienPro(employe));
-		return entretien;
-	}
-
-	private Entretien newEntretienPro(Employe employe) {
+	private EntretienProfessionnel newEntretienPro(Employe employe) {
 		EntretienProfessionnel ret = MutFactory.eINSTANCE.createEntretienProfessionnel();
 		ret.setDate(new Date());
 
@@ -449,7 +449,6 @@ public class EntretienProfessionnelResource extends BaseResource {
 			// ctx.put("entretien", entretien);
 			// ctx.put("employe", employe);
 			// ctx.put("formulaire", formulaire);
-			
 
 			ctx.put("_diplomes", photoEmploye.getDiplomes().stream().collect(Collectors.joining(", ")));
 

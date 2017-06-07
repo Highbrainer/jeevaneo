@@ -140,7 +140,7 @@ background-color: #00acac;
 		})
 		.put("/rest/employes/" + matricule + "/entretien-pro/current")
 		.then(function() {webix.message("Entretien créé!");updateDetail(matricule);})
-		.fail(function() {webix.alert("Erreur")});
+		.fail(function(e) {webix.alert("Erreur " + e.responseText)});
 		
 	}
 	
@@ -155,7 +155,7 @@ background-color: #00acac;
 		})
 		.put("/rest/employes/" + matricule + "/entretien-annuel/current")
 		.then(function() {webix.message("Entretien créé!");updateDetail(matricule);})
-		.fail(function() {webix.alert("Erreur")});
+		.fail(function(e) {webix.alert("Erreur " + e.responseText)});
 		
 	}
 	
