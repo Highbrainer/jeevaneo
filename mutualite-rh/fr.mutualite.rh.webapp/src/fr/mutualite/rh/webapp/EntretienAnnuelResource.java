@@ -57,6 +57,7 @@ import fr.mutualite.rh.model.EvaluationCompetence;
 import fr.mutualite.rh.model.EvaluationSavoirEtre;
 import fr.mutualite.rh.model.EvaluationTenuePoste;
 import fr.mutualite.rh.model.Evolution;
+import fr.mutualite.rh.model.Formation;
 import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.Objectif;
@@ -143,8 +144,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/entretiens-annuels/{cdoId}")
 	public String get(@PathParam("cdoId") long id) {
-		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView()
-				.getObject(CDOIDUtil.createLong(id));
+		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(id));
 		Formulaire form = makeFormulaire(entretien);
 		return Activator.getDefault().getJsonGenerator().generateJson(form);
 	}
@@ -170,8 +170,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/entretiens-annuels/{cdoId}/entretien")
 	public String getEntretienAnnuel(@PathParam("cdoId") long id) {
-		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView()
-				.getObject(CDOIDUtil.createLong(id));
+		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(id));
 		return Activator.getDefault().getJsonGenerator().generateJson(entretien);
 	}
 
@@ -179,8 +178,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/employes/{matricule}/entretien-annuel/current/entretien/entreteneur")
-	public void setEntreteneur(@PathParam("matricule") int matricule,
-			@QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
+	public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
 		cdo.doInMutualiteTransaction(mut -> {
 			Employe employe = getEmploye(matricule, mut);
 			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
@@ -195,8 +193,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/entretiens-annuels/{cdoId}/entretien")
-	public void enregistrer(@PathParam("cdoId") long id, InputStream in)
-			throws JsonParseException, JsonMappingException, IOException {
+	public void enregistrer(@PathParam("cdoId") long id, InputStream in) throws JsonParseException, JsonMappingException, IOException {
 		cdo.doInMutualiteTransaction(mut -> {
 			EntretienAnnuel e = (EntretienAnnuel) mut.cdoView().getObject(CDOIDUtil.createLong(id));
 			populate(e, in);
@@ -208,8 +205,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/employes/{matricule}/entretien-annuel/current/entretien")
-	public void enregistrer(@PathParam("matricule") int matricule, InputStream in)
-			throws JsonParseException, JsonMappingException, IOException {
+	public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
 		cdo.doInMutualiteTransaction(mut -> {
 			EntretienAnnuel e = getOrCreateEntretienAnnuel(getEmploye(matricule, mut));
 			populate(e, in);
@@ -221,8 +217,7 @@ public class EntretienAnnuelResource extends BaseResource {
 
 		// check sécu
 		if (!e.isEnCours()) {
-			throw new WebApplicationException(
-					"Cet entretien a été validé, il n'est plus modifiable! Adressez-vous au Service RH!", 401);
+			throw new WebApplicationException("Cet entretien a été validé, il n'est plus modifiable! Adressez-vous au Service RH!", 401);
 		}
 
 		ObjectMapper om = new ObjectMapper();
@@ -270,8 +265,7 @@ public class EntretienAnnuelResource extends BaseResource {
 		// AppreciationsSessionFormation
 		tree.get("appreciationsSessionFormation").forEach(node -> {
 			long id = node.get("cdoId").asLong();
-			AppreciationSessionFormation app = (AppreciationSessionFormation) e.cdoView()
-					.getObject(CDOIDUtil.createLong(id));
+			AppreciationSessionFormation app = (AppreciationSessionFormation) e.cdoView().getObject(CDOIDUtil.createLong(id));
 			// e.getAppreciationsSessionFormation().stream().filter(app ->
 			// app.cdoID().toURIFragment().equals(""+id)).findAny().get().setValeur(Appreciation.get(val(node, "valeur"))));
 			app.setValeur(Appreciation.get(val(node, "valeur")));
@@ -284,7 +278,6 @@ public class EntretienAnnuelResource extends BaseResource {
 				return id == Long.parseLong(s.cdoID().toURIFragment());
 			}).collect(Collectors.toList()));
 		});
-
 
 		addOrUpdateMissionsPrincipales(e, tree.get("evaluationsTenuePosteMissionsPrincipales"));
 		// Suppression des missions principales removed
@@ -346,9 +339,9 @@ public class EntretienAnnuelResource extends BaseResource {
 				e.getObjectifs().add(objectif);
 			} else {
 				JsonNode cdoIdNode = node.get("cdoId");
-				if(null==cdoIdNode) {
+				if (null == cdoIdNode) {
 					System.err.println("CDOID manquant! " + node);
-					return; //on ignore, mais il faudrait en fait rediriger vers un reload de page en réponse à un enregistrement...
+					return; // on ignore, mais il faudrait en fait rediriger vers un reload de page en réponse à un enregistrement...
 				}
 				long id = cdoIdNode.asLong();
 				e.getObjectifs().stream().filter(s -> {
@@ -362,6 +355,7 @@ public class EntretienAnnuelResource extends BaseResource {
 			}
 		});
 	}
+
 	private void addOrUpdateMissionsPrincipales(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
@@ -385,6 +379,7 @@ public class EntretienAnnuelResource extends BaseResource {
 			}
 		});
 	}
+
 	private void addOrUpdateMissionsSpecifiques(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
@@ -408,6 +403,7 @@ public class EntretienAnnuelResource extends BaseResource {
 			}
 		});
 	}
+
 	private void addOrUpdateEvaluationsCompetences(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
@@ -436,6 +432,7 @@ public class EntretienAnnuelResource extends BaseResource {
 			}
 		});
 	}
+
 	private void addOrUpdateEvaluationsSavoirEtre(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
@@ -465,7 +462,6 @@ public class EntretienAnnuelResource extends BaseResource {
 		});
 	}
 
-
 	private void addOrUpdateObjectifsPrecedents(EntretienAnnuel e, JsonNode nodes) {
 		nodes.forEach(node -> {
 			boolean added = node.has("added") ? node.get("added").asBoolean(false) : false;
@@ -492,7 +488,7 @@ public class EntretienAnnuelResource extends BaseResource {
 
 	public String val(JsonNode node, String name) {
 		JsonNode v = node.get(name);
-		if(v == null) {
+		if (v == null) {
 			return null;
 		}
 		return v.asText();
@@ -522,8 +518,7 @@ public class EntretienAnnuelResource extends BaseResource {
 	}
 
 	private EntretienAnnuel getOrCreateEntretienAnnuel(Employe employe) {
-		EntretienAnnuel entretien = (EntretienAnnuel) employe.getEntretiens().stream()
-				.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).filter(Entretien::isEnCours)
+		EntretienAnnuel entretien = (EntretienAnnuel) employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienAnnuel).filter(Entretien::isEnCours)
 				.findAny().orElseGet(() -> newEntretienAnnuel(employe));
 		return entretien;
 	}
@@ -531,62 +526,66 @@ public class EntretienAnnuelResource extends BaseResource {
 	private Entretien newEntretienAnnuel(Employe employe) {
 		EntretienAnnuel ret = MutFactory.eINSTANCE.createEntretienAnnuel();
 		ret.setDate(new Date());
-		
+
 		PhotoEmploye photo = employe.photo(ret.getDate());
-		
+
 		ret.setPhotoEmploye(photo);
 
-		Optional<EntretienAnnuel> precedentEntretienAnnuelOpt = employe.getEntretiens().stream()
-		.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).map(EntretienAnnuel.class::cast).max((e1,e2) -> e1.getDate().compareTo(e2.getDate()));
+		Optional<EntretienAnnuel> precedentEntretienAnnuelOpt = employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienAnnuel)
+				.map(EntretienAnnuel.class::cast).max((e1, e2) -> e1.getDate().compareTo(e2.getDate()));
 
-		Date datePrecedentEntretienAnnuel = precedentEntretienAnnuelOpt.isPresent()?precedentEntretienAnnuelOpt.get().getDate():new Date(0);
-		
-		Date datePrecedentEntretien = employe.getEntretiens().stream()
-				.map(Entretien::getDate).max(Date::compareTo).orElse(new Date(0));
+		Date datePrecedentEntretienAnnuel = precedentEntretienAnnuelOpt.isPresent() ? precedentEntretienAnnuelOpt.get().getDate() : new Date(0);
 
-		//les évalusations pré-existantes (probablement dans l'entretien pro précédent...)		
-		Stream<Entretien> entretiensIntermediaires = employe.getEntretiens().stream().filter(e -> e.getDate().after(datePrecedentEntretienAnnuel) && (e.getDate().before(datePrecedentEntretien) ||e.getDate().equals(datePrecedentEntretien) ));
+		Date datePrecedentEntretien = employe.getEntretiens().stream().map(Entretien::getDate).max(Date::compareTo).orElse(new Date(0));
+
+		// les évalusations pré-existantes (probablement dans l'entretien pro précédent...)
+		Stream<Entretien> entretiensIntermediaires = employe.getEntretiens().stream()
+				.filter(e -> e.getDate().after(datePrecedentEntretienAnnuel) && (e.getDate().before(datePrecedentEntretien) || e.getDate().equals(datePrecedentEntretien)));
 		entretiensIntermediaires.map(Entretien::getAppreciationsSessionFormation).forEach(ret.getAppreciationsSessionFormationEntretiensPrecedents()::addAll);
-		
-		//Les évaluations "propres"
-		
-		employe.getSessionsFormation().stream()
-				.filter(sf -> sf.getDateDebut().after(datePrecedentEntretien) && sf.getDateDebut().before(ret.getDate())).map(session -> {
-					AppreciationSessionFormation apprec = MutFactory.eINSTANCE
-							.createAppreciationSessionFormation();
-					apprec.setSessionFormation(session);
-					apprec.setValeur(null);
-					return apprec;
-				}).forEach(ret.getAppreciationsSessionFormation()::add);
-		
+
+		// Les évaluations "propres"
+
+		employe.getSessionsFormation().stream().filter(sf -> {
+			Date dateDebut = sf.getDateDebut();
+			if(null==dateDebut) {
+				log.error("Session de formation sans date de début! ==> ignorée " + ((Formation)sf.eContainer()).getLibelle());
+			}
+			return dateDebut!=null && dateDebut.after(datePrecedentEntretien) && dateDebut.before(ret.getDate());
+		}).map(session -> {
+			AppreciationSessionFormation apprec = MutFactory.eINSTANCE.createAppreciationSessionFormation();
+			apprec.setSessionFormation(session);
+			apprec.setValeur(null);
+			return apprec;
+		}).forEach(ret.getAppreciationsSessionFormation()::add);
+
 		Arrays.stream(Competence.values()).map(c -> {
 			EvaluationCompetence evaluationCompetence = MutFactory.eINSTANCE.createEvaluationCompetence();
 			evaluationCompetence.setCompetence(c);
 			return evaluationCompetence;
 		}).forEach(ret.getEvaluationsCompetences()::add);
-		
+
 		Arrays.stream(SavoirEtre.values()).map(c -> {
 			EvaluationSavoirEtre eval = MutFactory.eINSTANCE.createEvaluationSavoirEtre();
 			eval.setSavoirEtre(c);
 			return eval;
 		}).forEach(ret.getEvaluationsSavoirEtre()::add);
 
-		if(precedentEntretienAnnuelOpt.isPresent()) {
+		if (precedentEntretienAnnuelOpt.isPresent()) {
 			EntretienAnnuel precedent = (EntretienAnnuel) precedentEntretienAnnuelOpt.get();
 			precedent.getObjectifs().stream().map(o -> {
 				ObjectifPrecedent objPrec = MutFactory.eINSTANCE.createObjectifPrecedent();
 				objPrec.setObjectif(o);
 				return objPrec;
-			}).forEach(ret.getObjectifsPrecedents()::add);;
+			}).forEach(ret.getObjectifsPrecedents()::add);
+			;
 		}
-		
+
 		employe.getEntretiens().add(ret);
 		return ret;
 	}
 
 	private EntretienAnnuel getCurrentEntretienAnnuel(Employe employe) {
-		EntretienAnnuel entretien = (EntretienAnnuel) employe.getEntretiens().stream()
-				.filter(entretien2 -> entretien2 instanceof EntretienAnnuel).filter(Entretien::isEnCours)
+		EntretienAnnuel entretien = (EntretienAnnuel) employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienAnnuel).filter(Entretien::isEnCours)
 				.findAny().get();
 		return entretien;
 	}
@@ -596,18 +595,17 @@ public class EntretienAnnuelResource extends BaseResource {
 	@Path("/entretiens-annuels/{cdoId}/validate")
 	public void validate(@PathParam("cdoId") long cdoId) {
 
-		boolean hasRole = AuthenticationFilter.getConnectedUtilisateur().getRoles().stream().anyMatch(
-				role -> role.name().equals(Role.DRH.name()) || role.name().equals(Role.RESPONSABLE_ENTRETIEN.name()));
+		boolean hasRole = AuthenticationFilter.getConnectedUtilisateur().getRoles().stream()
+				.anyMatch(role -> role.name().equals(Role.DRH.name()) || role.name().equals(Role.RESPONSABLE_ENTRETIEN.name()));
 		if (!hasRole) {
 			throw new WebApplicationException("Vous n'avez pas l'autorisation de valider cet entretien", 403);
 		}
 
 		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
-			EntretienAnnuel entretien = (EntretienAnnuel) mut.cdoView()
-					.getObject(CDOIDUtil.createLong(cdoId));
-			
+			EntretienAnnuel entretien = (EntretienAnnuel) mut.cdoView().getObject(CDOIDUtil.createLong(cdoId));
+
 			entretien.setDate(new Date());
-			
+
 			entretien.setPhotoEmploye(entretien.employe().photo(entretien.getDate()));
 
 			if (entretien.isEnCours()) {
@@ -618,15 +616,13 @@ public class EntretienAnnuelResource extends BaseResource {
 
 	}
 
-
 	@Secured
 	@GET
 	@Produces("application/pdf")
 	@Path("/entretiens-annuels/{cdoId}.pdf")
 	public Response toPdf(@PathParam("cdoId") long cdoId) {
 
-		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView()
-				.getObject(CDOIDUtil.createLong(cdoId));
+		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(cdoId));
 		ResponseBuilder response = Response.ok(new StreamingOutput() {
 			@Override
 			public void write(OutputStream out) throws IOException, WebApplicationException {
@@ -634,9 +630,8 @@ public class EntretienAnnuelResource extends BaseResource {
 			}
 		});
 		Employe employe = entretien.employe();
-		response.header("Content-Disposition",
-				"inline; filename=entretien-annuel-" + employe.getNom() + "-" + employe.getPrenom() + "-"
-						+ DateFormat.getDateInstance(DateFormat.SHORT).format(entretien.getDate()) + ".pdf");
+		response.header("Content-Disposition", "inline; filename=entretien-annuel-" + employe.getNom() + "-" + employe.getPrenom() + "-"
+				+ DateFormat.getDateInstance(DateFormat.SHORT).format(entretien.getDate()) + ".pdf");
 		return response.build();
 	}
 
@@ -648,8 +643,7 @@ public class EntretienAnnuelResource extends BaseResource {
 		// getClass().getClassLoader().getResourceAsStream("fr/mutualite/rh/webapp/odt/template-entretien-annuel.odt");
 		// InputStream in = new FileInputStream(
 		// "E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.webapp\\resources\\fr\\mutualite\\rh\\webapp\\odt\\template-entretien-annuel4.odt");
-		InputStream in = fr.mutualite.rh.webapp.Activator.getContext().getBundle()
-				.getResource("/fr/mutualite/rh/webapp/odt/template-entretien-annuel2.odt").openStream();
+		InputStream in = fr.mutualite.rh.webapp.Activator.getContext().getBundle().getResource("/fr/mutualite/rh/webapp/odt/template-entretien-annuel2.odt").openStream();
 		try {
 			// Prepare the IXDocReport instance based on the template, using
 			// Freemarker template engine
@@ -662,16 +656,15 @@ public class EntretienAnnuelResource extends BaseResource {
 			Formulaire formulaire = makeFormulaire(entretien);
 			PhotoEmploye photoEmploye = entretien.getPhotoEmploye();
 			IContext ctx = report.createContext();
-			 ctx.put("entretien", entretien);
+			ctx.put("entretien", entretien);
 			ctx.put("employe", employe);
 			ctx.put("formulaire", formulaire);
 			ctx.put("photo", photoEmploye);
-			
 
 			String diplomes = photoEmploye.getDiplomes().stream().collect(Collectors.joining(", "));
 			log.debug(diplomes);
 			ctx.put("_diplomes", diplomes);
-			
+
 			entretien.eClass().getEAllAttributes().forEach(att -> {
 				Object rawVal = entretien.eGet(att);
 				Object sVal = string(rawVal);
@@ -680,11 +673,11 @@ public class EntretienAnnuelResource extends BaseResource {
 			entretien.eClass().getEAllReferences().forEach(ref -> {
 				ctx.put(ref.getName(), entretien.eGet(ref));
 			});
-//			employe.eClass().getEAllAttributes().forEach(att -> {
-//				Object rawVal = employe.eGet(att);
-//				Object sVal = string(rawVal);
-//				ctx.put("employe_" + att.getName(), sVal);
-//			});
+			// employe.eClass().getEAllAttributes().forEach(att -> {
+			// Object rawVal = employe.eGet(att);
+			// Object sVal = string(rawVal);
+			// ctx.put("employe_" + att.getName(), sVal);
+			// });
 			// employe.eClass().getEAllReferences().forEach(ref -> {
 			// ctx.put("employe." + ref.getName(), employe.eGet(ref));
 			// });
@@ -710,61 +703,61 @@ public class EntretienAnnuelResource extends BaseResource {
 			throw new WebApplicationException("Error technique : " + e.getMessage(), 500);
 		}
 	}
-	
+
 	@GET
 	@Path("/entretien-annuel/categories-competences.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response competencesParCategories() {
-			ResponseBuilder response = Response.ok(new StreamingOutput() {
-				@Override
-				public void write(OutputStream out) throws IOException, WebApplicationException {
-					JsonFactory jf = new JsonFactory();
-					final JsonGenerator jg = jf.createGenerator(out);
-					jg.writeStartArray();
-					CategorieCompetence.VALUES.forEach(cat -> {
-						
-						try {
-							jg.writeStartObject();
-							jg.writeStringField("categorie", cat.getName());
-							jg.writeStringField("libelle", cat.getLiteral());
-							jg.writeArrayFieldStart("competences");
-							cat.competences().forEach(comp -> {
-								try {
-									jg.writeStartObject();
-									jg.writeStringField("competence", comp.getName());
-									jg.writeStringField("libelle", comp.getLiteral());
-									jg.writeEndObject();
-								} catch (IOException e) {
-									throw new RuntimeException(e);
-								}
-							});
-							jg.writeEndArray();
-							jg.writeEndObject();
-						} catch (IOException e) {
-							throw new RuntimeException(e);
-						}
-					});
-					jg.writeEndArray();
-					jg.close();
-				}
-			});
-			return response.build();
-		}
-	
-	@GET @Path("/objectif-precedent/{cdoId}/libelle")
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				JsonFactory jf = new JsonFactory();
+				final JsonGenerator jg = jf.createGenerator(out);
+				jg.writeStartArray();
+				CategorieCompetence.VALUES.forEach(cat -> {
+
+					try {
+						jg.writeStartObject();
+						jg.writeStringField("categorie", cat.getName());
+						jg.writeStringField("libelle", cat.getLiteral());
+						jg.writeArrayFieldStart("competences");
+						cat.competences().forEach(comp -> {
+							try {
+								jg.writeStartObject();
+								jg.writeStringField("competence", comp.getName());
+								jg.writeStringField("libelle", comp.getLiteral());
+								jg.writeEndObject();
+							} catch (IOException e) {
+								throw new RuntimeException(e);
+							}
+						});
+						jg.writeEndArray();
+						jg.writeEndObject();
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
+				});
+				jg.writeEndArray();
+				jg.close();
+			}
+		});
+		return response.build();
+	}
+
+	@GET
+	@Path("/objectif-precedent/{cdoId}/libelle")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String objectifPrecedentLibelle(@PathParam("cdoId") long cdoId) {
 		ObjectifPrecedent op = (ObjectifPrecedent) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(cdoId));
 		return op.getObjectif().getLibelle();
 	}
-	
-	
+
 	public Object string(Object rawVal) {
 		if (rawVal instanceof Date) {
 			Date date = (Date) rawVal;
 			return df.format(date);
 		}
-		if(rawVal instanceof Collection<?>) {
+		if (rawVal instanceof Collection<?>) {
 			Collection col = (Collection) rawVal;
 			return col.stream().map(this::string).toArray();
 		}
