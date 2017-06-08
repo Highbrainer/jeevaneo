@@ -257,6 +257,79 @@ public interface DtoPackage extends EPackage {
 	int UI_EMPLOYE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.mutualite.rh.model.dto.impl.UISessionFormationImpl <em>UI Session Formation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.mutualite.rh.model.dto.impl.UISessionFormationImpl
+	 * @see fr.mutualite.rh.model.dto.impl.DtoPackageImpl#getUISessionFormation()
+	 * @generated
+	 */
+	int UI_SESSION_FORMATION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Quand</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION__QUAND = 0;
+
+	/**
+	 * The feature id for the '<em><b>Duree</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION__DUREE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Libelle</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION__LIBELLE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Organisme</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION__ORGANISME = 3;
+
+	/**
+	 * The feature id for the '<em><b>Dpc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION__DPC = 4;
+
+	/**
+	 * The number of structural features of the '<em>UI Session Formation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>UI Session Formation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_SESSION_FORMATION_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link fr.mutualite.rh.model.dto.Formulaire <em>Formulaire</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -453,6 +526,71 @@ public interface DtoPackage extends EPackage {
 	EAttribute getUIEmploye_Nom();
 
 	/**
+	 * Returns the meta object for class '{@link fr.mutualite.rh.model.dto.UISessionFormation <em>UI Session Formation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>UI Session Formation</em>'.
+	 * @see fr.mutualite.rh.model.dto.UISessionFormation
+	 * @generated
+	 */
+	EClass getUISessionFormation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.dto.UISessionFormation#getQuand <em>Quand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Quand</em>'.
+	 * @see fr.mutualite.rh.model.dto.UISessionFormation#getQuand()
+	 * @see #getUISessionFormation()
+	 * @generated
+	 */
+	EAttribute getUISessionFormation_Quand();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.dto.UISessionFormation#getDuree <em>Duree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Duree</em>'.
+	 * @see fr.mutualite.rh.model.dto.UISessionFormation#getDuree()
+	 * @see #getUISessionFormation()
+	 * @generated
+	 */
+	EAttribute getUISessionFormation_Duree();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.dto.UISessionFormation#getLibelle <em>Libelle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Libelle</em>'.
+	 * @see fr.mutualite.rh.model.dto.UISessionFormation#getLibelle()
+	 * @see #getUISessionFormation()
+	 * @generated
+	 */
+	EAttribute getUISessionFormation_Libelle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.dto.UISessionFormation#getOrganisme <em>Organisme</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Organisme</em>'.
+	 * @see fr.mutualite.rh.model.dto.UISessionFormation#getOrganisme()
+	 * @see #getUISessionFormation()
+	 * @generated
+	 */
+	EAttribute getUISessionFormation_Organisme();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.mutualite.rh.model.dto.UISessionFormation#isDpc <em>Dpc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dpc</em>'.
+	 * @see fr.mutualite.rh.model.dto.UISessionFormation#isDpc()
+	 * @see #getUISessionFormation()
+	 * @generated
+	 */
+	EAttribute getUISessionFormation_Dpc();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,6 +760,56 @@ public interface DtoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute UI_EMPLOYE__NOM = eINSTANCE.getUIEmploye_Nom();
+
+		/**
+		 * The meta object literal for the '{@link fr.mutualite.rh.model.dto.impl.UISessionFormationImpl <em>UI Session Formation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.mutualite.rh.model.dto.impl.UISessionFormationImpl
+		 * @see fr.mutualite.rh.model.dto.impl.DtoPackageImpl#getUISessionFormation()
+		 * @generated
+		 */
+		EClass UI_SESSION_FORMATION = eINSTANCE.getUISessionFormation();
+
+		/**
+		 * The meta object literal for the '<em><b>Quand</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UI_SESSION_FORMATION__QUAND = eINSTANCE.getUISessionFormation_Quand();
+
+		/**
+		 * The meta object literal for the '<em><b>Duree</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UI_SESSION_FORMATION__DUREE = eINSTANCE.getUISessionFormation_Duree();
+
+		/**
+		 * The meta object literal for the '<em><b>Libelle</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UI_SESSION_FORMATION__LIBELLE = eINSTANCE.getUISessionFormation_Libelle();
+
+		/**
+		 * The meta object literal for the '<em><b>Organisme</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UI_SESSION_FORMATION__ORGANISME = eINSTANCE.getUISessionFormation_Organisme();
+
+		/**
+		 * The meta object literal for the '<em><b>Dpc</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UI_SESSION_FORMATION__DPC = eINSTANCE.getUISessionFormation_Dpc();
 
 	}
 

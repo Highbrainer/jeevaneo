@@ -103,7 +103,6 @@
 				}).fail(function(err) {
 					if (isFunction(thenFunc)) {
 						console.log(thenFunc);
-						console.log("alors?");
 						thenFunc();
 					} else {
 						//TODO il faudrait discernet l'erreur d'enregistrement du "pas en cours!"

@@ -347,6 +347,13 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UIEmploye/matricule"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UIEmploye/nom"/>
       </genClasses>
+      <genClasses ecoreClass="mut.ecore#//dto/UISessionFormation">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UISessionFormation/quand"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UISessionFormation/duree"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UISessionFormation/libelle"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UISessionFormation/organisme"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mut.ecore#//dto/UISessionFormation/dpc"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Config" disposableProviderFactory="true" fileExtensions="config"
         ecorePackage="mut.ecore#//config">

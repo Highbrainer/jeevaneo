@@ -118,6 +118,29 @@ public class DtoItemProviderAdapterFactory extends DtoAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link fr.mutualite.rh.model.dto.UISessionFormation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UISessionFormationItemProvider uiSessionFormationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.mutualite.rh.model.dto.UISessionFormation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUISessionFormationAdapter() {
+		if (uiSessionFormationItemProvider == null) {
+			uiSessionFormationItemProvider = new UISessionFormationItemProvider(this);
+		}
+
+		return uiSessionFormationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,6 +241,7 @@ public class DtoItemProviderAdapterFactory extends DtoAdapterFactory implements 
 	public void dispose() {
 		if (formulaireItemProvider != null) formulaireItemProvider.dispose();
 		if (uiEmployeItemProvider != null) uiEmployeItemProvider.dispose();
+		if (uiSessionFormationItemProvider != null) uiSessionFormationItemProvider.dispose();
 	}
 
 }

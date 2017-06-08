@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -33,11 +34,16 @@ import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.common.util.EList;
 
 import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.model.Entretien;
+import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.Etablissement;
+import fr.mutualite.rh.model.Objectif;
+import fr.mutualite.rh.model.PhotoEmploye;
 import fr.mutualite.rh.model.Role;
 import fr.mutualite.rh.model.Utilisateur;
 import fr.mutualite.rh.model.dto.DtoFactory;
 import fr.mutualite.rh.model.dto.UIEmploye;
+import fr.mutualite.rh.model.dto.UISessionFormation;
 import fr.mutualite.rh.model.util.Activator;
 import fr.mutualite.rh.model.util.JsonGenerator;
 import fr.mutualite.rh.model.util.JsonGeneratorImpl;
@@ -230,6 +236,41 @@ public class EmployeResource extends BaseResource {
 		ret.setPrenom(employe.getPrenom());
 		ret.setNom(employe.getNom());
 		return ret;
+	}
+
+	@Secured
+	@GET
+	@Path("/{matricule}/photo")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String photo(@PathParam("matricule") int matricule) {
+
+		Employe employe = getEmploye(matricule, CdoServlet.getMutualite());
+		
+		return Activator.getDefault().getJsonGenerator().generateJson(employe.photo(new Date()));
+	}
+	@Secured
+	@GET
+	@Path("/{matricule}/formations")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<UISessionFormation> formations(@PathParam("matricule") int matricule) {
+
+		Employe employe = getEmploye(matricule, CdoServlet.getMutualite());
+		
+		return employe.getSessionsFormation().stream().filter(sf -> sf.getDateDebut()!=null).sorted((sf1,sf2)->sf2.getDateDebut().compareTo(sf1.getDateDebut())).map(DtoFactory.eINSTANCE::createUISessionFormation).collect(Collectors.toList());
+	}
+	@Secured
+	@GET
+	@Path("/{matricule}/dernier-entretien-annuel")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String dernierEntretienAnnuel(@PathParam("matricule") int matricule) {
+
+		Employe employe = getEmploye(matricule, CdoServlet.getMutualite());
+		
+		Optional<Entretien> opt = employe.getEntretiens().stream().filter(EntretienAnnuel.class::isInstance).sorted((e1,e2)->e1.getDate().compareTo(e2.getDate())).findFirst();
+		if(opt.isPresent()) {
+			return  Activator.getDefault().getJsonGenerator().generateJson(opt.get());
+		}
+		throw new WebApplicationException("Ce salarié n'a pas encore eu d'entretien annuel.", 404);
 	}
 
 }

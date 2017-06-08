@@ -64,6 +64,11 @@ legend {
 background-color: orange;
 }
 
+.fiche button {
+background-color: #111111;
+
+}
+
 .petrol button {
 background-color: #00acac;
 }
@@ -157,6 +162,15 @@ background-color: #00acac;
 		.then(function() {webix.message("Entretien créé!");updateDetail(matricule);})
 		.fail(function(e) {webix.alert("Erreur " + e.responseText)});
 		
+	}
+	
+	function showFicheSalarie() {
+		var matricule = $$("master").getSelectedId(true);
+		if(null==matricule || matricule.length==0	) {
+			webix.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
+			return;
+		}
+		webix.send("/files/fiche-salarie.html", {matricule:matricule}, "GET");
 	}
 	
 	function updateDetail(matricule) {
@@ -313,6 +327,15 @@ background-color: #00acac;
 				id : "myToolbar",
 				cols : [{ gravity: 5},
 				        {
+					view : "button",
+					label : "Fiche du salarié",
+					//width : 180,
+					align : "right",
+					type : "htmlButton",
+					icon : "plus",
+					css : "fiche",
+					click: showFicheSalarie
+				},{
 					view : "button",
 					label : "Nouvel Entretien PRO",
 					//width : 180,

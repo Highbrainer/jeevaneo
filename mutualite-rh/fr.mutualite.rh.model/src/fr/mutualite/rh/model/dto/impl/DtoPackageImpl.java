@@ -11,6 +11,7 @@ import fr.mutualite.rh.model.dto.DtoPackage;
 import fr.mutualite.rh.model.dto.Formulaire;
 
 import fr.mutualite.rh.model.dto.UIEmploye;
+import fr.mutualite.rh.model.dto.UISessionFormation;
 import fr.mutualite.rh.model.impl.MutPackageImpl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -40,6 +41,13 @@ public class DtoPackageImpl extends EPackageImpl implements DtoPackage {
 	 * @generated
 	 */
 	private EClass uiEmployeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass uiSessionFormationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -277,6 +285,60 @@ public class DtoPackageImpl extends EPackageImpl implements DtoPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUISessionFormation() {
+		return uiSessionFormationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUISessionFormation_Quand() {
+		return (EAttribute)uiSessionFormationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUISessionFormation_Duree() {
+		return (EAttribute)uiSessionFormationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUISessionFormation_Libelle() {
+		return (EAttribute)uiSessionFormationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUISessionFormation_Organisme() {
+		return (EAttribute)uiSessionFormationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUISessionFormation_Dpc() {
+		return (EAttribute)uiSessionFormationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DtoFactory getDtoFactory() {
 		return (DtoFactory)getEFactoryInstance();
 	}
@@ -319,6 +381,13 @@ public class DtoPackageImpl extends EPackageImpl implements DtoPackage {
 		createEAttribute(uiEmployeEClass, UI_EMPLOYE__PRENOM);
 		createEAttribute(uiEmployeEClass, UI_EMPLOYE__MATRICULE);
 		createEAttribute(uiEmployeEClass, UI_EMPLOYE__NOM);
+
+		uiSessionFormationEClass = createEClass(UI_SESSION_FORMATION);
+		createEAttribute(uiSessionFormationEClass, UI_SESSION_FORMATION__QUAND);
+		createEAttribute(uiSessionFormationEClass, UI_SESSION_FORMATION__DUREE);
+		createEAttribute(uiSessionFormationEClass, UI_SESSION_FORMATION__LIBELLE);
+		createEAttribute(uiSessionFormationEClass, UI_SESSION_FORMATION__ORGANISME);
+		createEAttribute(uiSessionFormationEClass, UI_SESSION_FORMATION__DPC);
 	}
 
 	/**
@@ -373,6 +442,13 @@ public class DtoPackageImpl extends EPackageImpl implements DtoPackage {
 		initEAttribute(getUIEmploye_Prenom(), ecorePackage.getEString(), "prenom", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUIEmploye_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUIEmploye_Nom(), ecorePackage.getEString(), "nom", null, 1, 1, UIEmploye.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(uiSessionFormationEClass, UISessionFormation.class, "UISessionFormation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUISessionFormation_Quand(), ecorePackage.getEString(), "quand", null, 0, 1, UISessionFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUISessionFormation_Duree(), ecorePackage.getEString(), "duree", null, 0, 1, UISessionFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUISessionFormation_Libelle(), ecorePackage.getEString(), "libelle", null, 0, 1, UISessionFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUISessionFormation_Organisme(), ecorePackage.getEString(), "organisme", null, 0, 1, UISessionFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUISessionFormation_Dpc(), ecorePackage.getEBoolean(), "dpc", null, 0, 1, UISessionFormation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //DtoPackageImpl

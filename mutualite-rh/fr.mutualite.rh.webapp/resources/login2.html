@@ -15,7 +15,9 @@
 				"/rest/authentication", $$("login-form").getValues(), 
 				function(token) {
 					window.sessionStorage.token = token;
-						webix.send("entretien-list.html"/*, {token:token}*/, "GET");
+					url = window.sessionStorage.redirect?window.sessionStorage.redirect:"entretien-list.html";
+					window.sessionStorage.redirect = null;
+						webix.send(url/*, {token:token}*/, "GET");
 		}).fail(function() {webix.message({type:"error", text:"Accès refusé!"});
 });
 		

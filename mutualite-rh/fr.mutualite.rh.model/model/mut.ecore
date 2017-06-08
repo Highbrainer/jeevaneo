@@ -505,17 +505,20 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
       <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
         <details key="columnType" value="DATE"/>
-      </eAnnotations></eStructuralFeatures>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretienPro"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
       <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
         <details key="columnType" value="DATE"/>
-      </eAnnotations></eStructuralFeatures>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datePrecedentEntretienAnnuel"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
       <eAnnotations source="http://www.eclipse.org/CDO/DBStore">
         <details key="columnType" value="DATE"/>
-      </eAnnotations></eStructuralFeatures>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CategorieCompetence">
     <eLiterals name="TECHNIQUE" literal="Compétences Techniques"/>
@@ -564,6 +567,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UISessionFormation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="quand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="duree" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="organisme" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dpc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="config" nsURI="http://www.mutualite.fr/mut/1.0/config" nsPrefix="config">

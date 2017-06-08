@@ -4,6 +4,8 @@ package fr.mutualite.rh.model.dto;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import fr.mutualite.rh.model.SessionFormation;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -38,6 +40,17 @@ public interface DtoFactory extends EFactory {
 	 * @generated
 	 */
 	UIEmploye createUIEmploye();
+
+	/**
+	 * Returns a new object of class '<em>UI Session Formation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>UI Session Formation</em>'.
+	 * @generated
+	 */
+	UISessionFormation createUISessionFormation();
+	
+	UISessionFormation createUISessionFormation(SessionFormation sf);
 
 	/**
 	 * Returns the package supported by this factory.

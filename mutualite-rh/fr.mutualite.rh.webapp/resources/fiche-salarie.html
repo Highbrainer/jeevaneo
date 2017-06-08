@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Liste des Employés</title>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
+	type="text/css">
+<script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="../common/samples.css"> -->
+<!-- <script src="../common/testdata.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="/files/params.js" type="text/javascript" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" href="entretien.css">
+<link rel="stylesheet" type="text/css" href="entretien-custom.css">
+</head>
+<body style="padding: 20px;font-family:helvetica;">
+	<div id="header" style="display: none">
+		<table style="width: 100%">
+			<tr>
+				<td>
+					<div>
+						<span class="cartouche-titre">Nom :</span> #nom#
+					</div>
+					<div>
+						<span class="cartouche-titre">Prénom :</span> #prenom#
+					</div>
+					<div>
+						<span class="cartouche-titre">Service :</span> #etablissement#
+					</div>
+					<div>
+						<span class="cartouche-titre">Poste occupé :</span> #emploi#
+						#classification#
+					</div>
+					<div>
+						<span class="cartouche-titre">Date d'entrée dans
+							l'entreprise : </span> #dateEmbauche#
+					</div>
+				</td>
+				<td>
+					<div>
+						<span class="cartouche-titre">Responsable hiérarchique :</span>
+						#responsable#
+					</div>
+					<div>
+						<span class="cartouche-titre">Diplômes :</span> #diplomes#
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<h1 id="titre">Fiche du salarié</h1>
+	<div id="slot"></div>
+	<h2>Formations</h2>
+	<div id="formations"></div>
+	<h2 id="title_objectifs">Derniers Objectifs</h2>
+	<div id="objectifs"></div>
+
+	<script type="text/javascript" charset="utf-8">
+		var matricule = getParameterByName("matricule");
+		webix
+				.ready(function() {
+
+					if(!window.sessionStorage.token) {
+						window.sessionStorage.redirect = window.location;
+						webix.send("/files/login2.html");
+					}
+					
+					webix
+							.ajax()
+							.headers(
+									{
+										"Authorization" : "Bearer "
+												+ window.sessionStorage.token
+									})
+							.get("/rest/effectif/" + matricule + "/photo")
+							.then(
+									function(rawphoto) {
+										var photo = rawphoto.json();
+										document.getElementById("titre").innerHTML+= " " + photo.prenom + " " + photo.nom;
+										webix
+												.ui({
+													container : "slot",
+													rows : [ {
+														view : "template",
+														data : photo,
+														template : document
+																.getElementById("header").innerHTML
+													} ]
+												});
+									});
+
+					//FORMATIONS
+					function custom_checkbox(obj, common, value) {
+						if (value == 1)
+							return "<div class='webix_checkbox checked'> DPC </div>";
+						else
+							return "<div class='webix_checkbox notchecked'> </div>";
+					}
+					;
+					webix.ajax().headers(
+							{
+								"Authorization" : "Bearer "
+										+ window.sessionStorage.token
+							}).get(
+							"/rest/effectif/" + matricule + "/formations")
+							.then(function(rawlist) {
+								var list = rawlist.json();
+
+								if(list.length>0) {	
+								webix.ui({
+									container : "formations",
+									view : "datatable",
+									data : list,
+									columns : [ {
+										id : "organisme",
+										header : "Organisme",
+										adjust : true
+									}, {
+										id : "libelle",
+										header : "Formation",
+										adjust : true
+									}, {
+										id : "quand",
+										header : "Date",
+										adjust : true
+									}, {
+										id : "duree",
+										header : "Durée",
+										adjust : true
+									}, {
+										id : "dpc",
+										header : "DPC?",
+										css : "webix_checkbox",
+										template : custom_checkbox,
+										adjust : true
+
+									} ],
+
+									editable : false,
+									autowidth : true,
+									autoheight : true,
+								});
+								} else {
+									document.getElementById("formations").innerHTML="<i>Aucune formation enregistrée</i>";
+								}
+							});
+
+					//OBJECTIFS
+
+					webix
+							.ajax()
+							.headers(
+									{
+										"Authorization" : "Bearer "
+												+ window.sessionStorage.token
+									})
+							.get(
+									"/rest/effectif/" + matricule
+											+ "/dernier-entretien-annuel")
+							.then(function(rawentretien) {
+								var entretien = rawentretien.json();
+
+								document.getElementById("title_objectifs").innerHTML="Objectifs définis lors de l'entretien du " + entretien.date
+
+								if (entretien.objectifs.length > 0) {
+
+									webix.ui({
+										container : "objectifs",
+										view : "datatable",
+										data : entretien.objectifs,
+										columns : [ {
+											id : "libelle",
+											header : "Objectif",
+											adjust : true
+										}, {
+											id : "echeance",
+											header : "Echéance",
+											adjust : true
+										}, {
+											id : "indicateurs",
+											header : "Indicateurs",
+											adjust : true
+										}, {
+											id : "moyens",
+											header : "Moyens",
+											adjust : true
+										} ],
+
+										editable : false,
+										autowidth : true,
+										autoheight : true,
+									});
+
+								} else {
+									document.getElementById("objectifs").innerHTML = "<i>Aucun objectif n'a été défini lors de cet entretien!</i>";
+								}
+
+							})
+							.fail(
+									function(err) {
+										document.getElementById("objectifs").innerHTML = "<i>"
+												+ err.responseText + "</i>"
+									});
+				});
+	</script>
+</body>
+</html>
