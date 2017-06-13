@@ -75,7 +75,7 @@
 						token : window.sessionStorage.token
 					}, "GET", "_blank"); */
 				}).fail(function(err) {
-			webix.alert("Echec de la validation!");
+			webix.alert("Echec de la validation!\n" + err.responseText);
 		});
 	}
 	function isFunction(functionToCheck) {

@@ -1,14 +1,18 @@
 package fr.mutualite.rh.webapp.security;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Priority;
+import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.container.ResourceInfo;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
@@ -19,7 +23,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 
-@Secured
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
@@ -27,8 +30,20 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 	public static ThreadLocal<String> connectedUser = new ThreadLocal<>();
 	public static ThreadLocal<Set<String>> connectedRoles = new ThreadLocal<>();
 
+	@Context
+	private ResourceInfo resourceInfo;
+	
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
+		
+		Method method = resourceInfo.getResourceMethod();
+		if(method==null) {
+			return;
+		}
+		if(method.getAnnotation(Authenticated.class)==null && method.getAnnotation(Secured.class)==null) {
+			//no security needed!
+			return;
+		}
 
 		// Get the HTTP Authorization header from the request
 		String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
@@ -76,8 +91,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
 	public static Utilisateur getConnectedUtilisateur() {
 		String login = connectedUser.get();
+		String connectedLogin = login.trim();
 		Utilisateur connected = CdoServlet.getMutualite().getUtilisateurs().getUtilisateurs().stream()
-				.filter(u -> u.getLogin().trim().equalsIgnoreCase(login.trim())).findAny().orElse(null);
+				.filter(u -> {
+					String userLogin = u.getLogin();
+					return userLogin.trim().equalsIgnoreCase(connectedLogin);
+					}
+				).findAny().orElse(null);
 		return connected;
 	}
 }

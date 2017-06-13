@@ -51,6 +51,7 @@ import fr.mutualite.rh.model.Competence;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
 import fr.mutualite.rh.model.EntretienAnnuel;
+import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Evaluation;
 import fr.mutualite.rh.model.EvaluationAtteinteObjectif;
 import fr.mutualite.rh.model.EvaluationCompetence;
@@ -529,14 +530,18 @@ public class EntretienAnnuelResource extends BaseResource {
 
 		Optional<EntretienAnnuel> precedentEntretienAnnuelOpt = employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienAnnuel)
 				.map(EntretienAnnuel.class::cast).max((e1, e2) -> e1.getDate().compareTo(e2.getDate()));
+		Optional<EntretienProfessionnel> precedentEntretienProOpt = employe.getEntretiens().stream().filter(entretien2 -> entretien2 instanceof EntretienProfessionnel)
+				.map(EntretienProfessionnel.class::cast).max((e1, e2) -> e1.getDate().compareTo(e2.getDate()));
 
 		Date datePrecedentEntretienAnnuel = precedentEntretienAnnuelOpt.isPresent() ? precedentEntretienAnnuelOpt.get().getDate() : new Date(0);
+		Date datePrecedentEntretienPro = precedentEntretienProOpt.isPresent() ? precedentEntretienProOpt.get().getDate() : new Date(0);
 
 		Date datePrecedentEntretien = employe.getEntretiens().stream().map(Entretien::getDate).max(Date::compareTo).orElse(new Date(0));
 
 		// les évalusations pré-existantes (probablement dans l'entretien pro précédent...)
 		Stream<Entretien> entretiensIntermediaires = employe.getEntretiens().stream()
-				.filter(e -> e.getDate().after(datePrecedentEntretienAnnuel) && (e.getDate().before(datePrecedentEntretien) || e.getDate().equals(datePrecedentEntretien)));
+				.filter(e -> e.getDate().after(datePrecedentEntretienAnnuel))
+				.filter(e-> e.getDate().before(datePrecedentEntretienPro) || e.getDate().equals(datePrecedentEntretienPro));
 		entretiensIntermediaires.map(Entretien::getAppreciationsSessionFormation).forEach(ret.getAppreciationsSessionFormationEntretiensPrecedents()::addAll);
 
 		// Les évaluations "propres"

@@ -65,10 +65,7 @@
 		webix.ajax()/*.sync()*/.headers({
 			"Content-type" : "application/json",
 			"Authorization" : "Bearer " + window.sessionStorage.token
-		}).post("/rest/entretiens-annuels/" + bean.cdoId + "/validate").fail(
-				function(err) {
-					webix.alert("Echec de la validation!\n" + err);
-				}).then(
+		}).post("/rest/entretiens-annuels/" + bean.cdoId + "/validate").then(
 				function(realdata) {
 
 					window.location = "/rest/entretiens-annuels/" + bean.cdoId
@@ -78,7 +75,7 @@
 						token : window.sessionStorage.token
 					}, "GET", "_blank"); */
 				}).fail(function(err) {
-			webix.alert("Echec de l'enregistrement! \n" + err.responseText);
+			webix.alert("Echec de la validation!\n" + err.responseText);
 		});
 	}
 	function isFunction(functionToCheck) {
@@ -282,7 +279,7 @@
 			$$("datatable_objectifs").filter(function(obj) {
 				return !obj.removed;
 			});
-			$$("truc").hide();	
+			$$("truc").hide();
 		}
 		//fin objectif
 
@@ -774,7 +771,7 @@
 										header : "Bilan des formations effectuées",
 										body : {
 											id : "bilanFormations",
-											rows : [ ]
+											rows : []
 										}
 									},
 
@@ -1139,7 +1136,7 @@
 				$$("bilanFormations").addView({
 					view : "label",
 				});
-		  	}
+			}
 			$$("bilanFormations").addView({
 				view : "textarea",
 				height : 100,

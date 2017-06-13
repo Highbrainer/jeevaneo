@@ -65,6 +65,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * @generated
  */
 public class EmployeImpl extends CDOObjectImpl implements Employe {
+	
 	/**
 	 * The default value of the '{@link #getMatricule() <em>Matricule</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -660,6 +661,14 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 		Employe responsable = getResponsable();
 		if(responsable!=null) {
 			photo.setResponsable(responsable.getLabel());
+		} else if(null!=etablissement) {
+			Employe responsableEtab = etablissement.getResponsable();
+			if(null!=responsableEtab) {
+				photo.setResponsable(responsableEtab.getLabel());
+			}
+		} 
+		if(null==photo.getResponsable()) {
+			photo.setResponsable("");
 		}
 		return photo;
 	}

@@ -47,6 +47,7 @@ import fr.mutualite.rh.model.dto.UISessionFormation;
 import fr.mutualite.rh.model.util.Activator;
 import fr.mutualite.rh.model.util.JsonGenerator;
 import fr.mutualite.rh.model.util.JsonGeneratorImpl;
+import fr.mutualite.rh.webapp.security.Authenticated;
 import fr.mutualite.rh.webapp.security.AuthenticationFilter;
 import fr.mutualite.rh.webapp.security.Secured;
 
@@ -151,24 +152,28 @@ public class EmployeResource extends BaseResource {
 	 * @throws IOException
 	 */
 	@GET
-	@Secured
+	@Authenticated
 	@Path("/combo.json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ComboItem> comboListEmployes() throws IOException {
 
 		Utilisateur user = AuthenticationFilter.getConnectedUtilisateur();
-		CDOQuery query = CdoServlet.getMutualite().cdoView().createQuery("sql", "SELECT distinct cdo_id from Employe where cdo_id is not null");
-		Set<Employe> employes = query.getResult(Employe.class).stream().collect(Collectors.toSet());
-		Stream<Employe> stream = employes.stream().filter(emp -> emp != null);
-		if (!user.getRoles().contains(Role.DRH)) {
+		Stream<Employe> stream;
+		if (user.getRoles().contains(Role.DRH)) {
+			CDOQuery query = CdoServlet.getMutualite().cdoView().createQuery("sql", "SELECT distinct cdo_id from Employe where cdo_id is not null");
+			Set<Employe> employes = query.getResult(Employe.class).stream().collect(Collectors.toSet());
+			stream = employes.stream().filter(emp -> emp != null);
+		} else {
 			Date now = new Date();
+			Employe userEmploye = user.getEmploye();
+			Stream<Employe> lui = Stream.of(userEmploye);
+			Stream<Employe> employesEntretenusSpecifiques = userEmploye.getEmployesEntretenus().stream();
+			Stream<Employe> employesEntretenusEtablissement = userEmploye.getEtablissementsEntretenus().stream().map(Etablissement::getEmployes).flatMap(List::stream).filter(e->e.getEntreteneurs().isEmpty());
+
+			stream = Stream.concat(Stream.concat(lui, employesEntretenusSpecifiques), employesEntretenusEtablissement);
+			
 			stream = stream.filter(emp -> {
 				return emp.getDateSortieEntreprise()==null || emp.getDateSortieEntreprise().after(now);
-			});
-			stream = stream.filter(emp -> {
-				// System.out.println(emp.getMatricule() + " vs " +
-				// user.getEmploye().getMatricule());
-				return user.getEmploye().getEmployesEntretenus().contains(emp) || emp.equals(user.getEmploye());
 			});
 		}
 		List<ComboItem> ret = stream.map(emp -> new ComboItem("" + emp.getMatricule(), "" + emp.getNom() + " " + emp.getPrenom())).collect(Collectors.toSet()).stream()
@@ -266,7 +271,7 @@ public class EmployeResource extends BaseResource {
 
 		Employe employe = getEmploye(matricule, CdoServlet.getMutualite());
 		
-		Optional<Entretien> opt = employe.getEntretiens().stream().filter(EntretienAnnuel.class::isInstance).sorted((e1,e2)->e1.getDate().compareTo(e2.getDate())).findFirst();
+		Optional<Entretien> opt = employe.getEntretiens().stream().filter(e->!e.isEnCours()).filter(EntretienAnnuel.class::isInstance).sorted((e2,e1)->e1.getDate().compareTo(e2.getDate())).findFirst();
 		if(opt.isPresent()) {
 			return  Activator.getDefault().getJsonGenerator().generateJson(opt.get());
 		}

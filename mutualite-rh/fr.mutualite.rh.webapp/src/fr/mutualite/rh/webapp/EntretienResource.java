@@ -97,7 +97,7 @@ public class EntretienResource extends BaseResource {
 				JsonFactory jf = new JsonFactory();
 				final JsonGenerator jg = jf.createGenerator(out);
 				jg.writeStartArray();
-				employe.getEntretiens().forEach(ent -> {
+				employe.getEntretiens().stream().sorted((e1,e2) -> e1.getDate().compareTo(e2.getDate())).forEach(ent -> {
 					Employe meneur = ent.getMeneur();
 					try {
 						jg.writeStartObject();

@@ -4,15 +4,16 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css"
 	type="text/css">
-	<link rel="stylesheet" href="http://cdn.webix.com/edge/skins/web.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://cdn.webix.com/edge/skins/web.css"
+	rel="stylesheet" type="text/css">
 <script src="http://cdn.webix.com/edge/webix_debug.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-	webix.debug = true;
-	webix.debug_size = true;
-	webix.debug_render = true;
-	webix_debug_proto = true;
-	webix.debug_time = true;
+	webix.debug = !true;
+	webix.debug_size = !true;
+	webix.debug_render = !true;
+	webix_debug_proto = !true;
+	webix.debug_time = !true;
 </script>
 <style type="text/css">
 body {
@@ -61,16 +62,15 @@ legend {
 }
 
 .orange button {
-background-color: orange;
+	background-color: orange;
 }
 
 .fiche button {
-background-color: #111111;
-
+	background-color: #111111;
 }
 
 .petrol button {
-background-color: #00acac;
+	background-color: #00acac;
 }
 </style>
 
@@ -119,12 +119,9 @@ background-color: #00acac;
 					bean.souhaitsEvaluateur = [];
 					webix.message("Enregistré!");/*window.location.reload(true);*/
 				}).fail(function(err) {
-			webix.alert("Echec de l'enregistrement!");
+			webix.alert("Echec de l'enregistrement!\r\n" + err.responseTxt);
 		});
 
-	}
-	function valider() {
-		alert("Valider..." + bean.evolutionDepuisDernierEntretien);
 	}
 
 	function removeSpan(sId) {
@@ -133,52 +130,69 @@ background-color: #00acac;
 		span.innerHTML = "";
 
 	}
-	
+
 	function addEntretienPro() {
 		var matricule = $$("master").getSelectedId(true);
-		if(null==matricule || matricule.length==0	) {
-			webix.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
+		if (null == matricule || matricule.length == 0) {
+			webix
+					.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
 			return;
 		}
 		webix.ajax().headers({
 			"Authorization" : "Bearer " + window.sessionStorage.token
-		})
-		.put("/rest/employes/" + matricule + "/entretien-pro/current")
-		.then(function() {webix.message("Entretien créé!");updateDetail(matricule);})
-		.fail(function(e) {webix.alert("Erreur " + e.responseText)});
-		
+		}).put("/rest/employes/" + matricule + "/entretien-pro/current").then(
+				function() {
+					webix.message("Entretien créé!");
+					updateDetail(matricule);
+				}).fail(function(e) {
+			webix.alert("Erreur " + e.responseText)
+		});
+
 	}
-	
+
 	function addEntretienAnnuel() {
 		var matricule = $$("master").getSelectedId(true);
-		if(null==matricule || matricule.length==0	) {
-			webix.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
+		if (null == matricule || matricule.length == 0) {
+			webix
+					.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
 			return;
 		}
 		webix.ajax().headers({
 			"Authorization" : "Bearer " + window.sessionStorage.token
-		})
-		.put("/rest/employes/" + matricule + "/entretien-annuel/current")
-		.then(function() {webix.message("Entretien créé!");updateDetail(matricule);})
-		.fail(function(e) {webix.alert("Erreur " + e.responseText)});
-		
+		}).put("/rest/employes/" + matricule + "/entretien-annuel/current")
+				.then(function() {
+					webix.message("Entretien créé!");
+					updateDetail(matricule);
+				}).fail(function(e) {
+					webix.alert("Erreur " + e.responseText)
+				});
+
 	}
-	
+
 	function showFicheSalarie() {
 		var matricule = $$("master").getSelectedId(true);
-		if(null==matricule || matricule.length==0	) {
-			webix.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
+		if (null == matricule || matricule.length == 0) {
+			webix
+					.alert("Veuillez d'abord sélectionner l'employé dans la liste!");
 			return;
 		}
-		webix.send("/files/fiche-salarie.html", {matricule:matricule}, "GET");
+		webix.send("/files/fiche-salarie.html", {
+			matricule : matricule
+		}, "GET");
 	}
-	
+
 	function updateDetail(matricule) {
-		$$("detail").clearAll();
-		$$("detail").load(
-				"/rest/employes/" + matricule
-						+ "/entretien/all.json", "json");
-		$$("detail").refresh();
+		webix.ajax().headers({
+			"Authorization" : "Bearer " + window.sessionStorage.token
+		}).get("/rest/employes/" + matricule + "/entretien/all.json").fail(
+				function(e) {
+					webix.message("Erreur lors du chargement des entretiens pour le matricule " + matricule + "\n" + e.responseText);
+				}).then(
+				function(rawdata) {
+					$$("detail").clearAll();
+					$$("detail").parse(rawdata.json());
+					$$("detail").refresh();
+				});
 	}
 </script>
 </head>
@@ -190,17 +204,31 @@ background-color: #00acac;
 		if (null == window.sessionStorage.token) {
 			webix.send("/files/login2.html");
 		}
-		webix.ajax().headers({
-			"Authorization" : "Bearer " + window.sessionStorage.token
-		}).get("/rest/effectif/combo.json").fail(
-				function(e) {
-					webix.alert({width:500, text:'Impossible de lister les employés!<hr/>\n<br/>Erreur ' + e.status + '<br/>\n<pre>' + e.response + '\n</pre>' + e.responseURL,
-							callback:function() {
-								webix.send("/files/login2.html", "GET");
-							}});
-				}).then(function(rawdata) {
-			createForm(rawdata.json());
-		});
+		webix
+				.ajax()
+				.headers({
+					"Authorization" : "Bearer " + window.sessionStorage.token
+				})
+				.get("/rest/effectif/combo.json")
+				.fail(
+						function(e) {
+							webix
+									.alert({
+										width : 500,
+										text : 'Impossible de lister les employés!<hr/>\n<br/>Erreur '
+												+ e.status
+												+ '<br/>\n<pre>'
+												+ e.response
+												+ '\n</pre>'
+												+ e.responseURL,
+										callback : function() {
+											webix.send("/files/login2.html",
+													"GET");
+										}
+									});
+						}).then(function(rawdata) {
+					createForm(rawdata.json());
+				});
 
 		function createForm(data) {
 			var master = {
@@ -223,31 +251,31 @@ background-color: #00acac;
 				id : "detail",
 				view : "datatable",
 				columns : [
-							{
-								id : "employe",
-								header : "Employe",
-								width : 300,
-								template : "#employe#"
-							},
-							{
-								id : "typeEntretien",
-								header : "Type",
-								width : 200,
-								template : function(entretien) {
-									if(entretien.typeEntretien=="EntretienAnnuel") {
-										return "Entretien annuel";
-									}
-									if(entretien.typeEntretien=="EntretienProfessionnel") {
-										return "Entretien professionnel";
-									}
-									return "Entretien";
+						{
+							id : "employe",
+							header : "Employe",
+							width : 300,
+							template : "#employe#"
+						},
+						{
+							id : "typeEntretien",
+							header : "Type",
+							width : 200,
+							template : function(entretien) {
+								if (entretien.typeEntretien == "EntretienAnnuel") {
+									return "Entretien annuel";
 								}
-							},
-							{
-								id : "date",
-								header : "Date",
-								width : 110
-							},
+								if (entretien.typeEntretien == "EntretienProfessionnel") {
+									return "Entretien professionnel";
+								}
+								return "Entretien";
+							}
+						},
+						{
+							id : "date",
+							header : "Date",
+							width : 110
+						},
 						{
 							id : "meneur",
 							header : "Meneur",
@@ -261,72 +289,76 @@ background-color: #00acac;
 								console.log(entretien.typeEntretien);
 								console.log(entretien.fake);
 								console.log(entretien.scan);
-								console.log(entretien.scan==null);
+								console.log(entretien.scan == null);
 								var mod1 = "entretien";
 								var mod2 = "entretiens";
-								if(entretien.typeEntretien=="EntretienAnnuel") {
+								if (entretien.typeEntretien == "EntretienAnnuel") {
 									mod1 += "-annuel";
 									mod2 += "-annuels";
-								} else if(entretien.typeEntretien=="EntretienProfessionnel") {
+								} else if (entretien.typeEntretien == "EntretienProfessionnel") {
 									mod1 += "-professionnel";
 									mod2 += "-pro";
 								}
-								if (entretien.fake && entretien.scan==null) {
+								if (entretien.fake && entretien.scan == null) {
 									return "";
-								} else if (entretien.fake && entretien.scan!=null) {
+								} else if (entretien.fake
+										&& entretien.scan != null) {
 									return "<a href=\"/rest/entretiens/scan-"
-									+ entretien.id
-									+ ".pdf?token="
-									+ window.sessionStorage.token
-									+ "\"><span class=\"webix_icon fa fa-file-pdf-o\"></span></a>";
+											+ entretien.id
+											+ ".pdf?token="
+											+ window.sessionStorage.token
+											+ "\"><span class=\"webix_icon fa fa-file-pdf-o\"></span></a>";
 								} else if (!entretien.enCours) {
-									return "<a href=\"/rest/" + mod2 + "/"
+									return "<a href=\"/rest/"
+											+ mod2
+											+ "/"
 											+ entretien.id
 											+ ".pdf?token="
 											+ window.sessionStorage.token
 											+ "\"><span class=\"webix_icon fa fa-file-pdf-o\"></span></a>";
 								} else
-									var ret = "<a href='/files/" + mod1 +"-form.html?id="
+									var ret = "<a href='/files/"
+											+ mod1
+											+ "-form.html?id="
 											+ entretien.id
 											+ "&token="
 											+ window.sessionStorage.token
 											+ "'><span class=\"webix_icon fa-pencil\"></span></a>";
-									return ret;
+								return ret;
 							},
 							adjust : true
-						}/* ,
-						{id:"scan",
-							template:"<input type=\"button\" class=\"webix_button upload_scan_button\" value=\"Upload Scan\"></span>"
-						},
-						{view:"uploader",
-				            id: "uploader",
-				            value:"Envoyer le scan",
-				            link:"mylist",
-				            upload:"/rest/entretiens/scan-#id#.pdf",
-				            datatype:"json"
-						}, 
-				        {
-				            view:"list",  id:"mylist", type:"uploader",
-				            autoheight:true, borderless:true,
-				            fillspace:true
-				        } */
-						]
-			,
-			  onClick:{
-				"upload_scan_button" : function(ev, id){
-				    //id - row id
-					alert("scan " + id);
+						} /* ,
+										{id:"scan",
+											template:"<input type=\"button\" class=\"webix_button upload_scan_button\" value=\"Upload Scan\"></span>"
+										},
+										{view:"uploader",
+								            id: "uploader",
+								            value:"Envoyer le scan",
+								            link:"mylist",
+								            upload:"/rest/entretiens/scan-#id#.pdf",
+								            datatype:"json"
+										}, 
+								        {
+								            view:"list",  id:"mylist", type:"uploader",
+								            autoheight:true, borderless:true,
+								            fillspace:true
+								        } */
+				],
+				onClick : {
+					"upload_scan_button" : function(ev, id) {
+						//id - row id
+						alert("scan " + id);
+					}
 				}
-			  }
 			//,url : "/rest/employes/216/entretien-pro/all.json"
 			}
-			
 
 			var toolbar = {
 				view : "toolbar",
 				id : "myToolbar",
-				cols : [{ gravity: 5},
-				        {
+				cols : [ {
+					gravity : 5
+				}, {
 					view : "button",
 					label : "Fiche du salarié",
 					//width : 180,
@@ -334,8 +366,8 @@ background-color: #00acac;
 					type : "htmlButton",
 					icon : "plus",
 					css : "fiche",
-					click: showFicheSalarie
-				},{
+					click : showFicheSalarie
+				}, {
 					view : "button",
 					label : "Nouvel Entretien PRO",
 					//width : 180,
@@ -343,28 +375,26 @@ background-color: #00acac;
 					type : "htmlButton",
 					icon : "plus",
 					css : "petrol",
-					click: addEntretienPro
-				},
-				{
+					click : addEntretienPro
+				}, {
 					view : "button",
 					label : "Nouvel Entretien ANNUEL",
 					//width : 180,
 					align : "right",
 					type : "htmlButton",
 					icon : "plus",
-					css: "orange",
-					click: addEntretienAnnuel
-				}]
+					css : "orange",
+					click : addEntretienAnnuel
+				} ]
 			}
 
-			var page = {cols : [ 
-			    master, 
-			    {view : "resizer"}, 
-				{rows : [ 
-				    toolbar, 
-					detail
-				]} 
-			]};
+			var page = {
+				cols : [ master, {
+					view : "resizer"
+				}, {
+					rows : [ toolbar, detail ]
+				} ]
+			};
 			webix.ui(page);
 		}
 	</script>
