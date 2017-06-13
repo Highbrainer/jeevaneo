@@ -2,9 +2,11 @@ package fr.mutualite.rh.ui.views;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +31,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import fr.mutualite.rh.model.popup.actions.ImportEtablissementsAction;
 import fr.mutualite.rh.webapp.EmployeResource;
+import fr.mutualite.rh.webapp.EntretienAnnuelResource;
 import fr.mutualite.rh.webapp.ReportResource;
 
 /**
@@ -88,9 +91,30 @@ public class ImportView extends ViewPart {
 				}
 			});
 		}
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Objectifs d'EAE papier", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Importer les derniers objectifs assignés à chaque salarié, avant l'utilisation de GIC. Des \"faux\" EAE seront créés pour permettre de pré-remplir les objectifs des futurs entretiens.");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					importFakeEAEs();
+				}
+			});
+		}
 	}
 
-	protected void cleanupEntreteneurs() {
+	private void importFakeEAEs() {
+		File file = chooseFile("dir-eae");
+		try(InputStream in = new FileInputStream(file)) {
+			new EntretienAnnuelResource().importFakeEAEs(in);
+
+			MessageDialog.openInformation(ImportView.this.getSite().getShell(), "Import OK", "C'est fait!");
+		} catch (Throwable e1) {
+			MessageDialog.openError(ImportView.this.getSite().getShell(), "Import KO", "Impossible d'importer les objectifs " + e1.getMessage());
+			throw new RuntimeException(e1);
+		}
+	}
+
+	private void cleanupEntreteneurs() {
 		try {
 			EmployeResource er = new EmployeResource();
 			er.cleanupEntreteneurs();
@@ -102,98 +126,33 @@ public class ImportView extends ViewPart {
 		}
 	}
 
-	protected void importEtablissements() {
+	private void importEtablissements() {
 //		MessageDialog.openWarning(form.getShell(), "Non implémenté!", "Cette fonctionnalité n'est pas encore implémentée! Passe par le clic-droit!");
 		new ImportEtablissementsAction().run(form.getShell());
 	}
 
-	private void souhaitsFormation() {
-		File file = chooseFile("souhaits-formation-");
-		if (null != file) {
-			Response resp = new ReportResource().xlsSouhaitsFormationDernierEntretien();
-			StreamingOutput output = (StreamingOutput) resp.getEntity();
-			try (FileOutputStream out = new FileOutputStream(file);) {
-				output.write(out);
-				out.flush();
-			} catch (IOException e1) {
-				MessageDialog.openError(ImportView.this.getSite().getShell(), "Export KO", "Impossible d'écrire dans le fichier " + e1.getMessage());
-				throw new RuntimeException(e1);
-			}
-			MessageDialog.openInformation(ImportView.this.getSite().getShell(), "Export OK", "Souhaits de formation exportés vers " + file.getAbsolutePath());
-			try {
-				Desktop.getDesktop().open(file);
-			} catch (IOException e1) {
-				throw new RuntimeException(e1);
-			}
-		}
-	}
-
-	private void datesEntretiens() {
-		File file = chooseFile("dates-entretiens-");
-		if (null != file) {
-			Response resp = new ReportResource().xlsDatesEntretiens();
-			StreamingOutput output = (StreamingOutput) resp.getEntity();
-			try (FileOutputStream out = new FileOutputStream(file);) {
-				output.write(out);
-				out.flush();
-			} catch (IOException e1) {
-				MessageDialog.openError(ImportView.this.getSite().getShell(), "Export KO", "Impossible d'écrire dans le fichier " + e1.getMessage());
-				throw new RuntimeException(e1);
-			}
-			MessageDialog.openInformation(ImportView.this.getSite().getShell(), "Export OK", "Dates d'entretiens exportées vers " + file.getAbsolutePath());
-			try {
-				Desktop.getDesktop().open(file);
-			} catch (IOException e1) {
-				throw new RuntimeException(e1);
-			}
-		}
-	}
-
-	private static final String DIR = "dir";
-
 	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-	private File chooseFile(String filename) {
+	private File chooseFile(/*String filename,*/ String dirKey) {
 
 		Preferences prefs = Preferences.userRoot().node(getClass().getName());
-		String dir = prefs.get(DIR, null);
+		String dir = prefs.get(dirKey, null);
 
 		JFileChooser chooser = null != dir ? new JFileChooser(dir) : new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers Excel", "xls", "xlsx");
 		chooser.setFileFilter(filter);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		chooser.setSelectedFile(new File(filename + df.format(new Date()) + ".xls"));
+//		chooser.setSelectedFile(new File(filename + df.format(new Date()) + ".xls"));
 		int ret = chooser.showOpenDialog(null);
 
 		if (ret != JFileChooser.APPROVE_OPTION) {
 			return null;
 		}
 		File file = chooser.getSelectedFile();
-		System.out.println("Yes " + file.getAbsolutePath());
-		prefs.put(DIR, file.getParent());
+		prefs.put(dirKey, file.getParent());
 
 		return file;
 
-	}
-
-	private void rencontreRh() {
-		File file = chooseFile("demandes-recontre-rh-");
-		if (null != file) {
-			Response resp = new ReportResource().xlsDemandeRhLorsDernierEntretien();
-			StreamingOutput output = (StreamingOutput) resp.getEntity();
-			try (FileOutputStream out = new FileOutputStream(file);) {
-				output.write(out);
-				out.flush();
-			} catch (IOException e1) {
-				throw new RuntimeException(e1);
-			}
-			MessageDialog.openInformation(ImportView.this.getSite().getShell(), "Export OK", "Demandes de rencontres exportées vers " + file.getAbsolutePath());
-			try {
-				Desktop.getDesktop().open(file);
-			} catch (IOException e1) {
-				throw new RuntimeException(e1);
-			}
-		}
 	}
 
 	/**

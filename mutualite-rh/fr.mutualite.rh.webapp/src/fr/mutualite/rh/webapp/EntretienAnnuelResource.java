@@ -3,10 +3,10 @@ package fr.mutualite.rh.webapp;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -16,24 +16,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.StreamingOutput;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -41,7 +42,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jersey.multipart.FormDataParam;
 
 import fr.mutualite.rh.model.Appreciation;
 import fr.mutualite.rh.model.AppreciationSessionFormation;
@@ -58,7 +58,6 @@ import fr.mutualite.rh.model.EvaluationSavoirEtre;
 import fr.mutualite.rh.model.EvaluationTenuePoste;
 import fr.mutualite.rh.model.Evolution;
 import fr.mutualite.rh.model.Formation;
-import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.MutFactory;
 import fr.mutualite.rh.model.Objectif;
 import fr.mutualite.rh.model.ObjectifPrecedent;
@@ -70,10 +69,8 @@ import fr.mutualite.rh.model.SouhaitFormationSalarie;
 import fr.mutualite.rh.model.Utilisateur;
 import fr.mutualite.rh.model.dto.DtoFactory;
 import fr.mutualite.rh.model.dto.Formulaire;
-import fr.mutualite.rh.model.impl.EntretienAnnuelImpl;
 import fr.mutualite.rh.model.util.Activator;
 import fr.mutualite.rh.webapp.cdo.ICDO;
-import fr.mutualite.rh.webapp.cdo.MutualiteCDO;
 import fr.mutualite.rh.webapp.security.AuthenticationFilter;
 import fr.mutualite.rh.webapp.security.Secured;
 import fr.opensagres.xdocreport.converter.ConverterTypeTo;
@@ -96,23 +93,23 @@ public class EntretienAnnuelResource extends BaseResource {
 		cdo = CdoServlet.getCdo();
 	}
 
-//	@Secured
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	@Path("/employes/{matricule}/entretien-annuel/current")
-//	public String prepareEntretienAnnuel(@PathParam("matricule") int matricule) {
-//		// System.err.println("Je suis " + authenticatedUser.getNom());
-//		String[] pRet = { null };
-//		cdo.doInMutualiteTransaction(mut -> {
-//			Employe employe = getEmploye(matricule, mut);
-//			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
-//			Formulaire form = makeFormulaire(entretien);
-//			pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(form);
-//			return true;
-//		});
-//		System.err.println("Je retourne " + pRet[0]);
-//		return pRet[0];
-//	}
+	// @Secured
+	// @GET
+	// @Produces(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-annuel/current")
+	// public String prepareEntretienAnnuel(@PathParam("matricule") int matricule) {
+	// // System.err.println("Je suis " + authenticatedUser.getNom());
+	// String[] pRet = { null };
+	// cdo.doInMutualiteTransaction(mut -> {
+	// Employe employe = getEmploye(matricule, mut);
+	// EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
+	// Formulaire form = makeFormulaire(entretien);
+	// pRet[0] = Activator.getDefault().getJsonGenerator().generateJson(form);
+	// return true;
+	// });
+	// System.err.println("Je retourne " + pRet[0]);
+	// return pRet[0];
+	// }
 
 	@Secured
 	@PUT
@@ -123,10 +120,10 @@ public class EntretienAnnuelResource extends BaseResource {
 		cdo.doInMutualiteTransaction(mut -> {
 			CDOTransaction transaction = (CDOTransaction) mut.cdoView();
 			Employe employe = getEmploye(matricule, mut);
-			Optional<Entretien> preexisting = employe.getEntretiens().stream().filter(Entretien::isEnCours)
-			.findAny();
-			if(preexisting.isPresent()) {
-				throw new WebApplicationException("Impossible de créer un nouvel entretien : l'entretien du " + df.format(preexisting.get().getDate()) + " n'est pas encore validé.", 400);
+			Optional<Entretien> preexisting = employe.getEntretiens().stream().filter(Entretien::isEnCours).findAny();
+			if (preexisting.isPresent()) {
+				throw new WebApplicationException(
+						"Impossible de créer un nouvel entretien : l'entretien du " + df.format(preexisting.get().getDate()) + " n'est pas encore validé.", 400);
 			}
 			EntretienAnnuel entretien = newEntretienAnnuel(employe);
 			Utilisateur utilisateur = AuthenticationFilter.getConnectedUtilisateur();
@@ -178,21 +175,21 @@ public class EntretienAnnuelResource extends BaseResource {
 		EntretienAnnuel entretien = (EntretienAnnuel) CdoServlet.getMutualite().cdoView().getObject(CDOIDUtil.createLong(id));
 		return Activator.getDefault().getJsonGenerator().generateJson(entretien);
 	}
-//
-//	@Secured
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Path("/employes/{matricule}/entretien-annuel/current/entretien/entreteneur")
-//	public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
-//		cdo.doInMutualiteTransaction(mut -> {
-//			Employe employe = getEmploye(matricule, mut);
-//			EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
-//			Employe entreteneur = getEmploye(matriculeEntreteneur, mut);
-//			entretien.setMeneur(entreteneur);
-//
-//			return true;
-//		});
-//	}
+	//
+	// @Secured
+	// @POST
+	// @Consumes(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-annuel/current/entretien/entreteneur")
+	// public void setEntreteneur(@PathParam("matricule") int matricule, @QueryParam("matriculeEntreteneur") int matriculeEntreteneur) {
+	// cdo.doInMutualiteTransaction(mut -> {
+	// Employe employe = getEmploye(matricule, mut);
+	// EntretienAnnuel entretien = getOrCreateEntretienAnnuel(employe);
+	// Employe entreteneur = getEmploye(matriculeEntreteneur, mut);
+	// entretien.setMeneur(entreteneur);
+	//
+	// return true;
+	// });
+	// }
 
 	@Secured
 	@POST
@@ -206,17 +203,17 @@ public class EntretienAnnuelResource extends BaseResource {
 		});
 	}
 
-//	@Secured
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Path("/employes/{matricule}/entretien-annuel/current/entretien")
-//	public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
-//		cdo.doInMutualiteTransaction(mut -> {
-//			EntretienAnnuel e = getOrCreateEntretienAnnuel(getEmploye(matricule, mut));
-//			populate(e, in);
-//			return true;
-//		});
-//	}
+	// @Secured
+	// @POST
+	// @Consumes(MediaType.APPLICATION_JSON)
+	// @Path("/employes/{matricule}/entretien-annuel/current/entretien")
+	// public void enregistrer(@PathParam("matricule") int matricule, InputStream in) throws JsonParseException, JsonMappingException, IOException {
+	// cdo.doInMutualiteTransaction(mut -> {
+	// EntretienAnnuel e = getOrCreateEntretienAnnuel(getEmploye(matricule, mut));
+	// populate(e, in);
+	// return true;
+	// });
+	// }
 
 	private void populate(EntretienAnnuel e, InputStream in) {
 
@@ -546,10 +543,10 @@ public class EntretienAnnuelResource extends BaseResource {
 
 		employe.getSessionsFormation().stream().filter(sf -> {
 			Date dateDebut = sf.getDateDebut();
-			if(null==dateDebut) {
-				log.error("Session de formation sans date de début! ==> ignorée " + ((Formation)sf.eContainer()).getLibelle());
+			if (null == dateDebut) {
+				log.error("Session de formation sans date de début! ==> ignorée " + ((Formation) sf.eContainer()).getLibelle());
 			}
-			return dateDebut!=null && dateDebut.after(datePrecedentEntretien) && dateDebut.before(ret.getDate());
+			return dateDebut != null && dateDebut.after(datePrecedentEntretien) && dateDebut.before(ret.getDate());
 		}).map(session -> {
 			AppreciationSessionFormation apprec = MutFactory.eINSTANCE.createAppreciationSessionFormation();
 			apprec.setSessionFormation(session);
@@ -765,4 +762,71 @@ public class EntretienAnnuelResource extends BaseResource {
 		String ret = sVal/* .replaceAll("\r?\n", "") */;
 		return ret;
 	}
+
+	@POST
+	@Path("/imports/fake-eaes")
+	@Consumes("application/octet-stream")
+	public void importFakeEAEs(InputStream in) throws IOException {
+		CdoServlet.getCdo().doInMutualiteTransaction(mut -> {
+			try (XSSFWorkbook wb = new XSSFWorkbook(in)) {
+				Iterator<Sheet> sheetIterator = wb.sheetIterator();
+				while (sheetIterator.hasNext()) {
+					Sheet sheet = sheetIterator.next();
+					for (int i = 1; i < sheet.getLastRowNum(); ++i) {
+						Row row = sheet.getRow(i);
+						Double matricule = row.getCell(0).getNumericCellValue();
+						String nom = row.getCell(1).getStringCellValue();
+						String prenom = row.getCell(2).getStringCellValue();
+						Cell dateCell = row.getCell(3);
+						if(null==dateCell) {
+							log.info("Pas d'entretien - donc pas d'objectif - pour " + prenom + " " + nom);
+							continue;
+						}
+						Date date = dateCell.getDateCellValue();
+						List<String> objectifs = new ArrayList<>();
+						for (short n = 4; n <= row.getLastCellNum(); ++n) {
+							Cell cell = row.getCell(n);
+							if (null == cell) {
+								continue;
+							}
+							String obj = cell.getStringCellValue();
+							if (null != obj && !obj.trim().isEmpty()) {
+								objectifs.add(obj);
+							}
+						}
+
+						// C'est prêt! :)
+						Employe employe = super.getEmploye(matricule.intValue(), mut);
+						boolean eaeAlready = employe.getEntretiens().stream().filter(EntretienAnnuel.class::isInstance).map(EntretienAnnuel.class::cast).anyMatch(e->sameDay(e.getDate(),date));
+						if(eaeAlready) {
+							throw new RuntimeException("Il existe déjà un EAE pour " + prenom + " " + nom + " en date du " + df.format(date));
+						}
+						EntretienAnnuel eae = MutFactory.eINSTANCE.createEntretienAnnuel();
+						eae.setFake(true);
+						eae.setEnCours(false);
+						eae.setDate(date);
+						employe.getEntretiens().add(eae);
+						objectifs.stream().map(s -> {
+							Objectif o = MutFactory.eINSTANCE.createObjectif();
+							o.setLibelle(s);
+							return o;
+						}).forEach(eae.getObjectifs()::add);
+						log.info("Import des objectifs OK pour " + prenom + " " + nom + "(" + objectifs.size() + ")");
+					}
+				}
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			return true;
+		});
+	}
+
+	private boolean sameDay(Date date, Date date2) {
+		Calendar cal = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal.setTime(date);
+		cal2.setTime(date2);
+		return cal.get(Calendar.DAY_OF_YEAR)==cal.get(Calendar.DAY_OF_YEAR) && cal.get(Calendar.YEAR)==cal.get(Calendar.YEAR);
+	}
+	
 }

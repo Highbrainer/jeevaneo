@@ -25,7 +25,6 @@
 
    <windowImages/>
 
-
    <launcher name="rh-gic">
       <solaris/>
       <win useIco="false">
@@ -51,6 +50,7 @@
       <plugin id="fr.mutualite.rh.model.tests"/>
       <plugin id="fr.mutualite.rh.model.util"/>
       <plugin id="fr.mutualite.rh.webapp"/>
+      <plugin id="fr.mutualite.third.poi"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.servlet"/>

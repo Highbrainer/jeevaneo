@@ -2,6 +2,7 @@ package fr.mutualite.rh.webapp.admin;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.naming.ldap.LdapContext;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -124,7 +126,14 @@ public class AdminResource extends BaseResource {
 	
 	@PUT
 	@Path("/restore.xml")
+	@Consumes("application/octet-stream")
 	public void restore(InputStream in) {
+		try {
+			in = new FileInputStream("E:\\temp\\2017\\06\\06\\backup-2017-06-06.xml");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		CdoServlet.getCdo().restore(in);
 	}
 
