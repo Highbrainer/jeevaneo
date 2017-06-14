@@ -12,7 +12,7 @@
       <programArgsWin>-console
       </programArgsWin>
       <vmArgs>-Dosgi.requiredJavaVersion=1.8 -Xms256m -Xmx1024m -Declipse.p2.max.threads=10 -Declipse.ignoreApp=true -Dosgi.noShutdown=true
--Dorg.osgi.service.http.port=10000
+-Dorg.osgi.service.http.port=44200 -Dosgi.console=44201
       </vmArgs>
       <vmArgsLin>-Dosgi.console=10001
 -Dconfig=/etc/rh-gic/mutualite.config
