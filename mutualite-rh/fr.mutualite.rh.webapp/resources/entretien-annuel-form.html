@@ -68,8 +68,9 @@
 		}).post("/rest/entretiens-annuels/" + bean.cdoId + "/validate").then(
 				function(realdata) {
 
-					window.location = "/rest/entretiens-annuels/" + bean.cdoId
-							+ ".pdf?token=" + window.sessionStorage.token;
+/* 					window.location = "/files/entretien-list.html"; */
+					window.location = ("/rest/entretiens-annuels/" + bean.cdoId
+							+ ".pdf?token=" + window.sessionStorage.token);
 					/* webix.send("/rest/entretiens-annuels/"
 							+ bean.cdoId + ".pdf", {
 						token : window.sessionStorage.token
@@ -84,14 +85,15 @@
 				&& getType.toString.call(functionToCheck) === '[object Function]';
 	}
 	function home() {
-		webix.confirm("Si vous continuez, les modifications non enregistrées seront perdues!", function(result){
-			if (result) {
-				console.log(history);
-				console.log(history.replaceState);
-			history.replaceState({}, "Accueil", "/files/entretien-list.html");
-			window.location = "/files/entretien-list.html";
-			}
-		});		
+		webix
+				.confirm(
+						"Si vous continuez, les modifications non enregistrées seront perdues!",
+						function(result) {
+							if (result) {
+								history.replaceState({}, "Accueil",	"/files/entretien-list.html");
+								window.location = "/files/entretien-list.html";
+							}
+						});
 	}
 	function enregistrer() {
 		setTimeout("enregistrerThen(function() {location.reload();});", 500);
@@ -483,7 +485,7 @@
 										label : "Retour",
 										width : 90,
 										click : "home"
-									},{
+									}, {
 										view : "button",
 										type : "iconButton",
 										zzzcss : "webix_icon fa-save",
@@ -1044,7 +1046,7 @@
 								label : "Retour",
 								width : 90,
 								click : "home"
-							},{
+							}, {
 								view : "button",
 								type : "iconButton",
 								icon : "save",

@@ -59,8 +59,6 @@
 	function home() {
 		webix.confirm("Si vous continuez, les modifications non enregistrées seront perdues!", function(result){
 			if (result) {
-				console.log(history);
-				console.log(history.replaceState);
 			history.replaceState({}, "Accueil", "/files/entretien-list.html");
 			window.location = "/files/entretien-list.html";
 			}
