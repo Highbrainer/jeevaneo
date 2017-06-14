@@ -56,6 +56,14 @@
 			exportPdf();
 		}
 	}
+	function home() {
+		webix.confirm("Si vous continuez, les modifications non enregistrées seront perdues!", function(result){
+			if (result) {
+			history.replaceState({}, "Accueil", "/files/entretien-list.html");
+			window.location = "/files/entretien-list.html";
+			}
+		});		
+	}
 
 	function exportPdf() {
 		setTimeout("_exportPdf();", 500);
@@ -301,6 +309,15 @@
 										height : 80,
 										template : "<img height='80px' style='float:left;' src=\"/files/logo-mfca-monochrome.png\"/><div>MFCA - Formulaire d'entretien professionnel<br/> pour #prenom# #nom#</div>",
 										data : formbean
+									}, {
+										view : "button",
+										type : "iconButton",
+										zzzcss : "webix_icon fa-home",
+										icon : "home",
+										align : "right",
+										label : "Retour",
+										width : 90,
+										click : "home"
 									}, {
 										view : "button",
 										type : "iconButton",
@@ -700,6 +717,14 @@
 							}
 						}, {
 							cols : [ {}, {
+								view : "button",
+								type : "iconButton",
+								icon : "home",
+								align : "right",
+								label : "Retour",
+								width : 90,
+								click : "home"
+							}, {
 								view : "button",
 								type : "iconButton",
 								icon : "save",
