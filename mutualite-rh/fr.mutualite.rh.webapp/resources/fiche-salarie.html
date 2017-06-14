@@ -50,7 +50,8 @@
 			</tr>
 		</table>
 	</div>
-	<h1 id="titre">Fiche du salarié</h1>
+	<h1 style="width:100%"><span id="titre" style="float:left">Fiche du salarié</span><span id="bouton_back" style="float:right;width:100px;"></span></h1>
+	
 	<div id="slot"></div>
 	<h2>Formations</h2>
 	<div id="formations"></div>
@@ -66,6 +67,17 @@
 						window.sessionStorage.redirect = window.location;
 						webix.send("/files/login2.html");
 					}
+					
+					webix.ui({
+						container : "bouton_back",
+							view : "button",
+							label : "Retour",
+							width : 100,
+							align : "right",
+							type : "iconButton",
+							icon : "home",
+							click : function() {window.history.back();}
+					});
 					
 					webix
 							.ajax()
