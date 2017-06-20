@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Mutualité RH - Gestion Informatisée des Compétences" uid="mutualite-rh-gic" id="fr.mutualite.rh.webapp.product" application="org.eclipse.ui.ide.workbench" version="1.0.5.2" useFeatures="false" includeLaunchers="true">
+<product name="Mutualité RH - Gestion Informatisée des Compétences" uid="mutualite-rh-gic" id="fr.mutualite.rh.webapp.product" application="org.eclipse.ui.ide.workbench" version="1.1.1.0" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -14,8 +14,7 @@
       <vmArgs>-Dosgi.requiredJavaVersion=1.8 -Xms256m -Xmx1024m -Declipse.p2.max.threads=10 -Declipse.ignoreApp=true -Dosgi.noShutdown=true
 -Dorg.osgi.service.http.port=44200 -Dosgi.console=44201
       </vmArgs>
-      <vmArgsLin>-Dosgi.console=10001
--Dconfig=/etc/rh-gic/mutualite.config
+      <vmArgsLin>-Dconfig=/etc/rh-gic/mutualite.config
       </vmArgsLin>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>

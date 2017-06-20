@@ -34,6 +34,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
 import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.model.Formation;
@@ -378,13 +379,16 @@ public class ReportResource {
 						cell.setCellValue("Date d'entretien");
 						cell = row.createCell(++nbCols);
 						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Type d'entretien");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
 						cell.setCellValue("Souhait");
 						cell = row.createCell(++nbCols);
 						cell.setCellStyle(titleStyle);
 						cell.setCellValue("Demandeur");
 						cell = row.createCell(++nbCols);
 						cell.setCellStyle(titleStyle);
-						cell.setCellValue("Avis de l'évaluation");
+						cell.setCellValue("Avis de l'évaluateur");
 					}
 
 					mut.getEffectif().getEmployes().forEach(emp -> {
@@ -392,9 +396,9 @@ public class ReportResource {
 
 								.filter(ent -> ent.getDate() != null)
 
-								.filter(EntretienProfessionnel.class::isInstance)
-
-								.map(EntretienProfessionnel.class::cast)
+//								.filter(EntretienProfessionnel.class::isInstance)
+//
+//								.map(EntretienProfessionnel.class::cast)
 
 								.max((ep1, ep2) -> {
 									return ep1.getDate().compareTo(ep2.getDate());
@@ -418,6 +422,7 @@ public class ReportResource {
 										Cell cell = row.createCell(++i);
 										cell.setCellStyle(dateStyle);
 										cell.setCellValue(entretien.getDate());
+										row.createCell(++i).setCellValue(entretien instanceof EntretienProfessionnel?"EP":(entretien instanceof EntretienAnnuel?"EAE":entretien.eClass().getName()));
 										row.createCell(++i).setCellValue(vals[0]);
 										row.createCell(++i).setCellValue(vals[1]);
 										row.createCell(++i).setCellValue(vals[2]);
