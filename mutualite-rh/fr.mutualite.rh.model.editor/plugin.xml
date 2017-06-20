@@ -240,7 +240,7 @@
                class="fr.mutualite.rh.model.popup.actions.SortOrganismesAction"
                enablesFor="1"
                id="fr.mutualite.rh.model.newAction5"
-               label="Trier les organismes par nom"
+               label="Trier les organismes et les formations par nom"
                menubarPath="fr.mutualite.rh.model.menu1/group1">
          </action>
       </objectContribution>

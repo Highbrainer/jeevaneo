@@ -14,6 +14,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 import fr.mutualite.rh.model.Mutualite;
+import fr.mutualite.rh.model.OrganismeFormation;
 import fr.mutualite.rh.model.Organismes;
 
 public class SortOrganismesAction implements IObjectActionDelegate {
@@ -46,7 +47,7 @@ public class SortOrganismesAction implements IObjectActionDelegate {
 
 			@Override
 			public String getLabel() {
-				return "Tri des organismes de formation";
+				return "Tri des organismes de formation et de leurs formations";
 			}
 
 			@Override
@@ -55,9 +56,15 @@ public class SortOrganismesAction implements IObjectActionDelegate {
 				ECollections.sort(orgs.getOrganismeFormations(), (e1, e2) -> {
 					return e1.getNom().toLowerCase().compareTo(e2.getNom().toLowerCase());
 				});
+				
+				orgs.getOrganismeFormations().forEach(SortOrganismesAction.this::sortFormations);
 				MessageDialog.openInformation(shell, "Mutualite RH", "Organismes triés par nom!");
 			}
 		});
+	}
+	
+	private void sortFormations(OrganismeFormation org) {
+		ECollections.sort(org.getFormations(), (f1,f2) -> f1.getLibelle().toLowerCase().compareTo(f2.getLibelle().toLowerCase()));
 	}
 
 	/**
