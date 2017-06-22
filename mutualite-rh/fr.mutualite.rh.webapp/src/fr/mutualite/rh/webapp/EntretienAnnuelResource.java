@@ -542,7 +542,7 @@ public class EntretienAnnuelResource extends BaseResource {
 		Stream<Entretien> entretiensIntermediaires = employe.getEntretiens().stream()
 				.filter(e -> e.getDate().after(datePrecedentEntretienAnnuel))
 				.filter(e-> e.getDate().before(datePrecedentEntretienPro) || e.getDate().equals(datePrecedentEntretienPro));
-		entretiensIntermediaires.map(Entretien::getAppreciationsSessionFormation).forEach(ret.getAppreciationsSessionFormationEntretiensPrecedents()::addAll);
+		entretiensIntermediaires.map(Entretien::getAppreciationsSessionFormation).flatMap(List::stream).filter(sf -> sf.getSessionFormation().getDateDebut().after(datePrecedentEntretienAnnuel)).forEach(ret.getAppreciationsSessionFormationEntretiensPrecedents()::add);
 
 		// Les évaluations "propres"
 
