@@ -444,12 +444,17 @@ public class EntretienProfessionnelResource extends BaseResource {
 			// Add properties to the context
 			Employe employe = entretien.employe();
 			Formulaire formulaire = makeFormulaire(entretien);
-			PhotoEmploye photoEmploye = entretien.getPhotoEmploye();
+			PhotoEmploye photoEmploye0 = entretien.getPhotoEmploye();
 			IContext ctx = report.createContext();
 			// ctx.put("entretien", entretien);
 			// ctx.put("employe", employe);
 			// ctx.put("formulaire", formulaire);
 
+			if(null == photoEmploye0) {
+				photoEmploye0 = entretien.employe().photo(entretien.getDate());
+			}
+			final PhotoEmploye photoEmploye = photoEmploye0;
+			
 			ctx.put("_diplomes", photoEmploye.getDiplomes().stream().collect(Collectors.joining(", ")));
 
 			entretien.eClass().getEAllAttributes().forEach(att -> {
