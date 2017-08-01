@@ -65,7 +65,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 				}
 
 				// si c'est un de ses entretenus...
-				// specifique
+				// specifique 
 				boolean isEmployeEntretenuSpecifique = employe.getEmployesEntretenus().stream().anyMatch(emp -> emp.getMatricule() == consultedMatricule);
 				// de l'etablissement
 				boolean isEmployeEntretenuEtablissement = employe.getEtablissementsEntretenus().stream().map(Etablissement::getEmployes).flatMap(List::stream)
