@@ -101,7 +101,10 @@ public class AuthenticationEndpoint {
 		String dn = ldap.findUniqueUser(ctx, username);
 		log.debug(dn);
 		ctx.close();
-		ldap.bind(dn, password).close();
+		LdapContext bound = ldap.bind(dn, password);
+		//avec AD il ne sera pas levé d'exceptions en cas de password vide ...!!!!!!!!
+		bound.lookup(dn); // suffisant pour vérifier que l'authentification est réelle!
+		bound.close();
 		return dn;
 
 	}
