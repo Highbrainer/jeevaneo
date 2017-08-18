@@ -80,7 +80,7 @@ public class ExportView extends ViewPart {
 		}
 		{
 			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Souhaits de formation", SWT.WRAP);
-			toolkit.createLabel(form.getBody(), "Liste des souhaits de formation émis par les salariés ou leur évaluateur, lors de leur dernier entretien.");
+			toolkit.createLabel(form.getBody(), "Liste des souhaits de formation émis par les salariés ou leur évaluateur, lors de tous les entretiens (tous types d'entretien et sans limite de temps).");
 			link.addHyperlinkListener(new HyperlinkAdapter() {
 				public void linkActivated(HyperlinkEvent e) {
 					souhaitsFormation();

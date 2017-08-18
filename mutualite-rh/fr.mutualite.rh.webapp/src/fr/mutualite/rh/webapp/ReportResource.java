@@ -342,7 +342,7 @@ public class ReportResource {
 
 					CellStyle dateStyle = wb.createCellStyle();
 					CreationHelper createHelper = wb.getCreationHelper();
-					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm yyyy"));
 
 					Font bold = wb.createFont();
 					bold.setBold(true);
@@ -400,11 +400,7 @@ public class ReportResource {
 //
 //								.map(EntretienProfessionnel.class::cast)
 
-								.max((ep1, ep2) -> {
-									return ep1.getDate().compareTo(ep2.getDate());
-								})
-
-								.ifPresent(entretien -> {
+								.forEach(entretien -> {
 
 									Stream<String[]> souhaitsEvaluateur = entretien.getSouhaitsFormationEvaluateur().stream()
 											.map(souhait -> new String[] { souhait.getTexte(), "Evaluateur", "" });
