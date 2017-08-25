@@ -23,17 +23,17 @@ public class Application implements IApplication {
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
 
-		importExport();
+		importExport(new Date(117, 04, 01), new Date(117, 9, 31));
 		return IApplication.EXIT_OK;
 	}
 
-	public void importExport() throws IOException {
+	public void importExport(Date start, Date end) throws IOException {
 		File in = promptFile();
 		if (null == in) {
 			return;
 		}
 
-		process(in);
+		process(in, start, end);
 		log.info("Export terminé vers " + in.getAbsolutePath());
 	}
 
@@ -77,14 +77,14 @@ public class Application implements IApplication {
 		return def;
 	}
 
-	private void process(File in) throws IOException {
+	private void process(File in, Date start, Date end) throws IOException {
 		File out = new File(in.getParentFile(), "generated/conges-planning.xlsx");
 		// dir = new File("E:\\workspaces\\mutualite-rh\\fr.mutualite.rh.conges\\data\\generated.xlsx");
 		out.getParentFile().mkdirs();
 		CongePlanningExporter exporter = new CongePlanningExporter();
 		EmployeCongesParser parser = new EmployeCongesParser();
 		List<Employe> employes = parser.parse(in);
-		exporter.export(employes, new Date(117, 04, 01), new Date(117, 9, 31), out, null);
+		exporter.export(employes, start, end, out, null);
 	}
 
 	@Override
