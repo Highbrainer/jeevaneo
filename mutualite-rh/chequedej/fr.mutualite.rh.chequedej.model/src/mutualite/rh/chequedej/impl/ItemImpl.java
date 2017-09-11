@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getSuccursale <em>Succursale</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getMatricule <em>Matricule</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getNbCheques <em>Nb Cheques</em>}</li>
- *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getNbJoursEntiersMoisPrecedent <em>Nb Jours Entiers Mois Precedent</em>}</li>
- *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getNbJoursEntiersMoisSuivant <em>Nb Jours Entiers Mois Suivant</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getCommentaire <em>Commentaire</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ItemImpl#getPrenom <em>Prenom</em>}</li>
@@ -73,7 +71,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int NB_CHEQUES_EDEFAULT = 0;
+	protected static final Integer NB_CHEQUES_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNbCheques() <em>Nb Cheques</em>}' attribute.
@@ -83,47 +81,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 	 * @generated
 	 * @ordered
 	 */
-	protected int nbCheques = NB_CHEQUES_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getNbJoursEntiersMoisPrecedent() <em>Nb Jours Entiers Mois Precedent</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNbJoursEntiersMoisPrecedent()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int NB_JOURS_ENTIERS_MOIS_PRECEDENT_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getNbJoursEntiersMoisPrecedent() <em>Nb Jours Entiers Mois Precedent</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNbJoursEntiersMoisPrecedent()
-	 * @generated
-	 * @ordered
-	 */
-	protected int nbJoursEntiersMoisPrecedent = NB_JOURS_ENTIERS_MOIS_PRECEDENT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getNbJoursEntiersMoisSuivant() <em>Nb Jours Entiers Mois Suivant</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNbJoursEntiersMoisSuivant()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int NB_JOURS_ENTIERS_MOIS_SUIVANT_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getNbJoursEntiersMoisSuivant() <em>Nb Jours Entiers Mois Suivant</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNbJoursEntiersMoisSuivant()
-	 * @generated
-	 * @ordered
-	 */
-	protected int nbJoursEntiersMoisSuivant = NB_JOURS_ENTIERS_MOIS_SUIVANT_EDEFAULT;
+	protected Integer nbCheques = NB_CHEQUES_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCommentaire() <em>Commentaire</em>}' attribute.
@@ -268,7 +226,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNbCheques() {
+	public Integer getNbCheques() {
 		return nbCheques;
 	}
 
@@ -277,53 +235,11 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNbCheques(int newNbCheques) {
-		int oldNbCheques = nbCheques;
+	public void setNbCheques(Integer newNbCheques) {
+		Integer oldNbCheques = nbCheques;
 		nbCheques = newNbCheques;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.ITEM__NB_CHEQUES, oldNbCheques, nbCheques));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getNbJoursEntiersMoisPrecedent() {
-		return nbJoursEntiersMoisPrecedent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNbJoursEntiersMoisPrecedent(int newNbJoursEntiersMoisPrecedent) {
-		int oldNbJoursEntiersMoisPrecedent = nbJoursEntiersMoisPrecedent;
-		nbJoursEntiersMoisPrecedent = newNbJoursEntiersMoisPrecedent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT, oldNbJoursEntiersMoisPrecedent, nbJoursEntiersMoisPrecedent));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getNbJoursEntiersMoisSuivant() {
-		return nbJoursEntiersMoisSuivant;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNbJoursEntiersMoisSuivant(int newNbJoursEntiersMoisSuivant) {
-		int oldNbJoursEntiersMoisSuivant = nbJoursEntiersMoisSuivant;
-		nbJoursEntiersMoisSuivant = newNbJoursEntiersMoisSuivant;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT, oldNbJoursEntiersMoisSuivant, nbJoursEntiersMoisSuivant));
 	}
 
 	/**
@@ -404,10 +320,6 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 				return getMatricule();
 			case ChequedejPackage.ITEM__NB_CHEQUES:
 				return getNbCheques();
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT:
-				return getNbJoursEntiersMoisPrecedent();
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT:
-				return getNbJoursEntiersMoisSuivant();
 			case ChequedejPackage.ITEM__COMMENTAIRE:
 				return getCommentaire();
 			case ChequedejPackage.ITEM__NOM:
@@ -434,12 +346,6 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 				return;
 			case ChequedejPackage.ITEM__NB_CHEQUES:
 				setNbCheques((Integer)newValue);
-				return;
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT:
-				setNbJoursEntiersMoisPrecedent((Integer)newValue);
-				return;
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT:
-				setNbJoursEntiersMoisSuivant((Integer)newValue);
 				return;
 			case ChequedejPackage.ITEM__COMMENTAIRE:
 				setCommentaire((String)newValue);
@@ -471,12 +377,6 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 			case ChequedejPackage.ITEM__NB_CHEQUES:
 				setNbCheques(NB_CHEQUES_EDEFAULT);
 				return;
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT:
-				setNbJoursEntiersMoisPrecedent(NB_JOURS_ENTIERS_MOIS_PRECEDENT_EDEFAULT);
-				return;
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT:
-				setNbJoursEntiersMoisSuivant(NB_JOURS_ENTIERS_MOIS_SUIVANT_EDEFAULT);
-				return;
 			case ChequedejPackage.ITEM__COMMENTAIRE:
 				setCommentaire(COMMENTAIRE_EDEFAULT);
 				return;
@@ -503,11 +403,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 			case ChequedejPackage.ITEM__MATRICULE:
 				return matricule != MATRICULE_EDEFAULT;
 			case ChequedejPackage.ITEM__NB_CHEQUES:
-				return nbCheques != NB_CHEQUES_EDEFAULT;
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT:
-				return nbJoursEntiersMoisPrecedent != NB_JOURS_ENTIERS_MOIS_PRECEDENT_EDEFAULT;
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT:
-				return nbJoursEntiersMoisSuivant != NB_JOURS_ENTIERS_MOIS_SUIVANT_EDEFAULT;
+				return NB_CHEQUES_EDEFAULT == null ? nbCheques != null : !NB_CHEQUES_EDEFAULT.equals(nbCheques);
 			case ChequedejPackage.ITEM__COMMENTAIRE:
 				return COMMENTAIRE_EDEFAULT == null ? commentaire != null : !COMMENTAIRE_EDEFAULT.equals(commentaire);
 			case ChequedejPackage.ITEM__NOM:
@@ -532,10 +428,6 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item {
 		result.append(matricule);
 		result.append(", nbCheques: ");
 		result.append(nbCheques);
-		result.append(", nbJoursEntiersMoisPrecedent: ");
-		result.append(nbJoursEntiersMoisPrecedent);
-		result.append(", nbJoursEntiersMoisSuivant: ");
-		result.append(nbJoursEntiersMoisSuivant);
 		result.append(", commentaire: ");
 		result.append(commentaire);
 		result.append(", nom: ");

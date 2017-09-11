@@ -6,12 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.prefs.Preferences;
 
@@ -35,6 +33,7 @@ import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
@@ -178,18 +177,8 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 			try {
 				generateFormFor(file, etab, mon.newChild(100));
 			} catch (InvalidFormatException | IOException | URISyntaxException e) {
-				// TODO Auto-generated catch block
+				MessageDialog.openError(shell, "Export Planning KO", "ERREUR: " + e.getMessage());
 				e.printStackTrace();
-				// TODO
-				// TODO
-				// TODO
-				// TODO
-				// TODO
-				// TODO
-				// TODO
-				// TODO
-				// TODO
-				// TODO
 			}
 		});
 		etablissementsVirtuels.stream().forEach(ev -> {
@@ -231,6 +220,7 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		Row line1 = getOrCreateRow(sheet, 1);
 		getOrCreateCell(line1, 0).setCellValue(etab.getId());
 		getOrCreateCell(line1, 1).setCellValue(etab.getNom());
+		getOrCreateCell(line1, 2).setCellValue(root.getMois());
 		
 		Row line2 = getOrCreateRow(sheet, 3);
 		Cell cell2_3 = getOrCreateCell(line2, 3);
@@ -241,7 +231,8 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		String nom = etab.getNom().trim();
 		
 		int[] pLine = {4};
-		etab.getEmployes().stream().sorted((e1,e2)->e1.getLabel().compareTo(e2.getLabel())).forEach(emp -> {
+		//on ne garde que les employés qui seront là au moins un jour du mois de la commande.
+		etab.getEmployes().stream().filter(e->e.getDateSortieEntreprise()==null || e.getDateSortieEntreprise().after(toDate(month))).sorted((e1,e2)->e1.getLabel().compareTo(e2.getLabel())).forEach(emp -> {
 			int i = pLine[0]++;
 			Row line = getOrCreateRow(sheet, i);
 			getOrCreateCell(line, 0).setCellValue(emp.getMatricule());
@@ -258,6 +249,11 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		Desktop.getDesktop().open(dir);
 
 	}
+
+	private Date toDate(LocalDate month) {
+		return Date.from(month.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
 
 	public Row getOrCreateRow(Sheet sheet, int i) {
 		Row line = sheet.getRow(i);

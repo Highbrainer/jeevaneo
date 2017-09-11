@@ -13,6 +13,13 @@ import mutualite.rh.chequedej.ChequedejFactory;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Carnet</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link mutualite.rh.chequedej.Carnet#root() <em>Root</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Carnet#getOrCreateCommande(java.lang.String) <em>Get Or Create Commande</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class CarnetTest extends TestCase {
@@ -84,6 +91,32 @@ public class CarnetTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.Carnet#root() <em>Root</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.Carnet#root()
+	 * @generated
+	 */
+	public void testRoot() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.Carnet#getOrCreateCommande(java.lang.String) <em>Get Or Create Commande</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.Carnet#getOrCreateCommande(java.lang.String)
+	 * @generated
+	 */
+	public void testGetOrCreateCommande__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //CarnetTest

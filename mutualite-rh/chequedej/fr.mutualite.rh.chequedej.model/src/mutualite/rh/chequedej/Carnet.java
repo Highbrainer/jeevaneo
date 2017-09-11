@@ -2,6 +2,8 @@
  */
 package mutualite.rh.chequedej;
 
+import java.time.LocalDate;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +25,9 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Carnet extends EObject {
+	
+	LocalDate mois(String mois);
+	
 	/**
 	 * Returns the value of the '<em><b>Commandes</b></em>' containment reference list.
 	 * The list contents are of type {@link mutualite.rh.chequedej.Commande}.
@@ -38,5 +43,23 @@ public interface Carnet extends EObject {
 	 * @generated
 	 */
 	EList<Commande> getCommandes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	ChequeDej root();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Commande getOrCreateCommande(String mois);
+
+	String formatMois(LocalDate month);
 
 } // Carnet

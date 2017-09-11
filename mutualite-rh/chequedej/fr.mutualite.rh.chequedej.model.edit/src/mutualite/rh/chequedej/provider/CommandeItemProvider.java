@@ -71,6 +71,8 @@ public class CommandeItemProvider
 			addParticipationPatronalePropertyDescriptor(object);
 			addValeurNominalePropertyDescriptor(object);
 			addMoisPropertyDescriptor(object);
+			addCommandePrecedentePropertyDescriptor(object);
+			addCommandeSuivantePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -159,6 +161,50 @@ public class CommandeItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Commande Precedente feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommandePrecedentePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Commande_commandePrecedente_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Commande_commandePrecedente_feature", "_UI_Commande_type"),
+				 ChequedejPackage.Literals.COMMANDE__COMMANDE_PRECEDENTE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Commande Suivante feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommandeSuivantePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Commande_commandeSuivante_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Commande_commandeSuivante_feature", "_UI_Commande_type"),
+				 ChequedejPackage.Literals.COMMANDE__COMMANDE_SUIVANTE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

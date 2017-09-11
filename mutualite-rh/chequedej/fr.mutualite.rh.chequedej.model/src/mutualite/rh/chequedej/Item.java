@@ -16,8 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mutualite.rh.chequedej.Item#getSuccursale <em>Succursale</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Item#getMatricule <em>Matricule</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Item#getNbCheques <em>Nb Cheques</em>}</li>
- *   <li>{@link mutualite.rh.chequedej.Item#getNbJoursEntiersMoisPrecedent <em>Nb Jours Entiers Mois Precedent</em>}</li>
- *   <li>{@link mutualite.rh.chequedej.Item#getNbJoursEntiersMoisSuivant <em>Nb Jours Entiers Mois Suivant</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Item#getCommentaire <em>Commentaire</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Item#getNom <em>Nom</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Item#getPrenom <em>Prenom</em>}</li>
@@ -89,12 +87,12 @@ public interface Item extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nb Cheques</em>' attribute.
-	 * @see #setNbCheques(int)
+	 * @see #setNbCheques(Integer)
 	 * @see mutualite.rh.chequedej.ChequedejPackage#getItem_NbCheques()
 	 * @model required="true"
 	 * @generated
 	 */
-	int getNbCheques();
+	Integer getNbCheques();
 
 	/**
 	 * Sets the value of the '{@link mutualite.rh.chequedej.Item#getNbCheques <em>Nb Cheques</em>}' attribute.
@@ -104,59 +102,7 @@ public interface Item extends EObject {
 	 * @see #getNbCheques()
 	 * @generated
 	 */
-	void setNbCheques(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Nb Jours Entiers Mois Precedent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nb Jours Entiers Mois Precedent</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nb Jours Entiers Mois Precedent</em>' attribute.
-	 * @see #setNbJoursEntiersMoisPrecedent(int)
-	 * @see mutualite.rh.chequedej.ChequedejPackage#getItem_NbJoursEntiersMoisPrecedent()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getNbJoursEntiersMoisPrecedent();
-
-	/**
-	 * Sets the value of the '{@link mutualite.rh.chequedej.Item#getNbJoursEntiersMoisPrecedent <em>Nb Jours Entiers Mois Precedent</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nb Jours Entiers Mois Precedent</em>' attribute.
-	 * @see #getNbJoursEntiersMoisPrecedent()
-	 * @generated
-	 */
-	void setNbJoursEntiersMoisPrecedent(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Nb Jours Entiers Mois Suivant</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nb Jours Entiers Mois Suivant</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nb Jours Entiers Mois Suivant</em>' attribute.
-	 * @see #setNbJoursEntiersMoisSuivant(int)
-	 * @see mutualite.rh.chequedej.ChequedejPackage#getItem_NbJoursEntiersMoisSuivant()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getNbJoursEntiersMoisSuivant();
-
-	/**
-	 * Sets the value of the '{@link mutualite.rh.chequedej.Item#getNbJoursEntiersMoisSuivant <em>Nb Jours Entiers Mois Suivant</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nb Jours Entiers Mois Suivant</em>' attribute.
-	 * @see #getNbJoursEntiersMoisSuivant()
-	 * @generated
-	 */
-	void setNbJoursEntiersMoisSuivant(int value);
+	void setNbCheques(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Commentaire</b></em>' attribute.

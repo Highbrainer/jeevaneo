@@ -279,6 +279,236 @@ public class ChequedejItemProviderAdapterFactory extends ChequedejAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Stock} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StockItemProvider stockItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Stock}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStockAdapter() {
+		if (stockItemProvider == null) {
+			stockItemProvider = new StockItemProvider(this);
+		}
+
+		return stockItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Cheque} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChequeItemProvider chequeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Cheque}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createChequeAdapter() {
+		if (chequeItemProvider == null) {
+			chequeItemProvider = new ChequeItemProvider(this);
+		}
+
+		return chequeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Solde} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SoldeItemProvider soldeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Solde}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSoldeAdapter() {
+		if (soldeItemProvider == null) {
+			soldeItemProvider = new SoldeItemProvider(this);
+		}
+
+		return soldeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.SoldeIndividuel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SoldeIndividuelItemProvider soldeIndividuelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.SoldeIndividuel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSoldeIndividuelAdapter() {
+		if (soldeIndividuelItemProvider == null) {
+			soldeIndividuelItemProvider = new SoldeIndividuelItemProvider(this);
+		}
+
+		return soldeIndividuelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.HistoriqueSoldeIndividuel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected HistoriqueSoldeIndividuelItemProvider historiqueSoldeIndividuelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.HistoriqueSoldeIndividuel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createHistoriqueSoldeIndividuelAdapter() {
+		if (historiqueSoldeIndividuelItemProvider == null) {
+			historiqueSoldeIndividuelItemProvider = new HistoriqueSoldeIndividuelItemProvider(this);
+		}
+
+		return historiqueSoldeIndividuelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Deje} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DejeItemProvider dejeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Deje}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDejeAdapter() {
+		if (dejeItemProvider == null) {
+			dejeItemProvider = new DejeItemProvider(this);
+		}
+
+		return dejeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.DejeIndividuel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DejeIndividuelItemProvider dejeIndividuelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.DejeIndividuel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDejeIndividuelAdapter() {
+		if (dejeIndividuelItemProvider == null) {
+			dejeIndividuelItemProvider = new DejeIndividuelItemProvider(this);
+		}
+
+		return dejeIndividuelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.DejeMensuel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DejeMensuelItemProvider dejeMensuelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.DejeMensuel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDejeMensuelAdapter() {
+		if (dejeMensuelItemProvider == null) {
+			dejeMensuelItemProvider = new DejeMensuelItemProvider(this);
+		}
+
+		return dejeMensuelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Choix} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChoixItemProvider choixItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Choix}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createChoixAdapter() {
+		if (choixItemProvider == null) {
+			choixItemProvider = new ChoixItemProvider(this);
+		}
+
+		return choixItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.ChoixIndividuel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChoixIndividuelItemProvider choixIndividuelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.ChoixIndividuel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createChoixIndividuelAdapter() {
+		if (choixIndividuelItemProvider == null) {
+			choixIndividuelItemProvider = new ChoixIndividuelItemProvider(this);
+		}
+
+		return choixIndividuelItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -386,6 +616,16 @@ public class ChequedejItemProviderAdapterFactory extends ChequedejAdapterFactory
 		if (carnetItemProvider != null) carnetItemProvider.dispose();
 		if (etablissementsVirtuelsItemProvider != null) etablissementsVirtuelsItemProvider.dispose();
 		if (parametrageItemProvider != null) parametrageItemProvider.dispose();
+		if (stockItemProvider != null) stockItemProvider.dispose();
+		if (chequeItemProvider != null) chequeItemProvider.dispose();
+		if (soldeItemProvider != null) soldeItemProvider.dispose();
+		if (soldeIndividuelItemProvider != null) soldeIndividuelItemProvider.dispose();
+		if (historiqueSoldeIndividuelItemProvider != null) historiqueSoldeIndividuelItemProvider.dispose();
+		if (dejeItemProvider != null) dejeItemProvider.dispose();
+		if (dejeIndividuelItemProvider != null) dejeIndividuelItemProvider.dispose();
+		if (dejeMensuelItemProvider != null) dejeMensuelItemProvider.dispose();
+		if (choixItemProvider != null) choixItemProvider.dispose();
+		if (choixIndividuelItemProvider != null) choixIndividuelItemProvider.dispose();
 	}
 
 }

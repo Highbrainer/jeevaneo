@@ -104,6 +104,46 @@ public class ChequedejAdapterFactory extends AdapterFactoryImpl {
 				return createParametrageAdapter();
 			}
 			@Override
+			public Adapter caseStock(Stock object) {
+				return createStockAdapter();
+			}
+			@Override
+			public Adapter caseCheque(Cheque object) {
+				return createChequeAdapter();
+			}
+			@Override
+			public Adapter caseSolde(Solde object) {
+				return createSoldeAdapter();
+			}
+			@Override
+			public Adapter caseSoldeIndividuel(SoldeIndividuel object) {
+				return createSoldeIndividuelAdapter();
+			}
+			@Override
+			public Adapter caseHistoriqueSoldeIndividuel(HistoriqueSoldeIndividuel object) {
+				return createHistoriqueSoldeIndividuelAdapter();
+			}
+			@Override
+			public Adapter caseDeje(Deje object) {
+				return createDejeAdapter();
+			}
+			@Override
+			public Adapter caseDejeIndividuel(DejeIndividuel object) {
+				return createDejeIndividuelAdapter();
+			}
+			@Override
+			public Adapter caseDejeMensuel(DejeMensuel object) {
+				return createDejeMensuelAdapter();
+			}
+			@Override
+			public Adapter caseChoix(Choix object) {
+				return createChoixAdapter();
+			}
+			@Override
+			public Adapter caseChoixIndividuel(ChoixIndividuel object) {
+				return createChoixIndividuelAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -246,6 +286,146 @@ public class ChequedejAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParametrageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Stock <em>Stock</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Stock
+	 * @generated
+	 */
+	public Adapter createStockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Cheque <em>Cheque</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Cheque
+	 * @generated
+	 */
+	public Adapter createChequeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Solde <em>Solde</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Solde
+	 * @generated
+	 */
+	public Adapter createSoldeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.SoldeIndividuel <em>Solde Individuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.SoldeIndividuel
+	 * @generated
+	 */
+	public Adapter createSoldeIndividuelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.HistoriqueSoldeIndividuel <em>Historique Solde Individuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.HistoriqueSoldeIndividuel
+	 * @generated
+	 */
+	public Adapter createHistoriqueSoldeIndividuelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Deje <em>Deje</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Deje
+	 * @generated
+	 */
+	public Adapter createDejeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.DejeIndividuel <em>Deje Individuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.DejeIndividuel
+	 * @generated
+	 */
+	public Adapter createDejeIndividuelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.DejeMensuel <em>Deje Mensuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.DejeMensuel
+	 * @generated
+	 */
+	public Adapter createDejeMensuelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Choix <em>Choix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Choix
+	 * @generated
+	 */
+	public Adapter createChoixAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.ChoixIndividuel <em>Choix Individuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.ChoixIndividuel
+	 * @generated
+	 */
+	public Adapter createChoixIndividuelAdapter() {
 		return null;
 	}
 

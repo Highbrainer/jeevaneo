@@ -65,6 +65,16 @@ public class ChequedejFactoryImpl extends EFactoryImpl implements ChequedejFacto
 			case ChequedejPackage.CARNET: return createCarnet();
 			case ChequedejPackage.ETABLISSEMENTS_VIRTUELS: return createEtablissementsVirtuels();
 			case ChequedejPackage.PARAMETRAGE: return createParametrage();
+			case ChequedejPackage.STOCK: return createStock();
+			case ChequedejPackage.CHEQUE: return createCheque();
+			case ChequedejPackage.SOLDE: return createSolde();
+			case ChequedejPackage.SOLDE_INDIVIDUEL: return createSoldeIndividuel();
+			case ChequedejPackage.HISTORIQUE_SOLDE_INDIVIDUEL: return createHistoriqueSoldeIndividuel();
+			case ChequedejPackage.DEJE: return createDeje();
+			case ChequedejPackage.DEJE_INDIVIDUEL: return createDejeIndividuel();
+			case ChequedejPackage.DEJE_MENSUEL: return createDejeMensuel();
+			case ChequedejPackage.CHOIX: return createChoix();
+			case ChequedejPackage.CHOIX_INDIVIDUEL: return createChoixIndividuel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -158,6 +168,106 @@ public class ChequedejFactoryImpl extends EFactoryImpl implements ChequedejFacto
 	public Parametrage createParametrage() {
 		ParametrageImpl parametrage = new ParametrageImpl();
 		return parametrage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Stock createStock() {
+		StockImpl stock = new StockImpl();
+		return stock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Cheque createCheque() {
+		ChequeImpl cheque = new ChequeImpl();
+		return cheque;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Solde createSolde() {
+		SoldeImpl solde = new SoldeImpl();
+		return solde;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SoldeIndividuel createSoldeIndividuel() {
+		SoldeIndividuelImpl soldeIndividuel = new SoldeIndividuelImpl();
+		return soldeIndividuel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HistoriqueSoldeIndividuel createHistoriqueSoldeIndividuel() {
+		HistoriqueSoldeIndividuelImpl historiqueSoldeIndividuel = new HistoriqueSoldeIndividuelImpl();
+		return historiqueSoldeIndividuel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Deje createDeje() {
+		DejeImpl deje = new DejeImpl();
+		return deje;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DejeIndividuel createDejeIndividuel() {
+		DejeIndividuelImpl dejeIndividuel = new DejeIndividuelImpl();
+		return dejeIndividuel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DejeMensuel createDejeMensuel() {
+		DejeMensuelImpl dejeMensuel = new DejeMensuelImpl();
+		return dejeMensuel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Choix createChoix() {
+		ChoixImpl choix = new ChoixImpl();
+		return choix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ChoixIndividuel createChoixIndividuel() {
+		ChoixIndividuelImpl choixIndividuel = new ChoixIndividuelImpl();
+		return choixIndividuel;
 	}
 
 	/**

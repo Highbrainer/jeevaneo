@@ -67,8 +67,6 @@ public class ItemItemProvider
 			addSuccursalePropertyDescriptor(object);
 			addMatriculePropertyDescriptor(object);
 			addNbChequesPropertyDescriptor(object);
-			addNbJoursEntiersMoisPrecedentPropertyDescriptor(object);
-			addNbJoursEntiersMoisSuivantPropertyDescriptor(object);
 			addCommentairePropertyDescriptor(object);
 			addNomPropertyDescriptor(object);
 			addPrenomPropertyDescriptor(object);
@@ -137,51 +135,7 @@ public class ItemItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Nb Jours Entiers Mois Precedent feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNbJoursEntiersMoisPrecedentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Item_nbJoursEntiersMoisPrecedent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Item_nbJoursEntiersMoisPrecedent_feature", "_UI_Item_type"),
-				 ChequedejPackage.Literals.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Nb Jours Entiers Mois Suivant feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNbJoursEntiersMoisSuivantPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Item_nbJoursEntiersMoisSuivant_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Item_nbJoursEntiersMoisSuivant_feature", "_UI_Item_type"),
-				 ChequedejPackage.Literals.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -293,8 +247,6 @@ public class ItemItemProvider
 		switch (notification.getFeatureID(Item.class)) {
 			case ChequedejPackage.ITEM__MATRICULE:
 			case ChequedejPackage.ITEM__NB_CHEQUES:
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_PRECEDENT:
-			case ChequedejPackage.ITEM__NB_JOURS_ENTIERS_MOIS_SUIVANT:
 			case ChequedejPackage.ITEM__COMMENTAIRE:
 			case ChequedejPackage.ITEM__NOM:
 			case ChequedejPackage.ITEM__PRENOM:

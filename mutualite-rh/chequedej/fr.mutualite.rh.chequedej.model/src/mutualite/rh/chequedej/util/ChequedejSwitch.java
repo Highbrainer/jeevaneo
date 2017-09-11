@@ -120,6 +120,66 @@ public class ChequedejSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ChequedejPackage.STOCK: {
+				Stock stock = (Stock)theEObject;
+				T result = caseStock(stock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.CHEQUE: {
+				Cheque cheque = (Cheque)theEObject;
+				T result = caseCheque(cheque);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.SOLDE: {
+				Solde solde = (Solde)theEObject;
+				T result = caseSolde(solde);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.SOLDE_INDIVIDUEL: {
+				SoldeIndividuel soldeIndividuel = (SoldeIndividuel)theEObject;
+				T result = caseSoldeIndividuel(soldeIndividuel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.HISTORIQUE_SOLDE_INDIVIDUEL: {
+				HistoriqueSoldeIndividuel historiqueSoldeIndividuel = (HistoriqueSoldeIndividuel)theEObject;
+				T result = caseHistoriqueSoldeIndividuel(historiqueSoldeIndividuel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.DEJE: {
+				Deje deje = (Deje)theEObject;
+				T result = caseDeje(deje);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.DEJE_INDIVIDUEL: {
+				DejeIndividuel dejeIndividuel = (DejeIndividuel)theEObject;
+				T result = caseDejeIndividuel(dejeIndividuel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.DEJE_MENSUEL: {
+				DejeMensuel dejeMensuel = (DejeMensuel)theEObject;
+				T result = caseDejeMensuel(dejeMensuel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.CHOIX: {
+				Choix choix = (Choix)theEObject;
+				T result = caseChoix(choix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.CHOIX_INDIVIDUEL: {
+				ChoixIndividuel choixIndividuel = (ChoixIndividuel)theEObject;
+				T result = caseChoixIndividuel(choixIndividuel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -256,6 +316,156 @@ public class ChequedejSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParametrage(Parametrage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Stock</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Stock</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStock(Stock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cheque</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cheque</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheque(Cheque object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solde</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solde</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSolde(Solde object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solde Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solde Individuel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSoldeIndividuel(SoldeIndividuel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Historique Solde Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Historique Solde Individuel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHistoriqueSoldeIndividuel(HistoriqueSoldeIndividuel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deje</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deje</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeje(Deje object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deje Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deje Individuel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDejeIndividuel(DejeIndividuel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deje Mensuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deje Mensuel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDejeMensuel(DejeMensuel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Choix</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Choix</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseChoix(Choix object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Choix Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Choix Individuel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseChoixIndividuel(ChoixIndividuel object) {
 		return null;
 	}
 

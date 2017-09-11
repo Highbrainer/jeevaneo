@@ -103,6 +103,96 @@ public interface ChequedejFactory extends EFactory {
 	Parametrage createParametrage();
 
 	/**
+	 * Returns a new object of class '<em>Stock</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Stock</em>'.
+	 * @generated
+	 */
+	Stock createStock();
+
+	/**
+	 * Returns a new object of class '<em>Cheque</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cheque</em>'.
+	 * @generated
+	 */
+	Cheque createCheque();
+
+	/**
+	 * Returns a new object of class '<em>Solde</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solde</em>'.
+	 * @generated
+	 */
+	Solde createSolde();
+
+	/**
+	 * Returns a new object of class '<em>Solde Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solde Individuel</em>'.
+	 * @generated
+	 */
+	SoldeIndividuel createSoldeIndividuel();
+
+	/**
+	 * Returns a new object of class '<em>Historique Solde Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Historique Solde Individuel</em>'.
+	 * @generated
+	 */
+	HistoriqueSoldeIndividuel createHistoriqueSoldeIndividuel();
+
+	/**
+	 * Returns a new object of class '<em>Deje</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deje</em>'.
+	 * @generated
+	 */
+	Deje createDeje();
+
+	/**
+	 * Returns a new object of class '<em>Deje Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deje Individuel</em>'.
+	 * @generated
+	 */
+	DejeIndividuel createDejeIndividuel();
+
+	/**
+	 * Returns a new object of class '<em>Deje Mensuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deje Mensuel</em>'.
+	 * @generated
+	 */
+	DejeMensuel createDejeMensuel();
+
+	/**
+	 * Returns a new object of class '<em>Choix</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Choix</em>'.
+	 * @generated
+	 */
+	Choix createChoix();
+
+	/**
+	 * Returns a new object of class '<em>Choix Individuel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Choix Individuel</em>'.
+	 * @generated
+	 */
+	ChoixIndividuel createChoixIndividuel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

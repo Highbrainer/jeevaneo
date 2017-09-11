@@ -18,7 +18,8 @@ Bundle-Activator: mutualite.rh.chequedej.presentation.ChequedejEditorPlugin$Impl
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: mutualite.rh.chequedej.presentation
+Export-Package: mutualite.rh.chequedej.popup.actions,
+ mutualite.rh.chequedej.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  fr.mutualite.rh.chequedej.model.edit;visibility:=reexport,

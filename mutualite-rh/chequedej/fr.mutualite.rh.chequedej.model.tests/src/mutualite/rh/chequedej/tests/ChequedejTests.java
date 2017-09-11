@@ -31,6 +31,15 @@ public class ChequedejTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new ChequedejTests("chequedej Tests");
+		suite.addTestSuite(ChequeDejTest.class);
+		suite.addTestSuite(CommandeTest.class);
+		suite.addTestSuite(CarnetTest.class);
+		suite.addTestSuite(SoldeTest.class);
+		suite.addTestSuite(SoldeIndividuelTest.class);
+		suite.addTestSuite(DejeTest.class);
+		suite.addTestSuite(DejeIndividuelTest.class);
+		suite.addTestSuite(DejeMensuelTest.class);
+		suite.addTestSuite(ChoixTest.class);
 		return suite;
 	}
 

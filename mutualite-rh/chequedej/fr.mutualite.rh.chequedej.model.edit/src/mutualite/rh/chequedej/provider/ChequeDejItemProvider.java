@@ -65,6 +65,7 @@ public class ChequeDejItemProvider
 
 			addValeurNominalePropertyDescriptor(object);
 			addParticipationPatronalePropertyDescriptor(object);
+			addCommandeMaxParDefautPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -114,6 +115,28 @@ public class ChequeDejItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Commande Max Par Defaut feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommandeMaxParDefautPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ChequeDej_commandeMaxParDefaut_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ChequeDej_commandeMaxParDefaut_feature", "_UI_ChequeDej_type"),
+				 ChequedejPackage.Literals.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -128,6 +151,10 @@ public class ChequeDejItemProvider
 			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__CARNET);
 			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__ETABLISSEMENTS_VIRTUELS);
 			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__PARAMETRAGE);
+			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__STOCK);
+			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__SOLDE);
+			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__DEJES);
+			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__CHOIX);
 		}
 		return childrenFeatures;
 	}
@@ -183,11 +210,16 @@ public class ChequeDejItemProvider
 		switch (notification.getFeatureID(ChequeDej.class)) {
 			case ChequedejPackage.CHEQUE_DEJ__VALEUR_NOMINALE:
 			case ChequedejPackage.CHEQUE_DEJ__PARTICIPATION_PATRONALE:
+			case ChequedejPackage.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ChequedejPackage.CHEQUE_DEJ__CARNET:
 			case ChequedejPackage.CHEQUE_DEJ__ETABLISSEMENTS_VIRTUELS:
 			case ChequedejPackage.CHEQUE_DEJ__PARAMETRAGE:
+			case ChequedejPackage.CHEQUE_DEJ__STOCK:
+			case ChequedejPackage.CHEQUE_DEJ__SOLDE:
+			case ChequedejPackage.CHEQUE_DEJ__DEJES:
+			case ChequedejPackage.CHEQUE_DEJ__CHOIX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -219,6 +251,26 @@ public class ChequeDejItemProvider
 			(createChildParameter
 				(ChequedejPackage.Literals.CHEQUE_DEJ__PARAMETRAGE,
 				 ChequedejFactory.eINSTANCE.createParametrage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ChequedejPackage.Literals.CHEQUE_DEJ__STOCK,
+				 ChequedejFactory.eINSTANCE.createStock()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ChequedejPackage.Literals.CHEQUE_DEJ__SOLDE,
+				 ChequedejFactory.eINSTANCE.createSolde()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ChequedejPackage.Literals.CHEQUE_DEJ__DEJES,
+				 ChequedejFactory.eINSTANCE.createDeje()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ChequedejPackage.Literals.CHEQUE_DEJ__CHOIX,
+				 ChequedejFactory.eINSTANCE.createChoix()));
 	}
 
 	/**

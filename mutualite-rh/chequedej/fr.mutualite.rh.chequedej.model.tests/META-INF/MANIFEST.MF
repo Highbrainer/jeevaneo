@@ -11,5 +11,6 @@ Export-Package: mutualite.rh.chequedej.tests
 Require-Bundle: org.eclipse.core.runtime,
  fr.mutualite.rh.chequedej.model;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.junit;visibility:=reexport
+ org.junit;visibility:=reexport,
+ fr.mutualite.rh.chequedej.model.editor;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

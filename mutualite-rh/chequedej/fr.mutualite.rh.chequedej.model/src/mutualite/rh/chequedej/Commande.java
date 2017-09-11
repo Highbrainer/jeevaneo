@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mutualite.rh.chequedej.Commande#getParticipationPatronale <em>Participation Patronale</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Commande#getValeurNominale <em>Valeur Nominale</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Commande#getMois <em>Mois</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Commande#getCommandePrecedente <em>Commande Precedente</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Commande#getCommandeSuivante <em>Commande Suivante</em>}</li>
  * </ul>
  *
  * @see mutualite.rh.chequedej.ChequedejPackage#getCommande()
@@ -150,5 +152,77 @@ public interface Commande extends EObject {
 	 * @generated
 	 */
 	void setMois(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Commande Precedente</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link mutualite.rh.chequedej.Commande#getCommandeSuivante <em>Commande Suivante</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commande Precedente</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commande Precedente</em>' reference.
+	 * @see #setCommandePrecedente(Commande)
+	 * @see mutualite.rh.chequedej.ChequedejPackage#getCommande_CommandePrecedente()
+	 * @see mutualite.rh.chequedej.Commande#getCommandeSuivante
+	 * @model opposite="commandeSuivante"
+	 * @generated
+	 */
+	Commande getCommandePrecedente();
+
+	/**
+	 * Sets the value of the '{@link mutualite.rh.chequedej.Commande#getCommandePrecedente <em>Commande Precedente</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commande Precedente</em>' reference.
+	 * @see #getCommandePrecedente()
+	 * @generated
+	 */
+	void setCommandePrecedente(Commande value);
+
+	/**
+	 * Returns the value of the '<em><b>Commande Suivante</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link mutualite.rh.chequedej.Commande#getCommandePrecedente <em>Commande Precedente</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commande Suivante</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commande Suivante</em>' reference.
+	 * @see #setCommandeSuivante(Commande)
+	 * @see mutualite.rh.chequedej.ChequedejPackage#getCommande_CommandeSuivante()
+	 * @see mutualite.rh.chequedej.Commande#getCommandePrecedente
+	 * @model opposite="commandePrecedente"
+	 * @generated
+	 */
+	Commande getCommandeSuivante();
+
+	/**
+	 * Sets the value of the '{@link mutualite.rh.chequedej.Commande#getCommandeSuivante <em>Commande Suivante</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commande Suivante</em>' reference.
+	 * @see #getCommandeSuivante()
+	 * @generated
+	 */
+	void setCommandeSuivante(Commande value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Carnet carnet();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Item getOrCreateItem(int matricule);
 
 } // Commande
