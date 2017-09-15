@@ -16,8 +16,9 @@ import mutualite.rh.chequedej.Solde;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int) <em>Get Or Create Solde Individual</em>}</li>
- *   <li>{@link mutualite.rh.chequedej.Solde#getSolde(int) <em>Get Solde</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int, int) <em>Get Or Create Solde Individual</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Solde#getSolde(int, int) <em>Get Solde</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Solde#annee(java.lang.String) <em>Annee</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -94,26 +95,39 @@ public class SoldeTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int) <em>Get Or Create Solde Individual</em>}' operation.
+	 * Tests the '{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int, int) <em>Get Or Create Solde Individual</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int)
+	 * @see mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int, int)
 	 * @generated
 	 */
-	public void testGetOrCreateSoldeIndividual__int() {
+	public void testGetOrCreateSoldeIndividual__int_int() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
 	}
 
 	/**
-	 * Tests the '{@link mutualite.rh.chequedej.Solde#getSolde(int) <em>Get Solde</em>}' operation.
+	 * Tests the '{@link mutualite.rh.chequedej.Solde#getSolde(int, int) <em>Get Solde</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mutualite.rh.chequedej.Solde#getSolde(int)
+	 * @see mutualite.rh.chequedej.Solde#getSolde(int, int)
 	 * @generated
 	 */
-	public void testGetSolde__int() {
+	public void testGetSolde__int_int() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.Solde#annee(java.lang.String) <em>Annee</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.Solde#annee(java.lang.String)
+	 * @generated
+	 */
+	public void testAnnee__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

@@ -5,6 +5,7 @@ package mutualite.rh.chequedej.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import mutualite.rh.chequedej.ChequedejPackage;
 import mutualite.rh.chequedej.DejeIndividuel;
@@ -24,6 +25,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.webapp.CdoServlet;
 
 /**
  * This is the item provider adapter for a {@link mutualite.rh.chequedej.DejeIndividuel} object.
@@ -148,12 +152,13 @@ public class DejeIndividuelItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		Integer labelValue = ((DejeIndividuel)object).getNbEstimeJoursEntiers();
-		String label = labelValue == null ? null : labelValue.toString();
+		int matricule = ((DejeIndividuel)object).getMatricule();
+		Optional<Employe> opt = CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(e -> e.getMatricule()==matricule).findAny();
+		String label = !opt.isPresent() ? "Aucun salarié de matricule " + matricule + "!" : opt.get().getLabel();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DejeIndividuel_type") :
 			getString("_UI_DejeIndividuel_type") + " " + label;

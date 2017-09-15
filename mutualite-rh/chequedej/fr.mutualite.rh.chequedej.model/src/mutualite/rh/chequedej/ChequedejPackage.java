@@ -259,13 +259,22 @@ public interface ChequedejPackage extends EPackage {
 	int CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT = 9;
 
 	/**
+	 * The feature id for the '<em><b>Contrats</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHEQUE_DEJ__CONTRATS = 10;
+
+	/**
 	 * The number of structural features of the '<em>Cheque Dej</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHEQUE_DEJ_FEATURE_COUNT = 10;
+	int CHEQUE_DEJ_FEATURE_COUNT = 11;
 
 	/**
 	 * The operation id for the '<em>Integrate Deje</em>' operation.
@@ -274,7 +283,7 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT = 0;
+	int CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT_INTEGER = 0;
 
 	/**
 	 * The number of operations of the '<em>Cheque Dej</em>' class.
@@ -505,13 +514,22 @@ public interface ChequedejPackage extends EPackage {
 	int ETABLISSEMENT_VIRTUEL__LIBELLE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ETABLISSEMENT_VIRTUEL__ID = 2;
+
+	/**
 	 * The number of structural features of the '<em>Etablissement Virtuel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ETABLISSEMENT_VIRTUEL_FEATURE_COUNT = 2;
+	int ETABLISSEMENT_VIRTUEL_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Etablissement Virtuel</em>' class.
@@ -781,7 +799,7 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT = 0;
+	int SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT = 0;
 
 	/**
 	 * The operation id for the '<em>Get Solde</em>' operation.
@@ -790,7 +808,16 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOLDE___GET_SOLDE__INT = 1;
+	int SOLDE___GET_SOLDE__INT_INT = 1;
+
+	/**
+	 * The operation id for the '<em>Annee</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLDE___ANNEE__STRING = 2;
 
 	/**
 	 * The number of operations of the '<em>Solde</em>' class.
@@ -799,7 +826,7 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOLDE_OPERATION_COUNT = 2;
+	int SOLDE_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl <em>Solde Individuel</em>}' class.
@@ -839,13 +866,22 @@ public interface ChequedejPackage extends EPackage {
 	int SOLDE_INDIVIDUEL__HISTORIQUE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Annee</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLDE_INDIVIDUEL__ANNEE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Solde Individuel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLDE_INDIVIDUEL_FEATURE_COUNT = 3;
+	int SOLDE_INDIVIDUEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Incremente</em>' operation.
@@ -1226,6 +1262,117 @@ public interface ChequedejPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.ContratsImpl <em>Contrats</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.impl.ContratsImpl
+	 * @see mutualite.rh.chequedej.impl.ChequedejPackageImpl#getContrats()
+	 * @generated
+	 */
+	int CONTRATS = 19;
+
+	/**
+	 * The feature id for the '<em><b>Contrats</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRATS__CONTRATS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Contrats</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRATS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Get Or Create Contrat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRATS___GET_OR_CREATE_CONTRAT__INT = 0;
+
+	/**
+	 * The operation id for the '<em>Is Partiel</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRATS___IS_PARTIEL__INT = 1;
+
+	/**
+	 * The number of operations of the '<em>Contrats</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRATS_OPERATION_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.ContratImpl <em>Contrat</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.impl.ContratImpl
+	 * @see mutualite.rh.chequedej.impl.ChequedejPackageImpl#getContrat()
+	 * @generated
+	 */
+	int CONTRAT = 20;
+
+	/**
+	 * The feature id for the '<em><b>Temps Travail Mensuel</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRAT__TEMPS_TRAVAIL_MENSUEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Partiel</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRAT__PARTIEL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Matricule</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRAT__MATRICULE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Contrat</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRAT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Contrat</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRAT_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Succursale <em>Succursale</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1421,14 +1568,25 @@ public interface ChequedejPackage extends EPackage {
 	EAttribute getChequeDej_CommandeMaxParDefaut();
 
 	/**
-	 * Returns the meta object for the '{@link mutualite.rh.chequedej.ChequeDej#integrateDeje(java.lang.String, int, int, int) <em>Integrate Deje</em>}' operation.
+	 * Returns the meta object for the containment reference '{@link mutualite.rh.chequedej.ChequeDej#getContrats <em>Contrats</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Contrats</em>'.
+	 * @see mutualite.rh.chequedej.ChequeDej#getContrats()
+	 * @see #getChequeDej()
+	 * @generated
+	 */
+	EReference getChequeDej_Contrats();
+
+	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.ChequeDej#integrateDeje(java.lang.String, int, int, java.lang.Integer) <em>Integrate Deje</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Integrate Deje</em>' operation.
-	 * @see mutualite.rh.chequedej.ChequeDej#integrateDeje(java.lang.String, int, int, int)
+	 * @see mutualite.rh.chequedej.ChequeDej#integrateDeje(java.lang.String, int, int, java.lang.Integer)
 	 * @generated
 	 */
-	EOperation getChequeDej__IntegrateDeje__String_int_int();
+	EOperation getChequeDej__IntegrateDeje__String_int_int_Integer();
 
 	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Commande <em>Commande</em>}'.
@@ -1646,6 +1804,17 @@ public interface ChequedejPackage extends EPackage {
 	EAttribute getEtablissementVirtuel_Libelle();
 
 	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.EtablissementVirtuel#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see mutualite.rh.chequedej.EtablissementVirtuel#getId()
+	 * @see #getEtablissementVirtuel()
+	 * @generated
+	 */
+	EAttribute getEtablissementVirtuel_Id();
+
+	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Carnet <em>Carnet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1814,24 +1983,34 @@ public interface ChequedejPackage extends EPackage {
 	EReference getSolde_SoldesIndividuels();
 
 	/**
-	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int) <em>Get Or Create Solde Individual</em>}' operation.
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int, int) <em>Get Or Create Solde Individual</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Or Create Solde Individual</em>' operation.
-	 * @see mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int)
+	 * @see mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int, int)
 	 * @generated
 	 */
-	EOperation getSolde__GetOrCreateSoldeIndividual__int();
+	EOperation getSolde__GetOrCreateSoldeIndividual__int_int();
 
 	/**
-	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Solde#getSolde(int) <em>Get Solde</em>}' operation.
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Solde#getSolde(int, int) <em>Get Solde</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Solde</em>' operation.
-	 * @see mutualite.rh.chequedej.Solde#getSolde(int)
+	 * @see mutualite.rh.chequedej.Solde#getSolde(int, int)
 	 * @generated
 	 */
-	EOperation getSolde__GetSolde__int();
+	EOperation getSolde__GetSolde__int_int();
+
+	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Solde#annee(java.lang.String) <em>Annee</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Annee</em>' operation.
+	 * @see mutualite.rh.chequedej.Solde#annee(java.lang.String)
+	 * @generated
+	 */
+	EOperation getSolde__Annee__String();
 
 	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.SoldeIndividuel <em>Solde Individuel</em>}'.
@@ -1875,6 +2054,17 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSoldeIndividuel_Historique();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.SoldeIndividuel#getAnnee <em>Annee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Annee</em>'.
+	 * @see mutualite.rh.chequedej.SoldeIndividuel#getAnnee()
+	 * @see #getSoldeIndividuel()
+	 * @generated
+	 */
+	EAttribute getSoldeIndividuel_Annee();
 
 	/**
 	 * Returns the meta object for the '{@link mutualite.rh.chequedej.SoldeIndividuel#incremente(int, java.lang.String) <em>Incremente</em>}' operation.
@@ -2170,6 +2360,90 @@ public interface ChequedejPackage extends EPackage {
 	EAttribute getChoixIndividuel_Matricule();
 
 	/**
+	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Contrats <em>Contrats</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contrats</em>'.
+	 * @see mutualite.rh.chequedej.Contrats
+	 * @generated
+	 */
+	EClass getContrats();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link mutualite.rh.chequedej.Contrats#getContrats <em>Contrats</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Contrats</em>'.
+	 * @see mutualite.rh.chequedej.Contrats#getContrats()
+	 * @see #getContrats()
+	 * @generated
+	 */
+	EReference getContrats_Contrats();
+
+	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Contrats#getOrCreateContrat(int) <em>Get Or Create Contrat</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Or Create Contrat</em>' operation.
+	 * @see mutualite.rh.chequedej.Contrats#getOrCreateContrat(int)
+	 * @generated
+	 */
+	EOperation getContrats__GetOrCreateContrat__int();
+
+	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Contrats#isPartiel(int) <em>Is Partiel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Partiel</em>' operation.
+	 * @see mutualite.rh.chequedej.Contrats#isPartiel(int)
+	 * @generated
+	 */
+	EOperation getContrats__IsPartiel__int();
+
+	/**
+	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Contrat <em>Contrat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contrat</em>'.
+	 * @see mutualite.rh.chequedej.Contrat
+	 * @generated
+	 */
+	EClass getContrat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.Contrat#getTempsTravailMensuel <em>Temps Travail Mensuel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Temps Travail Mensuel</em>'.
+	 * @see mutualite.rh.chequedej.Contrat#getTempsTravailMensuel()
+	 * @see #getContrat()
+	 * @generated
+	 */
+	EAttribute getContrat_TempsTravailMensuel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.Contrat#isPartiel <em>Partiel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Partiel</em>'.
+	 * @see mutualite.rh.chequedej.Contrat#isPartiel()
+	 * @see #getContrat()
+	 * @generated
+	 */
+	EAttribute getContrat_Partiel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.Contrat#getMatricule <em>Matricule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Matricule</em>'.
+	 * @see mutualite.rh.chequedej.Contrat#getMatricule()
+	 * @see #getContrat()
+	 * @generated
+	 */
+	EAttribute getContrat_Matricule();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2343,12 +2617,20 @@ public interface ChequedejPackage extends EPackage {
 		EAttribute CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT = eINSTANCE.getChequeDej_CommandeMaxParDefaut();
 
 		/**
+		 * The meta object literal for the '<em><b>Contrats</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHEQUE_DEJ__CONTRATS = eINSTANCE.getChequeDej_Contrats();
+
+		/**
 		 * The meta object literal for the '<em><b>Integrate Deje</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT = eINSTANCE.getChequeDej__IntegrateDeje__String_int_int();
+		EOperation CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT_INTEGER = eINSTANCE.getChequeDej__IntegrateDeje__String_int_int_Integer();
 
 		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.CommandeImpl <em>Commande</em>}' class.
@@ -2517,6 +2799,14 @@ public interface ChequedejPackage extends EPackage {
 		EAttribute ETABLISSEMENT_VIRTUEL__LIBELLE = eINSTANCE.getEtablissementVirtuel_Libelle();
 
 		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ETABLISSEMENT_VIRTUEL__ID = eINSTANCE.getEtablissementVirtuel_Id();
+
+		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.CarnetImpl <em>Carnet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2662,7 +2952,7 @@ public interface ChequedejPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT = eINSTANCE.getSolde__GetOrCreateSoldeIndividual__int();
+		EOperation SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT = eINSTANCE.getSolde__GetOrCreateSoldeIndividual__int_int();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Solde</b></em>' operation.
@@ -2670,7 +2960,15 @@ public interface ChequedejPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SOLDE___GET_SOLDE__INT = eINSTANCE.getSolde__GetSolde__int();
+		EOperation SOLDE___GET_SOLDE__INT_INT = eINSTANCE.getSolde__GetSolde__int_int();
+
+		/**
+		 * The meta object literal for the '<em><b>Annee</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SOLDE___ANNEE__STRING = eINSTANCE.getSolde__Annee__String();
 
 		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl <em>Solde Individuel</em>}' class.
@@ -2705,6 +3003,14 @@ public interface ChequedejPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SOLDE_INDIVIDUEL__HISTORIQUE = eINSTANCE.getSoldeIndividuel_Historique();
+
+		/**
+		 * The meta object literal for the '<em><b>Annee</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOLDE_INDIVIDUEL__ANNEE = eINSTANCE.getSoldeIndividuel_Annee();
 
 		/**
 		 * The meta object literal for the '<em><b>Incremente</b></em>' operation.
@@ -2941,6 +3247,74 @@ public interface ChequedejPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHOIX_INDIVIDUEL__MATRICULE = eINSTANCE.getChoixIndividuel_Matricule();
+
+		/**
+		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.ContratsImpl <em>Contrats</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see mutualite.rh.chequedej.impl.ContratsImpl
+		 * @see mutualite.rh.chequedej.impl.ChequedejPackageImpl#getContrats()
+		 * @generated
+		 */
+		EClass CONTRATS = eINSTANCE.getContrats();
+
+		/**
+		 * The meta object literal for the '<em><b>Contrats</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTRATS__CONTRATS = eINSTANCE.getContrats_Contrats();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Or Create Contrat</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTRATS___GET_OR_CREATE_CONTRAT__INT = eINSTANCE.getContrats__GetOrCreateContrat__int();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Partiel</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTRATS___IS_PARTIEL__INT = eINSTANCE.getContrats__IsPartiel__int();
+
+		/**
+		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.ContratImpl <em>Contrat</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see mutualite.rh.chequedej.impl.ContratImpl
+		 * @see mutualite.rh.chequedej.impl.ChequedejPackageImpl#getContrat()
+		 * @generated
+		 */
+		EClass CONTRAT = eINSTANCE.getContrat();
+
+		/**
+		 * The meta object literal for the '<em><b>Temps Travail Mensuel</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTRAT__TEMPS_TRAVAIL_MENSUEL = eINSTANCE.getContrat_TempsTravailMensuel();
+
+		/**
+		 * The meta object literal for the '<em><b>Partiel</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTRAT__PARTIEL = eINSTANCE.getContrat_Partiel();
+
+		/**
+		 * The meta object literal for the '<em><b>Matricule</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTRAT__MATRICULE = eINSTANCE.getContrat_Matricule();
 
 	}
 

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mutualite.rh.chequedej.ChequeDej#getDejes <em>Dejes</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.ChequeDej#getChoix <em>Choix</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.ChequeDej#getCommandeMaxParDefaut <em>Commande Max Par Defaut</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.ChequeDej#getContrats <em>Contrats</em>}</li>
  * </ul>
  *
  * @see mutualite.rh.chequedej.ChequedejPackage#getChequeDej()
@@ -294,11 +295,37 @@ public interface ChequeDej extends EObject {
 	void setCommandeMaxParDefaut(int value);
 
 	/**
+	 * Returns the value of the '<em><b>Contrats</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Contrats</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Contrats</em>' containment reference.
+	 * @see #setContrats(Contrats)
+	 * @see mutualite.rh.chequedej.ChequedejPackage#getChequeDej_Contrats()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	Contrats getContrats();
+
+	/**
+	 * Sets the value of the '{@link mutualite.rh.chequedej.ChequeDej#getContrats <em>Contrats</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Contrats</em>' containment reference.
+	 * @see #getContrats()
+	 * @generated
+	 */
+	void setContrats(Contrats value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	void integrateDeje(String mois, int matricule, int nbEstimeJoursEntiers, int nbReelJoursEntiers);
+	void integrateDeje(String mois, int matricule, int nbEstimeJoursEntiers, Integer nbReelJoursEntiers);
 
 } // ChequeDej

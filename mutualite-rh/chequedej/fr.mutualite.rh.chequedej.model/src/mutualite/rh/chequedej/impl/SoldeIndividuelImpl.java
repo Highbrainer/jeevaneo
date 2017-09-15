@@ -6,24 +6,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Date;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
 import mutualite.rh.chequedej.HistoriqueSoldeIndividuel;
 import mutualite.rh.chequedej.SoldeIndividuel;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl#getNbCheques <em>Nb Cheques</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl#getMatricule <em>Matricule</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl#getHistorique <em>Historique</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl#getAnnee <em>Annee</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +87,26 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<HistoriqueSoldeIndividuel> historique;
+
+	/**
+	 * The default value of the '{@link #getAnnee() <em>Annee</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnee()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ANNEE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getAnnee() <em>Annee</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnee()
+	 * @generated
+	 * @ordered
+	 */
+	protected int annee = ANNEE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,6 +184,27 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getAnnee() {
+		return annee;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAnnee(int newAnnee) {
+		int oldAnnee = annee;
+		annee = newAnnee;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.SOLDE_INDIVIDUEL__ANNEE, oldAnnee, annee));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void incremente(int delta, String comment) {
@@ -176,7 +214,7 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 		if(delta==0) {
 			comment = "RAS / " + comment;
 		} else {
-		comment += " Ancien solde : " + ancienSolde + ". Nouveau solde : " + ancienSolde + (delta>0?" + ":" - ") + Math.abs(delta) + " = " + nouveauSolde + ".";
+		comment += " Ancien solde " + annee + " : " + ancienSolde + ". Nouveau solde " + annee + " : " + ancienSolde + (delta>0?" + ":" - ") + Math.abs(delta) + " = " + nouveauSolde + ".";
 		}
 		HistoriqueSoldeIndividuel log = ChequedejFactory.eINSTANCE.createHistoriqueSoldeIndividuel();
 		log.setComment(comment);
@@ -185,7 +223,7 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 		log.setSoldeAvant(ancienSolde);
 		getHistorique().add(log);
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,6 +252,8 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 				return getMatricule();
 			case ChequedejPackage.SOLDE_INDIVIDUEL__HISTORIQUE:
 				return getHistorique();
+			case ChequedejPackage.SOLDE_INDIVIDUEL__ANNEE:
+				return getAnnee();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +277,9 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 				getHistorique().clear();
 				getHistorique().addAll((Collection<? extends HistoriqueSoldeIndividuel>)newValue);
 				return;
+			case ChequedejPackage.SOLDE_INDIVIDUEL__ANNEE:
+				setAnnee((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -258,6 +301,9 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 			case ChequedejPackage.SOLDE_INDIVIDUEL__HISTORIQUE:
 				getHistorique().clear();
 				return;
+			case ChequedejPackage.SOLDE_INDIVIDUEL__ANNEE:
+				setAnnee(ANNEE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -276,6 +322,8 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 				return matricule != MATRICULE_EDEFAULT;
 			case ChequedejPackage.SOLDE_INDIVIDUEL__HISTORIQUE:
 				return historique != null && !historique.isEmpty();
+			case ChequedejPackage.SOLDE_INDIVIDUEL__ANNEE:
+				return annee != ANNEE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -309,6 +357,8 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 		result.append(nbCheques);
 		result.append(", matricule: ");
 		result.append(matricule);
+		result.append(", annee: ");
+		result.append(annee);
 		result.append(')');
 		return result.toString();
 	}

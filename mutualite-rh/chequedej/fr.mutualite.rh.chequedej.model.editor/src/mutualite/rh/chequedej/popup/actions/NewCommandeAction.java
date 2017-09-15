@@ -78,6 +78,8 @@ public class NewCommandeAction implements IObjectActionDelegate {
 				commande.setDate(now);
 				LocalDate nextMonth = LocalDate.now().plus(1, ChronoUnit.MONTHS);
 				commande.setMois(df.format(nextMonth));
+				commande.setParticipationPatronale(root.getParticipationPatronale());
+				commande.setValeurNominale(root.getValeurNominale());
 				root.getCarnet().getCommandes().add(commande);
 				CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(e->{
 					return e.getDateSortieEntreprise()==null || e.getDateSortieEntreprise().after(now);
@@ -117,7 +119,9 @@ public class NewCommandeAction implements IObjectActionDelegate {
 			if (element instanceof ChequeDej) {
 				root = ((ChequeDej) element);
 			} else if (element instanceof Carnet) {
-				root = (ChequeDej) ((Carnet) element).eContainer();
+				root = ((Carnet) element).root();
+			} else if (element instanceof Commande) {
+				root = ((Commande) element).carnet().root();
 			}
 
 		}

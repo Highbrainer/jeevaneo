@@ -11,6 +11,8 @@ import mutualite.rh.chequedej.Choix;
 import mutualite.rh.chequedej.ChoixIndividuel;
 import mutualite.rh.chequedej.CodeClient;
 import mutualite.rh.chequedej.Commande;
+import mutualite.rh.chequedej.Contrat;
+import mutualite.rh.chequedej.Contrats;
 import mutualite.rh.chequedej.Deje;
 import mutualite.rh.chequedej.DejeIndividuel;
 import mutualite.rh.chequedej.DejeMensuel;
@@ -171,6 +173,20 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * @generated
 	 */
 	private EClass choixIndividuelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contratsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contratEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -400,7 +416,16 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getChequeDej__IntegrateDeje__String_int_int() {
+	public EReference getChequeDej_Contrats() {
+		return (EReference)chequeDejEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getChequeDej__IntegrateDeje__String_int_int_Integer() {
 		return chequeDejEClass.getEOperations().get(0);
 	}
 
@@ -589,6 +614,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEtablissementVirtuel_Id() {
+		return (EAttribute)etablissementVirtuelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCarnet() {
 		return carnetEClass;
 	}
@@ -733,7 +767,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSolde__GetOrCreateSoldeIndividual__int() {
+	public EOperation getSolde__GetOrCreateSoldeIndividual__int_int() {
 		return soldeEClass.getEOperations().get(0);
 	}
 
@@ -742,8 +776,17 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSolde__GetSolde__int() {
+	public EOperation getSolde__GetSolde__int_int() {
 		return soldeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getSolde__Annee__String() {
+		return soldeEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -780,6 +823,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 */
 	public EReference getSoldeIndividuel_Historique() {
 		return (EReference)soldeIndividuelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSoldeIndividuel_Annee() {
+		return (EAttribute)soldeIndividuelEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1039,6 +1091,78 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getContrats() {
+		return contratsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContrats_Contrats() {
+		return (EReference)contratsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getContrats__GetOrCreateContrat__int() {
+		return contratsEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getContrats__IsPartiel__int() {
+		return contratsEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContrat() {
+		return contratEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContrat_TempsTravailMensuel() {
+		return (EAttribute)contratEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContrat_Partiel() {
+		return (EAttribute)contratEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContrat_Matricule() {
+		return (EAttribute)contratEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ChequedejFactory getChequedejFactory() {
 		return (ChequedejFactory)getEFactoryInstance();
 	}
@@ -1082,7 +1206,8 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		createEReference(chequeDejEClass, CHEQUE_DEJ__DEJES);
 		createEReference(chequeDejEClass, CHEQUE_DEJ__CHOIX);
 		createEAttribute(chequeDejEClass, CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT);
-		createEOperation(chequeDejEClass, CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT);
+		createEReference(chequeDejEClass, CHEQUE_DEJ__CONTRATS);
+		createEOperation(chequeDejEClass, CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT_INTEGER);
 
 		commandeEClass = createEClass(COMMANDE);
 		createEAttribute(commandeEClass, COMMANDE__DATE);
@@ -1106,6 +1231,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		etablissementVirtuelEClass = createEClass(ETABLISSEMENT_VIRTUEL);
 		createEAttribute(etablissementVirtuelEClass, ETABLISSEMENT_VIRTUEL__MATRICULES_EMPLOYES);
 		createEAttribute(etablissementVirtuelEClass, ETABLISSEMENT_VIRTUEL__LIBELLE);
+		createEAttribute(etablissementVirtuelEClass, ETABLISSEMENT_VIRTUEL__ID);
 
 		carnetEClass = createEClass(CARNET);
 		createEReference(carnetEClass, CARNET__COMMANDES);
@@ -1128,13 +1254,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 
 		soldeEClass = createEClass(SOLDE);
 		createEReference(soldeEClass, SOLDE__SOLDES_INDIVIDUELS);
-		createEOperation(soldeEClass, SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT);
-		createEOperation(soldeEClass, SOLDE___GET_SOLDE__INT);
+		createEOperation(soldeEClass, SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT);
+		createEOperation(soldeEClass, SOLDE___GET_SOLDE__INT_INT);
+		createEOperation(soldeEClass, SOLDE___ANNEE__STRING);
 
 		soldeIndividuelEClass = createEClass(SOLDE_INDIVIDUEL);
 		createEAttribute(soldeIndividuelEClass, SOLDE_INDIVIDUEL__NB_CHEQUES);
 		createEAttribute(soldeIndividuelEClass, SOLDE_INDIVIDUEL__MATRICULE);
 		createEReference(soldeIndividuelEClass, SOLDE_INDIVIDUEL__HISTORIQUE);
+		createEAttribute(soldeIndividuelEClass, SOLDE_INDIVIDUEL__ANNEE);
 		createEOperation(soldeIndividuelEClass, SOLDE_INDIVIDUEL___INCREMENTE__INT_STRING);
 
 		historiqueSoldeIndividuelEClass = createEClass(HISTORIQUE_SOLDE_INDIVIDUEL);
@@ -1169,6 +1297,16 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		choixIndividuelEClass = createEClass(CHOIX_INDIVIDUEL);
 		createEAttribute(choixIndividuelEClass, CHOIX_INDIVIDUEL__NB_MAX_CHEQUES);
 		createEAttribute(choixIndividuelEClass, CHOIX_INDIVIDUEL__MATRICULE);
+
+		contratsEClass = createEClass(CONTRATS);
+		createEReference(contratsEClass, CONTRATS__CONTRATS);
+		createEOperation(contratsEClass, CONTRATS___GET_OR_CREATE_CONTRAT__INT);
+		createEOperation(contratsEClass, CONTRATS___IS_PARTIEL__INT);
+
+		contratEClass = createEClass(CONTRAT);
+		createEAttribute(contratEClass, CONTRAT__TEMPS_TRAVAIL_MENSUEL);
+		createEAttribute(contratEClass, CONTRAT__PARTIEL);
+		createEAttribute(contratEClass, CONTRAT__MATRICULE);
 	}
 
 	/**
@@ -1221,12 +1359,13 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEReference(getChequeDej_Dejes(), this.getDeje(), null, "dejes", null, 1, 1, ChequeDej.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getChequeDej_Choix(), this.getChoix(), null, "choix", null, 1, 1, ChequeDej.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getChequeDej_CommandeMaxParDefaut(), ecorePackage.getEInt(), "commandeMaxParDefaut", "25", 1, 1, ChequeDej.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getChequeDej_Contrats(), this.getContrats(), null, "contrats", null, 1, 1, ChequeDej.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getChequeDej__IntegrateDeje__String_int_int(), null, "integrateDeje", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getChequeDej__IntegrateDeje__String_int_int_Integer(), null, "integrateDeje", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "mois", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "nbEstimeJoursEntiers", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "nbReelJoursEntiers", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEIntegerObject(), "nbReelJoursEntiers", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(commandeEClass, Commande.class, "Commande", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCommande_Date(), ecorePackage.getEDate(), "date", null, 1, 1, Commande.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1253,6 +1392,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEClass(etablissementVirtuelEClass, EtablissementVirtuel.class, "EtablissementVirtuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEtablissementVirtuel_MatriculesEmployes(), ecorePackage.getEInt(), "matriculesEmployes", null, 0, -1, EtablissementVirtuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEtablissementVirtuel_Libelle(), ecorePackage.getEString(), "libelle", null, 1, 1, EtablissementVirtuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEtablissementVirtuel_Id(), ecorePackage.getEString(), "id", null, 1, 1, EtablissementVirtuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(carnetEClass, Carnet.class, "Carnet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCarnet_Commandes(), this.getCommande(), null, "commandes", null, 0, -1, Carnet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1279,16 +1419,22 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEClass(soldeEClass, Solde.class, "Solde", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolde_SoldesIndividuels(), this.getSoldeIndividuel(), null, "soldesIndividuels", null, 0, -1, Solde.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSolde__GetOrCreateSoldeIndividual__int(), this.getSoldeIndividuel(), "getOrCreateSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSolde__GetOrCreateSoldeIndividual__int_int(), this.getSoldeIndividuel(), "getOrCreateSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSolde__GetSolde__int(), ecorePackage.getEInt(), "getSolde", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSolde__GetSolde__int_int(), ecorePackage.getEInt(), "getSolde", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getSolde__Annee__String(), ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "mois", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(soldeIndividuelEClass, SoldeIndividuel.class, "SoldeIndividuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSoldeIndividuel_NbCheques(), ecorePackage.getEInt(), "nbCheques", null, 1, 1, SoldeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSoldeIndividuel_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, SoldeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSoldeIndividuel_Historique(), this.getHistoriqueSoldeIndividuel(), null, "historique", null, 0, -1, SoldeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSoldeIndividuel_Annee(), ecorePackage.getEInt(), "annee", null, 1, 1, SoldeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getSoldeIndividuel__Incremente__int_String(), null, "incremente", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "delta", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1338,6 +1484,20 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEClass(choixIndividuelEClass, ChoixIndividuel.class, "ChoixIndividuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getChoixIndividuel_NbMaxCheques(), ecorePackage.getEIntegerObject(), "nbMaxCheques", null, 1, 1, ChoixIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getChoixIndividuel_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, ChoixIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(contratsEClass, Contrats.class, "Contrats", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContrats_Contrats(), this.getContrat(), null, "contrats", null, 0, -1, Contrats.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getContrats__GetOrCreateContrat__int(), this.getContrat(), "getOrCreateContrat", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getContrats__IsPartiel__int(), ecorePackage.getEBoolean(), "isPartiel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(contratEClass, Contrat.class, "Contrat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getContrat_TempsTravailMensuel(), ecorePackage.getEFloatObject(), "tempsTravailMensuel", null, 0, 1, Contrat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContrat_Partiel(), ecorePackage.getEBoolean(), "partiel", null, 1, 1, Contrat.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContrat_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, Contrat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

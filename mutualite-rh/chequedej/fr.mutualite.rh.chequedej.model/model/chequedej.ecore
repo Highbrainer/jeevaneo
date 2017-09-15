@@ -20,7 +20,7 @@
       <eParameters name="mois" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="matricule" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eParameters name="nbEstimeJoursEntiers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eParameters name="nbReelJoursEntiers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="nbReelJoursEntiers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="carnet" lowerBound="1"
         eType="#//Carnet" containment="true"/>
@@ -43,6 +43,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="commandeMaxParDefaut" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="25"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contrats" lowerBound="1"
+        eType="#//Contrats" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commande">
     <eOperations name="carnet" eType="#//Carnet"/>
@@ -80,6 +82,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Carnet">
     <eOperations name="root" eType="#//ChequeDej"/>
@@ -111,9 +114,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Solde">
     <eOperations name="getOrCreateSoldeIndividual" eType="#//SoldeIndividuel">
       <eParameters name="matricule" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="annee" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eOperations>
     <eOperations name="getSolde" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eParameters name="matricule" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="annee" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="annee" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eParameters name="mois" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="soldesIndividuels" upperBound="-1"
         eType="#//SoldeIndividuel" containment="true"/>
@@ -129,6 +137,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="historique" upperBound="-1"
         eType="#//HistoriqueSoldeIndividuel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="annee" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HistoriqueSoldeIndividuel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
@@ -176,6 +185,24 @@
   <eClassifiers xsi:type="ecore:EClass" name="ChoixIndividuel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nbMaxCheques" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contrats">
+    <eOperations name="getOrCreateContrat" eType="#//Contrat">
+      <eParameters name="matricule" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="isPartiel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="matricule" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contrats" upperBound="-1"
+        eType="#//Contrat" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contrat">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tempsTravailMensuel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partiel" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="matricule" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>

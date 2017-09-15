@@ -6,27 +6,31 @@ import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import mutualite.rh.chequedej.Carnet;
 import mutualite.rh.chequedej.ChequeDej;
 import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
 import mutualite.rh.chequedej.Choix;
 import mutualite.rh.chequedej.ChoixIndividuel;
+import mutualite.rh.chequedej.Contrats;
 import mutualite.rh.chequedej.Deje;
 import mutualite.rh.chequedej.DejeIndividuel;
+import mutualite.rh.chequedej.DejeMensuel;
 import mutualite.rh.chequedej.EtablissementsVirtuels;
 import mutualite.rh.chequedej.Parametrage;
 import mutualite.rh.chequedej.Solde;
 import mutualite.rh.chequedej.SoldeIndividuel;
 import mutualite.rh.chequedej.Stock;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Cheque Dej</b></em>'. <!-- end-user-doc -->
@@ -44,6 +48,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link mutualite.rh.chequedej.impl.ChequeDejImpl#getDejes <em>Dejes</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ChequeDejImpl#getChoix <em>Choix</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.ChequeDejImpl#getCommandeMaxParDefaut <em>Commande Max Par Defaut</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.impl.ChequeDejImpl#getContrats <em>Contrats</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,6 +58,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 	{
 		setCarnet(ChequedejFactory.eINSTANCE.createCarnet());
 		setChoix(ChequedejFactory.eINSTANCE.createChoix());
+		setContrats(ChequedejFactory.eINSTANCE.createContrats());
 		setDejes(ChequedejFactory.eINSTANCE.createDeje());
 		setEtablissementsVirtuels(ChequedejFactory.eINSTANCE.createEtablissementsVirtuels());
 		setParametrage(ChequedejFactory.eINSTANCE.createParametrage());
@@ -175,6 +181,16 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 	 * @ordered
 	 */
 	protected int commandeMaxParDefaut = COMMANDE_MAX_PAR_DEFAUT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getContrats() <em>Contrats</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContrats()
+	 * @generated
+	 * @ordered
+	 */
+	protected Contrats contrats;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -530,6 +546,49 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT, oldCommandeMaxParDefaut, commandeMaxParDefaut));
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Contrats getContrats() {
+		return contrats;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContrats(Contrats newContrats, NotificationChain msgs) {
+		Contrats oldContrats = contrats;
+		contrats = newContrats;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChequedejPackage.CHEQUE_DEJ__CONTRATS, oldContrats, newContrats);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContrats(Contrats newContrats) {
+		if (newContrats != contrats) {
+			NotificationChain msgs = null;
+			if (contrats != null)
+				msgs = ((InternalEObject)contrats).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChequedejPackage.CHEQUE_DEJ__CONTRATS, null, msgs);
+			if (newContrats != null)
+				msgs = ((InternalEObject)newContrats).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChequedejPackage.CHEQUE_DEJ__CONTRATS, null, msgs);
+			msgs = basicSetContrats(newContrats, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.CHEQUE_DEJ__CONTRATS, newContrats, newContrats));
+	}
+
 	private String moisPrecedent(String mois) {
 		LocalDate month = getCarnet().mois(mois).minus(1, ChronoUnit.MONTHS);
 		return getCarnet().formatMois(month);
@@ -547,21 +606,30 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 	 * 
 	 * @generated NOT
 	 */
-	public void integrateDeje(String mois, int matricule, int nbEstimeJoursEntiersMoisSuivant, int nbReelJoursEntiersMoisPrecedent) {
+	public void integrateDeje(String mois, int matricule, int nbEstimeJoursEntiersMoisSuivant, Integer nbReelJoursEntiersMoisPrecedent) {
 
 		// On tient à jour le deje de l'employe pour le mois précédent et le mois suivant : ça tiendra automatiquement le solde à jour...
 		String moisPrecedent = moisPrecedent(moisPrecedent(mois));
 		String moisSuivant = mois;
 		ChequeDej chequeDej = getCarnet().root();
-		DejeIndividuel diMoisPrecedent = chequeDej.getDejes().getOrCreateDejeMensuel(moisPrecedent).getOrCreateDejeIndividuel(matricule);
-		diMoisPrecedent.setNbReelJoursEntiers(nbReelJoursEntiersMoisPrecedent);
+		if (null == nbReelJoursEntiersMoisPrecedent) {
+			List<?> bon;
+			// ce n'est normal qu'à l'initialisation ==> pas de deje?
+			boolean dejaUnDejePourCeMatricule = chequeDej.getDejes().getDejesMensuels().stream().map(DejeMensuel::getDejesIndividuels).flatMap(List::stream).anyMatch(di -> di.getMatricule()==matricule);
+			if(dejaUnDejePourCeMatricule) {
+				throw new IllegalStateException("Mois précédent : le réel du mois précédent est obligatoire!");
+			}
+		} else {
+			DejeIndividuel diMoisPrecedent = chequeDej.getDejes().getOrCreateDejeMensuel(moisPrecedent).getOrCreateDejeIndividuel(matricule);
+			diMoisPrecedent.setNbReelJoursEntiers(nbReelJoursEntiersMoisPrecedent);
+		}
 		DejeIndividuel diMoisSuivant = chequeDej.getDejes().getOrCreateDejeMensuel(moisSuivant).getOrCreateDejeIndividuel(matricule);
 		diMoisSuivant.setNbEstimeJoursEntiers(nbEstimeJoursEntiersMoisSuivant);
 
-		SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(matricule);
+		SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(matricule, chequeDej.getSolde().annee(moisPrecedent));
 		int soldeEmploye = si.getNbCheques();
 		Integer estime = diMoisSuivant.getNbEstimeJoursEntiers();
-		String commentaire = "Commande pour " + dfMoisTextuel.format(getCarnet().mois(mois)) + " : " + estime + " jours entiers prévus ";
+		String commentaire = "Commande pour " + dfMoisTextuel.format(getCarnet().mois(mois)) + " : " + estime + " jours entiers prévus";
 
 		int commande = estime;
 		int deltaSolde = 0;
@@ -569,7 +637,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			// il nous doit des cheques...
 			deltaSolde = Math.min(estime, -soldeEmploye); // on ajoute à son solde les chèques qu'on ne va pas commander
 			commande -= deltaSolde;
-			commentaire += "- " + deltaSolde + " jours pris sur le solde";
+			commentaire += " - " + deltaSolde + " jours pris sur le solde";
 		}
 
 		Integer plafond = null;
@@ -581,14 +649,16 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			plafond = chequeDej.getCommandeMaxParDefaut();
 		}
 		if (commande > plafond) {
+			// on déverse le surplus au solde
+			deltaSolde += commande - plafond;
 			commande = plafond;
-			commentaire += ", limité à " + plafond + " selon choix du salarié.";
+			commentaire += ", limité à " + plafond + " selon choix du salarié";
 		} else if (soldeEmploye > 0 && commande < plafond) {
 			// on lui doit des chèques
 			// on lui rembourse... dans la limite du plafond
 			deltaSolde -= Math.min(plafond - commande, soldeEmploye);
 			commande += Math.min(plafond - commande, soldeEmploye);
-			commentaire += "+ " + (-deltaSolde) + " de solde";
+			commentaire += " + " + (-deltaSolde) + " de solde";
 		}
 		commentaire += " = " + commande + " " + (commande > 1 ? "chèques" : "chèque") + " commandés.";
 		si.incremente(deltaSolde, commentaire);
@@ -623,6 +693,8 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 				return basicSetDejes(null, msgs);
 			case ChequedejPackage.CHEQUE_DEJ__CHOIX:
 				return basicSetChoix(null, msgs);
+			case ChequedejPackage.CHEQUE_DEJ__CONTRATS:
+				return basicSetContrats(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -654,6 +726,8 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 				return getChoix();
 			case ChequedejPackage.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT:
 				return getCommandeMaxParDefaut();
+			case ChequedejPackage.CHEQUE_DEJ__CONTRATS:
+				return getContrats();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -696,6 +770,9 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			case ChequedejPackage.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT:
 				setCommandeMaxParDefaut((Integer)newValue);
 				return;
+			case ChequedejPackage.CHEQUE_DEJ__CONTRATS:
+				setContrats((Contrats)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -737,6 +814,9 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			case ChequedejPackage.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT:
 				setCommandeMaxParDefaut(COMMANDE_MAX_PAR_DEFAUT_EDEFAULT);
 				return;
+			case ChequedejPackage.CHEQUE_DEJ__CONTRATS:
+				setContrats((Contrats)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -768,6 +848,8 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 				return choix != null;
 			case ChequedejPackage.CHEQUE_DEJ__COMMANDE_MAX_PAR_DEFAUT:
 				return commandeMaxParDefaut != COMMANDE_MAX_PAR_DEFAUT_EDEFAULT;
+			case ChequedejPackage.CHEQUE_DEJ__CONTRATS:
+				return contrats != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -779,7 +861,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ChequedejPackage.CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT:
+			case ChequedejPackage.CHEQUE_DEJ___INTEGRATE_DEJE__STRING_INT_INT_INTEGER:
 				integrateDeje((String)arguments.get(0), (Integer)arguments.get(1), (Integer)arguments.get(2), (Integer)arguments.get(3));
 				return null;
 		}

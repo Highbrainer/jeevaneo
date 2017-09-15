@@ -62,6 +62,9 @@
                  name="mutualite.rh.chequedej.ChequeDej">
          		</objectClass>
          		<objectClass
+                 name="mutualite.rh.chequedej.Carnet">
+         		</objectClass>
+         		<objectClass
                  name="mutualite.rh.chequedej.Commande">
          		</objectClass>
          	</or>
@@ -158,5 +161,99 @@
          </visibility>
       </objectContribution>
    </extension>
-
+   
+   
+   <extension
+         point="org.eclipse.ui.popupMenus">   
+      <objectContribution
+            id="fr.mutualite.rh.chequedej.model.contribution5"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               id="fr.mutualite.rh.chequedej.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mutualite.rh.chequedej.popup.actions.ImportChoixAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.chequedej.model.importChoixAction"
+               label="Importer les choix (nb mensuel max)"
+               menubarPath="fr.mutualite.rh.chequedej.model.menu1/group1">
+         </action>
+         <visibility>
+         	<or>
+         		<objectClass
+                 name="mutualite.rh.chequedej.ChequeDej">
+         		</objectClass>
+         		<objectClass
+                 name="mutualite.rh.chequedej.Choix">
+         		</objectClass>
+         	</or>
+         </visibility>
+      </objectContribution>
+   </extension>
+ <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="fr.mutualite.rh.chequedej.model.contribution6"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               id="fr.mutualite.rh.chequedej.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mutualite.rh.chequedej.popup.actions.ExportCommandeAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.chequedej.model.exportCommandeAction"
+               label="Exporter la commande"
+               menubarPath="fr.mutualite.rh.chequedej.model.menu1/group1">
+         </action>
+         <visibility>
+            <or>
+               <objectClass
+                     name="mutualite.rh.chequedej.Commande">
+               </objectClass>
+            </or>
+         </visibility>
+      </objectContribution>
+   </extension>
+  <extension
+         point="org.eclipse.ui.popupMenus">   
+      <objectContribution
+            id="fr.mutualite.rh.chequedej.model.contribution7"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               id="fr.mutualite.rh.chequedej.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mutualite.rh.chequedej.popup.actions.ImportTempsTravailAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.chequedej.model.importTempsTravailAction"
+               label="Importer les temps de travail"
+               menubarPath="fr.mutualite.rh.chequedej.model.menu1/group1">
+         </action>
+         <visibility>
+         	<or>
+         		<objectClass
+                 name="mutualite.rh.chequedej.ChequeDej">
+         		</objectClass>
+         		<objectClass
+                 name="mutualite.rh.chequedej.Contrats">
+         		</objectClass>
+         	</or>
+         </visibility>
+      </objectContribution>
+   </extension>
 </plugin>

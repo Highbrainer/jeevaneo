@@ -1,5 +1,9 @@
 package fr.mutualite.rh.webapp;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import org.apache.log4j.Logger;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -23,6 +27,9 @@ public class Activator implements BundleActivator {
 		Activator.context = bundleContext;
 
 		log.info("Démarrage de GIC...");
+		System.out.println("Langue par défaut\t: " + Locale.getDefault().getDisplayName() + "\t- Format de date : " + DateFormat.getDateTimeInstance().format(new Date()));
+		Locale.setDefault(Locale.FRANCE);
+		System.out.println("Langue configurée\t: " + Locale.getDefault().getDisplayName() + "\t- Format de date : " + DateFormat.getDateTimeInstance().format(new Date()));	
 
 	}
 

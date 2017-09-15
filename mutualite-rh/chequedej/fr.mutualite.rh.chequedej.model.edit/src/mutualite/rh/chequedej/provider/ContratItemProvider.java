@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import mutualite.rh.chequedej.ChequedejPackage;
-import mutualite.rh.chequedej.ChoixIndividuel;
+import mutualite.rh.chequedej.Contrat;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,12 +30,12 @@ import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.webapp.CdoServlet;
 
 /**
- * This is the item provider adapter for a {@link mutualite.rh.chequedej.ChoixIndividuel} object.
+ * This is the item provider adapter for a {@link mutualite.rh.chequedej.Contrat} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChoixIndividuelItemProvider 
+public class ContratItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class ChoixIndividuelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChoixIndividuelItemProvider(AdapterFactory adapterFactory) {
+	public ContratItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,30 +64,53 @@ public class ChoixIndividuelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNbMaxChequesPropertyDescriptor(object);
+			addTempsTravailMensuelPropertyDescriptor(object);
+			addPartielPropertyDescriptor(object);
 			addMatriculePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Nb Max Cheques feature.
+	 * This adds a property descriptor for the Temps Travail Mensuel feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNbMaxChequesPropertyDescriptor(Object object) {
+	protected void addTempsTravailMensuelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ChoixIndividuel_nbMaxCheques_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChoixIndividuel_nbMaxCheques_feature", "_UI_ChoixIndividuel_type"),
-				 ChequedejPackage.Literals.CHOIX_INDIVIDUEL__NB_MAX_CHEQUES,
+				 getString("_UI_Contrat_tempsTravailMensuel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Contrat_tempsTravailMensuel_feature", "_UI_Contrat_type"),
+				 ChequedejPackage.Literals.CONTRAT__TEMPS_TRAVAIL_MENSUEL,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Partiel feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPartielPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Contrat_partiel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Contrat_partiel_feature", "_UI_Contrat_type"),
+				 ChequedejPackage.Literals.CONTRAT__PARTIEL,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -103,9 +126,9 @@ public class ChoixIndividuelItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ChoixIndividuel_matricule_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChoixIndividuel_matricule_feature", "_UI_ChoixIndividuel_type"),
-				 ChequedejPackage.Literals.CHOIX_INDIVIDUEL__MATRICULE,
+				 getString("_UI_Contrat_matricule_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Contrat_matricule_feature", "_UI_Contrat_type"),
+				 ChequedejPackage.Literals.CONTRAT__MATRICULE,
 				 true,
 				 false,
 				 false,
@@ -115,14 +138,14 @@ public class ChoixIndividuelItemProvider
 	}
 
 	/**
-	 * This returns ChoixIndividuel.gif.
+	 * This returns Contrat.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChoixIndividuel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Contrat"));
 	}
 
 	/**
@@ -133,12 +156,13 @@ public class ChoixIndividuelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		int matricule = ((ChoixIndividuel)object).getMatricule();
+		int matricule = ((Contrat)object).getMatricule();
 		Optional<Employe> opt = CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(e -> e.getMatricule()==matricule).findAny();
 		String label = !opt.isPresent() ? "Aucun salarié de matricule " + matricule + "!" : opt.get().getLabel();
+		
 		return label == null || label.length() == 0 ?
-			getString("_UI_ChoixIndividuel_type") :
-			getString("_UI_ChoixIndividuel_type") + " " + label;
+			getString("_UI_Contrat_type") :
+			getString("_UI_Contrat_type") + " " + label;
 	}
 	
 
@@ -153,9 +177,10 @@ public class ChoixIndividuelItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ChoixIndividuel.class)) {
-			case ChequedejPackage.CHOIX_INDIVIDUEL__NB_MAX_CHEQUES:
-			case ChequedejPackage.CHOIX_INDIVIDUEL__MATRICULE:
+		switch (notification.getFeatureID(Contrat.class)) {
+			case ChequedejPackage.CONTRAT__TEMPS_TRAVAIL_MENSUEL:
+			case ChequedejPackage.CONTRAT__PARTIEL:
+			case ChequedejPackage.CONTRAT__MATRICULE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

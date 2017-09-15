@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mutualite.rh.chequedej.SoldeIndividuel#getNbCheques <em>Nb Cheques</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.SoldeIndividuel#getMatricule <em>Matricule</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.SoldeIndividuel#getHistorique <em>Historique</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.SoldeIndividuel#getAnnee <em>Annee</em>}</li>
  * </ul>
  *
  * @see mutualite.rh.chequedej.ChequedejPackage#getSoldeIndividuel()
@@ -92,6 +93,32 @@ public interface SoldeIndividuel extends EObject {
 	 * @generated
 	 */
 	EList<HistoriqueSoldeIndividuel> getHistorique();
+
+	/**
+	 * Returns the value of the '<em><b>Annee</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Annee</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annee</em>' attribute.
+	 * @see #setAnnee(int)
+	 * @see mutualite.rh.chequedej.ChequedejPackage#getSoldeIndividuel_Annee()
+	 * @model required="true"
+	 * @generated
+	 */
+	int getAnnee();
+
+	/**
+	 * Sets the value of the '{@link mutualite.rh.chequedej.SoldeIndividuel#getAnnee <em>Annee</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Annee</em>' attribute.
+	 * @see #getAnnee()
+	 * @generated
+	 */
+	void setAnnee(int value);
 
 	/**
 	 * <!-- begin-user-doc -->

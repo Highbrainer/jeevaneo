@@ -180,6 +180,18 @@ public class ChequedejSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ChequedejPackage.CONTRATS: {
+				Contrats contrats = (Contrats)theEObject;
+				T result = caseContrats(contrats);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChequedejPackage.CONTRAT: {
+				Contrat contrat = (Contrat)theEObject;
+				T result = caseContrat(contrat);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -466,6 +478,36 @@ public class ChequedejSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseChoixIndividuel(ChoixIndividuel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contrats</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contrats</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContrats(Contrats object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contrat</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contrat</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContrat(Contrat object) {
 		return null;
 	}
 

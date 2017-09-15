@@ -5,6 +5,7 @@ package mutualite.rh.chequedej.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
@@ -27,6 +28,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.webapp.CdoServlet;
 
 /**
  * This is the item provider adapter for a {@link mutualite.rh.chequedej.SoldeIndividuel} object.
@@ -65,6 +69,7 @@ public class SoldeIndividuelItemProvider
 
 			addNbChequesPropertyDescriptor(object);
 			addMatriculePropertyDescriptor(object);
+			addAnneePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -105,6 +110,28 @@ public class SoldeIndividuelItemProvider
 				 getString("_UI_SoldeIndividuel_matricule_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SoldeIndividuel_matricule_feature", "_UI_SoldeIndividuel_type"),
 				 ChequedejPackage.Literals.SOLDE_INDIVIDUEL__MATRICULE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Annee feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAnneePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SoldeIndividuel_annee_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SoldeIndividuel_annee_feature", "_UI_SoldeIndividuel_type"),
+				 ChequedejPackage.Literals.SOLDE_INDIVIDUEL__ANNEE,
 				 true,
 				 false,
 				 false,
@@ -158,12 +185,15 @@ public class SoldeIndividuelItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		SoldeIndividuel soldeIndividuel = (SoldeIndividuel)object;
-		return getString("_UI_SoldeIndividuel_type") + " " + soldeIndividuel.getNbCheques();
+		int matricule = soldeIndividuel.getMatricule();
+		Optional<Employe> opt = CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(e -> e.getMatricule()==matricule).findAny();
+		String label = soldeIndividuel.getAnnee() + " " + (!opt.isPresent() ? "Aucun salarié de matricule " + matricule + "!" : opt.get().getLabel());
+		return getString("_UI_SoldeIndividuel_type") + " " + label;
 	}
 	
 
@@ -181,6 +211,7 @@ public class SoldeIndividuelItemProvider
 		switch (notification.getFeatureID(SoldeIndividuel.class)) {
 			case ChequedejPackage.SOLDE_INDIVIDUEL__NB_CHEQUES:
 			case ChequedejPackage.SOLDE_INDIVIDUEL__MATRICULE:
+			case ChequedejPackage.SOLDE_INDIVIDUEL__ANNEE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ChequedejPackage.SOLDE_INDIVIDUEL__HISTORIQUE:

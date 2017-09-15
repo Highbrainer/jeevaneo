@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <ul>
  *   <li>{@link mutualite.rh.chequedej.impl.EtablissementVirtuelImpl#getMatriculesEmployes <em>Matricules Employes</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.EtablissementVirtuelImpl#getLibelle <em>Libelle</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.impl.EtablissementVirtuelImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +63,26 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected String libelle = LIBELLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +141,27 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.ETABLISSEMENT_VIRTUEL__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -127,6 +169,8 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 				return getMatriculesEmployes();
 			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__LIBELLE:
 				return getLibelle();
+			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,6 +191,9 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__LIBELLE:
 				setLibelle((String)newValue);
 				return;
+			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__ID:
+				setId((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -165,6 +212,9 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__LIBELLE:
 				setLibelle(LIBELLE_EDEFAULT);
 				return;
+			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -181,6 +231,8 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 				return matriculesEmployes != null && !matriculesEmployes.isEmpty();
 			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__LIBELLE:
 				return LIBELLE_EDEFAULT == null ? libelle != null : !LIBELLE_EDEFAULT.equals(libelle);
+			case ChequedejPackage.ETABLISSEMENT_VIRTUEL__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -199,6 +251,8 @@ public class EtablissementVirtuelImpl extends MinimalEObjectImpl.Container imple
 		result.append(matriculesEmployes);
 		result.append(", libelle: ");
 		result.append(libelle);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

@@ -158,12 +158,12 @@ public class CodeClientItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		CodeClient codeClient = (CodeClient)object;
-		return getString("_UI_CodeClient_type") + " " + codeClient.getNumero();
+		return getString("_UI_CodeClient_type") + " " + codeClient.getNumero() + " " + codeClient.getLibelle();
 	}
 	
 

@@ -509,6 +509,52 @@ public class ChequedejItemProviderAdapterFactory extends ChequedejAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Contrats} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContratsItemProvider contratsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Contrats}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContratsAdapter() {
+		if (contratsItemProvider == null) {
+			contratsItemProvider = new ContratsItemProvider(this);
+		}
+
+		return contratsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Contrat} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContratItemProvider contratItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Contrat}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContratAdapter() {
+		if (contratItemProvider == null) {
+			contratItemProvider = new ContratItemProvider(this);
+		}
+
+		return contratItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -626,6 +672,8 @@ public class ChequedejItemProviderAdapterFactory extends ChequedejAdapterFactory
 		if (dejeMensuelItemProvider != null) dejeMensuelItemProvider.dispose();
 		if (choixItemProvider != null) choixItemProvider.dispose();
 		if (choixIndividuelItemProvider != null) choixIndividuelItemProvider.dispose();
+		if (contratsItemProvider != null) contratsItemProvider.dispose();
+		if (contratItemProvider != null) contratItemProvider.dispose();
 	}
 
 }

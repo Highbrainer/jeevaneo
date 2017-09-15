@@ -193,6 +193,24 @@ public interface ChequedejFactory extends EFactory {
 	ChoixIndividuel createChoixIndividuel();
 
 	/**
+	 * Returns a new object of class '<em>Contrats</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Contrats</em>'.
+	 * @generated
+	 */
+	Contrats createContrats();
+
+	/**
+	 * Returns a new object of class '<em>Contrat</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Contrat</em>'.
+	 * @generated
+	 */
+	Contrat createContrat();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -75,6 +75,8 @@ public class ChequedejFactoryImpl extends EFactoryImpl implements ChequedejFacto
 			case ChequedejPackage.DEJE_MENSUEL: return createDejeMensuel();
 			case ChequedejPackage.CHOIX: return createChoix();
 			case ChequedejPackage.CHOIX_INDIVIDUEL: return createChoixIndividuel();
+			case ChequedejPackage.CONTRATS: return createContrats();
+			case ChequedejPackage.CONTRAT: return createContrat();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -268,6 +270,26 @@ public class ChequedejFactoryImpl extends EFactoryImpl implements ChequedejFacto
 	public ChoixIndividuel createChoixIndividuel() {
 		ChoixIndividuelImpl choixIndividuel = new ChoixIndividuelImpl();
 		return choixIndividuel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Contrats createContrats() {
+		ContratsImpl contrats = new ContratsImpl();
+		return contrats;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Contrat createContrat() {
+		ContratImpl contrat = new ContratImpl();
+		return contrat;
 	}
 
 	/**

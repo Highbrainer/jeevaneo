@@ -144,6 +144,14 @@ public class ChequedejAdapterFactory extends AdapterFactoryImpl {
 				return createChoixIndividuelAdapter();
 			}
 			@Override
+			public Adapter caseContrats(Contrats object) {
+				return createContratsAdapter();
+			}
+			@Override
+			public Adapter caseContrat(Contrat object) {
+				return createContratAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -426,6 +434,34 @@ public class ChequedejAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createChoixIndividuelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Contrats <em>Contrats</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Contrats
+	 * @generated
+	 */
+	public Adapter createContratsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mutualite.rh.chequedej.Contrat <em>Contrat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mutualite.rh.chequedej.Contrat
+	 * @generated
+	 */
+	public Adapter createContratAdapter() {
 		return null;
 	}
 

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import mutualite.rh.chequedej.ChequeDej;
 import mutualite.rh.chequedej.ChequedejPackage;
 import mutualite.rh.chequedej.DejeIndividuel;
 import mutualite.rh.chequedej.DejeMensuel;
@@ -51,7 +52,8 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 						return;
 					}
 					// on tient le solde à jour... S'agit-il d'une correction ou de l'initialisation?
-					SoldeIndividuel si = di.dejeMensuel().deje().root().getSolde().getOrCreateSoldeIndividual(di.getMatricule());
+					ChequeDej chequeDej = di.dejeMensuel().deje().root();
+					SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(di.getMatricule(), chequeDej.getSolde().annee(di.dejeMensuel().getMois()));
 					int delta;
 					String comment;
 					if (ancien == null) {

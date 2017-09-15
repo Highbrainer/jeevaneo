@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link mutualite.rh.chequedej.EtablissementVirtuel#getMatriculesEmployes <em>Matricules Employes</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.EtablissementVirtuel#getLibelle <em>Libelle</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.EtablissementVirtuel#getId <em>Id</em>}</li>
  * </ul>
  *
  * @see mutualite.rh.chequedej.ChequedejPackage#getEtablissementVirtuel()
@@ -65,5 +66,31 @@ public interface EtablissementVirtuel extends EObject {
 	 * @generated
 	 */
 	void setLibelle(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see mutualite.rh.chequedej.ChequedejPackage#getEtablissementVirtuel_Id()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link mutualite.rh.chequedej.EtablissementVirtuel#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
 
 } // EtablissementVirtuel

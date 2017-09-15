@@ -5,7 +5,6 @@ package mutualite.rh.chequedej.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import mutualite.rh.chequedej.Cheque;
 import mutualite.rh.chequedej.ChequedejPackage;
 

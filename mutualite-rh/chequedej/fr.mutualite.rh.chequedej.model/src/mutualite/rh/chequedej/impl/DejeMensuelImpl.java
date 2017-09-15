@@ -125,7 +125,7 @@ public class DejeMensuelImpl extends MinimalEObjectImpl.Container implements Dej
 			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.DEJE_MENSUEL__MOIS, oldMois, mois));
 	}
 
-	private final DateFormat labelDf = new SimpleDateFormat("MMM YYYY");
+	private final DateFormat labelDf = new SimpleDateFormat("MMM yyyy");
 	private final DateFormat parseDf = new SimpleDateFormat("yyyyMM");
 	
 	/**

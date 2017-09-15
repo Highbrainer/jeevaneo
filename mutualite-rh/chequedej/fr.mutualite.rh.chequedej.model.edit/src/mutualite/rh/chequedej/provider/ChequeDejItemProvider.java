@@ -155,6 +155,7 @@ public class ChequeDejItemProvider
 			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__SOLDE);
 			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__DEJES);
 			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__CHOIX);
+			childrenFeatures.add(ChequedejPackage.Literals.CHEQUE_DEJ__CONTRATS);
 		}
 		return childrenFeatures;
 	}
@@ -220,6 +221,7 @@ public class ChequeDejItemProvider
 			case ChequedejPackage.CHEQUE_DEJ__SOLDE:
 			case ChequedejPackage.CHEQUE_DEJ__DEJES:
 			case ChequedejPackage.CHEQUE_DEJ__CHOIX:
+			case ChequedejPackage.CHEQUE_DEJ__CONTRATS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -271,6 +273,11 @@ public class ChequeDejItemProvider
 			(createChildParameter
 				(ChequedejPackage.Literals.CHEQUE_DEJ__CHOIX,
 				 ChequedejFactory.eINSTANCE.createChoix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ChequedejPackage.Literals.CHEQUE_DEJ__CONTRATS,
+				 ChequedejFactory.eINSTANCE.createContrats()));
 	}
 
 	/**

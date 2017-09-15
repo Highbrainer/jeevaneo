@@ -3,12 +3,13 @@
 package mutualite.rh.chequedej.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Optional;
+
+import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
-import mutualite.rh.chequedej.Solde;
-import mutualite.rh.chequedej.SoldeIndividuel;
+import mutualite.rh.chequedej.Contrat;
+import mutualite.rh.chequedej.Contrats;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -24,34 +25,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Solde</b></em>'.
+ * An implementation of the model object '<em><b>Contrats</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link mutualite.rh.chequedej.impl.SoldeImpl#getSoldesIndividuels <em>Soldes Individuels</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.impl.ContratsImpl#getContrats <em>Contrats</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
+public class ContratsImpl extends MinimalEObjectImpl.Container implements Contrats {
 	/**
-	 * The cached value of the '{@link #getSoldesIndividuels() <em>Soldes Individuels</em>}' containment reference list.
+	 * The cached value of the '{@link #getContrats() <em>Contrats</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSoldesIndividuels()
+	 * @see #getContrats()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SoldeIndividuel> soldesIndividuels;
+	protected EList<Contrat> contrats;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SoldeImpl() {
+	protected ContratsImpl() {
 		super();
 	}
 
@@ -62,7 +63,7 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ChequedejPackage.Literals.SOLDE;
+		return ChequedejPackage.Literals.CONTRATS;
 	}
 
 	/**
@@ -70,22 +71,11 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SoldeIndividuel> getSoldesIndividuels() {
-		if (soldesIndividuels == null) {
-			soldesIndividuels = new EObjectContainmentEList<SoldeIndividuel>(SoldeIndividuel.class, this, ChequedejPackage.SOLDE__SOLDES_INDIVIDUELS);
+	public EList<Contrat> getContrats() {
+		if (contrats == null) {
+			contrats = new EObjectContainmentEList<Contrat>(Contrat.class, this, ChequedejPackage.CONTRATS__CONTRATS);
 		}
-		return soldesIndividuels;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SoldeIndividuel getOrCreateSoldeIndividual(int matricule, int annee) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return contrats;
 	}
 
 	/**
@@ -93,12 +83,15 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public int getSolde(int matricule, int annee) {
-		Optional<SoldeIndividuel> opt = getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule && si.getAnnee()==annee).findAny();
+	public Contrat getOrCreateContrat(int matricule) {
+		Optional<Contrat> opt = getContrats().stream().filter(c -> c.getMatricule()==matricule).findAny();
 		if(opt.isPresent()) {
-			return opt.get().getNbCheques();
+			return opt.get();
 		}
-		return 0;
+		Contrat contrat = ChequedejFactory.eINSTANCE.createContrat();
+		contrat.setMatricule(matricule);
+		getContrats().add(contrat);
+		return contrat;
 	}
 
 	/**
@@ -106,8 +99,12 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public int annee(String mois) {
-		return Integer.parseInt(mois.substring(0, 4));
+	public boolean isPartiel(int matricule) {
+		Optional<Contrat> opt = getContrats().stream().filter(c -> c.getMatricule()==matricule).findAny();
+		if(opt.isPresent()) {
+			return opt.get().isPartiel();
+		}
+		return false;
 	}
 
 	/**
@@ -118,8 +115,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ChequedejPackage.SOLDE__SOLDES_INDIVIDUELS:
-				return ((InternalEList<?>)getSoldesIndividuels()).basicRemove(otherEnd, msgs);
+			case ChequedejPackage.CONTRATS__CONTRATS:
+				return ((InternalEList<?>)getContrats()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -132,8 +129,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ChequedejPackage.SOLDE__SOLDES_INDIVIDUELS:
-				return getSoldesIndividuels();
+			case ChequedejPackage.CONTRATS__CONTRATS:
+				return getContrats();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,9 +144,9 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ChequedejPackage.SOLDE__SOLDES_INDIVIDUELS:
-				getSoldesIndividuels().clear();
-				getSoldesIndividuels().addAll((Collection<? extends SoldeIndividuel>)newValue);
+			case ChequedejPackage.CONTRATS__CONTRATS:
+				getContrats().clear();
+				getContrats().addAll((Collection<? extends Contrat>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -163,8 +160,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ChequedejPackage.SOLDE__SOLDES_INDIVIDUELS:
-				getSoldesIndividuels().clear();
+			case ChequedejPackage.CONTRATS__CONTRATS:
+				getContrats().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -178,8 +175,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ChequedejPackage.SOLDE__SOLDES_INDIVIDUELS:
-				return soldesIndividuels != null && !soldesIndividuels.isEmpty();
+			case ChequedejPackage.CONTRATS__CONTRATS:
+				return contrats != null && !contrats.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -192,14 +189,12 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ChequedejPackage.SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT:
-				return getOrCreateSoldeIndividual((Integer)arguments.get(0), (Integer)arguments.get(1));
-			case ChequedejPackage.SOLDE___GET_SOLDE__INT_INT:
-				return getSolde((Integer)arguments.get(0), (Integer)arguments.get(1));
-			case ChequedejPackage.SOLDE___ANNEE__STRING:
-				return annee((String)arguments.get(0));
+			case ChequedejPackage.CONTRATS___GET_OR_CREATE_CONTRAT__INT:
+				return getOrCreateContrat((Integer)arguments.get(0));
+			case ChequedejPackage.CONTRATS___IS_PARTIEL__INT:
+				return isPartiel((Integer)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //SoldeImpl
+} //ContratsImpl

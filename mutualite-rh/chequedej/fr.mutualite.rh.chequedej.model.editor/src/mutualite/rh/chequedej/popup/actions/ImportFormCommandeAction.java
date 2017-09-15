@@ -248,15 +248,22 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 				int matricule = (int) line.getCell(0).getNumericCellValue();
 				String nom = line.getCell(1).getStringCellValue();
 				String prenom = line.getCell(2).getStringCellValue();
-				int nbJoursEntiersMoisPrecedent;
+				Integer nbJoursEntiersMoisPrecedent = null;
 				try {
-					nbJoursEntiersMoisPrecedent = (int) line.getCell(3).getNumericCellValue();
+					String sContent = line.getCell(3).getStringCellValue();
+					if (null != sContent && !sContent.trim().isEmpty()) {
+						nbJoursEntiersMoisPrecedent = (int) line.getCell(3).getNumericCellValue();
+					}
 				} catch (IllegalStateException e) {
 					comment += "Mois précédent : '" + line.getCell(3).getStringCellValue() + "' n'est pas un nombre entier! ";
 					continue;
 				}
 				int nbJoursEntiersMoisSuivant;
 				try {
+					String sContent = line.getCell(4).getStringCellValue();
+					if (null == sContent || sContent.trim().isEmpty()) {
+						throw new IllegalStateException();
+					}
 					nbJoursEntiersMoisSuivant = (int) line.getCell(4).getNumericCellValue();
 				} catch (IllegalStateException e) {
 					comment += "Mois suivant : '" + line.getCell(4).getStringCellValue() + "' n'est pas un nombre entier! ";
@@ -264,7 +271,7 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 				}
 
 				try {
-					root.carnet().root().integrateDeje(root.getMois(), matricule, nbJoursEntiersMoisPrecedent, nbJoursEntiersMoisSuivant);
+					root.carnet().root().integrateDeje(root.getMois(), matricule, nbJoursEntiersMoisSuivant, nbJoursEntiersMoisPrecedent);
 				} catch (IllegalStateException e) {
 					log.debug("", e);
 					comment = e.getMessage();
@@ -305,8 +312,6 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 		}
 		return thereAreErrors;
 	}
-
-
 
 	// private int computeSolde(Item item) {
 	// // Le solde est la différence entre ce qui avait été estimé pour le mois précédent il y a deux mois, et ce qui a été effectivement réalisé le mois précédent... PLUS le
