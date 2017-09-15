@@ -14,9 +14,9 @@
 <booleanAttribute key="includeOptional" value="true"/>
 <stringAttribute key="location" value="${workspace_loc}/../runtime-webapp-mutualite-rh.product"/>
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -console"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl en_US -consoleLog -console"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.8 -Xms256m -Xmx1024m -Declipse.p2.max.threads=10 -Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=10000 -Dconfig=C:\GIC\gic.config"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.8 -Xms256m -Xmx1024m -Declipse.p2.max.threads=10 -Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dorg.osgi.service.http.port=10000 -Dconfig=C:\GIC\gic.config&#13;&#10;-Duser.language=en&#13;&#10;-Duser.country=US"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="fr.mutualite.rh.webapp.product"/>
 <stringAttribute key="productFile" value="\fr.mutualite.rh.webapp\webapp-mutualite-rh.product"/>

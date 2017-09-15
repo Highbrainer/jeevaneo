@@ -243,9 +243,9 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 
 		Row line2 = getOrCreateRow(sheet, 3);
 		Cell cell2_4 = getOrCreateCell(line2, 4);
-		cell2_4.setCellValue(cell2_4.getStringCellValue() + dfMoisTextuel.format(previousMonth));
+		cell2_4.setCellValue(cell2_4.getStringCellValue() + " " + dfMoisTextuel.format(previousMonth));
 		Cell cell2_5 = getOrCreateCell(line2, 5);
-		cell2_5.setCellValue(cell2_5.getStringCellValue() + moisTextuel);
+		cell2_5.setCellValue(cell2_5.getStringCellValue() + " " + moisTextuel);
 
 		String nom = etab.getLibelle().trim();
 
@@ -324,9 +324,9 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 
 		Row line2 = getOrCreateRow(sheet, 3);
 		Cell cell2_4 = getOrCreateCell(line2, 4);
-		cell2_4.setCellValue(cell2_4.getStringCellValue() + dfMoisTextuel.format(previousMonth));
+		cell2_4.setCellValue(cell2_4.getStringCellValue() + " " + dfMoisTextuel.format(previousMonth));
 		Cell cell2_5 = getOrCreateCell(line2, 5);
-		cell2_5.setCellValue(cell2_5.getStringCellValue() + moisTextuel);
+		cell2_5.setCellValue(cell2_5.getStringCellValue() + " " + moisTextuel);
 
 		String nom = etab.getNom().trim();
 
