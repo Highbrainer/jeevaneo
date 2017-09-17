@@ -13,6 +13,12 @@ import mutualite.rh.chequedej.Succursale;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Succursale</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link mutualite.rh.chequedej.Succursale#codeClient() <em>Code Client</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class SuccursaleTest extends TestCase {
@@ -84,6 +90,19 @@ public class SuccursaleTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.Succursale#codeClient() <em>Code Client</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.Succursale#codeClient()
+	 * @generated
+	 */
+	public void testCodeClient() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //SuccursaleTest

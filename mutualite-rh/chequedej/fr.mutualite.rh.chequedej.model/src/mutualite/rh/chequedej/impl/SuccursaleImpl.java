@@ -2,11 +2,14 @@
  */
 package mutualite.rh.chequedej.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import mutualite.rh.chequedej.ChequedejPackage;
+import mutualite.rh.chequedej.CodeClient;
 import mutualite.rh.chequedej.Succursale;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -131,6 +134,15 @@ public class SuccursaleImpl extends MinimalEObjectImpl.Container implements Succ
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public CodeClient codeClient() {
+		return (CodeClient) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -194,6 +206,20 @@ public class SuccursaleImpl extends MinimalEObjectImpl.Container implements Succ
 				return ID_ETABLISSEMENT_EDEFAULT == null ? idEtablissement != null : !ID_ETABLISSEMENT_EDEFAULT.equals(idEtablissement);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ChequedejPackage.SUCCURSALE___CODE_CLIENT:
+				return codeClient();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

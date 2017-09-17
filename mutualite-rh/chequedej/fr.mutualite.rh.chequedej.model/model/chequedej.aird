@@ -62,6 +62,10 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_LdwdYVX4EeeNtbCy10RhZw" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_LdwdYlX4EeeNtbCy10RhZw"/>
               </children>
+              <children xmi:type="notation:Node" xmi:id="_fAaKQJvsEeexhKaCKK2Syw" type="3010" element="_e_b54JvsEeexhKaCKK2Syw">
+                <styles xmi:type="notation:FontStyle" xmi:id="_fAaKQZvsEeexhKaCKK2Syw" fontName="Segoe UI" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_fAaKQpvsEeexhKaCKK2Syw"/>
+              </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_e9EyQVX3EeeNtbCy10RhZw"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_e9EyQlX3EeeNtbCy10RhZw"/>
             </children>
@@ -984,6 +988,14 @@
             <labelFormat>bold</labelFormat>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_e_b54JvsEeexhKaCKK2Syw" name="codeClient() : CodeClient" tooltipText="codeClient() : CodeClient">
+          <target xmi:type="ecore:EOperation" href="chequedej.ecore#//Succursale/codeClient"/>
+          <semanticElements xmi:type="ecore:EOperation" href="chequedej.ecore#//Succursale/codeClient"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_e_cg8JvsEeexhKaCKK2Syw" labelAlignment="LEFT">
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_p2DuAFX3EeeNtbCy10RhZw" name="CodeClient" tooltipText="" outgoingEdges="_vHr_sFX3EeeNtbCy10RhZw" incomingEdges="_5oUF0FX3EeeNtbCy10RhZw" width="12" height="10">

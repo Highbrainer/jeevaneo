@@ -95,13 +95,22 @@ public interface ChequedejPackage extends EPackage {
 	int SUCCURSALE_FEATURE_COUNT = 2;
 
 	/**
+	 * The operation id for the '<em>Code Client</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCCURSALE___CODE_CLIENT = 0;
+
+	/**
 	 * The number of operations of the '<em>Succursale</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCURSALE_OPERATION_COUNT = 0;
+	int SUCCURSALE_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.CodeClientImpl <em>Code Client</em>}' class.
@@ -1405,6 +1414,16 @@ public interface ChequedejPackage extends EPackage {
 	EAttribute getSuccursale_IdEtablissement();
 
 	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Succursale#codeClient() <em>Code Client</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Code Client</em>' operation.
+	 * @see mutualite.rh.chequedej.Succursale#codeClient()
+	 * @generated
+	 */
+	EOperation getSuccursale__CodeClient();
+
+	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.CodeClient <em>Code Client</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2491,6 +2510,14 @@ public interface ChequedejPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SUCCURSALE__ID_ETABLISSEMENT = eINSTANCE.getSuccursale_IdEtablissement();
+
+		/**
+		 * The meta object literal for the '<em><b>Code Client</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SUCCURSALE___CODE_CLIENT = eINSTANCE.getSuccursale__CodeClient();
 
 		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.CodeClientImpl <em>Code Client</em>}' class.

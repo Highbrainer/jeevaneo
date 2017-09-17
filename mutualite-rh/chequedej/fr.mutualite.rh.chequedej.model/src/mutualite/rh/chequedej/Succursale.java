@@ -74,4 +74,12 @@ public interface Succursale extends EObject {
 	 */
 	void setIdEtablissement(Integer value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	CodeClient codeClient();
+
 } // Succursale

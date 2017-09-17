@@ -2,6 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="chequedej" nsURI="http://www.mutualite.fr/chequedej/1.0" nsPrefix="chequedej">
   <eClassifiers xsi:type="ecore:EClass" name="Succursale">
+    <eOperations name="codeClient" eType="#//CodeClient"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numero" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="idEtablissement" lowerBound="1"

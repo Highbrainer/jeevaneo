@@ -281,6 +281,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getSuccursale__CodeClient() {
+		return succursaleEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCodeClient() {
 		return codeClientEClass;
 	}
@@ -1189,6 +1198,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		succursaleEClass = createEClass(SUCCURSALE);
 		createEAttribute(succursaleEClass, SUCCURSALE__NUMERO);
 		createEAttribute(succursaleEClass, SUCCURSALE__ID_ETABLISSEMENT);
+		createEOperation(succursaleEClass, SUCCURSALE___CODE_CLIENT);
 
 		codeClientEClass = createEClass(CODE_CLIENT);
 		createEReference(codeClientEClass, CODE_CLIENT__SUCCURSALES);
@@ -1342,6 +1352,8 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEClass(succursaleEClass, Succursale.class, "Succursale", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSuccursale_Numero(), ecorePackage.getEInt(), "numero", null, 1, 1, Succursale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSuccursale_IdEtablissement(), ecorePackage.getEIntegerObject(), "idEtablissement", null, 1, 1, Succursale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getSuccursale__CodeClient(), this.getCodeClient(), "codeClient", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(codeClientEClass, CodeClient.class, "CodeClient", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCodeClient_Succursales(), this.getSuccursale(), null, "succursales", null, 0, -1, CodeClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
