@@ -218,6 +218,8 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 		int etabId = (int) line1.getCell(0).getNumericCellValue();
 		String etabName = line1.getCell(1).getStringCellValue();
 		String moisTextuel = line1.getCell(2).getStringCellValue();
+		String typeEtablissement = line1.getCell(3).getStringCellValue();
+		
 		{
 			// check form is targetted at the right mois
 
@@ -235,8 +237,8 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 
 		for (int n = 4; n < sheet.getLastRowNum(); ++n) {
 			Row line = sheet.getRow(n);
-			Cell cell5 = line.getCell(5, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-			boolean alreadyImported = cell5 != null ? cell5.getBooleanCellValue() : false;
+			Cell cell6 = line.getCell(6, MissingCellPolicy.RETURN_BLANK_AS_NULL);
+			boolean alreadyImported = cell6 != null ? cell6.getBooleanCellValue() : false;
 			if (alreadyImported) {
 				log.debug("Line " + n + " has already been imported : ignore!");
 				continue;
@@ -249,24 +251,26 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 				String nom = line.getCell(1).getStringCellValue();
 				String prenom = line.getCell(2).getStringCellValue();
 				Integer nbJoursEntiersMoisPrecedent = null;
+				Cell cell4 = line.getCell(4);
 				try {
-					String sContent = line.getCell(3).getStringCellValue();
+					String sContent = cell4.getStringCellValue();
 					if (null != sContent && !sContent.trim().isEmpty()) {
-						nbJoursEntiersMoisPrecedent = (int) line.getCell(3).getNumericCellValue();
+						nbJoursEntiersMoisPrecedent = (int) cell4.getNumericCellValue();
 					}
 				} catch (IllegalStateException e) {
-					comment += "Mois précédent : '" + line.getCell(3).getStringCellValue() + "' n'est pas un nombre entier! ";
+					comment += "Mois précédent : '" + cell4.getStringCellValue() + "' n'est pas un nombre entier! ";
 					continue;
 				}
 				int nbJoursEntiersMoisSuivant;
+				Cell cell5 = line.getCell(5);
 				try {
-					String sContent = line.getCell(4).getStringCellValue();
+					String sContent = cell5.getStringCellValue();
 					if (null == sContent || sContent.trim().isEmpty()) {
 						throw new IllegalStateException();
 					}
-					nbJoursEntiersMoisSuivant = (int) line.getCell(4).getNumericCellValue();
+					nbJoursEntiersMoisSuivant = (int) cell5.getNumericCellValue();
 				} catch (IllegalStateException e) {
-					comment += "Mois suivant : '" + line.getCell(4).getStringCellValue() + "' n'est pas un nombre entier! ";
+					comment += "Mois suivant : '" + cell5.getStringCellValue() + "' n'est pas un nombre entier! ";
 					continue;
 				}
 
@@ -283,9 +287,9 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 				imported = true;
 				comment = "Importé le " + dtf.format(LocalDateTime.now());
 			} finally {
-				getOrCreateCell(line, 5).setCellValue(imported);
+				getOrCreateCell(line, 6).setCellValue(imported);
 				if (null != comment)
-					getOrCreateCell(line, 6).setCellValue(comment);
+					getOrCreateCell(line, 7).setCellValue(comment);
 			}
 
 		}
@@ -293,8 +297,8 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 		{
 
 			// enregistrement des "logs" excel
-			sheet.setColumnWidth(5, 0);
-			sheet.autoSizeColumn(6);
+			sheet.setColumnWidth(6, 1);
+			sheet.autoSizeColumn(7);
 
 			File dir = new File(file.getParentFile(), "import-ok");
 			if (thereAreErrors) {
