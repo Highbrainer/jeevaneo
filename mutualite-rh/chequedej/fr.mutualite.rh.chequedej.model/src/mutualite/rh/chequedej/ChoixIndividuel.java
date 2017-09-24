@@ -33,7 +33,7 @@ public interface ChoixIndividuel extends EObject {
 	 * @return the value of the '<em>Nb Max Cheques</em>' attribute.
 	 * @see #setNbMaxCheques(Integer)
 	 * @see mutualite.rh.chequedej.ChequedejPackage#getChoixIndividuel_NbMaxCheques()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Integer getNbMaxCheques();

@@ -3,24 +3,21 @@
 package mutualite.rh.chequedej.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Optional;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
 import mutualite.rh.chequedej.Solde;
 import mutualite.rh.chequedej.SoldeIndividuel;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,12 +77,19 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public SoldeIndividuel getOrCreateSoldeIndividual(int matricule, int annee) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Optional<SoldeIndividuel> opt = getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule && si.getAnnee()==annee).findAny();
+		if(opt.isPresent()) {
+			return opt.get();
+		}
+		SoldeIndividuel si = ChequedejFactory.eINSTANCE.createSoldeIndividuel();
+		si.setMatricule(matricule);
+		si.setAnnee(annee);
+		si.setNbCheques(0);
+		getSoldesIndividuels().add(si);
+		return si;
 	}
 
 	/**

@@ -13,6 +13,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.prefs.Preferences;
 import java.util.stream.IntStream;
 
@@ -51,6 +52,7 @@ import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Etablissement;
 import fr.mutualite.rh.webapp.CdoServlet;
 import mutualite.rh.chequedej.ChequeDej;
+import mutualite.rh.chequedej.ChoixIndividuel;
 import mutualite.rh.chequedej.Commande;
 import mutualite.rh.chequedej.EtablissementVirtuel;
 import mutualite.rh.chequedej.presentation.ChequedejEditorPlugin;
@@ -252,7 +254,7 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		int[] pLine = { 4 };
 		System.out.println(etab.getId());
 		// on ne garde que les employés qui seront là au moins un jour du mois de la commande.
-		etab.getMatriculesEmployes().stream().map(this::findEmploye).filter(e -> e.getDateSortieEntreprise() == null || e.getDateSortieEntreprise().after(toDate(month)))
+		etab.getMatriculesEmployes().stream().map(this::findEmploye).filter(ExportFormCommandeAction.estConcerneParCommande(root))
 				.sorted((e1, e2) -> e1.getLabel().compareTo(e2.getLabel())).forEach(emp -> {
 					int i = pLine[0]++;
 
@@ -268,7 +270,7 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 				});
 
 		IntStream.range(0, 3).forEach(sheet::autoSizeColumn);
-		
+
 		// apply font 8px on col D
 		Font font = wb.createFont();
 		font.setFontName("Arial");
@@ -282,7 +284,6 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 			}
 			getOrCreateCell(line, 3).setCellStyle(temps);
 		});
-
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(new File(dir, "Formulaire ChequeDej " + moisTextuel + " " + nom + ".xlsx"));) {
 			wb.write(fileOutputStream);
@@ -333,8 +334,8 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		int[] pLine = { 4 };
 		System.out.println(etab.getId());
 		// on ne garde que les employés qui seront là au moins un jour du mois de la commande.
-		etab.getEmployes().stream().filter(e -> e.getDateSortieEntreprise() == null || e.getDateSortieEntreprise().after(toDate(month))).filter(this::isNotInEtablissementVirtuel)
-				.sorted((e1, e2) -> e1.getLabel().compareTo(e2.getLabel())).forEach(emp -> {
+		etab.getEmployes().stream().filter(estConcerneParCommande(root)).filter(this::isNotInEtablissementVirtuel).sorted((e1, e2) -> e1.getLabel().compareTo(e2.getLabel()))
+				.forEach(emp -> {
 					int i = pLine[0]++;
 
 					System.out.println(emp.getLabel());
@@ -349,7 +350,7 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 				});
 
 		IntStream.range(0, 3).forEach(sheet::autoSizeColumn);
-		
+
 		// apply font 8px on col D
 		Font font = wb.createFont();
 		font.setFontName("Arial");
@@ -371,7 +372,28 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 
 	}
 
-	private Date toDate(LocalDate month) {
+	public static Predicate<? super Employe> estConcerneParCommande(Commande commande) {
+		LocalDate month = LocalDate.parse(commande.getMois() + "01", dfMoisCommande);
+
+		return e -> {
+			boolean isInEntreprise = e.getDateSortieEntreprise() == null || e.getDateSortieEntreprise().after(toDate(month));
+			if (!isInEntreprise) {
+				return false;
+			}
+			ChoixIndividuel choix = commande.carnet().root().getChoix().getChoix(e.getMatricule());
+			if (null == choix) {
+				return true;
+			}
+			Integer nbMaxCheques = choix.getNbMaxCheques();
+			if(null==nbMaxCheques) {
+				return true;
+			}
+			return nbMaxCheques != 0;
+		};
+
+	}
+
+	private static Date toDate(LocalDate month) {
 		return Date.from(month.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 	}
 

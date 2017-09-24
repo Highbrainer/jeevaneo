@@ -36,7 +36,7 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 	private static final Adapter soldeUpdater = new AdapterImpl() {
 		@Override
 		public void notifyChanged(Notification msg) {
-			if (msg.getFeature().equals(ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_ESTIME_JOURS_ENTIERS)
+			if (null!=msg.getFeature() && msg.getFeature().equals(ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_ESTIME_JOURS_ENTIERS)
 					|| msg.getFeature().equals(ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS)) {
 				DejeIndividuel di = (DejeIndividuel) msg.getNotifier();
 				int estime = di.getNbEstimeJoursEntiers() == null ? 0 : di.getNbEstimeJoursEntiers();
@@ -52,14 +52,18 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 						return;
 					}
 					// on tient le solde à jour... S'agit-il d'une correction ou de l'initialisation?
-					ChequeDej chequeDej = di.dejeMensuel().deje().root();
-					SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(di.getMatricule(), chequeDej.getSolde().annee(di.dejeMensuel().getMois()));
+					DejeMensuel dejeMensuel = di.dejeMensuel();
+					if(null==dejeMensuel) {
+						return;
+					}
+					ChequeDej chequeDej = dejeMensuel.deje().root();
+					SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(di.getMatricule(), chequeDej.getSolde().annee(dejeMensuel.getMois()));
 					int delta;
 					String comment;
 					if (ancien == null) {
 						// C'est une initialisation...
 						delta = reel - estime;
-						comment = "Pour " + di.dejeMensuel().label() + " : " + estime + " " + (estime > 1 ? "jours" : "jour") + " estimé" + (estime > 1 ? "s" : "") + " pour " + reel + " "
+						comment = "Pour " + dejeMensuel.label() + " : " + estime + " " + (estime > 1 ? "jours" : "jour") + " estimé" + (estime > 1 ? "s" : "") + " pour " + reel + " "
 								+ (reel > 1 ? "jours" : "jour") + " entiers effectivement travaillés. Soit une différence de " + delta + ".";
 					} else {
 						// on avait déjà une valeur, qu'on corrige
@@ -68,7 +72,7 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 						if (msg.getFeature().equals(ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS)) {
 							label = "réel";
 						}
-						comment = "Le nombre " + label + " de jours entiers pour " + di.dejeMensuel().label() + " est passé de " + ancien + " à " + nouveau
+						comment = "Le nombre " + label + " de jours entiers pour " + dejeMensuel.label() + " est passé de " + ancien + " à " + nouveau
 								+ ". Soit une différence de " + delta + ".";
 
 						if (msg.getFeature().equals(ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS)) {

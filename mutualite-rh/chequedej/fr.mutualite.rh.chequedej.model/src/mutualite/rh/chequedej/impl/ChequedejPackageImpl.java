@@ -1494,7 +1494,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(choixIndividuelEClass, ChoixIndividuel.class, "ChoixIndividuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getChoixIndividuel_NbMaxCheques(), ecorePackage.getEIntegerObject(), "nbMaxCheques", null, 1, 1, ChoixIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getChoixIndividuel_NbMaxCheques(), ecorePackage.getEIntegerObject(), "nbMaxCheques", null, 0, 1, ChoixIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getChoixIndividuel_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, ChoixIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contratsEClass, Contrats.class, "Contrats", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -18,6 +18,7 @@ import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
+import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.webapp.CdoServlet;
 import mutualite.rh.chequedej.Carnet;
 import mutualite.rh.chequedej.ChequeDej;
@@ -81,9 +82,7 @@ public class NewCommandeAction implements IObjectActionDelegate {
 				commande.setParticipationPatronale(root.getParticipationPatronale());
 				commande.setValeurNominale(root.getValeurNominale());
 				root.getCarnet().getCommandes().add(commande);
-				CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(e->{
-					return e.getDateSortieEntreprise()==null || e.getDateSortieEntreprise().after(now);
-				}).map(e -> {
+				CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(ExportFormCommandeAction.estConcerneParCommande(commande)).map(e -> {
 					Item item = ChequedejFactory.eINSTANCE.createItem();
 					item.setMatricule(e.getMatricule());
 					item.setNom(e.getNom());

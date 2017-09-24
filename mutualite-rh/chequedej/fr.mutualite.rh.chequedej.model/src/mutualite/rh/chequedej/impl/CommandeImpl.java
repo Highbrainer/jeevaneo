@@ -413,6 +413,7 @@ public class CommandeImpl extends MinimalEObjectImpl.Container implements Comman
 		}
 		Item item = ChequedejFactory.eINSTANCE.createItem();
 		item.setMatricule(matricule);
+		//FIXME associer une succursale!
 		getItems().add(item);
 		return item;
 	}
