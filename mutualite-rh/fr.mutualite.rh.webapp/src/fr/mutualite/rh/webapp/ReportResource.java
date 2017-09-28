@@ -326,6 +326,14 @@ public class ReportResource {
 	}
 
 	@GET
+	@Path("/objectifs.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsObjectifsDernierEntretien() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsObjectifsDernierEntretien(mut);
+	}
+
+	@GET
 	@Path("/responsables.xls")
 	@Produces("application/vnd.ms-excel")
 	public Response xlsResponsables() {
@@ -438,6 +446,103 @@ public class ReportResource {
 		});
 
 		response.header("Content-Disposition", "attachment; filename=demandes-rencontre-rh.xls");
+		return response.build();
+
+	}
+
+	public Response xlsObjectifsDernierEntretien(Mutualite mut) {
+
+		ResponseBuilder response = Response.ok(new StreamingOutput() {
+
+			@Override
+			public void write(OutputStream out) throws IOException, WebApplicationException {
+				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+					HSSFSheet sheet = wb.createSheet("Objectifs");
+
+					CellStyle dateStyle = wb.createCellStyle();
+					CreationHelper createHelper = wb.getCreationHelper();
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm yyyy"));
+
+					Font bold = wb.createFont();
+					bold.setBold(true);
+
+					// HSSFFont boldWhite = wb.createFont();
+					// boldWhite.setBold(true);
+					// boldWhite.setColor(IndexedColors.WHITE.index);
+
+					CellStyle titleStyle = wb.createCellStyle();
+					titleStyle.setFillBackgroundColor(IndexedColors.LIGHT_YELLOW.index);
+					// XSSFColor lightGray = setColor(wb,(byte) 0x12, (byte)0xE0,(byte) 0x50);
+					titleStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
+					titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+					titleStyle.setAlignment(HorizontalAlignment.LEFT);
+					titleStyle.setFont(bold);
+
+					int nbCols = -1;
+					{
+						// TITRES
+
+						Row row = sheet.createRow(0);
+						Cell cell;
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Etablissement");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Nom");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Prénom");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Date d'entretien");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Objectif");
+						cell = row.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Echéance");
+					}
+
+					mut.getEffectif().getEmployes().forEach(emp -> {
+						emp.getEntretiens().stream()
+
+								.filter(ent -> ent.getDate() != null)
+
+								.filter(EntretienAnnuel.class::isInstance)
+
+								.map(EntretienAnnuel.class::cast)
+								
+								.max((e1,e2)->e1.getDate().compareTo(e2.getDate()))
+								
+								.ifPresent(entretien -> {
+
+									entretien.getObjectifs().stream().filter(o -> o.getLibelle()!=null && !o.getLibelle().trim().isEmpty()).forEach(objectif -> {
+										
+										HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
+										int i = -1;
+										row.createCell(++i).setCellValue(emp.getEtablissement().getNom());
+										row.createCell(++i).setCellValue(emp.getNom());
+										row.createCell(++i).setCellValue(emp.getPrenom());
+										Cell cell = row.createCell(++i);
+										cell.setCellStyle(dateStyle);
+										cell.setCellValue(entretien.getDate());
+										row.createCell(++i).setCellValue(objectif.getLibelle());
+										row.createCell(++i).setCellValue(objectif.getEcheance());
+									});
+								});
+					});
+
+					int i = -1;
+					IntStream.range(0, nbCols + 1).forEach(sheet::autoSizeColumn);
+
+					wb.write(out);
+					out.flush();
+				}
+			}
+		});
+
+		response.header("Content-Disposition", "attachment; filename=objectifs.xls");
 		return response.build();
 
 	}

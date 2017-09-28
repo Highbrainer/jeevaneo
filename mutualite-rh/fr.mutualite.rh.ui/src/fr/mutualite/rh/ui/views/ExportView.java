@@ -106,6 +106,15 @@ public class ExportView extends ViewPart {
 			});
 		}
 		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Objectifs", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Liste des objectifs du dernier EAE de chaque salarié.");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					xlsObjectifs();
+				}
+			});
+		}
+		{
 			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Sauvegarde", SWT.WRAP);
 			toolkit.createLabel(form.getBody(), "Exporter la totalité de la base au format XML.");
 			link.addHyperlinkListener(new HyperlinkAdapter() {
@@ -156,6 +165,27 @@ public class ExportView extends ViewPart {
 				throw new RuntimeException(e1);
 			}
 			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Souhaits de formation exportés vers " + file.getAbsolutePath());
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+		}
+	}
+
+	private void xlsObjectifs() {
+		File file = chooseFile("objectifs-", "xls", "xslx");
+		if (null != file) {
+			Response resp = new ReportResource().xlsObjectifsDernierEntretien();
+			StreamingOutput output = (StreamingOutput) resp.getEntity();
+			try (FileOutputStream out = new FileOutputStream(file);) {
+				output.write(out);
+				out.flush();
+			} catch (IOException e1) {
+				MessageDialog.openError(ExportView.this.getSite().getShell(), "Export KO", "Impossible d'écrire dans le fichier " + e1.getMessage());
+				throw new RuntimeException(e1);
+			}
+			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Objectifs exportés vers " + file.getAbsolutePath());
 			try {
 				Desktop.getDesktop().open(file);
 			} catch (IOException e1) {
