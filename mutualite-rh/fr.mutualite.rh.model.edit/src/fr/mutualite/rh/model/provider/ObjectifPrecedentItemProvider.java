@@ -3,20 +3,25 @@
 package fr.mutualite.rh.model.provider;
 
 
+import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.EvaluationAtteinteObjectif;
 import fr.mutualite.rh.model.MutPackage;
+import fr.mutualite.rh.model.Objectif;
 import fr.mutualite.rh.model.ObjectifPrecedent;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.cdo.edit.CDOItemProviderAdapter;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -78,18 +83,30 @@ public class ObjectifPrecedentItemProvider
 	 */
 	protected void addObjectifPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ObjectifPrecedent_objectif_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectifPrecedent_objectif_feature", "_UI_ObjectifPrecedent_type"),
-				 MutPackage.Literals.OBJECTIF_PRECEDENT__OBJECTIF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+			(new ItemPropertyDescriptor(
+			  ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+			  getResourceLocator(),
+			  getString("_UI_ObjectifPrecedent_objectif_feature"),
+			  getString("_UI_PropertyDescriptor_description", "_UI_ObjectifPrecedent_objectif_feature", "_UI_ObjectifPrecedent_type"),
+			  MutPackage.Literals.OBJECTIF_PRECEDENT__OBJECTIF,
+			  true,
+			  false,
+			  true,
+			  null,
+			  null,
+			  null) {
+				@Override
+				protected Collection<?> getComboBoxObjects(Object object) {
+					if (object instanceof ObjectifPrecedent) {
+						ObjectifPrecedent op = (ObjectifPrecedent) object;
+						EObject ea = op.eContainer();
+						Employe emp = (Employe) ea.eContainer();
+						EList<Objectif> objectifsDuDernierEae = emp.getEntretiens().stream().filter(EntretienAnnuel.class::isInstance).filter(ea1 -> !ea1.equals(ea)).map(EntretienAnnuel.class::cast).max((e1,e2)->e1.getDate().compareTo(e2.getDate())).map(EntretienAnnuel::getObjectifs).orElse(new BasicEList<>());
+						return objectifsDuDernierEae;
+					}
+					return super.getComboBoxObjects(object);
+				}
+			});
 	}
 
 	/**
