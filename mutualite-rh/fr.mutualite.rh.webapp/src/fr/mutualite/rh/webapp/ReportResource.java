@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -34,6 +35,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
 import fr.mutualite.rh.model.Employe;
+import fr.mutualite.rh.model.Entretien;
 import fr.mutualite.rh.model.EntretienAnnuel;
 import fr.mutualite.rh.model.EntretienProfessionnel;
 import fr.mutualite.rh.model.Etablissement;
@@ -705,14 +707,30 @@ public class ReportResource {
 	}
 
 	@GET
-	@Path("/dates-entretiens.xls")
+	@Path("/dates-entretiens-pros.xls")
 	@Produces("application/vnd.ms-excel")
-	public Response xlsDatesEntretiens() {
+	public Response xlsDatesEntretiensPros() {
 		Mutualite mut = CdoServlet.getMutualite();
-		return xlsDatesEntretiens(mut);
+		return xlsDatesEntretiensPros(mut);
 	}
 
-	public Response xlsDatesEntretiens(Mutualite mut) {
+	@GET
+	@Path("/dates-entretiens-annuels.xls")
+	@Produces("application/vnd.ms-excel")
+	public Response xlsDatesEntretiensAnnuels() {
+		Mutualite mut = CdoServlet.getMutualite();
+		return xlsDatesEntretiensAnnuels(mut);
+	}
+
+	public Response xlsDatesEntretiensPros(Mutualite mut) {
+		return xlsDatesEntretiens(mut, EntretienProfessionnel.class::isInstance);
+	}
+
+	public Response xlsDatesEntretiensAnnuels(Mutualite mut) {
+		return xlsDatesEntretiens(mut, EntretienAnnuel.class::isInstance);
+	}
+
+	public Response xlsDatesEntretiens(Mutualite mut, Predicate<? super Entretien> filter) {
 
 		ResponseBuilder response = Response.ok(new StreamingOutput() {
 
@@ -776,9 +794,7 @@ public class ReportResource {
 
 								.filter(ent -> ent.getDate() != null)
 
-								.filter(EntretienProfessionnel.class::isInstance)
-
-								.map(EntretienProfessionnel.class::cast)
+								.filter(filter)
 
 								.sorted((ep1, ep2) -> {
 									return ep2.getDate().compareTo(ep1.getDate());

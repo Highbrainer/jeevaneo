@@ -88,11 +88,20 @@ public class ExportView extends ViewPart {
 			});
 		}
 		{
-			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Historique des entretiens", SWT.WRAP);
-			toolkit.createLabel(form.getBody(), "Liste des dates d'entretien par salarié.");
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Historique des entretiens pros", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Liste des dates d'entretiens pros par salarié.");
 			link.addHyperlinkListener(new HyperlinkAdapter() {
 				public void linkActivated(HyperlinkEvent e) {
-					datesEntretiens();
+					datesEntretiensPros();
+				}
+			});
+		}
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Historique des EAEs", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Liste des dates d'entretiens annuels par salarié.");
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					datesEntretiensAnnuels();
 				}
 			});
 		}
@@ -218,10 +227,10 @@ public class ExportView extends ViewPart {
 		}
 	}
 
-	private void datesEntretiens() {
-		File file = chooseFile("dates-entretiens-", "xls", "xslx");
+	private void datesEntretiensAnnuels() {
+		File file = chooseFile("dates-entretiens-annuels-", "xls", "xslx");
 		if (null != file) {
-			Response resp = new ReportResource().xlsDatesEntretiens();
+			Response resp = new ReportResource().xlsDatesEntretiensAnnuels();
 			StreamingOutput output = (StreamingOutput) resp.getEntity();
 			try (FileOutputStream out = new FileOutputStream(file);) {
 				output.write(out);
@@ -230,7 +239,28 @@ public class ExportView extends ViewPart {
 				MessageDialog.openError(ExportView.this.getSite().getShell(), "Export KO", "Impossible d'écrire dans le fichier " + e1.getMessage());
 				throw new RuntimeException(e1);
 			}
-			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Dates d'entretiens exportées vers " + file.getAbsolutePath());
+			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Dates d'EAE exportées vers " + file.getAbsolutePath());
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+		}
+	}
+
+	private void datesEntretiensPros() {
+		File file = chooseFile("dates-entretiens-pros-", "xls", "xslx");
+		if (null != file) {
+			Response resp = new ReportResource().xlsDatesEntretiensPros();
+			StreamingOutput output = (StreamingOutput) resp.getEntity();
+			try (FileOutputStream out = new FileOutputStream(file);) {
+				output.write(out);
+				out.flush();
+			} catch (IOException e1) {
+				MessageDialog.openError(ExportView.this.getSite().getShell(), "Export KO", "Impossible d'écrire dans le fichier " + e1.getMessage());
+				throw new RuntimeException(e1);
+			}
+			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Dates d'entretiens pros exportées vers " + file.getAbsolutePath());
 			try {
 				Desktop.getDesktop().open(file);
 			} catch (IOException e1) {
