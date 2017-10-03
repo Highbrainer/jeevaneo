@@ -1,6 +1,7 @@
 package fr.mutualite.rh.webapp;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,6 +34,9 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
@@ -180,9 +184,10 @@ public class ReportResource {
 
 			@Override
 			public void write(OutputStream out) throws IOException, WebApplicationException {
-				try (HSSFWorkbook wb = new HSSFWorkbook();) {
+				InputStream template = getClass().getResourceAsStream("/matrices-employes-formations-template.xlsx");
+				try (Workbook wb = new XSSFWorkbook(template);) {
 
-					mut.getEtablissements().getEtablissements().forEach(et -> {
+					mut.getEtablissements().getEtablissements().stream().sorted((e1,e2)->e1.getId()-e2.getId()).forEach(et -> {
 						generateSheet(et.getId(), mut, annee, wb);
 					});
 					generateSheet(null, mut, annee, wb);
@@ -406,9 +411,9 @@ public class ReportResource {
 
 								.filter(ent -> ent.getDate() != null)
 
-//								.filter(EntretienProfessionnel.class::isInstance)
-//
-//								.map(EntretienProfessionnel.class::cast)
+								// .filter(EntretienProfessionnel.class::isInstance)
+								//
+								// .map(EntretienProfessionnel.class::cast)
 
 								.forEach(entretien -> {
 
@@ -428,7 +433,8 @@ public class ReportResource {
 										Cell cell = row.createCell(++i);
 										cell.setCellStyle(dateStyle);
 										cell.setCellValue(entretien.getDate());
-										row.createCell(++i).setCellValue(entretien instanceof EntretienProfessionnel?"EP":(entretien instanceof EntretienAnnuel?"EAE":entretien.eClass().getName()));
+										row.createCell(++i).setCellValue(
+												entretien instanceof EntretienProfessionnel ? "EP" : (entretien instanceof EntretienAnnuel ? "EAE" : entretien.eClass().getName()));
 										row.createCell(++i).setCellValue(vals[0]);
 										row.createCell(++i).setCellValue(vals[1]);
 										row.createCell(++i).setCellValue(vals[2]);
@@ -512,13 +518,13 @@ public class ReportResource {
 								.filter(EntretienAnnuel.class::isInstance)
 
 								.map(EntretienAnnuel.class::cast)
-								
-								.max((e1,e2)->e1.getDate().compareTo(e2.getDate()))
-								
+
+								.max((e1, e2) -> e1.getDate().compareTo(e2.getDate()))
+
 								.ifPresent(entretien -> {
 
-									entretien.getObjectifs().stream().filter(o -> o.getLibelle()!=null && !o.getLibelle().trim().isEmpty()).forEach(objectif -> {
-										
+									entretien.getObjectifs().stream().filter(o -> o.getLibelle() != null && !o.getLibelle().trim().isEmpty()).forEach(objectif -> {
+
 										HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
 										int i = -1;
 										row.createCell(++i).setCellValue(emp.getEtablissement().getNom());
@@ -728,51 +734,100 @@ public class ReportResource {
 
 	}
 
-	private void generateSheet(Integer etablissementId, Mutualite mut, Integer annee, HSSFWorkbook wb) {
+	private void generateSheet(Integer etablissementId, Mutualite mut, Integer annee, Workbook wb) {
 
 		Etablissement etablissement = null == etablissementId ? null
 				: mut.getEtablissements().getEtablissements().stream().filter(et -> et.getId() == etablissementId).findAny().orElse(null);
 
 		String sheetName = null == etablissement ? "Tous" : "" + etablissementId + " " + etablissement.getNom();
-		HSSFSheet sheet = wb.createSheet(sheetName);
+		Sheet sheet = wb.cloneSheet(wb.getSheetIndex("template"));
+		wb.setSheetName(wb.getSheetIndex(sheet), sheetName);
 		int[] row = { 0 };
 
 		List<Formation> formations = mut.getOrganismes().getOrganismeFormations().stream().flatMap(org -> org.getFormations().stream())
-				.filter(f -> (etablissementId == null || f.getSessionformation().stream()
-						.anyMatch(sf -> isSameYear(sf, annee) && sf.getEmployes().stream().anyMatch(e -> e.getEtablissement().getId() == etablissementId))))
+				.filter(f -> ( f.getSessionformation().stream()
+						.anyMatch(sf -> isSameYear(sf, annee) && (etablissementId == null ||sf.getEmployes().stream().anyMatch(e -> e.getEtablissement().getId() == etablissementId)))))
 				.sorted((f1, f2) -> f1.getLibelle().compareTo(f2.getLibelle())).collect(Collectors.toList());
-		{
 			int[] i = { 0 };
-			HSSFRow line = sheet.createRow(++row[0]);
+			Row firstline = getOrCreateRow(sheet, ++row[0]);
 			// titre
-			line.createCell(++i[0]).setCellValue("Nom");
-			line.createCell(++i[0]).setCellValue("Prénom");
-			line.createCell(++i[0]).setCellValue("Etablissement");
+			getOrCreateCell(firstline, ++i[0]).setCellValue("Nom");
+			getOrCreateCell(firstline, ++i[0]).setCellValue("Prénom");
+			getOrCreateCell(firstline, ++i[0]).setCellValue("Emploi");
+			getOrCreateCell(firstline, ++i[0]).setCellValue("Etablissement");
+
+			Cell a2 = firstline.getCell(1);
+			CellStyle normalStyle = a2.getCellStyle();
+			Cell f2 = firstline.getCell(5);
+			CellStyle titleStyle = f2.getCellStyle();
+			Cell g2 = firstline.getCell(6);
+			CellStyle dpcStyle = g2.getCellStyle();
+			Cell h2 = firstline.getCell(7);
+			CellStyle totalStyle = h2.getCellStyle();
 
 			formations.forEach(form -> {
-				line.createCell(++i[0]).setCellValue(form.getLibelle());
+				Cell titleCell = getOrCreateCell(firstline, ++i[0]);
+				titleCell.setCellStyle(form.isDpc() ? dpcStyle : titleStyle);
+				titleCell.setCellValue(form.getLibelle());
 			});
-		}
+			{
+				Cell titleCell = getOrCreateCell(firstline, ++i[0]);
+				titleCell.setCellStyle(totalStyle);
+				titleCell.setCellValue("Total");
+			}
+			for(int n=0;n<2;++n) {
+				Cell titleCell = getOrCreateCell(firstline, ++i[0]);
+				titleCell.setCellStyle(normalStyle);
+				titleCell.setCellValue("");
+			}
+			firstline.setHeightInPoints(150);
 		// fin titres
 
 		mut.getEffectif().getEmployes().stream()
 				.filter(emp -> !hasLeftTheCompany(emp) && emp.getNom() != null && (null == etablissementId || emp.getEtablissement().getId() == etablissementId))
 				.sorted((e1, e2) -> (e1.getNom() + " " + e1.getPrenom()).compareTo((e2.getNom() + " " + e2.getPrenom()))).forEachOrdered(emp -> {
-					HSSFRow line = sheet.createRow(++row[0]);
-					int[] i = { 0 };
-					line.createCell(++i[0]).setCellValue(emp.getNom());
-					line.createCell(++i[0]).setCellValue(emp.getPrenom());
-					line.createCell(++i[0]).setCellValue(emp.getEtablissement().getNom());
+					Row line = sheet.createRow(++row[0]);
+					i[0] = 0;
+					getOrCreateCell(line, ++i[0]).setCellValue(emp.getNom());
+					getOrCreateCell(line, ++i[0]).setCellValue(emp.getPrenom());
+					getOrCreateCell(line, ++i[0]).setCellValue(emp.getAffectationEmploiCourante().getEmploi().getIntitule());
+					getOrCreateCell(line, ++i[0]).setCellValue(emp.getEtablissement().getNom());
 
+					float[] pTotal = { 0f };
 					formations.forEach(form -> {
-						boolean hasFormation = emp.getSessionsFormation().stream().map(session -> (Formation) session.eContainer()).anyMatch(form1 -> form1.equals(form));
-						line.createCell(++i[0]).setCellValue(hasFormation ? "X" : "");
+						Optional<SessionFormation> opt = emp.getSessionsFormation().stream().filter(sf1 -> sf1.eContainer().equals(form) && isSameYear(sf1, annee)).findAny();
+						if (opt.isPresent()) {
+							Float duree = opt.get().getDuree();
+							getOrCreateCell(line, ++i[0]).setCellValue(duree);
+							pTotal[0] += duree;
+						} else {
+							getOrCreateCell(line, ++i[0])/* .setCellValue("") */;
+						}
 					});
+					Cell totalCell = getOrCreateCell(line, ++i[0]);
+					totalCell.setCellStyle(totalStyle);
+					totalCell.setCellValue(pTotal[0]);
 
 				});
 		;
 
 		// fin data
+	}
+
+	public Row getOrCreateRow(Sheet sheet, int nrow) {
+		Row row = sheet.getRow(nrow);
+		if (null == row) {
+			return sheet.createRow(nrow);
+		}
+		return row;
+	}
+
+	public Cell getOrCreateCell(Row line, int i) {
+		Cell cell = line.getCell(i);
+		if (cell == null) {
+			return line.createCell(i);
+		}
+		return cell;
 	}
 
 	private boolean hasLeftTheCompany(Employe emp) {
@@ -956,8 +1011,8 @@ public class ReportResource {
 					CreationHelper createHelper = wb.getCreationHelper();
 					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm yyyy"));
 
-//					CellStyle boolStyle = wb.createCellStyle();
-//					boolStyle.setDataFormat(createHelper.createDataFormat().getFormat("BOOLEAN"));
+					// CellStyle boolStyle = wb.createCellStyle();
+					// boolStyle.setDataFormat(createHelper.createDataFormat().getFormat("BOOLEAN"));
 
 					Font bold = wb.createFont();
 					bold.setBold(true);
@@ -1037,12 +1092,13 @@ public class ReportResource {
 								if (null != dateFin) {
 									cell.setCellValue(dateFin);
 								} else {
-									System.err.println("Session sans date de fin! Formation:" + formation.getLibelle() + " Salarié: "  + emp.getLabel() +" Duree:" + session.getDuree());
+									System.err.println(
+											"Session sans date de fin! Formation:" + formation.getLibelle() + " Salarié: " + emp.getLabel() + " Duree:" + session.getDuree());
 								}
 							}
 							row.createCell(++i).setCellValue(session.getDuree());
 							HSSFCell dpcCell = row.createCell(++i);
-							dpcCell.setCellValue(formation.isDpc()?"Oui":"Non");
+							dpcCell.setCellValue(formation.isDpc() ? "Oui" : "Non");
 
 						});
 
@@ -1057,12 +1113,11 @@ public class ReportResource {
 			}
 		});
 
-		
 		response.header("Content-Disposition", "attachment; filename=sessions-formation-" + ymdDf.format(new Date()) + ".xls");
 		return response.build();
 
 	}
-	
+
 	private DateFormat ymdDf = new SimpleDateFormat("yyyy-MM-dd");
 
 }

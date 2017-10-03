@@ -6,7 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.prefs.Preferences;
 
@@ -18,10 +20,16 @@ import javax.ws.rs.core.StreamingOutput;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.events.ExpansionAdapter;
+import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
@@ -150,6 +158,39 @@ public class ExportView extends ViewPart {
 				}
 			});
 		}
+		{
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Matrices des formations", SWT.WRAP);
+			toolkit.createLabel(form.getBody(), "Exporter un tableau récapitulatif des formations par salarié et par établissement, au format excel.");
+			ExpandableComposite ec = toolkit.createExpandableComposite(form.getBody(), ExpandableComposite.TREE_NODE | ExpandableComposite.CLIENT_INDENT);
+			ec.setText("Paramètres");
+			Composite composite = toolkit.createComposite(ec);
+			composite.setLayout(new GridLayout(2, false));
+			Label label = toolkit.createLabel(composite, "Année", SWT.WRAP);
+			Text text = toolkit.createText(composite, ""+getThisYear());
+			ec.setClient(composite);
+			GridData td = new GridData();
+			td.horizontalSpan = 3;
+			td.grabExcessHorizontalSpace = true;
+			ec.setLayoutData(td);
+			ec.addExpansionListener(new ExpansionAdapter() {
+				public void expansionStateChanged(ExpansionEvent e) {
+					form.reflow(true);
+				}
+			});
+			link.addHyperlinkListener(new HyperlinkAdapter() {
+				public void linkActivated(HyperlinkEvent e) {
+					try {
+						int annee = Integer.parseInt(text.getText());
+						if(annee<2000) {
+							throw new NumberFormatException("Il faut une année après l'an 2000!");
+						}
+						matricesFormation(annee);
+					} catch (NumberFormatException e1) {
+						MessageDialog.openError(form.getShell(), "Format d'annee incorrect!", "L'année est incorrecte! " + e1.getMessage());
+					}
+				}
+			});
+		}
 	}
 
 	private void souhaitsFormation() {
@@ -171,6 +212,11 @@ public class ExportView extends ViewPart {
 				throw new RuntimeException(e1);
 			}
 		}
+	}
+	
+
+	int getThisYear() {
+		return Calendar.getInstance().get(Calendar.YEAR);
 	}
 
 	private void xlsObjectifs() {
@@ -358,6 +404,26 @@ public class ExportView extends ViewPart {
 				throw new RuntimeException(e1);
 			}
 			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Suivi des formations exporté vers " + file.getAbsolutePath());
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+		}
+	}
+
+	private void matricesFormation(int annee) {
+		File file = chooseFile("matrices-formations-" + annee + "-", "xls", "xslx");
+		if (null != file) {
+			Response resp = new ReportResource().xlsMatriceEmployeeFormation(annee);
+			StreamingOutput output = (StreamingOutput) resp.getEntity();
+			try (FileOutputStream out = new FileOutputStream(file);) {
+				output.write(out);
+				out.flush();
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+			MessageDialog.openInformation(ExportView.this.getSite().getShell(), "Export OK", "Matrice des formations exporté vers " + file.getAbsolutePath());
 			try {
 				Desktop.getDesktop().open(file);
 			} catch (IOException e1) {
