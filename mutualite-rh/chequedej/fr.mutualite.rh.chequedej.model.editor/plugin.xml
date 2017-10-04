@@ -430,4 +430,36 @@
          </visibility>
       </objectContribution>
    </extension>
+  <extension
+         point="org.eclipse.ui.popupMenus">   
+      <objectContribution
+            id="fr.mutualite.rh.chequedej.model.contribution14"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               id="fr.mutualite.rh.chequedej.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mutualite.rh.chequedej.popup.actions.ExportChoixAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.chequedej.model.exportChoixAction"
+               label="Exporter les choix"
+               menubarPath="fr.mutualite.rh.chequedej.model.menu1/group1">
+         </action>
+         <visibility>
+         	<or>
+         		<objectClass
+                 name="mutualite.rh.chequedej.ChequeDej">
+         		</objectClass>
+         		<objectClass
+                 name="mutualite.rh.chequedej.Choix">
+         		</objectClass>
+         	</or>
+         </visibility>
+      </objectContribution>
+   </extension>
 </plugin>
