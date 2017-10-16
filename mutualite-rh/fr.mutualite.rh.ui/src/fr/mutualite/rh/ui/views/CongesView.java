@@ -5,9 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.prefs.Preferences;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -38,6 +41,8 @@ public class CongesView extends ViewPart {
 
 	private FormToolkit toolkit;
 	private ScrolledForm form;
+	
+	private Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
 	/**
 	 * The constructor.
@@ -71,9 +76,42 @@ public class CongesView extends ViewPart {
 			Composite composite = toolkit.createComposite(ec);
 			composite.setLayout(new GridLayout(2, false));
 			Label labelDu = toolkit.createLabel(composite, "Du", SWT.WRAP);
-			Text textDu = toolkit.createText(composite, "01/06/" + getThisYear());
+
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			String defaultDu = prefs.get("du", "01/06/" + getThisYear());
+			String defaultAu = prefs.get("au", "31/10/" + getThisYear());
+			
+			Text textDu = toolkit.createText(composite, defaultDu);
 			Label labelAu = toolkit.createLabel(composite, "Au", SWT.WRAP);
-			Text textAu = toolkit.createText(composite, "31/10/" + getThisYear());
+			Text textAu = toolkit.createText(composite, defaultAu);
+
+			textDu.addModifyListener(new ModifyListener() {
+				
+				@Override
+				public void modifyText(ModifyEvent e) {
+					String du = textDu.getText();
+					try {
+						df.parse(du);
+						prefs.put("du", du);
+					} catch (ParseException e1) {
+						// not a valid date - ignore
+					}
+				}
+			});
+			textAu.addModifyListener(new ModifyListener() {
+				
+				@Override
+				public void modifyText(ModifyEvent e) {
+					String au = textAu.getText();
+					try {
+						df.parse(au);
+						prefs.put("au", au);
+					} catch (ParseException e1) {
+						// not a valid date - ignore
+					}
+				}
+			});
+			
 			ec.setClient(composite);
 			GridData td = new GridData();
 			td.horizontalSpan = 3;
@@ -84,7 +122,6 @@ public class CongesView extends ViewPart {
 					form.reflow(true);
 				}
 			});
-			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 			link.addHyperlinkListener(new HyperlinkAdapter() {
 				public void linkActivated(HyperlinkEvent e) {
 					System.out.println(textDu.getText());
