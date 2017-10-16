@@ -36,6 +36,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import fr.mutualite.rh.model.Employe;
@@ -187,7 +188,7 @@ public class ReportResource {
 				InputStream template = getClass().getResourceAsStream("/matrices-employes-formations-template.xlsx");
 				try (Workbook wb = new XSSFWorkbook(template);) {
 
-					mut.getEtablissements().getEtablissements().stream().sorted((e1,e2)->e1.getId()-e2.getId()).forEach(et -> {
+					mut.getEtablissements().getEtablissements().stream().sorted((e1, e2) -> e1.getId() - e2.getId()).forEach(et -> {
 						generateSheet(et.getId(), mut, annee, wb);
 					});
 					generateSheet(null, mut, annee, wb);
@@ -277,6 +278,10 @@ public class ReportResource {
 							cell.setCellStyle(titleStyle);
 							cell.setCellValue("Organisme");
 
+							cell = titleRow.createCell(++i);
+							cell.setCellStyle(titleStyle);
+							cell.setCellValue("Date de Sortie");
+
 						}
 						HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
 						int i = -1;
@@ -295,11 +300,19 @@ public class ReportResource {
 							row.createCell(++i).setCellValue(formation.getLibelle());
 							row.createCell(++i).setCellValue(organisme(formation).getNom());
 						}
+						HSSFCell dateSortieCell = row.createCell(++i);
+						dateSortieCell.setCellStyle(dateStyle);
+						Date dateSortieEntreprise = employe.getDateSortieEntreprise();
+						if (null != dateSortieEntreprise) {
+							dateSortieCell.setCellValue(dateSortieEntreprise);
+						}
 
 					});
 
-					IntStream.range(0, 6).forEach(sheet::autoSizeColumn);
+					IntStream.range(0, 7).forEach(sheet::autoSizeColumn);
 
+					sheet.getLastRowNum();
+					sheet.setAutoFilter(new CellRangeAddress(sheet.getFirstRowNum(), sheet.getLastRowNum(), 0, 6));
 					wb.write(out);
 					out.flush();
 				}
@@ -745,42 +758,42 @@ public class ReportResource {
 		int[] row = { 0 };
 
 		List<Formation> formations = mut.getOrganismes().getOrganismeFormations().stream().flatMap(org -> org.getFormations().stream())
-				.filter(f -> ( f.getSessionformation().stream()
-						.anyMatch(sf -> isSameYear(sf, annee) && (etablissementId == null ||sf.getEmployes().stream().anyMatch(e -> e.getEtablissement().getId() == etablissementId)))))
+				.filter(f -> (f.getSessionformation().stream().anyMatch(
+						sf -> isSameYear(sf, annee) && (etablissementId == null || sf.getEmployes().stream().anyMatch(e -> e.getEtablissement().getId() == etablissementId)))))
 				.sorted((f1, f2) -> f1.getLibelle().compareTo(f2.getLibelle())).collect(Collectors.toList());
-			int[] i = { 0 };
-			Row firstline = getOrCreateRow(sheet, ++row[0]);
-			// titre
-			getOrCreateCell(firstline, ++i[0]).setCellValue("Nom");
-			getOrCreateCell(firstline, ++i[0]).setCellValue("Prénom");
-			getOrCreateCell(firstline, ++i[0]).setCellValue("Emploi");
-			getOrCreateCell(firstline, ++i[0]).setCellValue("Etablissement");
+		int[] i = { 0 };
+		Row firstline = getOrCreateRow(sheet, ++row[0]);
+		// titre
+		getOrCreateCell(firstline, ++i[0]).setCellValue("Nom");
+		getOrCreateCell(firstline, ++i[0]).setCellValue("Prénom");
+		getOrCreateCell(firstline, ++i[0]).setCellValue("Emploi");
+		getOrCreateCell(firstline, ++i[0]).setCellValue("Etablissement");
 
-			Cell a2 = firstline.getCell(1);
-			CellStyle normalStyle = a2.getCellStyle();
-			Cell f2 = firstline.getCell(5);
-			CellStyle titleStyle = f2.getCellStyle();
-			Cell g2 = firstline.getCell(6);
-			CellStyle dpcStyle = g2.getCellStyle();
-			Cell h2 = firstline.getCell(7);
-			CellStyle totalStyle = h2.getCellStyle();
+		Cell a2 = firstline.getCell(1);
+		CellStyle normalStyle = a2.getCellStyle();
+		Cell f2 = firstline.getCell(5);
+		CellStyle titleStyle = f2.getCellStyle();
+		Cell g2 = firstline.getCell(6);
+		CellStyle dpcStyle = g2.getCellStyle();
+		Cell h2 = firstline.getCell(7);
+		CellStyle totalStyle = h2.getCellStyle();
 
-			formations.forEach(form -> {
-				Cell titleCell = getOrCreateCell(firstline, ++i[0]);
-				titleCell.setCellStyle(form.isDpc() ? dpcStyle : titleStyle);
-				titleCell.setCellValue(form.getLibelle());
-			});
-			{
-				Cell titleCell = getOrCreateCell(firstline, ++i[0]);
-				titleCell.setCellStyle(totalStyle);
-				titleCell.setCellValue("Total");
-			}
-			for(int n=0;n<2;++n) {
-				Cell titleCell = getOrCreateCell(firstline, ++i[0]);
-				titleCell.setCellStyle(normalStyle);
-				titleCell.setCellValue("");
-			}
-			firstline.setHeightInPoints(150);
+		formations.forEach(form -> {
+			Cell titleCell = getOrCreateCell(firstline, ++i[0]);
+			titleCell.setCellStyle(form.isDpc() ? dpcStyle : titleStyle);
+			titleCell.setCellValue(form.getLibelle());
+		});
+		{
+			Cell titleCell = getOrCreateCell(firstline, ++i[0]);
+			titleCell.setCellStyle(totalStyle);
+			titleCell.setCellValue("Total");
+		}
+		for (int n = 0; n < 2; ++n) {
+			Cell titleCell = getOrCreateCell(firstline, ++i[0]);
+			titleCell.setCellStyle(normalStyle);
+			titleCell.setCellValue("");
+		}
+		firstline.setHeightInPoints(150);
 		// fin titres
 
 		mut.getEffectif().getEmployes().stream()
