@@ -462,4 +462,33 @@
          </visibility>
       </objectContribution>
    </extension>
+  <extension
+         point="org.eclipse.ui.popupMenus">   
+      <objectContribution
+            id="fr.mutualite.rh.chequedej.model.contribution15"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               id="fr.mutualite.rh.chequedej.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mutualite.rh.chequedej.popup.actions.ManualSoldeRegulationAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.chequedej.model.manualSoldeRegulationAction"
+               label="Régularisation manuelle"
+               menubarPath="fr.mutualite.rh.chequedej.model.menu1/group1">
+         </action>
+         <visibility>
+         	<or>
+         		<objectClass
+                 name="mutualite.rh.chequedej.SoldeIndividuel">
+         		</objectClass>
+         	</or>
+         </visibility>
+      </objectContribution>
+   </extension>
 </plugin>
