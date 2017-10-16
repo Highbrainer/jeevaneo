@@ -132,7 +132,7 @@ public class ExportView extends ViewPart {
 			});
 		}
 		{
-			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Responsables", SWT.WRAP);
+			Hyperlink link = toolkit.createHyperlink(form.getBody(), "Responsables et Entreteneurs", SWT.WRAP);
 			toolkit.createLabel(form.getBody(), "Exporter pour chaque salarié présent les noms de responsable et entreteneurs, au format excel.");
 			link.addHyperlinkListener(new HyperlinkAdapter() {
 				public void linkActivated(HyperlinkEvent e) {
@@ -241,7 +241,7 @@ public class ExportView extends ViewPart {
 	}
 
 	private void responsables() {
-		File file = chooseFile("responsables-", "xls", "xslx");
+		File file = chooseFile("responsables-entreteneurs-", "xls", "xslx");
 		if (null != file) {
 			Response resp = new ReportResource().xlsResponsables();
 			StreamingOutput output = (StreamingOutput) resp.getEntity();
