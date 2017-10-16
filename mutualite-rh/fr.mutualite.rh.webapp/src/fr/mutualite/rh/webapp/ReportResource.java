@@ -573,7 +573,7 @@ public class ReportResource {
 			@Override
 			public void write(OutputStream out) throws IOException, WebApplicationException {
 				try (HSSFWorkbook wb = new HSSFWorkbook();) {
-					HSSFSheet sheet = wb.createSheet("Responsables");
+					HSSFSheet sheet = wb.createSheet("Responsables & Entreteneurs");
 
 					CellStyle dateStyle = wb.createCellStyle();
 					CreationHelper createHelper = wb.getCreationHelper();
@@ -629,21 +629,22 @@ public class ReportResource {
 						cell = row.createCell(++i);
 						cell.setCellValue(emp.getPrenom());
 						cell = row.createCell(++i);
-						Employe responsable = emp.getResponsable();
+						Employe responsable = emp.responsable();
 						cell.setCellValue(responsable == null ? "" : responsable.getLabel());
 						cell = row.createCell(++i);
-						cell.setCellValue(emp.getEntreteneurs().stream().map(Employe::getLabel).collect(Collectors.joining(", ")));
+						cell.setCellValue(emp.entreteneurs().stream().map(Employe::getLabel).collect(Collectors.joining(", ")));
 					});
 
 					IntStream.range(0, nbCols + 1).forEach(sheet::autoSizeColumn);
-
+					sheet.setAutoFilter(new CellRangeAddress(sheet.getFirstRowNum(), sheet.getLastRowNum(), 0, nbCols));
+					
 					wb.write(out);
 					out.flush();
 				}
 			}
 		});
 
-		response.header("Content-Disposition", "attachment; filename=responsables.xls");
+		response.header("Content-Disposition", "attachment; filename=responsables-entreteneurs.xls");
 		return response.build();
 
 	}

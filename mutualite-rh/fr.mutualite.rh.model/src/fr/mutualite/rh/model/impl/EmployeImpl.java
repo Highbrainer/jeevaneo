@@ -619,7 +619,7 @@ public class EmployeImpl extends CDOObjectImpl implements Employe {
 	 */
 	public EList<Employe> entreteneurs() {
 		EList<Employe> entreteneurs = getEntreteneurs();
-		if (null != entreteneurs) {
+		if (null != entreteneurs && !entreteneurs.isEmpty()) {
 			return entreteneurs;
 		}
 		if (null == getEtablissement()) {
