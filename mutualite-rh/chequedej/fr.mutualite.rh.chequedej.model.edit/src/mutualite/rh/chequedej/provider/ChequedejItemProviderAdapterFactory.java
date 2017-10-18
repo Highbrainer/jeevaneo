@@ -555,6 +555,29 @@ public class ChequedejItemProviderAdapterFactory extends ChequedejAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link mutualite.rh.chequedej.Avance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AvanceItemProvider avanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link mutualite.rh.chequedej.Avance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAvanceAdapter() {
+		if (avanceItemProvider == null) {
+			avanceItemProvider = new AvanceItemProvider(this);
+		}
+
+		return avanceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -674,6 +697,7 @@ public class ChequedejItemProviderAdapterFactory extends ChequedejAdapterFactory
 		if (choixIndividuelItemProvider != null) choixIndividuelItemProvider.dispose();
 		if (contratsItemProvider != null) contratsItemProvider.dispose();
 		if (contratItemProvider != null) contratItemProvider.dispose();
+		if (avanceItemProvider != null) avanceItemProvider.dispose();
 	}
 
 }

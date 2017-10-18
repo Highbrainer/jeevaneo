@@ -5,18 +5,15 @@ package mutualite.rh.chequedej.provider;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
-import mutualite.rh.chequedej.ChequedejFactory;
+import mutualite.rh.chequedej.Avance;
 import mutualite.rh.chequedej.ChequedejPackage;
-import mutualite.rh.chequedej.DejeIndividuel;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,16 +25,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import fr.mutualite.rh.model.Employe;
-import fr.mutualite.rh.webapp.CdoServlet;
-
 /**
- * This is the item provider adapter for a {@link mutualite.rh.chequedej.DejeIndividuel} object.
+ * This is the item provider adapter for a {@link mutualite.rh.chequedej.Avance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DejeIndividuelItemProvider 
+public class AvanceItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +45,7 @@ public class DejeIndividuelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DejeIndividuelItemProvider(AdapterFactory adapterFactory) {
+	public AvanceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,49 +60,27 @@ public class DejeIndividuelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNbEstimeJoursEntiersPropertyDescriptor(object);
-			addMatriculePropertyDescriptor(object);
-			addNbReelJoursEntiersPropertyDescriptor(object);
+			addNbChequesPropertyDescriptor(object);
+			addDatePropertyDescriptor(object);
+			addCommentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Nb Estime Jours Entiers feature.
+	 * This adds a property descriptor for the Nb Cheques feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNbEstimeJoursEntiersPropertyDescriptor(Object object) {
+	protected void addNbChequesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DejeIndividuel_nbEstimeJoursEntiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DejeIndividuel_nbEstimeJoursEntiers_feature", "_UI_DejeIndividuel_type"),
-				 ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_ESTIME_JOURS_ENTIERS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Matricule feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMatriculePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DejeIndividuel_matricule_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DejeIndividuel_matricule_feature", "_UI_DejeIndividuel_type"),
-				 ChequedejPackage.Literals.DEJE_INDIVIDUEL__MATRICULE,
+				 getString("_UI_Avance_nbCheques_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Avance_nbCheques_feature", "_UI_Avance_type"),
+				 ChequedejPackage.Literals.AVANCE__NB_CHEQUES,
 				 true,
 				 false,
 				 false,
@@ -118,19 +90,19 @@ public class DejeIndividuelItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Nb Reel Jours Entiers feature.
+	 * This adds a property descriptor for the Date feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNbReelJoursEntiersPropertyDescriptor(Object object) {
+	protected void addDatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DejeIndividuel_nbReelJoursEntiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DejeIndividuel_nbReelJoursEntiers_feature", "_UI_DejeIndividuel_type"),
-				 ChequedejPackage.Literals.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS,
+				 getString("_UI_Avance_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Avance_date_feature", "_UI_Avance_type"),
+				 ChequedejPackage.Literals.AVANCE__DATE,
 				 true,
 				 false,
 				 false,
@@ -140,60 +112,48 @@ public class DejeIndividuelItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Comment feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ChequedejPackage.Literals.DEJE_INDIVIDUEL__AVANCE);
-		}
-		return childrenFeatures;
+	protected void addCommentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Avance_comment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Avance_comment_feature", "_UI_Avance_type"),
+				 ChequedejPackage.Literals.AVANCE__COMMENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns DejeIndividuel.gif.
+	 * This returns Avance.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DejeIndividuel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Avance"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		int matricule = ((DejeIndividuel)object).getMatricule();
-		Optional<Employe> opt = CdoServlet.getMutualite().getEffectif().getEmployes().stream().filter(e -> e.getMatricule()==matricule).findAny();
-		String label = !opt.isPresent() ? "Aucun salarié de matricule " + matricule + "!" : opt.get().getLabel();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DejeIndividuel_type") :
-			getString("_UI_DejeIndividuel_type") + " " + label;
+		Avance avance = (Avance)object;
+		return getString("_UI_Avance_type") + " " + avance.getNbCheques();
 	}
 	
 
@@ -208,14 +168,11 @@ public class DejeIndividuelItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DejeIndividuel.class)) {
-			case ChequedejPackage.DEJE_INDIVIDUEL__NB_ESTIME_JOURS_ENTIERS:
-			case ChequedejPackage.DEJE_INDIVIDUEL__MATRICULE:
-			case ChequedejPackage.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS:
+		switch (notification.getFeatureID(Avance.class)) {
+			case ChequedejPackage.AVANCE__NB_CHEQUES:
+			case ChequedejPackage.AVANCE__DATE:
+			case ChequedejPackage.AVANCE__COMMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ChequedejPackage.DEJE_INDIVIDUEL__AVANCE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -231,11 +188,6 @@ public class DejeIndividuelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ChequedejPackage.Literals.DEJE_INDIVIDUEL__AVANCE,
-				 ChequedejFactory.eINSTANCE.createAvance()));
 	}
 
 	/**

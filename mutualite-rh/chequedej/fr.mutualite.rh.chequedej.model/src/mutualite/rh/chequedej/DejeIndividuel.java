@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link mutualite.rh.chequedej.DejeIndividuel#getNbEstimeJoursEntiers <em>Nb Estime Jours Entiers</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.DejeIndividuel#getMatricule <em>Matricule</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.DejeIndividuel#getNbReelJoursEntiers <em>Nb Reel Jours Entiers</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.DejeIndividuel#getAvance <em>Avance</em>}</li>
  * </ul>
  *
  * @see mutualite.rh.chequedej.ChequedejPackage#getDejeIndividuel()
@@ -100,6 +101,32 @@ public interface DejeIndividuel extends EObject {
 	 * @generated
 	 */
 	void setNbReelJoursEntiers(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Avance</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Avance</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Avance</em>' containment reference.
+	 * @see #setAvance(Avance)
+	 * @see mutualite.rh.chequedej.ChequedejPackage#getDejeIndividuel_Avance()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Avance getAvance();
+
+	/**
+	 * Sets the value of the '{@link mutualite.rh.chequedej.DejeIndividuel#getAvance <em>Avance</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Avance</em>' containment reference.
+	 * @see #getAvance()
+	 * @generated
+	 */
+	void setAvance(Avance value);
 
 	/**
 	 * <!-- begin-user-doc -->

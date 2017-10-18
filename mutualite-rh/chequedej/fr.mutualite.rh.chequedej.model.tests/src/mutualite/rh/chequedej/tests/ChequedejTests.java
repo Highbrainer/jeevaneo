@@ -43,6 +43,7 @@ public class ChequedejTests extends TestSuite {
 		suite.addTestSuite(ChoixTest.class);
 		suite.addTestSuite(ContratsTest.class);
 		suite.addTestSuite(ContratTest.class);
+		suite.addTestSuite(AvanceTest.class);
 		return suite;
 	}
 

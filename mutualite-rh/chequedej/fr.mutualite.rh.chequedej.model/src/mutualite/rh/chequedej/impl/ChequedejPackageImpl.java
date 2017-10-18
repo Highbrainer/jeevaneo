@@ -2,6 +2,7 @@
  */
 package mutualite.rh.chequedej.impl;
 
+import mutualite.rh.chequedej.Avance;
 import mutualite.rh.chequedej.Carnet;
 import mutualite.rh.chequedej.Cheque;
 import mutualite.rh.chequedej.ChequeDej;
@@ -187,6 +188,13 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * @generated
 	 */
 	private EClass contratEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass avanceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -974,6 +982,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDejeIndividuel_Avance() {
+		return (EReference)dejeIndividuelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getDejeIndividuel__DejeMensuel() {
 		return dejeIndividuelEClass.getEOperations().get(0);
 	}
@@ -1172,6 +1189,51 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAvance() {
+		return avanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAvance_NbCheques() {
+		return (EAttribute)avanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAvance_Date() {
+		return (EAttribute)avanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAvance_Comment() {
+		return (EAttribute)avanceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAvance__DejeIndividuel() {
+		return avanceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ChequedejFactory getChequedejFactory() {
 		return (ChequedejFactory)getEFactoryInstance();
 	}
@@ -1290,6 +1352,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		createEAttribute(dejeIndividuelEClass, DEJE_INDIVIDUEL__NB_ESTIME_JOURS_ENTIERS);
 		createEAttribute(dejeIndividuelEClass, DEJE_INDIVIDUEL__MATRICULE);
 		createEAttribute(dejeIndividuelEClass, DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS);
+		createEReference(dejeIndividuelEClass, DEJE_INDIVIDUEL__AVANCE);
 		createEOperation(dejeIndividuelEClass, DEJE_INDIVIDUEL___DEJE_MENSUEL);
 
 		dejeMensuelEClass = createEClass(DEJE_MENSUEL);
@@ -1317,6 +1380,12 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		createEAttribute(contratEClass, CONTRAT__TEMPS_TRAVAIL_MENSUEL);
 		createEAttribute(contratEClass, CONTRAT__PARTIEL);
 		createEAttribute(contratEClass, CONTRAT__MATRICULE);
+
+		avanceEClass = createEClass(AVANCE);
+		createEAttribute(avanceEClass, AVANCE__NB_CHEQUES);
+		createEAttribute(avanceEClass, AVANCE__DATE);
+		createEAttribute(avanceEClass, AVANCE__COMMENT);
+		createEOperation(avanceEClass, AVANCE___DEJE_INDIVIDUEL);
 	}
 
 	/**
@@ -1470,6 +1539,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEAttribute(getDejeIndividuel_NbEstimeJoursEntiers(), ecorePackage.getEIntegerObject(), "nbEstimeJoursEntiers", null, 0, 1, DejeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDejeIndividuel_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, DejeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDejeIndividuel_NbReelJoursEntiers(), ecorePackage.getEIntegerObject(), "nbReelJoursEntiers", null, 0, 1, DejeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDejeIndividuel_Avance(), this.getAvance(), null, "avance", null, 0, 1, DejeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getDejeIndividuel__DejeMensuel(), this.getDejeMensuel(), "dejeMensuel", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1510,6 +1580,13 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEAttribute(getContrat_TempsTravailMensuel(), ecorePackage.getEFloatObject(), "tempsTravailMensuel", null, 0, 1, Contrat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContrat_Partiel(), ecorePackage.getEBoolean(), "partiel", null, 1, 1, Contrat.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContrat_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, Contrat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(avanceEClass, Avance.class, "Avance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAvance_NbCheques(), ecorePackage.getEInt(), "nbCheques", null, 1, 1, Avance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAvance_Date(), ecorePackage.getEDate(), "date", null, 1, 1, Avance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAvance_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, Avance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getAvance__DejeIndividuel(), this.getDejeIndividuel(), "dejeIndividuel", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

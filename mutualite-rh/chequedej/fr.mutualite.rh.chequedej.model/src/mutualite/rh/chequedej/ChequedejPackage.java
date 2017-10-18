@@ -1068,13 +1068,22 @@ public interface ChequedejPackage extends EPackage {
 	int DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Avance</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEJE_INDIVIDUEL__AVANCE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Deje Individuel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEJE_INDIVIDUEL_FEATURE_COUNT = 3;
+	int DEJE_INDIVIDUEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Deje Mensuel</em>' operation.
@@ -1379,6 +1388,71 @@ public interface ChequedejPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTRAT_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.AvanceImpl <em>Avance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.impl.AvanceImpl
+	 * @see mutualite.rh.chequedej.impl.ChequedejPackageImpl#getAvance()
+	 * @generated
+	 */
+	int AVANCE = 21;
+
+	/**
+	 * The feature id for the '<em><b>Nb Cheques</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AVANCE__NB_CHEQUES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AVANCE__DATE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AVANCE__COMMENT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Avance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AVANCE_FEATURE_COUNT = 3;
+
+	/**
+	 * The operation id for the '<em>Deje Individuel</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AVANCE___DEJE_INDIVIDUEL = 0;
+
+	/**
+	 * The number of operations of the '<em>Avance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AVANCE_OPERATION_COUNT = 1;
 
 
 	/**
@@ -2234,6 +2308,17 @@ public interface ChequedejPackage extends EPackage {
 	EAttribute getDejeIndividuel_NbReelJoursEntiers();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link mutualite.rh.chequedej.DejeIndividuel#getAvance <em>Avance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Avance</em>'.
+	 * @see mutualite.rh.chequedej.DejeIndividuel#getAvance()
+	 * @see #getDejeIndividuel()
+	 * @generated
+	 */
+	EReference getDejeIndividuel_Avance();
+
+	/**
 	 * Returns the meta object for the '{@link mutualite.rh.chequedej.DejeIndividuel#dejeMensuel() <em>Deje Mensuel</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2461,6 +2546,59 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getContrat_Matricule();
+
+	/**
+	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Avance <em>Avance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Avance</em>'.
+	 * @see mutualite.rh.chequedej.Avance
+	 * @generated
+	 */
+	EClass getAvance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.Avance#getNbCheques <em>Nb Cheques</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nb Cheques</em>'.
+	 * @see mutualite.rh.chequedej.Avance#getNbCheques()
+	 * @see #getAvance()
+	 * @generated
+	 */
+	EAttribute getAvance_NbCheques();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.Avance#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see mutualite.rh.chequedej.Avance#getDate()
+	 * @see #getAvance()
+	 * @generated
+	 */
+	EAttribute getAvance_Date();
+
+	/**
+	 * Returns the meta object for the attribute '{@link mutualite.rh.chequedej.Avance#getComment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Comment</em>'.
+	 * @see mutualite.rh.chequedej.Avance#getComment()
+	 * @see #getAvance()
+	 * @generated
+	 */
+	EAttribute getAvance_Comment();
+
+	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Avance#dejeIndividuel() <em>Deje Individuel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Deje Individuel</em>' operation.
+	 * @see mutualite.rh.chequedej.Avance#dejeIndividuel()
+	 * @generated
+	 */
+	EOperation getAvance__DejeIndividuel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3158,6 +3296,14 @@ public interface ChequedejPackage extends EPackage {
 		EAttribute DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS = eINSTANCE.getDejeIndividuel_NbReelJoursEntiers();
 
 		/**
+		 * The meta object literal for the '<em><b>Avance</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEJE_INDIVIDUEL__AVANCE = eINSTANCE.getDejeIndividuel_Avance();
+
+		/**
 		 * The meta object literal for the '<em><b>Deje Mensuel</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3342,6 +3488,48 @@ public interface ChequedejPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONTRAT__MATRICULE = eINSTANCE.getContrat_Matricule();
+
+		/**
+		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.AvanceImpl <em>Avance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see mutualite.rh.chequedej.impl.AvanceImpl
+		 * @see mutualite.rh.chequedej.impl.ChequedejPackageImpl#getAvance()
+		 * @generated
+		 */
+		EClass AVANCE = eINSTANCE.getAvance();
+
+		/**
+		 * The meta object literal for the '<em><b>Nb Cheques</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AVANCE__NB_CHEQUES = eINSTANCE.getAvance_NbCheques();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AVANCE__DATE = eINSTANCE.getAvance_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AVANCE__COMMENT = eINSTANCE.getAvance_Comment();
+
+		/**
+		 * The meta object literal for the '<em><b>Deje Individuel</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AVANCE___DEJE_INDIVIDUEL = eINSTANCE.getAvance__DejeIndividuel();
 
 	}
 

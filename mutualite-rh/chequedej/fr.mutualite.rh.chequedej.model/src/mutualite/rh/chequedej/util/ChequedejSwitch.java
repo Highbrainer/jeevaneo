@@ -192,6 +192,12 @@ public class ChequedejSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ChequedejPackage.AVANCE: {
+				Avance avance = (Avance)theEObject;
+				T result = caseAvance(avance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -508,6 +514,21 @@ public class ChequedejSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseContrat(Contrat object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Avance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Avance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAvance(Avance object) {
 		return null;
 	}
 

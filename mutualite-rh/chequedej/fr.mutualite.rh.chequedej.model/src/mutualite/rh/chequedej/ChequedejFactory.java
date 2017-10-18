@@ -211,6 +211,15 @@ public interface ChequedejFactory extends EFactory {
 	Contrat createContrat();
 
 	/**
+	 * Returns a new object of class '<em>Avance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Avance</em>'.
+	 * @generated
+	 */
+	Avance createAvance();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

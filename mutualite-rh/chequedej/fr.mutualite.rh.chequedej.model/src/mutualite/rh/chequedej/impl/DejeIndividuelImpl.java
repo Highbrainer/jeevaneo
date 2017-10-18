@@ -4,11 +4,14 @@ package mutualite.rh.chequedej.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import mutualite.rh.chequedej.Avance;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -27,6 +30,7 @@ import mutualite.rh.chequedej.SoldeIndividuel;
  *   <li>{@link mutualite.rh.chequedej.impl.DejeIndividuelImpl#getNbEstimeJoursEntiers <em>Nb Estime Jours Entiers</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.DejeIndividuelImpl#getMatricule <em>Matricule</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.impl.DejeIndividuelImpl#getNbReelJoursEntiers <em>Nb Reel Jours Entiers</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.impl.DejeIndividuelImpl#getAvance <em>Avance</em>}</li>
  * </ul>
  *
  * @generated
@@ -145,6 +149,16 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 	protected Integer nbReelJoursEntiers = NB_REEL_JOURS_ENTIERS_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getAvance() <em>Avance</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAvance()
+	 * @generated
+	 * @ordered
+	 */
+	protected Avance avance;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -219,12 +233,69 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Avance getAvance() {
+		return avance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAvance(Avance newAvance, NotificationChain msgs) {
+		Avance oldAvance = avance;
+		avance = newAvance;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChequedejPackage.DEJE_INDIVIDUEL__AVANCE, oldAvance, newAvance);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAvance(Avance newAvance) {
+		if (newAvance != avance) {
+			NotificationChain msgs = null;
+			if (avance != null)
+				msgs = ((InternalEObject)avance).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ChequedejPackage.DEJE_INDIVIDUEL__AVANCE, null, msgs);
+			if (newAvance != null)
+				msgs = ((InternalEObject)newAvance).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ChequedejPackage.DEJE_INDIVIDUEL__AVANCE, null, msgs);
+			msgs = basicSetAvance(newAvance, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ChequedejPackage.DEJE_INDIVIDUEL__AVANCE, newAvance, newAvance));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public DejeMensuel dejeMensuel() {
 		return (DejeMensuel) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ChequedejPackage.DEJE_INDIVIDUEL__AVANCE:
+				return basicSetAvance(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -240,6 +311,8 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 				return getMatricule();
 			case ChequedejPackage.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS:
 				return getNbReelJoursEntiers();
+			case ChequedejPackage.DEJE_INDIVIDUEL__AVANCE:
+				return getAvance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,6 +332,9 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case ChequedejPackage.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS:
 				setNbReelJoursEntiers((Integer)newValue);
+				return;
+			case ChequedejPackage.DEJE_INDIVIDUEL__AVANCE:
+				setAvance((Avance)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -280,6 +356,9 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 			case ChequedejPackage.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS:
 				setNbReelJoursEntiers(NB_REEL_JOURS_ENTIERS_EDEFAULT);
 				return;
+			case ChequedejPackage.DEJE_INDIVIDUEL__AVANCE:
+				setAvance((Avance)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -297,6 +376,8 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 				return matricule != MATRICULE_EDEFAULT;
 			case ChequedejPackage.DEJE_INDIVIDUEL__NB_REEL_JOURS_ENTIERS:
 				return NB_REEL_JOURS_ENTIERS_EDEFAULT == null ? nbReelJoursEntiers != null : !NB_REEL_JOURS_ENTIERS_EDEFAULT.equals(nbReelJoursEntiers);
+			case ChequedejPackage.DEJE_INDIVIDUEL__AVANCE:
+				return avance != null;
 		}
 		return super.eIsSet(featureID);
 	}
