@@ -39,6 +39,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import fr.mutualite.rh.model.Affectation;
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Entretien;
 import fr.mutualite.rh.model.EntretienAnnuel;
@@ -287,7 +288,12 @@ public class ReportResource {
 						int i = -1;
 						row.createCell(++i).setCellValue(employe.getLabel());
 						row.createCell(++i).setCellValue(employe.getEtablissement().getNom());
-						row.createCell(++i).setCellValue(employe.getAffectationEmploiCourante().getEmploi().getIntitule());
+						String emploi = null;
+						Affectation affectationEmploiCourante = employe.getAffectationEmploiCourante();
+						if(null!=affectationEmploiCourante) {
+								emploi = affectationEmploiCourante.getEmploi().getIntitule();
+						}
+						row.createCell(++i).setCellValue(emploi);
 						Optional<SessionFormation> first = employe.getSessionsFormation().stream().filter(sf -> formation(sf).isDpc())
 								.sorted((sf1, sf2) -> sf1.getDateDebut().compareTo(sf2.getDateDebut())).findFirst();
 						if (first.isPresent()) {
