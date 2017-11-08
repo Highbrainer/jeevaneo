@@ -19,6 +19,7 @@ import mutualite.rh.chequedej.Solde;
  *   <li>{@link mutualite.rh.chequedej.Solde#getOrCreateSoldeIndividual(int, int) <em>Get Or Create Solde Individual</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Solde#getSolde(int, int) <em>Get Solde</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Solde#annee(java.lang.String) <em>Annee</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Solde#getSoldeIndividual(int, int) <em>Get Solde Individual</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -128,6 +129,19 @@ public class SoldeTest extends TestCase {
 	 * @generated
 	 */
 	public void testAnnee__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.Solde#getSoldeIndividual(int, int) <em>Get Solde Individual</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.Solde#getSoldeIndividual(int, int)
+	 * @generated
+	 */
+	public void testGetSoldeIndividual__int_int() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

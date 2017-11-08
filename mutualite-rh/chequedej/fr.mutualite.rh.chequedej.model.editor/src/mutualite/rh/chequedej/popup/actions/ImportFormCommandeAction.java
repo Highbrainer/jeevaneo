@@ -197,7 +197,7 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 			try {
 				thereAreErrors |= importForm(file, mon.newChild(100));
 			} catch (Throwable e) {
-				throw new RuntimeException("ERREUR dans " + file.getAbsolutePath(), e);
+				throw new RuntimeException("ERREUR dans " + file.getName() + " \n" + e.getMessage(), e);
 			}
 		}
 		if (thereAreErrors) {
@@ -257,7 +257,7 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 				}
 				if (alreadyImported) {
 					log.debug("Line " + n + " has already been imported : ignore!");
-					continue;
+					//continue;
 				}
 
 				String comment = "";
@@ -279,7 +279,11 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 							boolean chaineVide = cell4.getCellTypeEnum().equals(CellType.STRING) && cell4.getStringCellValue().trim().isEmpty();
 							if (!chaineVide) {
 								nbJoursEntiersMoisPrecedent = (int) cell4.getNumericCellValue();
+							} else {
+								nbJoursEntiersMoisPrecedent = 0;
 							}
+						} else {
+							nbJoursEntiersMoisPrecedent = 0;
 						}
 						// } else {
 						// String sContent = cell4.getStringCellValue();

@@ -337,6 +337,10 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_FA3UsZcuEeeQJ6_6XKBE2A" fontName="Segoe UI" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_FA3UspcuEeeQJ6_6XKBE2A"/>
               </children>
+              <children xmi:type="notation:Node" xmi:id="_yGqOML1xEee4zIqgNH1tyw" type="3010" element="_yF4LEL1xEee4zIqgNH1tyw">
+                <styles xmi:type="notation:FontStyle" xmi:id="_yGqOMb1xEee4zIqgNH1tyw" fontName="Segoe UI" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_yGqOMr1xEee4zIqgNH1tyw"/>
+              </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_ORDhIZTSEeeDn4SRVb7Reg"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_ORDhIpTSEeeDn4SRVb7Reg"/>
             </children>
@@ -1505,7 +1509,7 @@
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_wUBI0JTVEeeDn4SRVb7Reg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_zjBegL1xEee4zIqgNH1tyw" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -1534,6 +1538,16 @@
           <semanticElements xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/annee"/>
           <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/annee/mois"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_FAUiIZcuEeeQJ6_6XKBE2A" labelAlignment="LEFT">
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_yF4LEL1xEee4zIqgNH1tyw" name="getSoldeIndividual(matricule EInt, annee EInt) : SoldeIndividuel" tooltipText="getSoldeIndividual(matricule, annee) : SoldeIndividuel">
+          <target xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getSoldeIndividual"/>
+          <semanticElements xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getSoldeIndividual"/>
+          <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getSoldeIndividual/annee"/>
+          <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getSoldeIndividual/matricule"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_yF4LEb1xEee4zIqgNH1tyw" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>

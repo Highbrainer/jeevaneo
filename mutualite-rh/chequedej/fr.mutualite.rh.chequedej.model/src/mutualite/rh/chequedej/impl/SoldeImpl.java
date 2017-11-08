@@ -80,9 +80,9 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * @generated NOT
 	 */
 	public SoldeIndividuel getOrCreateSoldeIndividual(int matricule, int annee) {
-		Optional<SoldeIndividuel> opt = getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule && si.getAnnee()==annee).findAny();
-		if(opt.isPresent()) {
-			return opt.get();
+		SoldeIndividuel soldeIndividual = getSoldeIndividual(matricule, annee);
+		if(null!=soldeIndividual) {
+			return soldeIndividual;
 		}
 		SoldeIndividuel si = ChequedejFactory.eINSTANCE.createSoldeIndividuel();
 		si.setMatricule(matricule);
@@ -112,6 +112,15 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 */
 	public int annee(String mois) {
 		return Integer.parseInt(mois.substring(0, 4));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public SoldeIndividuel getSoldeIndividual(int matricule, int annee) {
+		return getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule && si.getAnnee()==annee).findAny().orElse(null);
 	}
 
 	/**
@@ -202,6 +211,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 				return getSolde((Integer)arguments.get(0), (Integer)arguments.get(1));
 			case ChequedejPackage.SOLDE___ANNEE__STRING:
 				return annee((String)arguments.get(0));
+			case ChequedejPackage.SOLDE___GET_SOLDE_INDIVIDUAL__INT_INT:
+				return getSoldeIndividual((Integer)arguments.get(0), (Integer)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

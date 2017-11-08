@@ -619,7 +619,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			boolean dejaUnDejePourCeMatricule = chequeDej.getDejes().getDejesMensuels().stream().map(DejeMensuel::getDejesIndividuels).flatMap(List::stream)
 					.anyMatch(di -> di.getMatricule() == matricule);
 			if (dejaUnDejePourCeMatricule) {
-				throw new IllegalStateException("Mois précédent : le réel du mois précédent est obligatoire!");
+				throw new IllegalStateException("Mois précédent - le nombre réel de jours est obligatoire!");
 			}
 		} else {
 			diMoisPrecedent.setNbReelJoursEntiers(nbReelJoursEntiersMoisPrecedent);

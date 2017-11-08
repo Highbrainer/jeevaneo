@@ -811,6 +811,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getSolde__GetSoldeIndividual__int_int() {
+		return soldeEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSoldeIndividuel() {
 		return soldeIndividuelEClass;
 	}
@@ -1329,6 +1338,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		createEOperation(soldeEClass, SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT);
 		createEOperation(soldeEClass, SOLDE___GET_SOLDE__INT_INT);
 		createEOperation(soldeEClass, SOLDE___ANNEE__STRING);
+		createEOperation(soldeEClass, SOLDE___GET_SOLDE_INDIVIDUAL__INT_INT);
 
 		soldeIndividuelEClass = createEClass(SOLDE_INDIVIDUEL);
 		createEAttribute(soldeIndividuelEClass, SOLDE_INDIVIDUEL__NB_CHEQUES);
@@ -1510,6 +1520,10 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 
 		op = initEOperation(getSolde__Annee__String(), ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "mois", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getSolde__GetSoldeIndividual__int_int(), this.getSoldeIndividuel(), "getSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(soldeIndividuelEClass, SoldeIndividuel.class, "SoldeIndividuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSoldeIndividuel_NbCheques(), ecorePackage.getEInt(), "nbCheques", null, 1, 1, SoldeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

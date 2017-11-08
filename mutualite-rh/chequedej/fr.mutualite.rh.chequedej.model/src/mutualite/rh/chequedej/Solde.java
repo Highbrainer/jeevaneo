@@ -63,4 +63,12 @@ public interface Solde extends EObject {
 	 */
 	int annee(String mois);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	SoldeIndividuel getSoldeIndividual(int matricule, int annee);
+
 } // Solde

@@ -829,13 +829,22 @@ public interface ChequedejPackage extends EPackage {
 	int SOLDE___ANNEE__STRING = 2;
 
 	/**
+	 * The operation id for the '<em>Get Solde Individual</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLDE___GET_SOLDE_INDIVIDUAL__INT_INT = 3;
+
+	/**
 	 * The number of operations of the '<em>Solde</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLDE_OPERATION_COUNT = 3;
+	int SOLDE_OPERATION_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl <em>Solde Individuel</em>}' class.
@@ -2106,6 +2115,16 @@ public interface ChequedejPackage extends EPackage {
 	EOperation getSolde__Annee__String();
 
 	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Solde#getSoldeIndividual(int, int) <em>Get Solde Individual</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Solde Individual</em>' operation.
+	 * @see mutualite.rh.chequedej.Solde#getSoldeIndividual(int, int)
+	 * @generated
+	 */
+	EOperation getSolde__GetSoldeIndividual__int_int();
+
+	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.SoldeIndividuel <em>Solde Individuel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3134,6 +3153,14 @@ public interface ChequedejPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation SOLDE___ANNEE__STRING = eINSTANCE.getSolde__Annee__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Solde Individual</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SOLDE___GET_SOLDE_INDIVIDUAL__INT_INT = eINSTANCE.getSolde__GetSoldeIndividual__int_int();
 
 		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.SoldeIndividuelImpl <em>Solde Individuel</em>}' class.
