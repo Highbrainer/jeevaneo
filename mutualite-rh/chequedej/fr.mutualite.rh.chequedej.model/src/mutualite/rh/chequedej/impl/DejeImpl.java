@@ -85,11 +85,11 @@ public class DejeImpl extends MinimalEObjectImpl.Container implements Deje {
 	 * @generated NOT
 	 */
 	public DejeMensuel getOrCreateDejeMensuel(String mois) {
-		Optional<DejeMensuel> opt = getDejesMensuels().stream().filter(dm -> dm.getMois().equals(mois)).findAny();
-		if(opt.isPresent()) {
-			return opt.get();
+		DejeMensuel dm = getDejeMensuel(mois);
+		if(null!=dm) {
+			return dm;
 		}
-		DejeMensuel dm = ChequedejFactory.eINSTANCE.createDejeMensuel();
+		dm = ChequedejFactory.eINSTANCE.createDejeMensuel();
 		dm.setMois(mois);
 		getDejesMensuels().add(dm);
 		return dm;
@@ -103,6 +103,19 @@ public class DejeImpl extends MinimalEObjectImpl.Container implements Deje {
 	public ChequeDej root() {
 		ChequeDej root = (ChequeDej) eContainer();
 		return root;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DejeMensuel getDejeMensuel(String mois) {
+		Optional<DejeMensuel> opt = getDejesMensuels().stream().filter(dm -> dm.getMois().equals(mois)).findAny();
+		if(opt.isPresent()) {
+			return opt.get();
+		}
+		return null;
 	}
 
 	/**
@@ -191,6 +204,8 @@ public class DejeImpl extends MinimalEObjectImpl.Container implements Deje {
 				return getOrCreateDejeMensuel((String)arguments.get(0));
 			case ChequedejPackage.DEJE___ROOT:
 				return root();
+			case ChequedejPackage.DEJE___GET_DEJE_MENSUEL__STRING:
+				return getDejeMensuel((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

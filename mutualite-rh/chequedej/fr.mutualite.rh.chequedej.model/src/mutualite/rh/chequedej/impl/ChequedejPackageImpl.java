@@ -955,6 +955,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getDeje__GetDejeMensuel__String() {
+		return dejeEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDejeIndividuel() {
 		return dejeIndividuelEClass;
 	}
@@ -1056,6 +1065,15 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 */
 	public EOperation getDejeMensuel__Deje() {
 		return dejeMensuelEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDejeMensuel__GetDejeIndividuel__int() {
+		return dejeMensuelEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -1357,6 +1375,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		createEReference(dejeEClass, DEJE__DEJES_MENSUELS);
 		createEOperation(dejeEClass, DEJE___GET_OR_CREATE_DEJE_MENSUEL__STRING);
 		createEOperation(dejeEClass, DEJE___ROOT);
+		createEOperation(dejeEClass, DEJE___GET_DEJE_MENSUEL__STRING);
 
 		dejeIndividuelEClass = createEClass(DEJE_INDIVIDUEL);
 		createEAttribute(dejeIndividuelEClass, DEJE_INDIVIDUEL__NB_ESTIME_JOURS_ENTIERS);
@@ -1371,6 +1390,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		createEOperation(dejeMensuelEClass, DEJE_MENSUEL___LABEL);
 		createEOperation(dejeMensuelEClass, DEJE_MENSUEL___GET_OR_CREATE_DEJE_INDIVIDUEL__INT);
 		createEOperation(dejeMensuelEClass, DEJE_MENSUEL___DEJE);
+		createEOperation(dejeMensuelEClass, DEJE_MENSUEL___GET_DEJE_INDIVIDUEL__INT);
 
 		choixEClass = createEClass(CHOIX);
 		createEReference(choixEClass, CHOIX__CHOIX_INDIVIDUELS);
@@ -1549,6 +1569,9 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 
 		initEOperation(getDeje__Root(), this.getChequeDej(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getDeje__GetDejeMensuel__String(), this.getDejeMensuel(), "getDejeMensuel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "mois", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(dejeIndividuelEClass, DejeIndividuel.class, "DejeIndividuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDejeIndividuel_NbEstimeJoursEntiers(), ecorePackage.getEIntegerObject(), "nbEstimeJoursEntiers", null, 0, 1, DejeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDejeIndividuel_Matricule(), ecorePackage.getEInt(), "matricule", null, 1, 1, DejeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1567,6 +1590,9 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getDejeMensuel__Deje(), this.getDeje(), "deje", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getDejeMensuel__GetDejeIndividuel__int(), this.getDejeIndividuel(), "getDejeIndividuel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(choixEClass, Choix.class, "Choix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChoix_ChoixIndividuels(), this.getChoixIndividuel(), null, "choixIndividuels", null, 0, -1, Choix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

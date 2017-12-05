@@ -55,4 +55,12 @@ public interface Deje extends EObject {
 	 */
 	ChequeDej root();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	DejeMensuel getDejeMensuel(String mois);
+
 } // Deje

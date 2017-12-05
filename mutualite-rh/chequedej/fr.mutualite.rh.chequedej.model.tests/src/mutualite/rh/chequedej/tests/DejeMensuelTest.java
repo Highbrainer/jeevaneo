@@ -19,6 +19,7 @@ import mutualite.rh.chequedej.DejeMensuel;
  *   <li>{@link mutualite.rh.chequedej.DejeMensuel#label() <em>Label</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.DejeMensuel#getOrCreateDejeIndividuel(int) <em>Get Or Create Deje Individuel</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.DejeMensuel#deje() <em>Deje</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.DejeMensuel#getDejeIndividuel(int) <em>Get Deje Individuel</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -128,6 +129,19 @@ public class DejeMensuelTest extends TestCase {
 	 * @generated
 	 */
 	public void testDeje() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.DejeMensuel#getDejeIndividuel(int) <em>Get Deje Individuel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.DejeMensuel#getDejeIndividuel(int)
+	 * @generated
+	 */
+	public void testGetDejeIndividuel__int() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

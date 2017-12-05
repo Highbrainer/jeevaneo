@@ -90,4 +90,12 @@ public interface DejeMensuel extends EObject {
 	 */
 	Deje deje();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	DejeIndividuel getDejeIndividuel(int matricule);
+
 } // DejeMensuel

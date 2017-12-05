@@ -7,7 +7,6 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,11 +24,9 @@ import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
 import mutualite.rh.chequedej.Choix;
 import mutualite.rh.chequedej.ChoixIndividuel;
-import mutualite.rh.chequedej.Commande;
 import mutualite.rh.chequedej.Contrats;
 import mutualite.rh.chequedej.Deje;
 import mutualite.rh.chequedej.DejeIndividuel;
-import mutualite.rh.chequedej.DejeMensuel;
 import mutualite.rh.chequedej.EtablissementsVirtuels;
 import mutualite.rh.chequedej.Item;
 import mutualite.rh.chequedej.Parametrage;
@@ -616,7 +613,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 		DejeIndividuel diMoisPrecedent = chequeDej.getDejes().getOrCreateDejeMensuel(moisPrecedent).getOrCreateDejeIndividuel(matricule);
 		if (null == nbReelJoursEntiersMoisPrecedent) {
 			// ce n'est normal qu'à l'initialisation ==> pas de deje?
-			boolean dejaUnDejePourCeMatricule = chequeDej.getDejes().getDejesMensuels().stream().map(DejeMensuel::getDejesIndividuels).flatMap(List::stream)
+			boolean dejaUnDejePourCeMatricule = chequeDej.getDejes().getDejesMensuels().stream().map(mutualite.rh.chequedej.DejeMensuel::getDejesIndividuels).flatMap(EList::stream)
 					.anyMatch(di -> di.getMatricule() == matricule);
 			if (dejaUnDejePourCeMatricule) {
 				throw new IllegalStateException("Mois précédent - le nombre réel de jours est obligatoire!");
@@ -681,7 +678,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 	public void updateCommandeIndividuelle(String mois, int matricule, int commande) {
 		if (commande == 0) {
 			// dans ce cas on ne le crée pas s'il n'existe pas déjà...
-			Optional<Item> opt = getCarnet().getCommandes().stream().map(Commande::getItems).flatMap(List::stream).filter(c -> c.getMatricule() == matricule).findAny();
+			Optional<Item> opt = getCarnet().getCommandes().stream().map(mutualite.rh.chequedej.Commande::getItems).flatMap(EList::stream).filter(c -> c.getMatricule() == matricule).findAny();
 			if (opt.isPresent()) {
 				opt.get().setNbCheques(commande); // on pourrait même supprimer l'item...
 			}
@@ -690,7 +687,7 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 			item.setNbCheques(commande);
 		}
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

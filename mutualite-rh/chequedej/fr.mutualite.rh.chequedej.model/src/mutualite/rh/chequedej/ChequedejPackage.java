@@ -1031,13 +1031,22 @@ public interface ChequedejPackage extends EPackage {
 	int DEJE___ROOT = 1;
 
 	/**
+	 * The operation id for the '<em>Get Deje Mensuel</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEJE___GET_DEJE_MENSUEL__STRING = 2;
+
+	/**
 	 * The number of operations of the '<em>Deje</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEJE_OPERATION_COUNT = 2;
+	int DEJE_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link mutualite.rh.chequedej.impl.DejeIndividuelImpl <em>Deje Individuel</em>}' class.
@@ -1177,13 +1186,22 @@ public interface ChequedejPackage extends EPackage {
 	int DEJE_MENSUEL___DEJE = 2;
 
 	/**
+	 * The operation id for the '<em>Get Deje Individuel</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEJE_MENSUEL___GET_DEJE_INDIVIDUEL__INT = 3;
+
+	/**
 	 * The number of operations of the '<em>Deje Mensuel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEJE_MENSUEL_OPERATION_COUNT = 3;
+	int DEJE_MENSUEL_OPERATION_COUNT = 4;
 
 
 	/**
@@ -2284,6 +2302,16 @@ public interface ChequedejPackage extends EPackage {
 	EOperation getDeje__Root();
 
 	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.Deje#getDejeMensuel(java.lang.String) <em>Get Deje Mensuel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Deje Mensuel</em>' operation.
+	 * @see mutualite.rh.chequedej.Deje#getDejeMensuel(java.lang.String)
+	 * @generated
+	 */
+	EOperation getDeje__GetDejeMensuel__String();
+
+	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.DejeIndividuel <em>Deje Individuel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2408,6 +2436,16 @@ public interface ChequedejPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getDejeMensuel__Deje();
+
+	/**
+	 * Returns the meta object for the '{@link mutualite.rh.chequedej.DejeMensuel#getDejeIndividuel(int) <em>Get Deje Individuel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Deje Individuel</em>' operation.
+	 * @see mutualite.rh.chequedej.DejeMensuel#getDejeIndividuel(int)
+	 * @generated
+	 */
+	EOperation getDejeMensuel__GetDejeIndividuel__int();
 
 	/**
 	 * Returns the meta object for class '{@link mutualite.rh.chequedej.Choix <em>Choix</em>}'.
@@ -3289,6 +3327,14 @@ public interface ChequedejPackage extends EPackage {
 		EOperation DEJE___ROOT = eINSTANCE.getDeje__Root();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Deje Mensuel</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEJE___GET_DEJE_MENSUEL__STRING = eINSTANCE.getDeje__GetDejeMensuel__String();
+
+		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.DejeIndividuelImpl <em>Deje Individuel</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3387,6 +3433,14 @@ public interface ChequedejPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation DEJE_MENSUEL___DEJE = eINSTANCE.getDejeMensuel__Deje();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Deje Individuel</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DEJE_MENSUEL___GET_DEJE_INDIVIDUEL__INT = eINSTANCE.getDejeMensuel__GetDejeIndividuel__int();
 
 		/**
 		 * The meta object literal for the '{@link mutualite.rh.chequedej.impl.ChoixImpl <em>Choix</em>}' class.

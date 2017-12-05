@@ -147,11 +147,12 @@ public class DejeMensuelImpl extends MinimalEObjectImpl.Container implements Dej
 	 * @generated NOT
 	 */
 	public DejeIndividuel getOrCreateDejeIndividuel(int matricule) {
-		Optional<DejeIndividuel> opt = getDejesIndividuels().stream().filter(di -> di.getMatricule()==matricule).findAny();
-		if(opt.isPresent()) {
-			return opt.get();
+		
+		DejeIndividuel di = getDejeIndividuel(matricule);
+		if(null!=di) {
+			return di;
 		}
-		DejeIndividuel di = ChequedejFactory.eINSTANCE.createDejeIndividuel();
+		di= ChequedejFactory.eINSTANCE.createDejeIndividuel();
 		di.setMatricule(matricule);
 		getDejesIndividuels().add(di);
 		return di;
@@ -165,6 +166,19 @@ public class DejeMensuelImpl extends MinimalEObjectImpl.Container implements Dej
 	public Deje deje() {
 		Deje ret = (Deje) eContainer();
 		return ret;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DejeIndividuel getDejeIndividuel(int matricule) {
+		Optional<DejeIndividuel> opt = getDejesIndividuels().stream().filter(di -> di.getMatricule()==matricule).findAny();
+		if(opt.isPresent()) {
+			return opt.get();
+		}
+		return null;
 	}
 
 	/**
@@ -265,6 +279,8 @@ public class DejeMensuelImpl extends MinimalEObjectImpl.Container implements Dej
 				return getOrCreateDejeIndividuel((Integer)arguments.get(0));
 			case ChequedejPackage.DEJE_MENSUEL___DEJE:
 				return deje();
+			case ChequedejPackage.DEJE_MENSUEL___GET_DEJE_INDIVIDUEL__INT:
+				return getDejeIndividuel((Integer)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

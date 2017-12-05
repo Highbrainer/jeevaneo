@@ -54,6 +54,9 @@ import fr.mutualite.rh.webapp.CdoServlet;
 import mutualite.rh.chequedej.ChequeDej;
 import mutualite.rh.chequedej.ChoixIndividuel;
 import mutualite.rh.chequedej.Commande;
+import mutualite.rh.chequedej.Deje;
+import mutualite.rh.chequedej.DejeIndividuel;
+import mutualite.rh.chequedej.DejeMensuel;
 import mutualite.rh.chequedej.EtablissementVirtuel;
 import mutualite.rh.chequedej.presentation.ChequedejEditorPlugin;
 
@@ -235,7 +238,7 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 
 		Row line0 = getOrCreateRow(sheet, 0);
 		String moisTextuel = dfMoisTextuel.format(month);
-		getOrCreateCell(line0, 5).setCellValue(moisTextuel);
+		getOrCreateCell(line0, 6).setCellValue(moisTextuel);
 
 		Row line1 = getOrCreateRow(sheet, 1);
 		getOrCreateCell(line1, 0).setCellValue(etab.getId());
@@ -247,7 +250,9 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		Cell cell2_4 = getOrCreateCell(line2, 4);
 		cell2_4.setCellValue(cell2_4.getStringCellValue() + " " + dfMoisTextuel.format(previousMonth));
 		Cell cell2_5 = getOrCreateCell(line2, 5);
-		cell2_5.setCellValue(cell2_5.getStringCellValue() + " " + moisTextuel);
+		cell2_5.setCellValue(cell2_5.getStringCellValue() + " " + dfMoisTextuel.format(previousMonth));
+		Cell cell2_6 = getOrCreateCell(line2, 6);
+		cell2_6.setCellValue(cell2_6.getStringCellValue() + " " + moisTextuel);
 
 		String nom = etab.getLibelle().trim();
 
@@ -257,6 +262,8 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		etab.getMatriculesEmployes().stream().map(this::findEmploye).filter(ExportFormCommandeAction.estConcerneParCommande(root))
 				.sorted((e1, e2) -> e1.getLabel().compareTo(e2.getLabel())).forEach(emp -> {
 					int i = pLine[0]++;
+					
+					Integer estimation = findEstimation(emp, root.carnet().root().getDejes(), root.carnet().formatMois(previousMonth));
 
 					System.out.println(emp.getLabel());
 					Row line = getOrCreateRow(sheet, i);
@@ -264,8 +271,13 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 					getOrCreateCell(line, 1).setCellValue(emp.getNom());
 					getOrCreateCell(line, 2).setCellValue(emp.getPrenom());
 					getOrCreateCell(line, 3).setCellValue(root.carnet().root().getContrats().isPartiel(emp.getMatricule()) ? "Temps partiel" : "Temps complet");
-					getOrCreateCell(line, 4).setCellValue("");
+					if(estimation==null) {
+						getOrCreateCell(line, 4).setCellValue("-");
+					} else {
+						getOrCreateCell(line, 4).setCellValue(estimation);
+					}
 					getOrCreateCell(line, 5).setCellValue("");
+					getOrCreateCell(line, 6).setCellValue("");
 
 				});
 
@@ -315,7 +327,7 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 
 		Row line0 = getOrCreateRow(sheet, 0);
 		String moisTextuel = dfMoisTextuel.format(month);
-		getOrCreateCell(line0, 5).setCellValue(moisTextuel);
+		getOrCreateCell(line0, 6).setCellValue(moisTextuel);
 
 		Row line1 = getOrCreateRow(sheet, 1);
 		getOrCreateCell(line1, 0).setCellValue(etab.getId());
@@ -327,7 +339,9 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		Cell cell2_4 = getOrCreateCell(line2, 4);
 		cell2_4.setCellValue(cell2_4.getStringCellValue() + " " + dfMoisTextuel.format(previousMonth));
 		Cell cell2_5 = getOrCreateCell(line2, 5);
-		cell2_5.setCellValue(cell2_5.getStringCellValue() + " " + moisTextuel);
+		cell2_5.setCellValue(cell2_5.getStringCellValue() + " " + dfMoisTextuel.format(previousMonth));
+		Cell cell2_6 = getOrCreateCell(line2, 6);
+		cell2_6.setCellValue(cell2_6.getStringCellValue() + " " + moisTextuel);
 
 		String nom = etab.getNom().trim();
 
@@ -337,6 +351,8 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 		etab.getEmployes().stream().filter(estConcerneParCommande(root)).filter(this::isNotInEtablissementVirtuel).sorted((e1, e2) -> e1.getLabel().compareTo(e2.getLabel()))
 				.forEach(emp -> {
 					int i = pLine[0]++;
+					
+					Integer estimation = findEstimation(emp, root.carnet().root().getDejes(), root.carnet().formatMois(previousMonth));
 
 					System.out.println(emp.getLabel());
 					Row line = getOrCreateRow(sheet, i);
@@ -344,8 +360,13 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 					getOrCreateCell(line, 1).setCellValue(emp.getNom());
 					getOrCreateCell(line, 2).setCellValue(emp.getPrenom());
 					getOrCreateCell(line, 3).setCellValue(root.carnet().root().getContrats().isPartiel(emp.getMatricule()) ? "Temps partiel" : "Temps complet");
-					getOrCreateCell(line, 4).setCellValue("");
+					if(estimation==null) {
+						getOrCreateCell(line, 4).setCellValue("-");
+					} else {
+						getOrCreateCell(line, 4).setCellValue(estimation);
+					}
 					getOrCreateCell(line, 5).setCellValue("");
+					getOrCreateCell(line, 6).setCellValue("");
 
 				});
 
@@ -370,6 +391,18 @@ public class ExportFormCommandeAction implements IObjectActionDelegate {
 			wb.close();
 		}
 
+	}
+
+	private Integer findEstimation(Employe emp, Deje dejes, String mois) {
+		DejeMensuel dm = dejes.getDejeMensuel(mois);
+		if(null==dm) {
+			return null;
+		}
+		DejeIndividuel di = dm.getDejeIndividuel(emp.getMatricule());
+		if(null==di) {
+			return null;
+		}
+		return di.getNbEstimeJoursEntiers();
 	}
 
 	public static Predicate<? super Employe> estConcerneParCommande(Commande commande) {

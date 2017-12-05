@@ -18,6 +18,7 @@ import mutualite.rh.chequedej.Deje;
  * <ul>
  *   <li>{@link mutualite.rh.chequedej.Deje#getOrCreateDejeMensuel(java.lang.String) <em>Get Or Create Deje Mensuel</em>}</li>
  *   <li>{@link mutualite.rh.chequedej.Deje#root() <em>Root</em>}</li>
+ *   <li>{@link mutualite.rh.chequedej.Deje#getDejeMensuel(java.lang.String) <em>Get Deje Mensuel</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -114,6 +115,19 @@ public class DejeTest extends TestCase {
 	 * @generated
 	 */
 	public void testRoot() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link mutualite.rh.chequedej.Deje#getDejeMensuel(java.lang.String) <em>Get Deje Mensuel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mutualite.rh.chequedej.Deje#getDejeMensuel(java.lang.String)
+	 * @generated
+	 */
+	public void testGetDejeMensuel__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
