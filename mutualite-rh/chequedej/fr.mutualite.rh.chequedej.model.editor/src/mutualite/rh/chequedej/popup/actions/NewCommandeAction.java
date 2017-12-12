@@ -78,7 +78,7 @@ public class NewCommandeAction implements IObjectActionDelegate {
 				Date now = new Date();
 				commande.setDate(now);
 				LocalDate nextMonth = LocalDate.now().plus(1, ChronoUnit.MONTHS);
-				commande.setMois(commande.carnet().formatMois(nextMonth));
+				commande.setMois(root.getCarnet().formatMois(nextMonth));
 				commande.setParticipationPatronale(root.getParticipationPatronale());
 				commande.setValeurNominale(root.getValeurNominale());
 				root.getCarnet().getCommandes().add(commande);
