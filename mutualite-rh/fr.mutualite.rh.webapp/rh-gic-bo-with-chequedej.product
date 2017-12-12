@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="%productName" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="1.2.10.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="%productName" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="1.2.11.qualifier" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="eclipse_lg.png"/>
@@ -18,6 +18,7 @@
 %USERPROFILE%\GIC\ws2
       </programArgs>
       <vmArgs>-Dconfig=C:\GIC\gic.config
+-Xmx512m
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
