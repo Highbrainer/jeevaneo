@@ -286,27 +286,27 @@ public class ReportResource {
 						}
 						HSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1);
 						int i = -1;
-						row.createCell(++i).setCellValue(employe.getLabel());
-						row.createCell(++i).setCellValue(employe.getEtablissement().getNom());
+						row.createCell(0).setCellValue(employe.getLabel());
+						row.createCell(1).setCellValue(employe.getEtablissement().getNom());
 						String emploi = null;
 						Affectation affectationEmploiCourante = employe.getAffectationEmploiCourante();
 						if(null!=affectationEmploiCourante) {
 								emploi = affectationEmploiCourante.getEmploi().getIntitule();
 						}
-						row.createCell(++i).setCellValue(emploi);
+						row.createCell(2).setCellValue(emploi);
 						Optional<SessionFormation> first = employe.getSessionsFormation().stream().filter(sf -> formation(sf).isDpc())
 								.sorted((sf1, sf2) -> sf1.getDateDebut().compareTo(sf2.getDateDebut())).findFirst();
 						if (first.isPresent()) {
 							SessionFormation sessionFormation = first.get();
 
-							HSSFCell dateCell = row.createCell(++i);
+							HSSFCell dateCell = row.createCell(3);
 							dateCell.setCellStyle(dateStyle);
 							dateCell.setCellValue(sessionFormation.getDateDebut());
 							Formation formation = formation(sessionFormation);
-							row.createCell(++i).setCellValue(formation.getLibelle());
-							row.createCell(++i).setCellValue(organisme(formation).getNom());
+							row.createCell(4).setCellValue(formation.getLibelle());
+							row.createCell(5).setCellValue(organisme(formation).getNom());
 						}
-						HSSFCell dateSortieCell = row.createCell(++i);
+						HSSFCell dateSortieCell = row.createCell(6);
 						dateSortieCell.setCellStyle(dateStyle);
 						Date dateSortieEntreprise = employe.getDateSortieEntreprise();
 						if (null != dateSortieEntreprise) {
