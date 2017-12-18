@@ -272,13 +272,13 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 					String prenom = line.getCell(2).getStringCellValue();
 
 					Integer nbJoursEntiersMoisPrecedent = null;
-					Cell cell4 = line.getCell(4);
+					Cell cell5 = line.getCell(5);
 					try {
 						// if(cell4.getCellType()==Cell.CELL_TYPE_NUMERIC) {
-						if (null != cell4) {
-							boolean chaineVide = cell4.getCellTypeEnum().equals(CellType.STRING) && cell4.getStringCellValue().trim().isEmpty();
+						if (null != cell5) {
+							boolean chaineVide = cell5.getCellTypeEnum().equals(CellType.STRING) && cell5.getStringCellValue().trim().isEmpty();
 							if (!chaineVide) {
-								nbJoursEntiersMoisPrecedent = (int) cell4.getNumericCellValue();
+								nbJoursEntiersMoisPrecedent = (int) cell5.getNumericCellValue();
 							} else {
 								nbJoursEntiersMoisPrecedent = 0;
 							}
@@ -289,12 +289,12 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 						// String sContent = cell4.getStringCellValue();
 						// if (null != sContent && !sContent.trim().isEmpty()) {
 					} catch (IllegalStateException e) {
-						comment += "Mois précédent : '" + cell4.getStringCellValue() + "' n'est pas un nombre entier! ";
+						comment += "Mois précédent : '" + cell5.getStringCellValue() + "' n'est pas un nombre entier! ";
 						continue;
 					}
 					int nbJoursEntiersMoisSuivant;
-					Cell cell5 = line.getCell(5);
-					if (null == cell5) {
+					Cell cell6 = line.getCell(6);
+					if (null == cell6) {
 						comment += "La valeur estimée pour le mois prochain n'a pas été saisie! ";
 						continue;
 					}
@@ -303,9 +303,9 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 						// if (null == sContent || sContent.trim().isEmpty()) {
 						// throw new IllegalStateException();
 						// }
-						nbJoursEntiersMoisSuivant = (int) cell5.getNumericCellValue();
+						nbJoursEntiersMoisSuivant = (int) cell6.getNumericCellValue();
 					} catch (IllegalStateException e) {
-						comment += "Mois suivant : '" + cell5.getStringCellValue() + "' n'est pas un nombre entier! ";
+						comment += "Mois suivant : '" + cell6.getStringCellValue() + "' n'est pas un nombre entier! ";
 						continue;
 					}
 
@@ -322,7 +322,7 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 					imported = true;
 					comment = "Importé le " + dtf.format(LocalDateTime.now());
 				} finally {
-					getOrCreateCell(line, 6).setCellValue(imported);
+					getOrCreateCell(line, 7).setCellValue(imported);
 					if (null != comment)
 						getOrCreateCell(line, 8).setCellValue(comment);
 				}
@@ -412,22 +412,22 @@ public class ImportFormCommandeAction implements IObjectActionDelegate {
 					String nom = line.getCell(1).getStringCellValue();
 					String prenom = line.getCell(2).getStringCellValue();
 
-					Cell cell4 = line.getCell(4);
-					if (null != cell4 && cell4.getCellTypeEnum().equals(CellType.NUMERIC)) {
+					Cell cell5 = line.getCell(5);
+					if (null != cell5 && cell5.getCellTypeEnum().equals(CellType.NUMERIC)) {
 						try {
-							Integer nbJoursEntiersMoisPrecedent = (int) cell4.getNumericCellValue();
+							Integer nbJoursEntiersMoisPrecedent = (int) cell5.getNumericCellValue();
 						} catch (IllegalStateException e) {
 							comment += "Le réel du mois précédent n'est pas un nombre entier! ";
 						}
 					}
 
-					Cell cell5 = line.getCell(5);
-					if (null != cell5) {
-						if (cell5.getCellTypeEnum().equals(CellType.BLANK)) {
+					Cell cell6 = line.getCell(6);
+					if (null != cell6) {
+						if (cell6.getCellTypeEnum().equals(CellType.BLANK)) {
 							comment += "L'estimation du mois prochain n'a pas été saisie! ";
 						} else {
 							try {
-								int nbJoursEntiersMoisSuivant = (int) cell5.getNumericCellValue();
+								int nbJoursEntiersMoisSuivant = (int) cell6.getNumericCellValue();
 							} catch (IllegalStateException e) {
 								comment += "L'estimation du mois prochain n'est pas un nombre entier! ";
 							}
