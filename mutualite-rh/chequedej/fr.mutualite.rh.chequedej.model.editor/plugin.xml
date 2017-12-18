@@ -555,4 +555,33 @@
          </visibility>
       </objectContribution>
    </extension>
+  <extension
+         point="org.eclipse.ui.popupMenus">   
+      <objectContribution
+            id="fr.mutualite.rh.chequedej.model.contribution17"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               id="fr.mutualite.rh.chequedej.model.menu1"
+               label="Mutualite"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mutualite.rh.chequedej.popup.actions.ExportFormEmargementAction"
+               enablesFor="1"
+               id="fr.mutualite.rh.chequedej.model.exportFormEmargementAction"
+               label="Générer le formulaire d'émargement"
+               menubarPath="fr.mutualite.rh.chequedej.model.menu1/group1">
+         </action>
+         <visibility>
+         	<or>
+         		<objectClass
+                 name="mutualite.rh.chequedej.Commande">
+         		</objectClass>
+         	</or>
+         </visibility>
+      </objectContribution>
+   </extension>
 </plugin>
