@@ -624,7 +624,10 @@ public class ChequeDejImpl extends MinimalEObjectImpl.Container implements Chequ
 		DejeIndividuel diMoisSuivant = chequeDej.getDejes().getOrCreateDejeMensuel(moisSuivant).getOrCreateDejeIndividuel(matricule);
 		diMoisSuivant.setNbEstimeJoursEntiers(nbEstimeJoursEntiersMoisSuivant);
 
-		SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(matricule, chequeDej.getSolde().annee(moisPrecedent));
+		SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(matricule);
+		
+		// petit nettoyage au passage! 
+		si.setAnnee(0);
 
 		Integer estime = diMoisSuivant.getNbEstimeJoursEntiers();
 		String commentaire = "Commande pour " + dfMoisTextuel.format(getCarnet().mois(mois)) + " : " + estime + " jours entiers prévus";

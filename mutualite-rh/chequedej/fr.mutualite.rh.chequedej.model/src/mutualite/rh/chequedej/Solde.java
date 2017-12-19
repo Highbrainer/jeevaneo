@@ -45,7 +45,7 @@ public interface Solde extends EObject {
 	 * @model
 	 * @generated
 	 */
-	SoldeIndividuel getOrCreateSoldeIndividual(int matricule, int annee);
+	SoldeIndividuel getOrCreateSoldeIndividual(int matricule);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public interface Solde extends EObject {
 	 * @model
 	 * @generated
 	 */
-	int getSolde(int matricule, int annee);
+	int getSolde(int matricule);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,6 +69,6 @@ public interface Solde extends EObject {
 	 * @model
 	 * @generated
 	 */
-	SoldeIndividuel getSoldeIndividual(int matricule, int annee);
+	SoldeIndividuel getSoldeIndividual(int matricule);
 
 } // Solde

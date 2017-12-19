@@ -242,21 +242,21 @@ public class ChequeDejTest extends TestCase {
 		
 		
 		
-		getFixture().getSolde().getOrCreateSoldeIndividual(matricule, 2016).setNbCheques(soldeInitial);
+		getFixture().getSolde().getOrCreateSoldeIndividual(matricule).setNbCheques(soldeInitial);
 		
 		for(int i=0;i<commandes.length;++i) {
 			String mois = "20170" + (i+1);
 			getFixture().integrateDeje(mois, matricule, estimations[i], joursTravailles[i]);
 			
 			if(null!=soldes) {
-				Assert.assertEquals(soldes[i], getFixture().getSolde().getSolde(matricule, getFixture().getSolde().annee(mois)+(i<2?-1:0)));
+				Assert.assertEquals(soldes[i], getFixture().getSolde().getSolde(matricule));
 			}
 			Assert.assertEquals(commandes[i], getFixture().getCarnet().getOrCreateCommande(mois).getOrCreateItem(matricule).getNbCheques().intValue());
 		}
 		System.out.println("#####################################");
-		getFixture().getSolde().getOrCreateSoldeIndividual(matricule, 2016).getHistorique().stream().map(HistoriqueSoldeIndividuel::getComment).forEach(System.out::println);
+		getFixture().getSolde().getOrCreateSoldeIndividual(matricule).getHistorique().stream().map(HistoriqueSoldeIndividuel::getComment).forEach(System.out::println);
 		System.out.println("#####################################");
-		getFixture().getSolde().getOrCreateSoldeIndividual(matricule, 2017).getHistorique().stream().map(HistoriqueSoldeIndividuel::getComment).forEach(System.out::println);
+		getFixture().getSolde().getOrCreateSoldeIndividual(matricule).getHistorique().stream().map(HistoriqueSoldeIndividuel::getComment).forEach(System.out::println);
 	}
 
 } //ChequeDejTest

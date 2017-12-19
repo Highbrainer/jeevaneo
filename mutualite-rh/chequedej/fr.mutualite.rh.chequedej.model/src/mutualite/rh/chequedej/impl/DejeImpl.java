@@ -4,8 +4,6 @@ package mutualite.rh.chequedej.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Optional;
-
 import mutualite.rh.chequedej.ChequeDej;
 import mutualite.rh.chequedej.ChequedejFactory;
 import mutualite.rh.chequedej.ChequedejPackage;
@@ -111,11 +109,9 @@ public class DejeImpl extends MinimalEObjectImpl.Container implements Deje {
 	 * @generated
 	 */
 	public DejeMensuel getDejeMensuel(String mois) {
-		Optional<DejeMensuel> opt = getDejesMensuels().stream().filter(dm -> dm.getMois().equals(mois)).findAny();
-		if(opt.isPresent()) {
-			return opt.get();
-		}
-		return null;
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

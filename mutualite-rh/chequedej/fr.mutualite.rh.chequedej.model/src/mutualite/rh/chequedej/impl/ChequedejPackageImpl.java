@@ -784,7 +784,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSolde__GetOrCreateSoldeIndividual__int_int() {
+	public EOperation getSolde__GetOrCreateSoldeIndividual__int() {
 		return soldeEClass.getEOperations().get(0);
 	}
 
@@ -793,7 +793,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSolde__GetSolde__int_int() {
+	public EOperation getSolde__GetSolde__int() {
 		return soldeEClass.getEOperations().get(1);
 	}
 
@@ -811,7 +811,7 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSolde__GetSoldeIndividual__int_int() {
+	public EOperation getSolde__GetSoldeIndividual__int() {
 		return soldeEClass.getEOperations().get(3);
 	}
 
@@ -1353,10 +1353,10 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 
 		soldeEClass = createEClass(SOLDE);
 		createEReference(soldeEClass, SOLDE__SOLDES_INDIVIDUELS);
-		createEOperation(soldeEClass, SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT);
-		createEOperation(soldeEClass, SOLDE___GET_SOLDE__INT_INT);
+		createEOperation(soldeEClass, SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT);
+		createEOperation(soldeEClass, SOLDE___GET_SOLDE__INT);
 		createEOperation(soldeEClass, SOLDE___ANNEE__STRING);
-		createEOperation(soldeEClass, SOLDE___GET_SOLDE_INDIVIDUAL__INT_INT);
+		createEOperation(soldeEClass, SOLDE___GET_SOLDE_INDIVIDUAL__INT);
 
 		soldeIndividuelEClass = createEClass(SOLDE_INDIVIDUEL);
 		createEAttribute(soldeIndividuelEClass, SOLDE_INDIVIDUEL__NB_CHEQUES);
@@ -1530,20 +1530,17 @@ public class ChequedejPackageImpl extends EPackageImpl implements ChequedejPacka
 		initEClass(soldeEClass, Solde.class, "Solde", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolde_SoldesIndividuels(), this.getSoldeIndividuel(), null, "soldesIndividuels", null, 0, -1, Solde.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getSolde__GetOrCreateSoldeIndividual__int_int(), this.getSoldeIndividuel(), "getOrCreateSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSolde__GetOrCreateSoldeIndividual__int(), this.getSoldeIndividuel(), "getOrCreateSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSolde__GetSolde__int_int(), ecorePackage.getEInt(), "getSolde", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSolde__GetSolde__int(), ecorePackage.getEInt(), "getSolde", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getSolde__Annee__String(), ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "mois", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSolde__GetSoldeIndividual__int_int(), this.getSoldeIndividuel(), "getSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getSolde__GetSoldeIndividual__int(), this.getSoldeIndividuel(), "getSoldeIndividual", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "matricule", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "annee", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(soldeIndividuelEClass, SoldeIndividuel.class, "SoldeIndividuel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSoldeIndividuel_NbCheques(), ecorePackage.getEInt(), "nbCheques", null, 1, 1, SoldeIndividuel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

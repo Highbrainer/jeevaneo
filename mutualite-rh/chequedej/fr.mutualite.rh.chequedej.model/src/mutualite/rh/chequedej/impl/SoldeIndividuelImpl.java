@@ -214,7 +214,7 @@ public class SoldeIndividuelImpl extends MinimalEObjectImpl.Container implements
 		if(delta==0) {
 			comment = "RAS / " + comment;
 		} else {
-		comment += " Ancien solde " + annee + " : " + ancienSolde + ". Nouveau solde " + annee + " : " + ancienSolde + (delta>0?" + ":" - ") + Math.abs(delta) + " = " + nouveauSolde + ".";
+		comment += " Ancien solde : " + ancienSolde + ". Nouveau solde : " + ancienSolde + (delta>0?" + ":" - ") + Math.abs(delta) + " = " + nouveauSolde + ".";
 		}
 		HistoriqueSoldeIndividuel log = ChequedejFactory.eINSTANCE.createHistoriqueSoldeIndividuel();
 		log.setComment(comment);

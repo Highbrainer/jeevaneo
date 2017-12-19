@@ -2,8 +2,6 @@
  */
 package mutualite.rh.chequedej;
 
-import java.time.LocalDate;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

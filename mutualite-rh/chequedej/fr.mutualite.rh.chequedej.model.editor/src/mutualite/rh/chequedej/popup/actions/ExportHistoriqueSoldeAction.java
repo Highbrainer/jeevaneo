@@ -338,7 +338,7 @@ public class ExportHistoriqueSoldeAction implements IObjectActionDelegate {
 				}
 			}
 
-			SoldeIndividuel si = o.getSolde().getSoldeIndividual(emp.getMatricule(), annee);
+			SoldeIndividuel si = o.getSolde().getSoldeIndividual(emp.getMatricule());
 			if (null != si) {
 				for (HistoriqueSoldeIndividuel his : si.getHistorique()) {
 					Row row = sheet.createRow(++line);

@@ -61,7 +61,7 @@ public class DejeIndividuelImpl extends MinimalEObjectImpl.Container implements 
 						return;
 					}
 					ChequeDej chequeDej = dejeMensuel.deje().root();
-					SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(di.getMatricule(), chequeDej.getSolde().annee(dejeMensuel.getMois()));
+					SoldeIndividuel si = chequeDej.getSolde().getOrCreateSoldeIndividual(di.getMatricule());
 					int delta;
 					String comment;
 					if (ancien == null) {

@@ -1521,20 +1521,18 @@
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_DtE6IJTUEeeDn4SRVb7Reg" name="getOrCreateSoldeIndividual(matricule EInt, annee EInt) : SoldeIndividuel" tooltipText="getOrCreateSoldeIndividual(matricule, annee) : SoldeIndividuel">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_DtE6IJTUEeeDn4SRVb7Reg" name="getOrCreateSoldeIndividual(matricule EInt) : SoldeIndividuel" tooltipText="getOrCreateSoldeIndividual(matricule) : SoldeIndividuel">
           <target xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getOrCreateSoldeIndividual"/>
           <semanticElements xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getOrCreateSoldeIndividual"/>
-          <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getOrCreateSoldeIndividual/annee"/>
           <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getOrCreateSoldeIndividual/matricule"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_DtGIQJTUEeeDn4SRVb7Reg" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_siILkJTVEeeDn4SRVb7Reg" name="getSolde(matricule EInt, annee EInt) : EInt" tooltipText="getSolde(matricule, annee) : EInt">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_siILkJTVEeeDn4SRVb7Reg" name="getSolde(matricule EInt) : EInt" tooltipText="getSolde(matricule) : EInt">
           <target xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getSolde"/>
           <semanticElements xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getSolde"/>
-          <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getSolde/annee"/>
           <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getSolde/matricule"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_siILkZTVEeeDn4SRVb7Reg" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
@@ -1550,10 +1548,9 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_yF4LEL1xEee4zIqgNH1tyw" name="getSoldeIndividual(matricule EInt, annee EInt) : SoldeIndividuel" tooltipText="getSoldeIndividual(matricule, annee) : SoldeIndividuel">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_yF4LEL1xEee4zIqgNH1tyw" name="getSoldeIndividual(matricule EInt) : SoldeIndividuel" tooltipText="getSoldeIndividual(matricule) : SoldeIndividuel">
           <target xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getSoldeIndividual"/>
           <semanticElements xmi:type="ecore:EOperation" href="chequedej.ecore#//Solde/getSoldeIndividual"/>
-          <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getSoldeIndividual/annee"/>
           <semanticElements xmi:type="ecore:EParameter" href="chequedej.ecore#//Solde/getSoldeIndividual/matricule"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_yF4LEb1xEee4zIqgNH1tyw" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>

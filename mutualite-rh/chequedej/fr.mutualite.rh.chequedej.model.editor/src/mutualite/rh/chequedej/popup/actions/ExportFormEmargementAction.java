@@ -67,6 +67,7 @@ import org.osgi.framework.Bundle;
 
 import fr.mutualite.rh.model.Employe;
 import fr.mutualite.rh.model.Etablissement;
+import fr.mutualite.rh.webapp.Activator;
 import fr.mutualite.rh.webapp.CdoServlet;
 import mutualite.rh.chequedej.CodeClient;
 import mutualite.rh.chequedej.Commande;
@@ -221,29 +222,41 @@ public class ExportFormEmargementAction implements IObjectActionDelegate {
 
 					Integer idEtablissement = item.getSuccursale().getIdEtablissement();
 					Etablissement etablissement = findEtablissement(idEtablissement);
-					Sheet sheet = getOrCreateSheet(wb, ""+idEtablissement);
-					getOrCreateCell(getOrCreateRow(sheet, 1), 0).setCellValue(etablissement.getNom().trim() + " - " + 
-							"Commande de Chèques Déjeuner pour " + new SimpleDateFormat("MMMM yyyy").format(new SimpleDateFormat("yyyyMM").parse(commande.getMois())));
+					Sheet sheet = getOrCreateSheet(wb, "" + idEtablissement);
+					getOrCreateCell(getOrCreateRow(sheet, 1), 0).setCellValue(etablissement.getNom().trim() + " - " + "Commande de Chèques Déjeuner pour "
+							+ new SimpleDateFormat("MMMM yyyy").format(new SimpleDateFormat("yyyyMM").parse(commande.getMois())));
 					// apend new line
 					Row row = getOrCreateRow(sheet, sheet.getLastRowNum() + 1);
 					getOrCreateCell(row, 0).setCellValue(item.getNom() + " " + item.getPrenom());
-					getOrCreateCell(row, 1).setCellValue(item.getNbCheques());
+					Integer nbCheques = item.getNbCheques();
+					if (null != nbCheques) {
+						getOrCreateCell(row, 1).setCellValue(nbCheques);
+					} else {
+						ChequedejEditorPlugin.getPlugin().getLog().log(new Status(IStatus.WARNING, "chequedej", "Pas de commande pour " + item.getMatricule() + " (" + item.getNom() + " " + item.getPrenom() + ") !"));
+					}
 
 					Solde solde = commande.carnet().root().getSolde();
-					SoldeIndividuel si = solde.getSoldeIndividual(item.getMatricule(), solde.annee(commande.getMois()));
-					si.getHistorique().stream().filter(h -> {
-						return h.getDate().after(from) && h.getDate().before(to);
-					}).forEach(histo -> {
+					SoldeIndividuel si = solde.getSoldeIndividual(item.getMatricule());
+					if (null == si) {
+						log.warn("Pas d'historique de solde pour " + item.getMatricule() + " (" + item.getNom() + " " + item.getPrenom() + ")!");
+						String val = "N/A";
 						Cell cell = getOrCreateCell(row, 3);
-						String val = cell.getStringCellValue();
-						if (val == null || val.isEmpty()) {
-							val = "";
-						} else {
-							val = val + "\r\n";
-						}
-						cell.setCellValue(val + histo.getComment());
+						cell.setCellValue(val);
+					} else {
+						si.getHistorique().stream().filter(h -> {
+							return h.getDate().after(from) && h.getDate().before(to);
+						}).forEach(histo -> {
+							Cell cell = getOrCreateCell(row, 3);
+							String val = cell.getStringCellValue();
+							if (val == null || val.isEmpty()) {
+								val = "";
+							} else {
+								val = val + "\r\n";
+							}
+							cell.setCellValue(val + histo.getComment());
 
-					});
+						});
+					}
 					row.setHeightInPoints(50);
 
 				} catch (Throwable e) {
@@ -278,13 +291,10 @@ public class ExportFormEmargementAction implements IObjectActionDelegate {
 		}
 	}
 
-
-
-
 	public Sheet getOrCreateSheet(Workbook wb, String sheetName) {
 
 		String name = sheetName.trim();
-		
+
 		Sheet sheet = wb.getSheet(name);
 		if (null == sheet) {
 			sheet = /* wb.createSheet(sheetName) */wb.cloneSheet(0);
@@ -301,9 +311,9 @@ public class ExportFormEmargementAction implements IObjectActionDelegate {
 		}
 		throw new IllegalArgumentException("Aucun salarié de matricule " + matricule + ".");
 	}
-	
+
 	private Etablissement findEtablissement(int id) {
-		Optional<Etablissement> opt = CdoServlet.getMutualite().getEtablissements().getEtablissements().stream().filter(e -> e.getId()==id).findAny();
+		Optional<Etablissement> opt = CdoServlet.getMutualite().getEtablissements().getEtablissements().stream().filter(e -> e.getId() == id).findAny();
 		if (opt.isPresent()) {
 			return opt.get();
 		}
@@ -437,7 +447,7 @@ class DateIntervalDialog extends Dialog {
 	protected Control createDialogArea(Composite dialog) {
 
 		getParentShell().setText("Sélection de l'intervale de dates");
-		
+
 		calendarFrom = new DateTime(dialog, SWT.CALENDAR | SWT.BORDER);
 		calendarTo = new DateTime(dialog, SWT.CALENDAR | SWT.BORDER);
 
@@ -471,10 +481,10 @@ class DateIntervalDialog extends Dialog {
 	}
 
 	protected Date to() {
-		Calendar from = Calendar.getInstance();
-		from.set(Calendar.YEAR, calendarTo.getYear());
-		from.set(Calendar.MONTH, calendarTo.getMonth());
-		from.set(Calendar.DAY_OF_MONTH, calendarTo.getDay());
-		return from.getTime();
+		Calendar to = Calendar.getInstance();
+		to.set(Calendar.YEAR, calendarTo.getYear());
+		to.set(Calendar.MONTH, calendarTo.getMonth());
+		to.set(Calendar.DAY_OF_MONTH, calendarTo.getDay());
+		return to.getTime();
 	}
 }

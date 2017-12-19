@@ -79,14 +79,18 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public SoldeIndividuel getOrCreateSoldeIndividual(int matricule, int annee) {
-		SoldeIndividuel soldeIndividual = getSoldeIndividual(matricule, annee);
+	public SoldeIndividuel getOrCreateSoldeIndividual(int matricule) {
+		SoldeIndividuel soldeIndividual = getSoldeIndividual(matricule);
 		if(null!=soldeIndividual) {
+			
+			//nettoyage au passage
+			soldeIndividual.setAnnee(0);
+			
 			return soldeIndividual;
 		}
 		SoldeIndividuel si = ChequedejFactory.eINSTANCE.createSoldeIndividuel();
 		si.setMatricule(matricule);
-		si.setAnnee(annee);
+		si.setAnnee(0);
 		si.setNbCheques(0);
 		getSoldesIndividuels().add(si);
 		return si;
@@ -97,8 +101,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public int getSolde(int matricule, int annee) {
-		Optional<SoldeIndividuel> opt = getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule && si.getAnnee()==annee).findAny();
+	public int getSolde(int matricule) {
+		Optional<SoldeIndividuel> opt = getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule).findAny();
 		if(opt.isPresent()) {
 			return opt.get().getNbCheques();
 		}
@@ -119,8 +123,8 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public SoldeIndividuel getSoldeIndividual(int matricule, int annee) {
-		return getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule && si.getAnnee()==annee).findAny().orElse(null);
+	public SoldeIndividuel getSoldeIndividual(int matricule) {
+		return getSoldesIndividuels().stream().filter(si -> si.getMatricule()==matricule).findAny().orElse(null);
 	}
 
 	/**
@@ -205,14 +209,14 @@ public class SoldeImpl extends MinimalEObjectImpl.Container implements Solde {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ChequedejPackage.SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT_INT:
-				return getOrCreateSoldeIndividual((Integer)arguments.get(0), (Integer)arguments.get(1));
-			case ChequedejPackage.SOLDE___GET_SOLDE__INT_INT:
-				return getSolde((Integer)arguments.get(0), (Integer)arguments.get(1));
+			case ChequedejPackage.SOLDE___GET_OR_CREATE_SOLDE_INDIVIDUAL__INT:
+				return getOrCreateSoldeIndividual((Integer)arguments.get(0));
+			case ChequedejPackage.SOLDE___GET_SOLDE__INT:
+				return getSolde((Integer)arguments.get(0));
 			case ChequedejPackage.SOLDE___ANNEE__STRING:
 				return annee((String)arguments.get(0));
-			case ChequedejPackage.SOLDE___GET_SOLDE_INDIVIDUAL__INT_INT:
-				return getSoldeIndividual((Integer)arguments.get(0), (Integer)arguments.get(1));
+			case ChequedejPackage.SOLDE___GET_SOLDE_INDIVIDUAL__INT:
+				return getSoldeIndividual((Integer)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
