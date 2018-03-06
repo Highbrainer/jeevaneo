@@ -573,12 +573,28 @@ public class EntretienAnnuelResource extends BaseResource {
 
 		if (precedentEntretienAnnuelOpt.isPresent()) {
 			EntretienAnnuel precedent = (EntretienAnnuel) precedentEntretienAnnuelOpt.get();
+			
+			//Objectifs
 			precedent.getObjectifs().stream().map(o -> {
 				ObjectifPrecedent objPrec = MutFactory.eINSTANCE.createObjectifPrecedent();
 				objPrec.setObjectif(o);
 				return objPrec;
 			}).forEach(ret.getObjectifsPrecedents()::add);
-			;
+			
+			//Missions principales
+			precedent.getEvaluationsTenuePosteMissionsPrincipales().stream().map(o -> {
+				EvaluationTenuePoste objPrec = MutFactory.eINSTANCE.createEvaluationTenuePoste();
+				objPrec.setMission(o.getMission());
+				return objPrec;
+			}).forEach(ret.getEvaluationsTenuePosteMissionsPrincipales()::add);
+			
+			//Missions spécifiques
+			precedent.getEvaluationsTenuePosteMissionsSpecifiques().stream().map(o -> {
+				EvaluationTenuePoste objPrec = MutFactory.eINSTANCE.createEvaluationTenuePoste();
+				objPrec.setMission(o.getMission());
+				return objPrec;
+			}).forEach(ret.getEvaluationsTenuePosteMissionsSpecifiques()::add);
+			
 		}
 
 		employe.getEntretiens().add(ret);
