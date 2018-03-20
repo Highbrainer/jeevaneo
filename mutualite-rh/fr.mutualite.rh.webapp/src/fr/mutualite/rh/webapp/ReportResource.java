@@ -290,8 +290,8 @@ public class ReportResource {
 						row.createCell(1).setCellValue(employe.getEtablissement().getNom());
 						String emploi = null;
 						Affectation affectationEmploiCourante = employe.getAffectationEmploiCourante();
-						if(null!=affectationEmploiCourante) {
-								emploi = affectationEmploiCourante.getEmploi().getIntitule();
+						if (null != affectationEmploiCourante) {
+							emploi = affectationEmploiCourante.getEmploi().getIntitule();
 						}
 						row.createCell(2).setCellValue(emploi);
 						Optional<SessionFormation> first = employe.getSessionsFormation().stream().filter(sf -> formation(sf).isDpc())
@@ -643,7 +643,7 @@ public class ReportResource {
 
 					IntStream.range(0, nbCols + 1).forEach(sheet::autoSizeColumn);
 					sheet.setAutoFilter(new CellRangeAddress(sheet.getFirstRowNum(), sheet.getLastRowNum(), 0, nbCols));
-					
+
 					wb.write(out);
 					out.flush();
 				}
@@ -955,6 +955,9 @@ public class ReportResource {
 						cell.setCellValue("Prénom");
 						cell = firstRow.createCell(++nbCols);
 						cell.setCellStyle(titleStyle);
+						cell.setCellValue("Date de sortie");
+						cell = firstRow.createCell(++nbCols);
+						cell.setCellStyle(titleStyle);
 						cell.setCellValue("Dates d'entretien");
 					}
 
@@ -970,6 +973,14 @@ public class ReportResource {
 						row.createCell(++pI[0]).setCellValue(etablissement == null ? "" : etablissement.getNom());
 						row.createCell(++pI[0]).setCellValue(emp.getNom());
 						row.createCell(++pI[0]).setCellValue(emp.getPrenom());
+						{
+							Date dateSortieEntreprise = emp.getDateSortieEntreprise();
+							Cell cell = row.createCell(++pI[0]);
+							cell.setCellStyle(dateStyle);
+							if (null != dateSortieEntreprise) {
+								cell.setCellValue(dateSortieEntreprise);
+							}
+						}
 						emp.getEntretiens().stream()
 
 								.filter(ent -> ent.getDate() != null)
@@ -993,7 +1004,7 @@ public class ReportResource {
 					IntStream.range(0, pNbCols[0] + 1).forEach(sheet::autoSizeColumn);
 
 					// Titres manquants
-					IntStream.range(4, pNbCols[0] + 1).forEach(idx -> {
+					IntStream.range(nbCols + 1, pNbCols[0] + 1).forEach(idx -> {
 						Cell cell = firstRow.createCell(idx);
 						cell.setCellStyle(titleStyle);
 						cell.setCellValue(" ");
