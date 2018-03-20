@@ -671,7 +671,7 @@ public class ReportResource {
 
 					CellStyle dateStyle = wb.createCellStyle();
 					CreationHelper createHelper = wb.getCreationHelper();
-					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm"));
+					dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("d mmm yyyy"));
 
 					Font bold = wb.createFont();
 					bold.setBold(true);
