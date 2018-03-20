@@ -222,8 +222,13 @@ public class ExportFormEmargementAction implements IObjectActionDelegate {
 
 					Integer idEtablissement = item.getSuccursale().getIdEtablissement();
 					Etablissement etablissement = findEtablissement(idEtablissement);
-					Sheet sheet = getOrCreateSheet(wb, "" + idEtablissement);
-					getOrCreateCell(getOrCreateRow(sheet, 1), 0).setCellValue(etablissement.getNom().trim() + " - " + "Commande de Chèques Déjeuner pour "
+					EtablissementVirtuel ev = findEtablissementVirtuel(item.getMatricule());
+					
+					String sheetName = "" + (ev==null?idEtablissement:ev.getId());
+					String etabName = ev==null?etablissement.getNom().trim():ev.getLibelle().trim();
+					
+					Sheet sheet = getOrCreateSheet(wb, sheetName);
+					getOrCreateCell(getOrCreateRow(sheet, 1), 0).setCellValue(etabName + " - " + "Commande de Chèques Déjeuner pour "
 							+ new SimpleDateFormat("MMMM yyyy").format(new SimpleDateFormat("yyyyMM").parse(commande.getMois())));
 					// apend new line
 					Row row = getOrCreateRow(sheet, sheet.getLastRowNum() + 1);
@@ -273,7 +278,7 @@ public class ExportFormEmargementAction implements IObjectActionDelegate {
 
 				sheet.autoSizeColumn(0);
 				sheet.autoSizeColumn(1);
-				sheet.autoSizeColumn(3);
+				//sheet.autoSizeColumn(3);
 			}
 
 			File file = new File(dir, "Formulaire d'émargement pour la commande " + commande.getMois() + ".xlsx");
@@ -289,6 +294,10 @@ public class ExportFormEmargementAction implements IObjectActionDelegate {
 			});
 			e.printStackTrace();
 		}
+	}
+
+	private EtablissementVirtuel findEtablissementVirtuel(int matricule) {
+		return commande.carnet().root().getEtablissementsVirtuels().getEtablissementsVirtuels().stream().filter(ev -> ev.getMatriculesEmployes().contains(matricule)).findAny().orElse(null);
 	}
 
 	public Sheet getOrCreateSheet(Workbook wb, String sheetName) {
