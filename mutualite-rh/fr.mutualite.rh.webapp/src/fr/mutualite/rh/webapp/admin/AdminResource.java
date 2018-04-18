@@ -128,12 +128,12 @@ public class AdminResource extends BaseResource {
 	@Path("/restore.xml")
 	@Consumes("application/octet-stream")
 	public void restore(InputStream in) {
-		try {
-			in = new FileInputStream("E:\\temp\\2017\\06\\06\\backup-2017-06-06.xml");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			in = new FileInputStream("E:\\temp\\2018\\04\\18\\backup-2018-04-18.xml");
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		CdoServlet.getCdo().restore(in);
 	}
 

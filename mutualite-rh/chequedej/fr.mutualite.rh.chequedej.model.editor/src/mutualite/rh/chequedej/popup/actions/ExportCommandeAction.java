@@ -176,6 +176,17 @@ public class ExportCommandeAction implements IObjectActionDelegate {
 		EList<CodeClient> codesClient = commande.carnet().root().getParametrage().getCodesClient();
 		SubMonitor mon = SubMonitor.convert(monitor, 100 * codesClient.size());
 
+
+		// On vérifie d'abord qu'il ne manque pas de succursale
+		String employeesMissingSuccursales = commande.getItems().stream().filter(item -> item.getSuccursale()==null).peek(item -> {
+			ChequedejEditorPlugin.getPlugin().getLog().log(new Status(IStatus.ERROR, "Commande cheque dej", "Item sans succursale - matricule " + item.getMatricule() + " (" + item.getPrenom() + " " + item.getNom() + ")"));
+		}).map(Item::getMatricule).map(this::findEmploye).map(Employe::getLabel).collect(Collectors.joining("\n"));
+		if(!employeesMissingSuccursales.isEmpty()) {
+			shell.getDisplay().asyncExec(() -> {
+				MessageDialog.openError(shell, "Succursales manquantes", "Certains items de commandes n'ont pas de succursale. \nIls ne seront pas inclus dans l'export de la commande.\nEmployés correspondants : \n" + employeesMissingSuccursales);
+			});
+		}
+		
 		codesClient.forEach(codeClient -> {
 			mon.subTask(codeClient.getLibelle() + "(" + codeClient.getNumero() + ")");
 			try {
@@ -241,8 +252,8 @@ public class ExportCommandeAction implements IObjectActionDelegate {
 		// on liste tous les salariés des succursales de ce codeClient,
 		// et on les groupe par etablissement/établissement virtuel de rattachement
 		// puis ont les trie par nom
-
-		List<Pair<Item, Employe>> pairs = commande.getItems().stream().filter( item -> item.getNbCheques()!=null && item.getNbCheques()>0 && item.getSuccursale()
+		
+		List<Pair<Item, Employe>> pairs = commande.getItems().stream().filter( item -> item.getNbCheques()!=null && item.getSuccursale()!=null && item.getNbCheques()>0 && item.getSuccursale()
 				
 				.codeClient()
 				
