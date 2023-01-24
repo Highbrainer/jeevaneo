@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Conf
-Bundle-SymbolicName: fr.mutualite.jetty.conf
-Bundle-Version: 1.0.0.qualifier
-Fragment-Host: org.eclipse.jetty.util;bundle-version="9.3.9"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
