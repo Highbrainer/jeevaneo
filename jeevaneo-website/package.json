@@ -11,7 +11,8 @@
     "web-vitals": "^3.3.0"
   },
   "devDependencies": {
-	  "react-scripts": "^5.0.1"
+    "@svgr/webpack": "^6.5.1",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "overrides" : {
+    "@svgr/webpack": "$@svgr/webpack"
   }
 }
